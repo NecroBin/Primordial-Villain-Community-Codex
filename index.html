@@ -9,25 +9,38 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.setAttribute('data-theme',localStorage.getItem('pv-theme')||'dark')</script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg-deep:#07070d;--bg-primary:#0c0c16;--bg-secondary:#12121f;
-  --bg-card:#161628;--bg-card-hover:#1c1c36;
-  --border:#252540;--border-hover:#c9a84c;
-  --gold:#c9a84c;--gold-dim:#8a6e2e;--gold-glow:rgba(201,168,76,.25);
-  --crimson:#a03050;--crimson-dim:#6b2040;
-  --purple:#7b5ea7;--teal:#2a9d8f;
-  --text:#dddde6;--text-sec:#9999ad;--text-muted:#5a5a70;
   --font-h:'Cinzel',Georgia,'Times New Roman',serif;
   --font-b:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --sidebar-w:260px;--ease:cubic-bezier(.4,0,.2,1);
+  --gold:#c9a84c;--gold-dim:#8a6e2e;--gold-glow:rgba(201,168,76,.25);
+  --crimson:#a03050;--crimson-dim:#6b2040;
+  --purple:#7b5ea7;--teal:#2a9d8f;
 }
-html{scroll-behavior:smooth;scrollbar-color:var(--border) var(--bg-primary)}
-body{font-family:var(--font-b);background:var(--bg-deep);color:var(--text);line-height:1.6;overflow-x:hidden}
+[data-theme="dark"]{
+  --bg-deep:#07070d;--bg-primary:#0c0c16;--bg-secondary:#12121f;
+  --bg-card:#161628;--bg-card-hover:#1c1c36;
+  --border:#252540;--border-hover:#c9a84c;
+  --text:#dddde6;--text-sec:#9999ad;--text-muted:#5a5a70;
+  --shadow-card:0 2px 12px rgba(0,0,0,.3);
+  --scrollbar-track:var(--bg-primary);--scrollbar-thumb:var(--border);
+}
+[data-theme="light"]{
+  --bg-deep:#f0ede6;--bg-primary:#faf8f4;--bg-secondary:#efece5;
+  --bg-card:#ffffff;--bg-card-hover:#f5f3ed;
+  --border:#d5d0c4;--border-hover:#c9a84c;
+  --text:#1a1a1a;--text-sec:#4a4a4a;--text-muted:#8a8a8a;
+  --shadow-card:0 2px 12px rgba(0,0,0,.06);
+  --scrollbar-track:#efece5;--scrollbar-thumb:#ccc8be;
+}
+html{scroll-behavior:smooth;scrollbar-color:var(--scrollbar-thumb) var(--scrollbar-track)}
+body{font-family:var(--font-b);background:var(--bg-deep);color:var(--text);line-height:1.6;overflow-x:hidden;transition:background .3s,color .3s}
 ::-webkit-scrollbar{width:8px}
-::-webkit-scrollbar-track{background:var(--bg-primary)}
-::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+::-webkit-scrollbar-track{background:var(--scrollbar-track)}
+::-webkit-scrollbar-thumb{background:var(--scrollbar-thumb);border-radius:4px}
 ::-webkit-scrollbar-thumb:hover{background:var(--gold-dim)}
 a{color:var(--gold);text-decoration:none;transition:color .2s}
 a:hover{color:#e0c060}
@@ -79,8 +92,8 @@ body.search-mode #page-home{display:none!important}
 
 /* ── Home: Nav Cards ── */
 .home-nav{max-width:900px;margin:0 auto;padding:0 48px 40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
-.nav-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;cursor:pointer;transition:all .3s var(--ease);text-decoration:none;display:block;border-left:3px solid var(--border)}
-.nav-card:hover{border-color:var(--gold-dim);box-shadow:0 0 24px rgba(201,168,76,.08);transform:translateY(-2px);border-left-color:var(--gold)}
+.nav-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;cursor:pointer;transition:all .3s var(--ease);text-decoration:none;display:block;border-left:3px solid var(--border);box-shadow:var(--shadow-card)}
+.nav-card:hover{border-color:var(--gold-dim);box-shadow:0 4px 24px rgba(201,168,76,.12);transform:translateY(-3px);border-left-color:var(--gold)}
 .nav-card h3{font-family:var(--font-h);font-size:.95rem;color:var(--gold);margin-bottom:6px}
 .nav-card p{font-size:.82rem;color:var(--text-sec);line-height:1.5}
 .nav-card .nav-card-icon{font-size:1.3rem;margin-bottom:10px;display:block}
@@ -103,7 +116,8 @@ section{padding:40px 48px 40px;max-width:1000px}
 /* ── Cards ── */
 .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
 .card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:22px;transition:all .3s var(--ease)}
-.card:hover{border-color:var(--gold-dim);box-shadow:0 0 20px rgba(201,168,76,.06)}
+.card{box-shadow:var(--shadow-card)}
+.card:hover{border-color:var(--gold-dim);box-shadow:0 0 20px rgba(201,168,76,.1)}
 .card-title{font-family:var(--font-h);font-size:1rem;color:var(--gold);margin-bottom:4px}
 .card-role{font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
 .card-sep{margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
@@ -356,6 +370,30 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   .fam-grid{grid-template-columns:1fr}
 }
 
+/* ── Theme toggle ── */
+.theme-toggle{display:flex;align-items:center;gap:8px;padding:12px 20px;border-top:1px solid var(--border);cursor:pointer;user-select:none;transition:background .2s}
+.theme-toggle:hover{background:rgba(201,168,76,.04)}
+.theme-toggle-label{font-size:.8rem;color:var(--text-sec)}
+.theme-toggle-icon{font-size:1.1rem;line-height:1}
+.theme-toggle-track{width:36px;height:20px;border-radius:10px;background:var(--border);position:relative;margin-left:auto;transition:background .3s}
+.theme-toggle-track::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--text-sec);transition:transform .3s,background .3s}
+[data-theme="light"] .theme-toggle-track{background:var(--gold)}
+[data-theme="light"] .theme-toggle-track::after{transform:translateX(16px);background:#fff}
+
+/* ── Light-mode overrides ── */
+[data-theme="light"] .sidebar{background:var(--bg-primary);border-right-color:var(--border)}
+[data-theme="light"] .card,[data-theme="light"] .fam-card,[data-theme="light"] .div-card,[data-theme="light"] .class-card,[data-theme="light"] .vs-fighter,[data-theme="light"] .chart-wrap,[data-theme="light"] .vs-delta-wrap,[data-theme="light"] .nav-card,[data-theme="light"] .curators-inner,[data-theme="light"] .sub-card{background:var(--bg-card);border-color:var(--border);box-shadow:var(--shadow-card)}
+[data-theme="light"] .member{border-bottom-color:rgba(0,0,0,.06)}
+[data-theme="light"] .fam-member{border-bottom-color:rgba(0,0,0,.06)}
+[data-theme="light"] .vs-stat{border-bottom-color:rgba(0,0,0,.06)}
+[data-theme="light"] .stats-table td{border-bottom-color:rgba(0,0,0,.06)}
+[data-theme="light"] .class-inner{border-top-color:var(--border)}
+[data-theme="light"] .form-input,[data-theme="light"] .form-select,[data-theme="light"] .form-textarea{background:var(--bg-secondary);border-color:var(--border);color:var(--text)}
+[data-theme="light"] .form-select option{background:var(--bg-card);color:var(--text)}
+[data-theme="light"] .bg-secondary,[data-theme="light"] .core-item,[data-theme="light"] .stance,[data-theme="light"] .evil-item,[data-theme="light"] .delta-item{background:var(--bg-secondary)}
+[data-theme="light"] .menu-toggle{background:var(--bg-card);border-color:var(--border)}
+[data-theme="light"] .overlay{background:rgba(0,0,0,.3)}
+
 /* ── Print ── */
 @media print{
   .sidebar,.overlay,.menu-toggle,.back-to-top,.sidebar-search,.page-bar,.back-btn{display:none!important}
@@ -397,6 +435,11 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <li><a onclick="navigateTo('submit')" data-page="submit">Submit Info</a></li>
     </ul>
   </nav>
+  <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+    <span class="theme-toggle-icon" id="themeIcon">&#9790;</span>
+    <span class="theme-toggle-label" id="themeLabel">Dark</span>
+    <div class="theme-toggle-track"></div>
+  </div>
 </aside>
 
 <div class="overlay" id="overlay"></div>
@@ -878,8 +921,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <form id="submitForm" style="max-width:600px">
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label" for="subName">Discord Username</label>
-          <input class="form-input" type="text" id="subName" placeholder="e.g. Zaspho" required>
+          <label class="form-label" for="subName">Name</label>
+          <input class="form-input" type="text" id="subName" placeholder="Your name or Discord handle" required>
         </div>
         <div class="form-group">
           <label class="form-label" for="subCategory">Category</label>
@@ -930,6 +973,23 @@ var CONFIG = {
   WEBHOOK_URL: 'https://discord.com/api/webhooks/1502227324148518962/t573_PvxrIV2HQsz8Jv2iN1GROeJnNkxU2asBOxO5sKBpqKIMDZIgG0jC4meMesJ2eF8'
 };
 // ══════════════════════════════════════════════════════════════
+
+// ── Theme toggle ──
+function updateThemeUI(){
+  var theme = document.documentElement.getAttribute('data-theme') || 'dark';
+  var icon = document.getElementById('themeIcon');
+  var label = document.getElementById('themeLabel');
+  if(icon) icon.innerHTML = theme === 'dark' ? '&#9790;' : '&#9728;';
+  if(label) label.textContent = theme === 'dark' ? 'Dark' : 'Light';
+}
+window.toggleTheme = function(){
+  var current = document.documentElement.getAttribute('data-theme') || 'dark';
+  var next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('pv-theme', next);
+  updateThemeUI();
+};
+updateThemeUI();
 
 // ── Page routing ──
 var currentPage = 'home';
