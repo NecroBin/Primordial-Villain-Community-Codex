@@ -1676,8 +1676,16 @@ window.discordLogout = function(){ localStorage.removeItem('pv_discord_user'); u
       navigateTo('submit');
       var msg = document.getElementById('submitMsg');
       if(msg){ msg.className = 'form-msg error'; msg.textContent = 'You must be a member of the Necroverse Discord server to submit. Join at discord.gg/XAwgpNKAHr'; msg.style.display = 'block'; }
+    } else {
+      navigateTo('submit');
+      var msg = document.getElementById('submitMsg');
+      if(msg){ msg.className = 'form-msg error'; msg.textContent = 'Login failed: ' + (data.error || 'unknown error') + '. Try again.'; msg.style.display = 'block'; }
     }
-  }).catch(function(){});
+  }).catch(function(err){
+    navigateTo('submit');
+    var msg = document.getElementById('submitMsg');
+    if(msg){ msg.className = 'form-msg error'; msg.textContent = 'Login failed: ' + (err.message || 'network error') + '. Try again.'; msg.style.display = 'block'; }
+  });
 })();
 
 updateSubmitUI();
