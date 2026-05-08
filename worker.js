@@ -30,6 +30,21 @@ export default {
       }
     }
 
+    if (path === '/leaderboard' && request.method === 'GET') {
+      try {
+        const list = await env.SUBS.list({ prefix: 'sub:' });
+        const entries = [];
+        for (const key of list.keys) {
+          const val = await env.SUBS.get(key.name, { type: 'json' });
+          if (val) entries.push(val);
+        }
+        entries.sort(function(a, b) { return b.count - a.count; });
+        return new Response(JSON.stringify(entries.slice(0, 10)), { headers: CORS });
+      } catch (e) {
+        return new Response('{"error":"Failed to load leaderboard"}', { status: 500, headers: CORS });
+      }
+    }
+
     if (path === '/token' && request.method === 'POST') {
       try {
         const { code } = await request.json();
@@ -125,6 +140,18 @@ export default {
         });
 
         if (!res.ok) return new Response('{"error":"Discord rejected"}', { status: 502, headers: CORS });
+
+        try {
+          const key = 'sub:' + user.id;
+          const existing = await env.SUBS.get(key, { type: 'json' });
+          const entry = existing || { id: user.id, username: user.username, global_name: user.global_name || user.username, avatar: user.avatar, count: 0 };
+          entry.count += 1;
+          entry.username = user.username;
+          entry.global_name = user.global_name || user.username;
+          entry.avatar = user.avatar;
+          await env.SUBS.put(key, JSON.stringify(entry));
+        } catch (e) {}
+
         return new Response('{"success":true}', { headers: CORS });
       } catch (e) {
         return new Response('{"error":"Bad request"}', { status: 400, headers: CORS });

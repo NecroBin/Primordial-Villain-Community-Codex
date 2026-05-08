@@ -150,6 +150,18 @@ body.search-mode #page-home{display:none!important}
 .submit-avatar{width:40px;height:40px;border-radius:50%;border:2px solid #5865F2}
 .submit-logout{margin-left:auto;background:none;border:1px solid var(--border);color:var(--text-muted);border-radius:6px;padding:6px 14px;cursor:pointer;font-size:.78rem;font-family:var(--font-b);transition:all .2s}
 .submit-logout:hover{border-color:var(--crimson);color:var(--crimson)}
+.leaderboard{margin-top:40px;border-top:1px solid var(--border);padding-top:32px}
+.leaderboard h3{font-family:var(--font-h);font-size:1rem;color:var(--gold);margin-bottom:16px}
+.lb-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;transition:background .2s}
+.lb-row:hover{background:var(--bg-secondary)}
+.lb-rank{font-family:var(--font-h);font-size:.9rem;color:var(--gold);width:28px;text-align:center;flex-shrink:0}
+.lb-rank.gold{color:#FFD700}
+.lb-rank.silver{color:#C0C0C0}
+.lb-rank.bronze{color:#CD7F32}
+.lb-avatar{width:32px;height:32px;border-radius:50%;border:2px solid var(--border);flex-shrink:0}
+.lb-name{font-size:.88rem;color:var(--text);font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb-count{font-size:.78rem;color:var(--text-muted);font-family:var(--font-h);flex-shrink:0}
+.lb-empty{font-size:.84rem;color:var(--text-muted);padding:16px 0}
 .discord-widget{max-width:900px;margin:0 auto;padding:0 48px 48px;text-align:center}
 .discord-widget h3{font-family:var(--font-h);font-size:1.1rem;color:var(--gold);margin-bottom:16px}
 .discord-widget iframe{border-radius:12px;border:1px solid var(--border);max-width:100%}
@@ -958,6 +970,10 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
         </form>
         <div class="form-msg" id="submitMsg"></div>
       </div>
+      <div class="leaderboard">
+        <h3>Top Contributors</h3>
+        <div id="leaderboard"><div class="lb-empty">Loading...</div></div>
+      </div>
     </div>
   </section>
 </div>
@@ -1201,6 +1217,30 @@ syncWidgetTheme();
 var origToggle = window.toggleTheme;
 window.toggleTheme = function(){ origToggle(); syncWidgetTheme(); };
 
+function loadLeaderboard(){
+  var lb = document.getElementById('leaderboard');
+  if(!lb) return;
+  fetch(WORKER + '/leaderboard').then(function(r){ return r.json(); }).then(function(data){
+    if(!data.length){ lb.innerHTML = '<div class="lb-empty">No submissions yet. Be the first!</div>'; return; }
+    var html = '';
+    var medals = ['gold','silver','bronze'];
+    data.forEach(function(e, i){
+      var rankClass = i < 3 ? ' ' + medals[i] : '';
+      var avatarUrl = e.avatar
+        ? 'https://cdn.discordapp.com/avatars/' + (e.id || '0') + '/' + e.avatar + '.png?size=64'
+        : 'https://cdn.discordapp.com/embed/avatars/' + (i % 5) + '.png';
+      html += '<div class="lb-row">'
+        + '<div class="lb-rank' + rankClass + '">#' + (i+1) + '</div>'
+        + '<img class="lb-avatar" src="' + avatarUrl + '" alt="">'
+        + '<div class="lb-name">' + (e.global_name || e.username || 'Unknown') + '</div>'
+        + '<div class="lb-count">' + e.count + ' submission' + (e.count !== 1 ? 's' : '') + '</div>'
+        + '</div>';
+    });
+    lb.innerHTML = html;
+  }).catch(function(){ lb.innerHTML = '<div class="lb-empty">Could not load leaderboard.</div>'; });
+}
+loadLeaderboard();
+
 var submitForm = document.getElementById('submitForm');
 if(submitForm) submitForm.addEventListener('submit', function(e){
   e.preventDefault();
@@ -1232,6 +1272,7 @@ if(submitForm) submitForm.addEventListener('submit', function(e){
     msg.textContent = 'Submission received! The moderation team will review it shortly.';
     msg.style.display = 'block';
     submitForm.reset();
+    loadLeaderboard();
   }).catch(function(err){
     msg.className = 'form-msg error';
     msg.textContent = err.message === 'Session expired' ? 'Session expired. Please log in again.' : 'Something went wrong. Please try again or post directly in the Discord.';
