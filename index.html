@@ -466,6 +466,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .lb-arrow:hover{background:rgba(255,255,255,.25)}
 .lb-prev{left:20px}
 .lb-next{right:20px}
+.page-bar:has(.breadcrumb) .back-btn{display:none}
 .breadcrumb{display:flex;align-items:center;gap:6px;padding:0;margin:0;font-size:.78rem;color:var(--text-muted)}
 .breadcrumb a{color:var(--text-sec);cursor:pointer;transition:color .15s;text-decoration:none}
 .breadcrumb a:hover{color:var(--gold)}
@@ -757,8 +758,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
         <div class="member"><span class="member-name">Malakar</span><span class="member-title badge badge-gold">First Human</span></div>
         <div class="member"><span class="member-name">Thyra</span><span class="member-title badge badge-gold">First Human</span></div>
         <div class="member"><span class="member-name">Dragnar</span><span class="member-title">Combat-Focused &middot; Nyxara Duty</span></div>
-        <div class="member"><span class="member-name">Mearie</span><span class="member-title">Adopted Daughter of Thyra &middot; Quinlan's Adoptive Mother</span></div>
-        <div class="member"><span class="member-name" id="xref-hanae">Hanae</span><span class="member-title">Eastern &middot; The Primordial Samurai</span></div>
+        <div class="member"><span class="member-name"><a href="#" class="xref" onclick="event.preventDefault();navigateTo('char-mearie')">Mearie</a></span><span class="member-title">Adopted Daughter of Thyra &middot; Quinlan's Adoptive Mother</span></div>
+        <div class="member"><span class="member-name" id="xref-hanae"><a href="#" class="xref" onclick="event.preventDefault();navigateTo('char-hanae')">Hanae</a></span><span class="member-title">Eastern &middot; The Primordial Samurai</span></div>
         <div class="member"><span class="member-name" id="xref-zen">Zen</span><span class="member-title">Eastern &middot; Swordsman</span></div>
         <p class="card-note">Malakar and Thyra are the original First Humans. Hanae and Zen are Eastern&mdash;the <a href="#" class="xref" data-xref-page="kingdom" data-xref-id="xref-fujimori">Fujimori Clan</a> descends from their bloodline. Hanae trained Quinlan's saber technique.</p>
       </div>
@@ -770,13 +771,13 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       </div>
       <div class="card searchable" data-keywords="luminara elf elves primordial nurturer malakar killed male">
         <div class="card-title">Elf Primordials</div><div class="card-role">2 Known &middot; 1 Deceased</div>
-        <div class="member"><span class="member-name">Luminara</span><span class="member-title">Primordial Nurturer &middot; Quinlan's Adoptive Mother</span></div>
+        <div class="member"><span class="member-name"><a href="#" class="xref" onclick="event.preventDefault();navigateTo('char-luminara')">Luminara</a></span><span class="member-title">Primordial Nurturer &middot; Quinlan's Adoptive Mother</span></div>
         <div class="member"><span class="member-name">Unnamed Male</span><span class="member-title badge badge-dead">Killed by Malakar</span></div>
         <p class="card-note">When Malakar killed the male elf primordial, it rendered elven men unable to level up&mdash;causing them to die thousands of years before their female counterparts.</p>
       </div>
       <div class="card searchable" data-keywords="kiryssa vaelor drow dark elf primordial shadow">
         <div class="card-title">Drow Primordials</div><div class="card-role">2 Known</div>
-        <div class="member"><span class="member-name">Kiryssa</span><span class="member-title">Female &middot; Sadistic Assassin &middot; Quinlan's Mentor</span></div>
+        <div class="member"><span class="member-name"><a href="#" class="xref" onclick="event.preventDefault();navigateTo('char-kiryssa')">Kiryssa</a></span><span class="member-title">Female &middot; Sadistic Assassin &middot; Quinlan's Mentor</span></div>
         <div class="member"><span class="member-name">Vaelor</span><span class="member-title">Male &middot; Shadow-Aligned</span></div>
       </div>
       <div class="card searchable" data-keywords="nyxara syrion demon sex primordial succubus incubus mate killed male">
@@ -841,8 +842,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <div class="org-divisions">
         <div class="div-card" id="xref-black-fang">
           <div class="div-label">Drugs</div>
-          <div class="div-head"><a href="#" class="xref" data-xref-page="quinlan" data-xref-id="xref-black-fang-vs">Black Fang</a> &mdash; Venomborne Terror</div>
-          <div class="div-sub">Vex, Orianna, Raika<br><em style="color:var(--purple)">Product: Ambrosia (Divine Nectar)</em></div>
+          <div class="div-head"><a href="#" class="xref" onclick="event.preventDefault();navigateTo('char-blackfang')">Black Fang</a> &mdash; Venomborne Terror</div>
+          <div class="div-sub"><a href="#" class="xref" onclick="event.preventDefault();navigateTo('girl-vex')">Vex</a>, <a href="#" class="xref" onclick="event.preventDefault();navigateTo('char-orianna')">Orianna</a>, <a href="#" class="xref" onclick="event.preventDefault();navigateTo('char-raika')">Raika</a><br><em style="color:var(--purple)">Product: Ambrosia (Divine Nectar)</em></div>
         </div>
         <div class="div-card" id="xref-maelstrom">
           <div class="div-label">Military</div>
