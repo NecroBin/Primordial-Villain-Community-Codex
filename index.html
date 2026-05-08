@@ -450,7 +450,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:24px}
 .gallery-item{position:relative;border-radius:12px;overflow:hidden;border:2px solid var(--border);background:var(--card-bg);transition:transform .2s,box-shadow .2s}
 .gallery-item:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.4)}
-.gallery-item img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;cursor:zoom-in}
+.gallery-item img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;cursor:zoom-in;background:var(--bg-secondary)}
 .gallery-item .gallery-label{padding:10px 14px;font-size:.85rem;font-weight:600;color:var(--text);text-align:center;cursor:pointer;transition:color .15s}
 .gallery-item .gallery-label:hover{color:var(--purple)}
 .gallery-item .gallery-label span{display:block;font-size:.72rem;font-weight:400;color:var(--text-muted);margin-top:2px}
@@ -462,6 +462,19 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .lightbox.open{display:flex}
 .lightbox img{max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 0 60px rgba(0,0,0,.6)}
 .lightbox .lb-name{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);color:#fff;font-size:1.1rem;font-weight:600;letter-spacing:.04em;text-shadow:0 2px 8px rgba(0,0,0,.7)}
+.lb-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:none;color:#fff;font-size:2rem;width:48px;height:48px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:10000}
+.lb-arrow:hover{background:rgba(255,255,255,.25)}
+.lb-prev{left:20px}
+.lb-next{right:20px}
+.breadcrumb{display:flex;align-items:center;gap:6px;padding:0;margin:0;font-size:.78rem;color:var(--text-muted)}
+.breadcrumb a{color:var(--text-sec);cursor:pointer;transition:color .15s;text-decoration:none}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb .bc-sep{opacity:.5}
+.breadcrumb .bc-current{color:var(--gold)}
+.entry-cta{margin-top:28px;padding:20px 24px;border:1px dashed var(--border);border-radius:10px;text-align:center;background:rgba(139,92,246,.03)}
+.entry-cta p{font-size:.85rem;color:var(--text-sec);margin-bottom:12px}
+.entry-cta a{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:var(--gold);color:#fff;border-radius:8px;font-family:var(--font-h);font-size:.85rem;cursor:pointer;text-decoration:none;transition:all .2s;letter-spacing:.03em}
+.entry-cta a:hover{background:var(--gold-dim);box-shadow:0 4px 16px var(--gold-glow)}
 .gallery-contribute{padding:6px 14px;font-size:.72rem;font-weight:600;color:var(--purple);text-align:center;letter-spacing:.04em;border-top:1px solid var(--border)}
 /* Quinlan blur reveal */
 .portrait-blur{position:relative;cursor:pointer;max-width:420px;margin:0 auto}
@@ -1121,6 +1134,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <div class="fam-member"><strong>Orianna</strong> &mdash; Fellow Disciple (&ldquo;The Flower Queen&rdquo;)</div>
       <div class="fam-member" style="color:var(--text-muted);font-style:italic">Birth family killed by lionkin</div>
     </div>
+    <div class="entry-cta"><p>This entry is incomplete. Know Vex's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
   </section>
 </div>
 
@@ -1171,6 +1185,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div style="padding:12px 0;font-size:.88rem;color:var(--text-sec)">
       <div class="fam-member"><strong>Vargis</strong> &mdash; Father (Lord of the Dogkin)</div>
     </div>
+    <div class="entry-cta"><p>This entry is incomplete. Know Kitsara's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
   </section>
 </div>
 
@@ -1245,6 +1260,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <div class="fam-member"><strong>Mavena</strong> &mdash; Daughter</div>
       <div class="fam-member"><strong>Robert</strong> &mdash; Ex-Husband</div>
     </div>
+    <div class="entry-cta"><p>This entry is incomplete. Know Lucille's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
   </section>
 </div>
 
@@ -1381,7 +1397,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 <div class="no-results" id="noResults">No matches found.</div>
 <footer class="footer"><p>Compiled by the community of <strong style="color:var(--gold)">Primordial Villain with a Slave Harem</strong></p></footer>
 </main>
-<div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lbImg" src="" alt=""><div class="lb-name" id="lbName"></div></div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()"><button class="lb-arrow lb-prev" onclick="event.stopPropagation();lbNav(-1)">&#8249;</button><img id="lbImg" src="" alt="" onclick="event.stopPropagation()"><button class="lb-arrow lb-next" onclick="event.stopPropagation();lbNav(1)">&#8250;</button><div class="lb-name" id="lbName"></div></div>
 
 <noscript>
 <div style="padding:40px;max-width:800px;margin:0 auto;font-family:Georgia,serif;color:#222">
@@ -1498,6 +1514,26 @@ window.navigateTo = function(pageId, scrollToId){
   var target = document.getElementById('page-' + pageId);
   if(target) target.classList.add('active');
   currentPage = pageId;
+
+  var bar = target ? target.querySelector('.page-bar') : null;
+  if(bar){
+    var old = bar.querySelector('.breadcrumb');
+    if(old) old.remove();
+    var bc = null;
+    if(pageId.indexOf('girl-') === 0){
+      var gName = '';
+      girlList.forEach(function(g){ if(g.id === pageId) gName = g.name; });
+      bc = '<nav class="breadcrumb"><a onclick="navigateTo(\'home\')">Home</a><span class="bc-sep">&#8250;</span><a onclick="navigateTo(\'families\')">Harem &amp; Family</a><span class="bc-sep">&#8250;</span><span class="bc-current">' + gName + '</span></nav>';
+    } else if(pageId === 'kingdom' || pageId === 'primordials' || pageId === 'organizations'){
+      var names = {kingdom:'Vraven Kingdom',primordials:'Primordials',organizations:'Criminal Organizations'};
+      bc = '<nav class="breadcrumb"><a onclick="navigateTo(\'home\')">Home</a><span class="bc-sep">&#8250;</span><a onclick="navigateTo(\'world\')">World &amp; Factions</a><span class="bc-sep">&#8250;</span><span class="bc-current">' + names[pageId] + '</span></nav>';
+    } else if(pageId !== 'home'){
+      var pNames = {quinlan:'Quinlan',families:'Harem &amp; Family',world:'World &amp; Factions',gallery:'Gallery',submit:'Contribute'};
+      if(pNames[pageId]) bc = '<nav class="breadcrumb"><a onclick="navigateTo(\'home\')">Home</a><span class="bc-sep">&#8250;</span><span class="bc-current">' + pNames[pageId] + '</span></nav>';
+    }
+    if(bc) bar.insertAdjacentHTML('beforeend', bc);
+  }
+
   document.title = pageTitles[pageId] || defaultTitle;
   var metaDesc = document.querySelector('meta[name="description"]');
   if(metaDesc) metaDesc.setAttribute('content', pageDescs[pageId] || defaultDesc);
@@ -1870,7 +1906,14 @@ window.filterGallery = function(cat, btn){
   document.querySelectorAll('.gallery-filter button').forEach(function(b){ b.classList.remove('active'); });
   if(btn) btn.classList.add('active');
 };
+var lbItems = [];
+var lbIndex = 0;
 window.openLightbox = function(el){
+  lbItems = Array.prototype.slice.call(document.querySelectorAll('.gallery-item:not([style*="display: none"])'));
+  lbIndex = lbItems.indexOf(el);
+  showLbItem(el);
+};
+function showLbItem(el){
   var img = el.querySelector('img');
   var label = el.querySelector('.gallery-label');
   var lb = document.getElementById('lightbox');
@@ -1878,12 +1921,23 @@ window.openLightbox = function(el){
   document.getElementById('lbName').textContent = label ? label.childNodes[0].textContent : '';
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
+}
+window.lbNav = function(dir){
+  if(!lbItems.length) return;
+  lbIndex = (lbIndex + dir + lbItems.length) % lbItems.length;
+  showLbItem(lbItems[lbIndex]);
 };
 window.closeLightbox = function(){
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
 };
-document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeLightbox();
+  if(document.getElementById('lightbox').classList.contains('open')){
+    if(e.key === 'ArrowLeft') lbNav(-1);
+    if(e.key === 'ArrowRight') lbNav(1);
+  }
+});
 window.revealQuinlan = function(el){
   el.classList.add('revealed');
 };
