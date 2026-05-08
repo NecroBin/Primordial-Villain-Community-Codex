@@ -1297,7 +1297,7 @@ window.navigateTo = function(pageId, scrollToId){
   var target = document.getElementById('page-' + pageId);
   if(target) target.classList.add('active');
   currentPage = pageId;
-  window.scrollTo(0, 0);
+  if(!scrollToId) window.scrollTo(0, 0);
 
   document.querySelectorAll('.sidebar-nav a[data-page]').forEach(function(a){
     var match = a.dataset.page === pageId;
@@ -1320,7 +1320,7 @@ window.navigateTo = function(pageId, scrollToId){
           if(accordion){ var h = accordion.querySelector('.class-header'); if(h) toggleClass(h); }
           var collapsible = el.closest('.org-collapsible:not(.open)');
           if(collapsible){ var oh = collapsible.querySelector('.org-header'); if(oh) toggleOrg(oh); }
-          el.scrollIntoView({ behavior:'smooth', block:'center' });
+          el.scrollIntoView({ behavior:'smooth', block:'start' });
           el.classList.add('xref-highlight');
           setTimeout(function(){ el.classList.remove('xref-highlight'); }, 1000);
         }
