@@ -1152,17 +1152,24 @@ window.discordLogout = function(){ sessionStorage.removeItem('pv_discord_user');
   var params = new URLSearchParams(window.location.search);
   var code = params.get('code');
   if(!code) return;
-  history.replaceState(null, '', window.location.pathname + window.location.hash);
+  history.replaceState(null, '', window.location.pathname + '#submit');
   fetch(WORKER + '/token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ code: code })
-  }).then(function(r){ return r.json(); }).then(function(data){
+  }).then(function(r){
+    if(!r.ok) throw new Error('Worker returned ' + r.status);
+    return r.json();
+  }).then(function(data){
     if(data.access_token){
       setDiscordUser(data);
       navigateTo('submit');
       updateSubmitUI();
+    } else {
+      alert('Discord login failed: ' + JSON.stringify(data));
     }
+  }).catch(function(err){
+    alert('Login error: ' + err.message);
   });
 })();
 
