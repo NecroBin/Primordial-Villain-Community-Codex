@@ -884,7 +884,6 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 </main>
 
 <!-- ════════════ Scripts ════════════ -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" onerror="document.querySelectorAll('.chart-fallback').forEach(f=>f.style.display='block')"></script>
 <script>
 (function(){
 'use strict';
@@ -1087,8 +1086,11 @@ document.querySelectorAll('.xref').forEach(function(link){
 });
 
 // ── Charts (lazy init on first stats page visit) ──
+window._pvChartReady = function(){
+  if(!chartsInitialized && currentPage === 'stats') initCharts();
+};
 function initCharts(){
-  if(typeof Chart === 'undefined'){ document.querySelectorAll('.chart-fallback').forEach(function(f){ f.style.display='block'; }); return; }
+  if(typeof Chart === 'undefined') return;
   chartsInitialized = true;
   Chart.defaults.color = '#9999ad';
   Chart.defaults.borderColor = 'rgba(255,255,255,0.06)';
@@ -1105,5 +1107,6 @@ function initCharts(){
 
 })();
 </script>
+<script async src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" onload="if(window._pvChartReady)window._pvChartReady()" onerror="document.querySelectorAll('.chart-fallback').forEach(function(f){f.style.display='block'})"></script>
 </body>
 </html>
