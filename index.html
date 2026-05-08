@@ -964,16 +964,25 @@ function handleDiscordCallback(){
       history.replaceState(null, '', window.location.pathname);
       fetch('https://discord.com/api/users/@me', {
         headers: { 'Authorization': 'Bearer ' + params.access_token }
-      }).then(function(r){ return r.json(); }).then(function(user){
-        discordUser = user;
-        sessionStorage.setItem('discord_token', params.access_token);
-        sessionStorage.setItem('discord_user', JSON.stringify(user));
-        updateDiscordUI();
-        var returnPage = sessionStorage.getItem('discord_return_page');
-        if(returnPage){
-          sessionStorage.removeItem('discord_return_page');
-          navigateTo(returnPage);
+      }).then(function(r){
+        if(!r.ok) throw new Error('Discord API returned ' + r.status);
+        return r.json();
+      }).then(function(user){
+        if(user.id){
+          discordUser = user;
+          sessionStorage.setItem('discord_token', params.access_token);
+          sessionStorage.setItem('discord_user', JSON.stringify(user));
+          updateDiscordUI();
+          var returnPage = sessionStorage.getItem('discord_return_page');
+          if(returnPage){
+            sessionStorage.removeItem('discord_return_page');
+            navigateTo(returnPage);
+          }
+        } else {
+          alert('Discord login failed: could not retrieve user info.');
         }
+      }).catch(function(err){
+        alert('Discord login error: ' + err.message);
       });
     }
   } else {
