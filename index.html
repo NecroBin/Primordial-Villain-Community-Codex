@@ -1690,15 +1690,27 @@ window.discordLogout = function(){ localStorage.removeItem('pv_discord_user'); u
 
 updateSubmitUI();
 
-fetch(WORKER + '/members').then(function(r){ return r.json(); }).then(function(data){
-  if(data.members){
-    document.querySelectorAll('.member-count').forEach(function(el){ el.textContent = data.members.toLocaleString() + ' members'; });
-    var discordSpan = document.querySelector('.link-discord span');
-    if(discordSpan) discordSpan.innerHTML = 'Discuss chapters, theories, and see amazing art of the girls<div class="member-count">' + data.members.toLocaleString() + ' members &bull; ' + data.online.toLocaleString() + ' online</div>';
-    var sidebarOnline = document.getElementById('sidebarOnline');
-    if(sidebarOnline && data.online){ sidebarOnline.textContent = data.online.toLocaleString() + ' online'; sidebarOnline.style.display = 'inline'; }
-  }
-}).catch(function(){});
+(function fetchMembers(){
+  var CACHE_KEY = 'pv_members';
+  var CACHE_TTL = 5 * 60 * 1000;
+  try {
+    var cached = JSON.parse(sessionStorage.getItem(CACHE_KEY));
+    if(cached && Date.now() - cached.ts < CACHE_TTL){ applyMembers(cached.data); return; }
+  } catch(e){}
+  fetch(WORKER + '/members').then(function(r){ return r.json(); }).then(function(data){
+    if(data.members){
+      try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({data:data,ts:Date.now()})); } catch(e){}
+      applyMembers(data);
+    }
+  }).catch(function(){});
+})();
+function applyMembers(data){
+  document.querySelectorAll('.member-count').forEach(function(el){ el.textContent = data.members.toLocaleString() + ' members'; });
+  var discordSpan = document.querySelector('.link-discord span');
+  if(discordSpan) discordSpan.innerHTML = 'Discuss chapters, theories, and see amazing art of the girls<div class="member-count">' + data.members.toLocaleString() + ' members &bull; ' + data.online.toLocaleString() + ' online</div>';
+  var sidebarOnline = document.getElementById('sidebarOnline');
+  if(sidebarOnline && data.online){ sidebarOnline.textContent = data.online.toLocaleString() + ' online'; sidebarOnline.style.display = 'inline'; }
+}
 
 
 function escHtml(s){ var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }

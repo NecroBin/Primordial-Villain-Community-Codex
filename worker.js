@@ -81,13 +81,21 @@ export default {
 
     if (path === '/members' && request.method === 'GET') {
       try {
+        const CACHE_KEY = 'cache:members';
+        const CACHE_TTL = 300;
+        const cached = await env.SUBS.get(CACHE_KEY, { type: 'json' });
+        if (cached && cached.ts && (Date.now() / 1000 - cached.ts) < CACHE_TTL) {
+          return new Response(JSON.stringify({ members: cached.members, online: cached.online }), { headers: CORS });
+        }
         const res = await fetch('https://discord.com/api/v10/invites/' + INVITE_CODE + '?with_counts=true');
-        if (!res.ok) return new Response('{"error":"Failed to fetch"}', { status: 502, headers: CORS });
+        if (!res.ok) {
+          if (cached) return new Response(JSON.stringify({ members: cached.members, online: cached.online }), { headers: CORS });
+          return new Response('{"error":"Failed to fetch"}', { status: 502, headers: CORS });
+        }
         const data = await res.json();
-        return new Response(JSON.stringify({
-          members: data.approximate_member_count || 0,
-          online: data.approximate_presence_count || 0
-        }), { headers: CORS });
+        const result = { members: data.approximate_member_count || 0, online: data.approximate_presence_count || 0, ts: Date.now() / 1000 };
+        await env.SUBS.put(CACHE_KEY, JSON.stringify(result));
+        return new Response(JSON.stringify({ members: result.members, online: result.online }), { headers: CORS });
       } catch (e) {
         return new Response('{"error":"Fetch error"}', { status: 500, headers: CORS });
       }
