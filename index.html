@@ -1297,7 +1297,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <div class="gallery-item" data-cat="harem"><img src="images-web/jasmine.jpg" alt="Jasmine" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-jasmine')">Jasmine<span>Tyrant of Commerce</span></div></div>
       <div class="gallery-item" data-cat="harem"><img src="images-web/lucille.jpg" alt="Lucille" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-lucille')">Lucille<span>Bloodmonger</span></div></div>
       <div class="gallery-item" data-cat="harem"><img src="images-web/kaelira.jpg" alt="Kaelira" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-kaelira')">Kaelira<span>Runeweaver Titan</span></div></div>
-      <div class="gallery-item gallery-nopage" data-cat="harem"><img src="images-web/nyxara.jpg" alt="Nyxara" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Nyxara<span>Conquered Succubus</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
+      <div class="gallery-item gallery-nopage" data-cat="harem primordial"><img src="images-web/nyxara.jpg" alt="Nyxara" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Nyxara<span>Conquered Succubus</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
       <div class="gallery-item gallery-nopage" data-cat="other"><img src="images-web/black-fang.jpg" alt="Black Fang" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Black Fang<span>Hanako Fujimori</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
       <div class="gallery-item gallery-nopage" data-cat="primordial"><img src="images-web/luminara.jpg" alt="Luminara" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Luminara<span>Elf Primordial</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
       <div class="gallery-item gallery-nopage" data-cat="primordial"><img src="images-web/mearie.jpg" alt="Mearie" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Mearie<span>Human Primordial</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
@@ -1837,7 +1837,7 @@ if(location.hash) handleHash();
 
 window.filterGallery = function(cat, btn){
   var items = document.querySelectorAll('.gallery-item');
-  items.forEach(function(el){ el.style.display = (cat === 'all' || el.dataset.cat === cat) ? '' : 'none'; });
+  items.forEach(function(el){ el.style.display = (cat === 'all' || (' ' + el.dataset.cat + ' ').indexOf(' ' + cat + ' ') >= 0) ? '' : 'none'; });
   document.querySelectorAll('.gallery-filter button').forEach(function(b){ b.classList.remove('active'); });
   if(btn) btn.classList.add('active');
 };
