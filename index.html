@@ -453,15 +453,13 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <nav class="sidebar-nav" aria-label="Codex navigation">
     <ul>
       <li><a onclick="navigateTo('home')" data-page="home">Home</a></li>
+      <li class="nav-group-title">Characters</li>
+      <li><a onclick="navigateTo('quinlan')" data-page="quinlan">Quinlan</a></li>
+      <li><a onclick="navigateTo('families')" data-page="families">Harem &amp; Family</a></li>
       <li class="nav-group-title">World</li>
       <li><a onclick="navigateTo('kingdom')" data-page="kingdom">Vraven Kingdom</a></li>
       <li><a onclick="navigateTo('primordials')" data-page="primordials">Primordials</a></li>
       <li><a onclick="navigateTo('organizations')" data-page="organizations">Criminal Organizations</a></li>
-      <li class="nav-group-title">Quinlan</li>
-      <li><a onclick="navigateTo('stats')" data-page="stats">Progression &amp; Stats</a></li>
-      <li><a onclick="navigateTo('classes')" data-page="classes">Classes</a></li>
-      <li class="nav-group-title">Characters</li>
-      <li><a onclick="navigateTo('families')" data-page="families">Harem &amp; Family</a></li>
       <li class="nav-group-title">Contribute</li>
       <li><a onclick="navigateTo('submit')" data-page="submit">Submit Entry</a></li>
     </ul>
@@ -486,6 +484,16 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   </header>
   <hr class="home-divider">
   <div class="home-nav">
+    <a class="nav-card" onclick="navigateTo('quinlan')">
+      <span class="nav-card-icon">&#10070;</span>
+      <h3>Quinlan</h3>
+      <p>Stats, progression, classes, abilities&mdash;everything about the Primordial Villain.</p>
+    </a>
+    <a class="nav-card" onclick="navigateTo('families')">
+      <span class="nav-card-icon">&#9829;</span>
+      <h3>Harem &amp; Family</h3>
+      <p>Quinlan's inner circle and their known family connections.</p>
+    </a>
     <a class="nav-card" onclick="navigateTo('kingdom')">
       <span class="nav-card-icon">&#9813;</span>
       <h3>Vraven Kingdom</h3>
@@ -500,21 +508,6 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <span class="nav-card-icon">&#9876;</span>
       <h3>Criminal Organizations</h3>
       <p>The Vesper Consortium, Covenant of Eternity, and the fallen Phantom League.</p>
-    </a>
-    <a class="nav-card" onclick="navigateTo('stats')">
-      <span class="nav-card-icon">&#9650;</span>
-      <h3>Progression &amp; Stats</h3>
-      <p>Quinlan's stat milestones, XP breakdowns, and the Black Fang comparison.</p>
-    </a>
-    <a class="nav-card" onclick="navigateTo('classes')">
-      <span class="nav-card-icon">&#10070;</span>
-      <h3>Classes</h3>
-      <p>Primordial Villain, Harbinger of Aeons, Primordial Subjugator, and their subclasses.</p>
-    </a>
-    <a class="nav-card" onclick="navigateTo('families')">
-      <span class="nav-card-icon">&#9829;</span>
-      <h3>Harem &amp; Family</h3>
-      <p>Quinlan's inner circle and their known family connections.</p>
     </a>
     <a class="nav-card" onclick="navigateTo('submit')">
       <span class="nav-card-icon">&#9998;</span>
@@ -641,7 +634,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
         <div class="card-title">Dwarf Primordials</div><div class="card-role">2 Known</div>
         <div class="member"><span class="member-name" id="xref-bjorn">Bj&ouml;rn</span><span class="member-title">Primordial Blacksmith</span></div>
         <div class="member"><span class="member-name">Sivra</span><span class="member-title">Primordial Miner</span></div>
-        <p class="card-note">Bj&ouml;rn forged the <a href="javascript:void(0)" class="xref" data-xref-page="classes" data-xref-id="xref-soul-reaper">Soul Reaper</a>, Quinlan's saber.</p>
+        <p class="card-note">Bj&ouml;rn forged the <a href="javascript:void(0)" class="xref" data-xref-page="quinlan" data-xref-id="xref-soul-reaper">Soul Reaper</a>, Quinlan's saber.</p>
       </div>
       <div class="card searchable" data-keywords="luminara elf elves primordial nurturer malakar killed male">
         <div class="card-title">Elf Primordials</div><div class="card-role">2 Known &middot; 1 Deceased</div>
@@ -716,7 +709,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <div class="org-divisions">
         <div class="div-card" id="xref-black-fang">
           <div class="div-label">Drugs</div>
-          <div class="div-head"><a href="javascript:void(0)" class="xref" data-xref-page="stats" data-xref-id="xref-black-fang-vs">Black Fang</a> &mdash; Venomborne Terror</div>
+          <div class="div-head"><a href="javascript:void(0)" class="xref" data-xref-page="quinlan" data-xref-id="xref-black-fang-vs">Black Fang</a> &mdash; Venomborne Terror</div>
           <div class="div-sub">Vex, Orianna, Raika<br><em style="color:var(--purple)">Product: Ambrosia (Divine Nectar)</em></div>
         </div>
         <div class="div-card" id="xref-maelstrom">
@@ -749,12 +742,15 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   </section>
 </div>
 
-<!-- ═══════════════ STATS ═══════════════ -->
-<div class="page content-page" id="page-stats">
+<!-- ═══════════════ QUINLAN ═══════════════ -->
+<div class="page content-page" id="page-quinlan">
   <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
   <section>
-    <h2 class="sec-title">Quinlan's Progression</h2>
-    <p class="sec-desc">Stat milestones tracked across 1,442+ chapters of growth. Click any row to see the full breakdown.</p>
+    <h2 class="sec-title">Quinlan Elysiar</h2>
+    <p class="sec-desc">The Primordial Villain. Stats, progression milestones, classes, and abilities.</p>
+    <hr class="sec-divider">
+    <h3 class="vs-section-title" style="margin-top:0">Progression &amp; Stats</h3>
+    <p style="font-size:.82rem;color:var(--text-sec);margin-bottom:18px">Stat milestones tracked across 1,442+ chapters of growth. Click any row to see the full breakdown.</p>
     <hr class="sec-divider">
     <div class="stats-table-wrap searchable" data-keywords="quinlan noir elysiar stats level health mana vitality strength agility magic xp progression">
       <table class="stats-table">
@@ -785,16 +781,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     </div>
     <div class="vs-delta-wrap searchable" data-keywords="quinlan black fang delta difference"><h4>Difference (Pro-Quinlan)</h4><div class="delta-grid"><div class="delta-item"><div class="delta-label">Level</div><div class="delta-val neg">&minus;24</div></div><div class="delta-item"><div class="delta-label">Health</div><div class="delta-val pos">+713</div></div><div class="delta-item"><div class="delta-label">Mana</div><div class="delta-val pos">+2,961</div></div><div class="delta-item"><div class="delta-label">Vitality</div><div class="delta-val pos">+14</div></div><div class="delta-item"><div class="delta-label">Strength</div><div class="delta-val neg">&minus;75</div></div><div class="delta-item"><div class="delta-label">Agility</div><div class="delta-val neg">&minus;178</div></div><div class="delta-item"><div class="delta-label">Magic</div><div class="delta-val pos">+167</div></div></div></div>
     <div class="chart-wrap"><h3>Quinlan vs. Black Fang &mdash; Radar</h3><div class="chart-container" style="max-width:480px;margin:0 auto"><canvas id="radarChart"></canvas></div><div class="chart-fallback" id="fallback-radar">Charts require JavaScript and an internet connection.</div></div>
-  </section>
-</div>
-
-<!-- ═══════════════ CLASSES ═══════════════ -->
-<div class="page content-page" id="page-classes">
-  <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
-  <section>
-    <h2 class="sec-title">Quinlan's Classes</h2>
-    <p class="sec-desc">Quinlan's major classes. The Primordial Villain is his primary hub&mdash;housing Necromancy and the Bloodfather under its Harbinger of Ruin subclass. The Harbinger of Aeons is his elemental combat class. The Primordial Subjugator is his anomalous second Primordial class.</p>
-    <hr class="sec-divider">
+    <h3 class="vs-section-title" style="margin-top:48px">Classes</h3>
+    <p style="font-size:.82rem;color:var(--text-sec);margin-bottom:18px">Quinlan's major classes. The Primordial Villain is his primary hub&mdash;housing Necromancy and the Bloodfather under its Harbinger of Ruin subclass. The Harbinger of Aeons is his elemental combat class. The Primordial Subjugator is his anomalous second Primordial class.</p>
 
     <!-- ── PRIMORDIAL VILLAIN ── -->
     <div class="class-card open searchable" data-keywords="primordial villain hub class stat bonus warp gate harbinger ruin necromancy soul reaper eternal damnation march damned awaken soul fusion necromantic codex scar blood mage evil class dark plaguebearer chrono corruptor madness weaver hexblade dark ritualist nightmare herald chaos reaver abysswalker">
@@ -951,8 +939,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
               <option value="Kingdom">Vraven Kingdom</option>
               <option value="Primordials">Primordials</option>
               <option value="Organizations">Criminal Organizations</option>
-              <option value="Stats">Progression &amp; Stats</option>
-              <option value="Classes">Classes</option>
+              <option value="Quinlan">Quinlan (Stats / Classes)</option>
               <option value="Harem">Harem &amp; Family</option>
               <option value="Lore">General Lore</option>
               <option value="Correction">Correction / Fix</option>
@@ -1026,7 +1013,7 @@ window.navigateTo = function(pageId, scrollToId){
 
   closeSidebar();
 
-  if(pageId === 'stats' && !chartsInitialized) initCharts();
+  if(pageId === 'quinlan' && !chartsInitialized) initCharts();
   if(pageId === 'submit'){ updateSubmitUI(); if(typeof loadLeaderboard === 'function') loadLeaderboard(); }
 
   if(scrollToId){
@@ -1314,7 +1301,7 @@ document.querySelectorAll('.xref').forEach(function(link){
 
 // ── Charts (lazy init on first stats page visit) ──
 window._pvChartReady = function(){
-  if(!chartsInitialized && currentPage === 'stats') initCharts();
+  if(!chartsInitialized && currentPage === 'quinlan') initCharts();
 };
 function cv(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
 function initCharts(){
