@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A community-compiled reference for the webnovel Primordial Villain with a Slave Harem, cataloguing characters, factions, stats, and powers from the world of Iskaris.">
+<title>Primordial Villain with a Slave Harem &mdash; Codex</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2L28 16L16 30L4 16Z' fill='%23c9a84c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg-deep:#07070d;--bg-primary:#0c0c16;--bg-secondary:#12121f;
+  --bg-card:#161628;--bg-card-hover:#1c1c36;
+  --border:#252540;--border-hover:#c9a84c;
+  --gold:#c9a84c;--gold-dim:#8a6e2e;--gold-glow:rgba(201,168,76,.25);
+  --crimson:#a03050;--crimson-dim:#6b2040;
+  --purple:#7b5ea7;--teal:#2a9d8f;
+  --text:#dddde6;--text-sec:#9999ad;--text-muted:#5a5a70;
+  --font-h:'Cinzel',Georgia,'Times New Roman',serif;
+  --font-b:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --sidebar-w:260px;--ease:cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;scrollbar-color:var(--border) var(--bg-primary)}
+body{font-family:var(--font-b);background:var(--bg-deep);color:var(--text);line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--bg-primary)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--gold-dim)}
+a{color:var(--gold);text-decoration:none;transition:color .2s}
+a:hover{color:#e0c060}
+
+/* ── Sidebar ── */
+.sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg-primary);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;transition:transform .3s var(--ease)}
+.sidebar-brand{padding:24px 20px 14px;border-bottom:1px solid var(--border);cursor:pointer}
+.sidebar-brand h1{font-family:var(--font-h);font-size:1.05rem;color:var(--gold);letter-spacing:.05em;line-height:1.3}
+.sidebar-brand p{font-size:.7rem;color:var(--text-sec);margin-top:2px;letter-spacing:.08em;text-transform:uppercase}
+.sidebar-search{padding:14px 16px 10px}
+.sidebar-search input{width:100%;padding:8px 12px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.84rem;font-family:var(--font-b);outline:none;transition:border-color .2s}
+.sidebar-search input::placeholder{color:var(--text-muted)}
+.sidebar-search input:focus{border-color:var(--gold)}
+.sidebar-search .search-hint{font-size:.65rem;color:var(--text-muted);margin-top:5px;padding:0 2px}
+.sidebar-search .search-hint kbd{background:var(--bg-secondary);border:1px solid var(--border);border-radius:3px;padding:1px 4px;font-size:.62rem;font-family:var(--font-b)}
+.sidebar-nav{flex:1;overflow-y:auto;padding:6px 0}
+.sidebar-nav ul{list-style:none}
+.sidebar-nav a{display:block;padding:9px 20px;font-size:.84rem;color:var(--text-sec);transition:all .2s;border-left:3px solid transparent;cursor:pointer}
+.sidebar-nav a:hover,.sidebar-nav a.active{color:var(--gold);background:rgba(201,168,76,.04);border-left-color:var(--gold)}
+.nav-group-title{font-size:.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.12em;padding:16px 20px 4px;font-weight:600}
+.nav-group-title:first-child{padding-top:8px}
+
+/* ── Overlay & Mobile Toggle ── */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:90;backdrop-filter:blur(2px)}
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:110;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;color:var(--gold);font-size:1.2rem;width:40px;height:40px;cursor:pointer;transition:background .2s}
+.menu-toggle:hover{background:var(--bg-card-hover)}
+
+/* ── Main Layout ── */
+.content{margin-left:var(--sidebar-w);min-height:100vh}
+
+/* ── Page System ── */
+.page{display:none}
+.page.active{display:block;animation:pageIn .25s ease}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+body.search-mode .page.content-page{display:block!important;animation:none}
+body.search-mode #page-home{display:none!important}
+
+/* ── Page Bar ── */
+.page-bar{display:flex;align-items:center;gap:12px;padding:24px 48px 0;max-width:1000px}
+.back-btn{background:none;border:1px solid var(--border);color:var(--gold);border-radius:6px;padding:6px 14px;cursor:pointer;font-family:var(--font-b);font-size:.82rem;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.back-btn:hover{border-color:var(--gold);background:rgba(201,168,76,.06)}
+
+/* ── Home: Hero ── */
+.home-hero{padding:80px 48px 40px;max-width:900px;text-align:center;margin:0 auto}
+.home-hero h1{font-family:var(--font-h);font-size:2.4rem;color:var(--gold);letter-spacing:.04em;line-height:1.2}
+.home-hero .subtitle{font-family:var(--font-h);font-size:.9rem;color:var(--text-sec);margin-top:6px;letter-spacing:.1em}
+.home-hero .tagline{color:var(--text-sec);margin:20px auto 0;font-size:.92rem;max-width:540px;line-height:1.7}
+.home-divider{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:36px auto;border:none}
+
+/* ── Home: Nav Cards ── */
+.home-nav{max-width:900px;margin:0 auto;padding:0 48px 40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.nav-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;cursor:pointer;transition:all .3s var(--ease);text-decoration:none;display:block;border-left:3px solid var(--border)}
+.nav-card:hover{border-color:var(--gold-dim);box-shadow:0 0 24px rgba(201,168,76,.08);transform:translateY(-2px);border-left-color:var(--gold)}
+.nav-card h3{font-family:var(--font-h);font-size:.95rem;color:var(--gold);margin-bottom:6px}
+.nav-card p{font-size:.82rem;color:var(--text-sec);line-height:1.5}
+.nav-card .nav-card-icon{font-size:1.3rem;margin-bottom:10px;display:block}
+
+/* ── Home: Curators ── */
+.curators{max-width:900px;margin:0 auto;padding:20px 48px 60px;text-align:center}
+.curators-inner{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px 28px}
+.curators-label{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px}
+.curators-names{font-family:var(--font-h);font-size:1rem;color:var(--gold);letter-spacing:.03em;line-height:2}
+.curators-names span{display:inline-block;padding:0 4px}
+.curators-sep{color:var(--text-muted);font-size:.7rem;margin:0 8px}
+.curators-sub{font-size:.76rem;color:var(--text-muted);margin-top:12px}
+
+/* ── Section Headings ── */
+section{padding:40px 48px 40px;max-width:1000px}
+.sec-title{font-family:var(--font-h);font-size:1.5rem;color:var(--gold);margin-bottom:8px;letter-spacing:.03em}
+.sec-desc{color:var(--text-sec);font-size:.88rem;margin-bottom:28px;max-width:700px}
+.sec-divider{width:60px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:10px 0 28px;border:none}
+
+/* ── Cards ── */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:22px;transition:all .3s var(--ease)}
+.card:hover{border-color:var(--gold-dim);box-shadow:0 0 20px rgba(201,168,76,.06)}
+.card-title{font-family:var(--font-h);font-size:1rem;color:var(--gold);margin-bottom:4px}
+.card-role{font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.card-sep{margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.card-note{margin-top:12px;font-size:.76rem;color:var(--text-muted)}
+
+/* ── Members ── */
+.member{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.03)}
+.member:last-child{border-bottom:none}
+.member-name{color:var(--text);font-size:.86rem}
+.member-title{font-size:.74rem;color:var(--text-sec);text-align:right}
+
+/* ── Badges ── */
+.badge{display:inline-block;padding:2px 9px;border-radius:4px;font-size:.7rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;vertical-align:middle}
+.badge-gold{background:rgba(201,168,76,.12);color:var(--gold);border:1px solid rgba(201,168,76,.25)}
+.badge-red{background:rgba(160,48,80,.12);color:#d0607a;border:1px solid rgba(160,48,80,.25)}
+.badge-purple{background:rgba(123,94,167,.12);color:#a080d0;border:1px solid rgba(123,94,167,.25)}
+.badge-teal{background:rgba(42,157,143,.12);color:var(--teal);border:1px solid rgba(42,157,143,.25)}
+.badge-gray{background:rgba(100,100,120,.12);color:#888;border:1px solid rgba(100,100,120,.25)}
+.badge-dead{background:rgba(80,80,80,.12);color:#777;border:1px solid rgba(80,80,80,.3);text-decoration:line-through}
+
+/* ── Subsections ── */
+.subsec-title{font-size:.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+
+/* ── Org Blocks ── */
+.org-block{margin-bottom:32px}
+.org-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.org-name{font-family:var(--font-h);font-size:1.15rem;color:var(--gold)}
+.org-divisions{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.div-card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;padding:14px;transition:border-color .3s}
+.div-card:hover{border-color:var(--gold-dim)}
+.div-label{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.div-head{color:var(--text);font-weight:500;font-size:.88rem}
+.div-sub{color:var(--text-sec);font-size:.8rem;margin-top:4px}
+.org-collapsible .org-header{cursor:pointer;user-select:none}
+.org-collapsible .org-chevron{color:var(--text-muted);font-size:.85rem;transition:transform .3s;margin-left:auto}
+.org-collapsible.open .org-chevron{transform:rotate(180deg)}
+.org-collapsible .org-body{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.org-collapsible.open .org-body{max-height:800px}
+.org-defunct{opacity:.6}
+
+/* ── Rank Ladder ── */
+.rank-ladder{display:flex;flex-direction:column;gap:4px;max-width:340px;margin:18px 0}
+.rank-step{display:flex;align-items:center;gap:10px}
+.rank-bar{height:28px;border-radius:4px;display:flex;align-items:center;padding:0 10px;font-size:.76rem;font-weight:500;transition:all .3s}
+.rank-step:hover .rank-bar{filter:brightness(1.2)}
+.rank-num{font-size:.66rem;color:var(--text-muted);min-width:14px;text-align:right}
+.phenom-note{background:var(--bg-card);border:1px solid var(--purple);border-left:3px solid var(--purple);border-radius:6px;padding:14px 16px;margin-top:16px;max-width:480px}
+.phenom-note h4{color:#a080d0;font-size:.84rem;margin-bottom:8px}
+.phenom-note li{color:var(--text-sec);font-size:.82rem;margin-left:16px;padding:2px 0}
+
+/* ── Stats Table ── */
+.stats-table-wrap{overflow-x:auto;margin:20px 0}
+table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
+.stats-table th{font-family:var(--font-h);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);white-space:nowrap}
+.stats-table td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.04);white-space:nowrap}
+.stats-table .ch{color:var(--gold);font-weight:600}
+.stats-table .lvl{color:var(--teal)}
+.stats-table .hp{color:#e74c3c}.stats-table .mp{color:#5b9bd5}
+.stats-table .vit{color:#2ecc71}.stats-table .str{color:#e67e22}
+.stats-table .agi{color:#1abc9c}.stats-table .mag{color:#9b59b6}
+.stats-table .stat-row{cursor:pointer;transition:background .2s}
+.stats-table .stat-row:hover td{background:rgba(201,168,76,.05)}
+.stats-table .stat-row td:first-child::before{content:'';display:inline-block;width:0;height:0;border-left:4px solid var(--text-muted);border-top:3px solid transparent;border-bottom:3px solid transparent;margin-right:6px;transition:transform .2s}
+.stats-table .stat-row.expanded td:first-child::before{transform:rotate(90deg)}
+.stat-detail{display:none}
+.stat-detail.expanded{display:table-row}
+.stat-detail td{padding:0 12px 12px;background:rgba(201,168,76,.02);border-bottom:2px solid var(--border)}
+.detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px 14px;padding:10px 0 4px}
+.detail-item{font-size:.78rem;color:var(--text-sec)}
+.detail-label{font-size:.66rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.detail-val{color:var(--text)}
+.detail-note{grid-column:1/-1;font-size:.76rem;color:var(--purple);font-style:italic;padding-top:4px;border-top:1px solid var(--border)}
+
+/* ── Charts ── */
+.chart-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:20px 0}
+.chart-wrap h3{font-family:var(--font-h);font-size:.95rem;color:var(--gold);margin-bottom:16px}
+.chart-container{position:relative;width:100%;max-width:700px}
+.chart-fallback{display:none;color:var(--text-muted);font-size:.84rem;text-align:center;padding:36px 16px}
+
+/* ── VS Block ── */
+.vs-section-title{font-family:var(--font-h);color:var(--gold);font-size:1.05rem;margin:36px 0 18px}
+.vs-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:start;margin:20px 0}
+.vs-fighter{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px}
+.vs-fighter h3{font-family:var(--font-h);font-size:.95rem;margin-bottom:4px}
+.vs-fighter.q h3{color:var(--gold)}
+.vs-fighter.bf h3{color:var(--crimson)}
+.vs-fighter .race{font-size:.76rem;color:var(--text-muted);margin-bottom:12px}
+.vs-mid{font-family:var(--font-h);color:var(--text-muted);font-size:1.3rem;padding-top:36px}
+.vs-stat{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.vs-stat:last-child{border-bottom:none}
+.vs-stat .label{color:var(--text-sec);font-size:.8rem}
+.vs-stat .val{font-weight:600;font-size:.88rem}
+.vs-stat .val.win{color:#2ecc71}
+.vs-stat .val.lose{color:#e74c3c}
+.vs-stat .val.total-win{color:#2ecc71}
+.vs-stat .val.total-lose{color:#e74c3c}
+.vs-totals{border-top:2px solid var(--border);margin-top:4px;padding-top:6px}
+.vs-delta-wrap{margin:20px 0;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px}
+.vs-delta-wrap h4{font-family:var(--font-h);font-size:.88rem;color:var(--text-sec);margin-bottom:14px}
+.delta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.delta-item{text-align:center;padding:10px 6px;background:var(--bg-secondary);border-radius:8px;border:1px solid var(--border)}
+.delta-label{font-size:.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.delta-val{font-family:var(--font-h);font-size:1rem;font-weight:700}
+.delta-val.pos{color:#2ecc71}
+.delta-val.neg{color:#e74c3c}
+
+/* ── Classes ── */
+.class-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;margin-bottom:18px;overflow:hidden;transition:border-color .3s}
+.class-card:hover{border-color:var(--gold-dim)}
+.class-header{padding:22px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.class-header:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;border-radius:12px}
+.class-header h3{font-family:var(--font-h);font-size:1rem;color:var(--gold)}
+.class-badges{margin-top:5px}
+.class-chevron{color:var(--text-muted);font-size:1.1rem;transition:transform .3s}
+.class-card.open .class-chevron{transform:rotate(180deg)}
+.class-body{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.class-card.open .class-body{max-height:6000px}
+.class-inner{padding:0 22px 22px;border-top:1px solid var(--border)}
+.class-desc{color:var(--text-sec);font-size:.86rem;margin:14px 0;line-height:1.7;font-style:italic}
+.trait{margin-bottom:14px}
+.trait-name{font-weight:600;color:var(--gold);font-size:.86rem;margin-bottom:3px}
+.trait-desc{color:var(--text-sec);font-size:.82rem;line-height:1.6}
+.core-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.core-item{background:var(--bg-secondary);border-radius:6px;padding:10px 12px}
+.core-item .core-name{font-weight:600;font-size:.8rem;margin-bottom:2px}
+.core-item .core-eff{font-size:.76rem;color:var(--text-sec)}
+.core-fire .core-name{color:#e67e22}
+.core-water .core-name{color:#5b9bd5}
+.core-earth .core-name{color:#8B7355}
+.core-wind .core-name{color:#1abc9c}
+.core-bonus{font-size:.8rem;color:var(--teal);margin-top:8px}
+.stance-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.stance{background:var(--bg-secondary);border-radius:6px;padding:10px 12px}
+.stance .stance-name{font-weight:600;font-size:.8rem;margin-bottom:2px}
+.stance .stance-eff{font-size:.76rem;color:var(--text-sec)}
+.flame .stance-name{color:#e67e22}
+.tide .stance-name{color:#5b9bd5}
+.gale .stance-name{color:#1abc9c}
+.stone .stance-name{color:#8B7355}
+
+/* ── Evil Class Grid ── */
+.evil-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin:10px 0}
+.evil-item{background:var(--bg-secondary);border-radius:6px;padding:10px 12px;border-left:3px solid var(--border)}
+.evil-item.unlocked{border-left-color:#2ecc71}
+.evil-item.failed{border-left-color:#e67e22}
+.evil-item.locked{border-left-color:var(--text-muted);opacity:.6}
+.evil-name{font-weight:600;font-size:.8rem;margin-bottom:2px;color:var(--text)}
+.evil-status{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em}
+
+/* ── Anomaly / Callout Notes ── */
+.anomaly-note{background:var(--bg-card);border:1px solid var(--crimson);border-left:3px solid var(--crimson);border-radius:6px;padding:14px 16px;margin:14px 0}
+.anomaly-note h4{color:#d0607a;font-size:.84rem;margin-bottom:4px}
+.anomaly-note p{color:var(--text-sec);font-size:.82rem;line-height:1.5}
+.lore-note{background:var(--bg-card);border:1px solid var(--teal);border-left:3px solid var(--teal);border-radius:6px;padding:14px 16px;margin:14px 0}
+.lore-note p{color:var(--text-sec);font-size:.82rem;line-height:1.5}
+.spoiler-warn{background:rgba(201,168,76,.08);border:1px solid var(--gold-dim);border-left:3px solid var(--gold);border-radius:6px;padding:10px 16px;margin:14px 0;font-size:.8rem;color:var(--gold);font-weight:500}
+
+/* ── Families ── */
+.fam-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.fam-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px;transition:border-color .3s}
+.fam-card:hover{border-color:var(--gold-dim)}
+.fam-card h4{font-family:var(--font-h);font-size:.9rem;color:var(--gold);margin-bottom:3px}
+.fam-role{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.fam-member{padding:4px 0;font-size:.84rem;color:var(--text-sec);border-bottom:1px solid rgba(255,255,255,.03)}
+.fam-member:last-child{border-bottom:none}
+.fam-member strong{color:var(--text);font-weight:500}
+
+/* ── Forms ── */
+.form-group{margin-bottom:18px}
+.form-label{display:block;font-size:.84rem;color:var(--text-sec);margin-bottom:6px;font-weight:500}
+.form-input,.form-select,.form-textarea{width:100%;padding:10px 14px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.86rem;font-family:var(--font-b);outline:none;transition:border-color .2s}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold)}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--text-muted)}
+.form-textarea{min-height:140px;resize:vertical;line-height:1.6}
+.form-select{cursor:pointer}
+.form-select option{background:var(--bg-secondary);color:var(--text)}
+.submit-btn{background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:#0c0c16;border:none;border-radius:8px;padding:12px 32px;font-family:var(--font-h);font-size:.88rem;cursor:pointer;transition:all .3s;letter-spacing:.04em;font-weight:600}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(201,168,76,.3)}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.form-msg{padding:12px 16px;border-radius:8px;font-size:.84rem;margin-top:16px;display:none}
+.form-msg.visible{display:block}
+.form-msg.success{background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.3);color:#2ecc71}
+.form-msg.error{background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.3);color:#e74c3c}
+.form-note{font-size:.78rem;color:var(--text-muted);margin-top:8px;line-height:1.5}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+
+/* ── Community Submissions ── */
+.sub-empty{text-align:center;padding:40px;color:var(--text-muted);font-size:.88rem}
+.sub-loading{text-align:center;padding:40px;color:var(--text-sec);font-size:.88rem}
+.sub-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:14px;transition:border-color .3s}
+.sub-card:hover{border-color:var(--gold-dim)}
+.sub-card-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:12px}
+.sub-card h4{font-family:var(--font-h);font-size:.92rem;color:var(--gold)}
+.sub-card-meta{font-size:.72rem;color:var(--text-muted);white-space:nowrap}
+.sub-card-content{font-size:.84rem;color:var(--text-sec);line-height:1.7;white-space:pre-line}
+.sub-card-footer{margin-top:10px;padding-top:8px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.sub-card-author{font-size:.76rem;color:var(--purple)}
+.sub-card-cat{font-size:.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em}
+.sub-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.sub-filter-btn{background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;padding:6px 14px;color:var(--text-sec);font-size:.78rem;cursor:pointer;transition:all .2s;font-family:var(--font-b)}
+.sub-filter-btn:hover,.sub-filter-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.06)}
+.setup-banner{background:var(--bg-card);border:1px solid var(--gold-dim);border-radius:10px;padding:20px;margin-bottom:24px;text-align:center}
+.setup-banner p{color:var(--text-sec);font-size:.84rem;line-height:1.6}
+.setup-banner code{background:var(--bg-secondary);padding:2px 6px;border-radius:3px;font-size:.8rem;color:var(--gold)}
+
+/* ── Cross-references ── */
+.xref{color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold-dim);transition:all .2s;cursor:pointer}
+.xref:hover{color:#e0c060;border-bottom-color:#e0c060}
+@keyframes xref-pulse{0%{box-shadow:0 0 0 0 rgba(201,168,76,.4)}70%{box-shadow:0 0 0 12px rgba(201,168,76,0)}100%{box-shadow:0 0 0 0 rgba(201,168,76,0)}}
+.xref-highlight{animation:xref-pulse .8s ease-out;border-color:var(--gold)!important}
+
+/* ── Search ── */
+.search-hidden{display:none!important}
+.search-match{background:rgba(201,168,76,.25);border-radius:2px;padding:0 2px;color:var(--gold)}
+.no-results{display:none;text-align:center;padding:40px;color:var(--text-muted);font-size:.92rem}
+.no-results.visible{display:block}
+
+/* ── Back to Top ── */
+.back-to-top{position:fixed;bottom:24px;right:24px;z-index:80;width:42px;height:42px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;color:var(--gold);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:all .3s var(--ease);box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.back-to-top.visible{opacity:1;pointer-events:auto}
+.back-to-top:hover{border-color:var(--gold);background:var(--bg-card-hover);transform:translateY(-2px)}
+
+/* ── Footer ── */
+.footer{padding:32px 48px;text-align:center;color:var(--text-muted);font-size:.76rem;border-top:1px solid var(--border);max-width:1000px}
+
+/* ── Responsive ── */
+@media(max-width:860px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .overlay.open{display:block}
+  .menu-toggle{display:flex;align-items:center;justify-content:center}
+  .content{margin-left:0}
+  section,.page-bar{padding-left:20px;padding-right:20px}
+  .home-hero{padding:60px 20px 30px}
+  .home-hero h1{font-size:1.7rem}
+  .home-nav,.curators{padding-left:20px;padding-right:20px}
+  .home-nav{grid-template-columns:1fr}
+  .vs-grid{grid-template-columns:1fr;gap:10px}
+  .vs-mid{text-align:center;padding:0}
+  .card-grid{grid-template-columns:1fr}
+  .core-grid,.stance-grid,.evil-grid{grid-template-columns:1fr}
+  .delta-grid{grid-template-columns:repeat(auto-fill,minmax(90px,1fr))}
+  .footer{padding-left:20px;padding-right:20px}
+}
+@media(max-width:480px){
+  .home-hero h1{font-size:1.4rem}
+  .org-divisions{grid-template-columns:1fr}
+  .detail-grid{grid-template-columns:1fr}
+  .fam-grid{grid-template-columns:1fr}
+}
+
+/* ── Print ── */
+@media print{
+  .sidebar,.overlay,.menu-toggle,.back-to-top,.sidebar-search,.page-bar,.back-btn{display:none!important}
+  .content{margin-left:0}
+  .page{display:block!important;animation:none!important}
+  body{background:#fff;color:#111}
+  section{padding:16px 0}
+  .card,.fam-card,.div-card,.class-card,.vs-fighter,.chart-wrap,.vs-delta-wrap,.nav-card,.curators-inner{background:#f9f9f9;border-color:#ccc}
+  .card-title,.sec-title,.org-name,.class-header h3,.fam-card h4,.home-hero h1,.nav-card h3{color:#333}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════ Sidebar ════════════ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand" onclick="navigateTo('home')">
+    <h1>PV Codex</h1>
+    <p>Primordial Villain with a Slave Harem</p>
+  </div>
+  <div class="sidebar-search">
+    <input type="text" id="searchInput" placeholder="Search..." aria-label="Search the codex">
+    <div class="search-hint"><kbd>Ctrl</kbd>+<kbd>K</kbd> to focus</div>
+  </div>
+  <nav class="sidebar-nav" aria-label="Codex navigation">
+    <ul>
+      <li><a onclick="navigateTo('home')" data-page="home">Home</a></li>
+      <li class="nav-group-title">World</li>
+      <li><a onclick="navigateTo('kingdom')" data-page="kingdom">Vraven Kingdom</a></li>
+      <li><a onclick="navigateTo('primordials')" data-page="primordials">Primordials</a></li>
+      <li><a onclick="navigateTo('organizations')" data-page="organizations">Criminal Organizations</a></li>
+      <li class="nav-group-title">Quinlan</li>
+      <li><a onclick="navigateTo('stats')" data-page="stats">Progression &amp; Stats</a></li>
+      <li><a onclick="navigateTo('classes')" data-page="classes">Classes</a></li>
+      <li class="nav-group-title">Characters</li>
+      <li><a onclick="navigateTo('families')" data-page="families">Harem &amp; Families</a></li>
+      <li class="nav-group-title">Community</li>
+      <li><a onclick="navigateTo('community')" data-page="community">Contributions</a></li>
+      <li><a onclick="navigateTo('submit')" data-page="submit">Submit Info</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<div class="overlay" id="overlay"></div>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">&#9776;</button>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">&#9650;</button>
+
+<!-- ════════════ Main Content ════════════ -->
+<main class="content">
+
+<!-- ═══════════════ HOME ═══════════════ -->
+<div class="page active" id="page-home">
+  <header class="home-hero">
+    <h1>Primordial Villain with a Slave Harem</h1>
+    <div class="subtitle">Community Codex</div>
+    <p class="tagline">A community-compiled information hub for the webnovel <em>Primordial Villain with a Slave Harem</em>, cataloguing characters, factions, stats, classes, and the harem across the world of Iskaris.</p>
+  </header>
+  <hr class="home-divider">
+  <div class="home-nav">
+    <a class="nav-card" onclick="navigateTo('kingdom')">
+      <span class="nav-card-icon">&#9813;</span>
+      <h3>Vraven Kingdom</h3>
+      <p>The six duchies, their rulers, and the alliances that hold the kingdom together.</p>
+    </a>
+    <a class="nav-card" onclick="navigateTo('primordials')">
+      <span class="nav-card-icon">&#10038;</span>
+      <h3>Primordials</h3>
+      <p>The original beings of each race&mdash;Humans, Elves, Drow, Demons, Dwarves, and more.</p>
+    </a>
+    <a class="nav-card" onclick="navigateTo('organizations')">
+      <span class="nav-card-icon">&#9876;</span>
+      <h3>Criminal Organizations</h3>
+      <p>The Vesper Consortium, Covenant of Eternity, and the fallen Phantom League.</p>
+    </a>
+    <a class="nav-card" onclick="navigateTo('stats')">
+      <span class="nav-card-icon">&#9650;</span>
+      <h3>Progression &amp; Stats</h3>
+      <p>Quinlan's stat milestones, XP breakdowns, and the Black Fang comparison.</p>
+    </a>
+    <a class="nav-card" onclick="navigateTo('classes')">
+      <span class="nav-card-icon">&#10070;</span>
+      <h3>Classes</h3>
+      <p>Primordial Villain, Harbinger of Aeons, Primordial Subjugator, and their subclasses.</p>
+    </a>
+    <a class="nav-card" onclick="navigateTo('families')">
+      <span class="nav-card-icon">&#9829;</span>
+      <h3>Harem &amp; Families</h3>
+      <p>Quinlan's inner circle and their known family connections.</p>
+    </a>
+    <a class="nav-card" onclick="navigateTo('community')">
+      <span class="nav-card-icon">&#9733;</span>
+      <h3>Community Contributions</h3>
+      <p>Approved submissions from the community&mdash;lore, corrections, and new data.</p>
+    </a>
+    <a class="nav-card" onclick="navigateTo('submit')">
+      <span class="nav-card-icon">&#9998;</span>
+      <h3>Submit Info</h3>
+      <p>Know something we don't? Submit lore, corrections, or character details for review.</p>
+    </a>
+  </div>
+  <div class="curators">
+    <div class="curators-inner">
+      <div class="curators-label">Curated &amp; Compiled by</div>
+      <div class="curators-names">
+        <span>Zaspho</span><span class="curators-sep">&middot;</span>
+        <span>Ahaan160</span><span class="curators-sep">&middot;</span>
+        <span>BvBear</span><span class="curators-sep">&middot;</span>
+        <span>SpecterxRetcepS</span>
+      </div>
+      <div class="curators-sub">From the <a href="https://discord.gg/XAwgpNKAHr" target="_blank" rel="noopener">Necroverse</a> Discord community</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ VRAVEN KINGDOM ═══════════════ -->
+<div class="page content-page" id="page-kingdom">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
+  <section>
+    <h2 class="sec-title">The Vraven Kingdom</h2>
+    <p class="sec-desc">The Vraven Kingdom is ruled from the Valoran Duchy at its center. The surrounding duchies serve specialized roles&mdash;from frontier defense to agriculture to arms manufacturing&mdash;all answering to the crown.</p>
+    <hr class="sec-divider">
+    <div class="card-grid">
+      <div class="card searchable" data-keywords="alexios morgana calienne elias elisabeth caelum felicity valorian storm lord aegis vanguard valoran central ruling">
+        <div class="card-title">Valoran Duchy</div>
+        <div class="card-role">Central Ruling &middot; Seat of Power</div>
+        <div class="member"><span class="member-name">Alexios Valorian</span><span class="member-title badge badge-gold">King</span></div>
+        <div class="member"><span class="member-name">Morgana Valorian</span><span class="member-title badge badge-gold">Queen</span></div>
+        <div class="member"><span class="member-name" id="xref-calienne">Calienne</span><span class="member-title">1st Princess</span></div>
+        <div class="member"><span class="member-name">Elias Valorian</span><span class="member-title">1st Prince</span></div>
+        <div class="member"><span class="member-name">Elisabeth Valorian / DawnBreaker</span><span class="member-title">2nd Princess</span></div>
+        <div class="member"><span class="member-name">Caelum Valorian</span><span class="member-title">2nd Prince</span></div>
+        <div class="member"><span class="member-name">Felicity Valorian</span><span class="member-title">3rd Princess</span></div>
+        <div class="card-sep">
+          <div class="member"><span class="member-name">Storm Lord</span><span class="member-title badge badge-teal">Aegis Vanguard</span></div>
+        </div>
+      </div>
+      <div class="card searchable" data-keywords="tharion maerina selendra ardent ravenshade aldren whisperfield elvaria frontier">
+        <div class="card-title">Ravenshade Duchy</div>
+        <div class="card-role">Frontier of Elvaria</div>
+        <div class="member"><span class="member-name">Tharion Ravenshade</span><span class="member-title badge badge-gold">Duke</span></div>
+        <div class="member"><span class="member-name">Maerina Ravenshade</span><span class="member-title badge badge-gold">Duchess</span></div>
+        <div class="member"><span class="member-name">Selendra Ravenshade</span><span class="member-title"></span></div>
+        <div class="member"><span class="member-name">Ardent Ravenshade</span><span class="member-title"></span></div>
+        <div class="card-sep">
+          <div class="subsec-title" style="margin-bottom:6px">Counts</div>
+          <div class="member"><span class="member-name">Count Aldren of Whisperfield</span></div>
+        </div>
+        <p class="card-note">Supported by <a href="javascript:void(0)" class="xref" data-xref-page="kingdom" data-xref-id="xref-duskmere">Duskmere Duchy</a> (crops &amp; military drafts) to defend the Elvardian Alliance border.</p>
+      </div>
+      <div class="card searchable" data-keywords="alastaire ophira amara vivienne sareth greenvale eric winterwood bmc beast kin frontier">
+        <div class="card-title">Greenvale Duchy</div>
+        <div class="card-role">Frontier of the Beast Kin Confederation</div>
+        <div class="member"><span class="member-name">Alastaire Greenvale</span><span class="member-title badge badge-gold">Duke</span></div>
+        <div class="member"><span class="member-name">Ophira Greenvale</span><span class="member-title badge badge-gold">Duchess</span></div>
+        <div class="member"><span class="member-name">Amara Greenvale</span><span class="member-title"></span></div>
+        <div class="member"><span class="member-name">Vivienne Greenvale</span><span class="member-title"></span></div>
+        <div class="member"><span class="member-name">Sareth Greenvale</span><span class="member-title badge badge-teal">Warden</span></div>
+        <div class="card-sep">
+          <div class="subsec-title" style="margin-bottom:6px">Counts</div>
+          <div class="member"><span class="member-name">Eric Winterwood</span></div>
+        </div>
+        <p class="card-note">Supported by <a href="javascript:void(0)" class="xref" data-xref-page="kingdom" data-xref-id="xref-thornhollow">Thornhollow Duchy</a> (crops &amp; military drafts) to defend the BMC border.</p>
+      </div>
+      <div class="card searchable" id="xref-fujimori" data-keywords="kaede chizuru hozumi ryonosuke fujimori silverwind armory reserves clan hanae zen eastern">
+        <div class="card-title">Silverwind Duchy</div>
+        <div class="card-role">Armory &amp; Reserves</div>
+        <div class="member"><span class="member-name" id="xref-kaede">Kaede Fujimori</span><span class="member-title badge badge-gold">Duchess</span></div>
+        <div class="member"><span class="member-name">Chizuru</span><span class="member-title">Elder</span></div>
+        <div class="member"><span class="member-name">Hozumi</span><span class="member-title">Elder?</span></div>
+        <div class="member"><span class="member-name">Ryonosuke</span><span class="member-title badge badge-red">Mad Dog</span></div>
+        <p class="card-note">Run by the Fujimori Clan, descendants of <a href="javascript:void(0)" class="xref" data-xref-page="primordials" data-xref-id="xref-hanae">Hanae</a> and <a href="javascript:void(0)" class="xref" data-xref-page="primordials" data-xref-id="xref-zen">Zen</a>, the Eastern Human Primordials. Provides armor, weapons, and trained soldiers to support borders or suppress rebellions.</p>
+      </div>
+      <div class="card searchable" id="xref-duskmere" data-keywords="zaren calienne duskmere farmland valorian">
+        <div class="card-title">Duskmere Duchy</div>
+        <div class="card-role">Farmland</div>
+        <div class="member"><span class="member-name">Zaren Duskmere</span><span class="member-title badge badge-gold">Duke</span></div>
+        <div class="member"><span class="member-name"><a href="javascript:void(0)" class="xref" data-xref-page="kingdom" data-xref-id="xref-calienne">Calienne</a> &ldquo;Duskmere&rdquo; Valorian</span><span class="member-title badge badge-gold">Duchess</span></div>
+        <p class="card-note">Provides crops and civilian military drafts to support Ravenshade against the Elvardian Alliance.</p>
+      </div>
+      <div class="card searchable" id="xref-thornhollow" data-keywords="harland adelira garric theon thornhollow farmland">
+        <div class="card-title">Thornhollow Duchy</div>
+        <div class="card-role">Farmland</div>
+        <div class="member"><span class="member-name">Harland Thornhollow</span><span class="member-title badge badge-gold">Duke</span></div>
+        <div class="member"><span class="member-name">Adelira Thornhollow</span><span class="member-title badge badge-gold">Duchess</span></div>
+        <div class="member"><span class="member-name">Garric Thornhollow</span><span class="member-title"></span></div>
+        <div class="member"><span class="member-name">Theon Thornhollow</span><span class="member-title"></span></div>
+        <p class="card-note">Provides crops and civilian military drafts to support Greenvale against the Beast Kin Confederation.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ PRIMORDIALS ═══════════════ -->
+<div class="page content-page" id="page-primordials">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
+  <section>
+    <h2 class="sec-title">The Primordials</h2>
+    <p class="sec-desc">The original beings of each race. Primordials wield power that predates the current age. Two male primordials&mdash;the Elf and the Demon&mdash;were slain by their own kind.</p>
+    <hr class="sec-divider">
+    <div class="card-grid">
+      <div class="card searchable" data-keywords="malakar thyra dragnar mearie hanae zen human primordial first eastern mother humanity swordsman samurai sadist head chopper">
+        <div class="card-title">Human Primordials</div><div class="card-role">6 Known</div>
+        <div class="member"><span class="member-name">Malakar</span><span class="member-title badge badge-gold">First Human</span></div>
+        <div class="member"><span class="member-name">Thyra</span><span class="member-title badge badge-gold">First Human</span></div>
+        <div class="member"><span class="member-name">Dragnar</span><span class="member-title">Combat-Focused &middot; Nyxara Duty</span></div>
+        <div class="member"><span class="member-name">Mearie</span><span class="member-title">Adopted Daughter of Thyra</span></div>
+        <div class="member"><span class="member-name" id="xref-hanae">Hanae</span><span class="member-title">Eastern &middot; The Primordial Samurai</span></div>
+        <div class="member"><span class="member-name" id="xref-zen">Zen</span><span class="member-title">Eastern &middot; Swordsman</span></div>
+        <p class="card-note">Malakar and Thyra are the original First Humans. Hanae and Zen are Eastern&mdash;the <a href="javascript:void(0)" class="xref" data-xref-page="kingdom" data-xref-id="xref-fujimori">Fujimori Clan</a> descends from their bloodline. Hanae trained Quinlan's saber technique in Zhenwu.</p>
+      </div>
+      <div class="card searchable" data-keywords="bjorn sivra dwarf dwarves primordial blacksmith miner soul reaper">
+        <div class="card-title">Dwarf Primordials</div><div class="card-role">2 Known</div>
+        <div class="member"><span class="member-name">Bj&ouml;rn</span><span class="member-title">Primordial Blacksmith</span></div>
+        <div class="member"><span class="member-name">Sivra</span><span class="member-title">Primordial Miner</span></div>
+        <p class="card-note">Bj&ouml;rn forged the <a href="javascript:void(0)" class="xref" data-xref-page="classes" data-xref-id="xref-soul-reaper">Soul Reaper</a>, Quinlan's saber.</p>
+      </div>
+      <div class="card searchable" data-keywords="luminara elf elves primordial nurturer malakar killed male">
+        <div class="card-title">Elf Primordials</div><div class="card-role">2 Known &middot; 1 Deceased</div>
+        <div class="member"><span class="member-name">Luminara</span><span class="member-title">Primordial Nurturer &middot; Quinlan's Adoptive Mother</span></div>
+        <div class="member"><span class="member-name">Unnamed Male</span><span class="member-title badge badge-dead">Killed by Malakar</span></div>
+        <p class="card-note">When Malakar killed the male elf primordial, it rendered elven men unable to level up&mdash;causing them to die thousands of years before their female counterparts.</p>
+      </div>
+      <div class="card searchable" data-keywords="kiryssa vaelor drow dark elf primordial shadow">
+        <div class="card-title">Drow Primordials</div><div class="card-role">2 Known</div>
+        <div class="member"><span class="member-name">Kiryssa</span><span class="member-title">Female &middot; Quinlan's Primary Parent</span></div>
+        <div class="member"><span class="member-name">Vaelor</span><span class="member-title">Male &middot; Shadow-Aligned</span></div>
+      </div>
+      <div class="card searchable" data-keywords="nyxara demon sex primordial succubus mate killed male">
+        <div class="card-title">Demon Primordials</div><div class="card-role">2 Known &middot; 1 Deceased</div>
+        <div class="member"><span class="member-name">Nyxara</span><span class="member-title">Succubus Primordial</span></div>
+        <div class="member"><span class="member-name">Unnamed Male</span><span class="member-title badge badge-dead">Killed by Nyxara</span></div>
+        <p class="card-note">Nyxara's fated mate. She despised him from the moment she laid eyes on him and ended his existence. She wandered continents for billions of years before meeting Quinlan.</p>
+      </div>
+      <div class="card searchable" data-keywords="hagnar hyrmara titan giant primordial">
+        <div class="card-title">Titan Primordials</div><div class="card-role">2 Known</div>
+        <div class="member"><span class="member-name">Hagnar</span><span class="member-title">Male &middot; Enormous &middot; Excitable</span></div>
+        <div class="member"><span class="member-name">Hyrmara</span><span class="member-title">Female</span></div>
+      </div>
+      <div class="card searchable" data-keywords="karl lysaria shapeshifter primordial pig tuxedo dead volcano">
+        <div class="card-title">Shapeshifter Primordials</div><div class="card-role">2 Known &middot; 1 Deceased</div>
+        <div class="member"><span class="member-name">Karl</span><span class="member-title">Male &middot; Pig-Faced Gentleman</span></div>
+        <div class="member"><span class="member-name">Lysaria</span><span class="member-title badge badge-dead">Jumped Into Volcano</span></div>
+      </div>
+      <div class="card searchable" data-keywords="thindlebrim granny thistle gnome primordial alchemist">
+        <div class="card-title">Gnome Primordials</div><div class="card-role">2 Known</div>
+        <div class="member"><span class="member-name">Thindlebrim</span><span class="member-title">Primordial Alchemist</span></div>
+        <div class="member"><span class="member-name">Granny Thistle</span><span class="member-title">Female</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ CRIMINAL ORGANIZATIONS ═══════════════ -->
+<div class="page content-page" id="page-organizations">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
+  <section>
+    <h2 class="sec-title">Criminal Organizations</h2>
+    <p class="sec-desc">The known criminal syndicates operating within and beyond the Vraven Kingdom.</p>
+    <hr class="sec-divider">
+    <div class="org-block org-collapsible searchable" data-keywords="phantom league mordecai draven elara tia veil varrek ashhand syla jorren blacklung khalthis whisperer fujimori captured executed">
+      <div class="org-header" role="button" tabindex="0" aria-expanded="false" onclick="toggleOrg(this)">
+        <span class="org-name">Phantom League</span><span class="badge badge-dead">Captured &amp; Executed</span><span class="org-chevron">&#9660;</span>
+      </div>
+      <div class="org-body">
+        <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:14px">Captured by the <a href="javascript:void(0)" class="xref" data-xref-page="kingdom" data-xref-id="xref-fujimori">Fujimori Clan</a> and executed.</p>
+        <div class="org-divisions org-defunct">
+          <div class="div-card"><div class="div-label">Drugs</div><div class="div-head">Mordecai</div><div class="div-sub">Draven, Elara</div></div>
+          <div class="div-card"><div class="div-label">Espionage</div><div class="div-head">Tia of the Veil</div></div>
+          <div class="div-card"><div class="div-label">Arms</div><div class="div-head">Varrek the Ashhand</div></div>
+          <div class="div-card"><div class="div-label">Slave Rings</div><div class="div-head">Mother Syla</div></div>
+          <div class="div-card"><div class="div-label">Smuggler Fleet</div><div class="div-head">Jorren Blacklung</div></div>
+          <div class="div-card"><div class="div-label">Information</div><div class="div-head">Khalthis the Whisperer</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="org-block searchable" data-keywords="covenant eternity archlich vozen blind grave oracle drowned king gorthrax eternal undead">
+      <div class="org-header"><span class="org-name">Covenant of Eternity</span><span class="badge badge-purple">Undead</span></div>
+      <div class="org-divisions">
+        <div class="div-card"><div class="div-head">Archlich Vozen</div><div class="div-sub">Pale Tyrant of Karth</div></div>
+        <div class="div-card"><div class="div-head">Blind Grave Oracle</div><div class="div-sub" style="color:#e74c3c">Ex-member as of Ch. 1606</div></div>
+        <div class="div-card"><div class="div-head">Drowned King</div></div>
+        <div class="div-card"><div class="div-head">Gorthrax the Eternal</div></div>
+      </div>
+    </div>
+    <div class="org-block searchable" data-keywords="vesper consortium black fang venomborne vex orianne raika ambrosia maelstrom rynne captain general protege broker mercy garrick ferryman whisper mediator active">
+      <div class="org-header"><span class="org-name">Vesper Consortium</span><span class="badge badge-red">Active</span></div>
+      <div class="org-divisions">
+        <div class="div-card" id="xref-black-fang">
+          <div class="div-label">Drugs</div>
+          <div class="div-head"><a href="javascript:void(0)" class="xref" data-xref-page="stats" data-xref-id="xref-black-fang-vs">Black Fang</a> &mdash; Venomborne Terror</div>
+          <div class="div-sub">Vex, Orianne, Raika<br><em style="color:var(--purple)">Product: Ambrosia (Divine Nectar)</em></div>
+        </div>
+        <div class="div-card" id="xref-maelstrom">
+          <div class="div-label">Military</div>
+          <div class="div-head">General Maelstrom</div>
+          <div class="div-sub">Captain Rynne &mdash; Prot&eacute;g&eacute; &amp; Right Hand<br><em style="color:var(--text-muted)">Commands tens of thousands of soldiers</em></div>
+        </div>
+        <div class="div-card"><div class="div-label">Finance</div><div class="div-head">Broker</div></div>
+        <div class="div-card"><div class="div-label">Slaves</div><div class="div-head">Mercy</div></div>
+        <div class="div-card"><div class="div-label">Logistics</div><div class="div-head">Garrick the Ferryman</div></div>
+        <div class="div-card"><div class="div-label">Intelligence</div><div class="div-head">Whisper</div></div>
+        <div class="div-card" style="border-color:var(--text-muted)"><div class="div-label">The Mediator</div><div class="div-head" style="color:var(--text-muted)">Unknown</div></div>
+      </div>
+      <h4 style="font-family:var(--font-h);color:var(--gold);font-size:.92rem;margin:24px 0 12px">Consortium Ranks</h4>
+      <div class="rank-ladder">
+        <div class="rank-step"><span class="rank-num">7</span><div class="rank-bar" style="width:100%;background:linear-gradient(90deg,#1a1a2e,#4a1942)"><span style="color:#d4a0d0">Obsidian Circle</span></div></div>
+        <div class="rank-step"><span class="rank-num">6</span><div class="rank-bar" style="width:88%;background:linear-gradient(90deg,#1a1a2e,#3d1540)"><span style="color:#c090c0">Veil Walker</span></div></div>
+        <div class="rank-step"><span class="rank-num">5</span><div class="rank-bar" style="width:76%;background:linear-gradient(90deg,#1a1a2e,#30133a)"><span style="color:#a080a8">Shadow Vanguard</span></div></div>
+        <div class="rank-step"><span class="rank-num">4</span><div class="rank-bar" style="width:64%;background:linear-gradient(90deg,#1a1a2e,#281035)"><span style="color:#907098">Eclipse Enforcer</span></div></div>
+        <div class="rank-step"><span class="rank-num">3</span><div class="rank-bar" style="width:52%;background:linear-gradient(90deg,#1a1a2e,#200e30);border:1px solid var(--purple)"><span style="color:#a080d0">Lunar Adept</span></div></div>
+        <div class="rank-step"><span class="rank-num">2</span><div class="rank-bar" style="width:40%;background:linear-gradient(90deg,#1a1a2e,#1a0c28)"><span style="color:#706080">Twilight Apprentice</span></div></div>
+        <div class="rank-step"><span class="rank-num">1</span><div class="rank-bar" style="width:30%;background:linear-gradient(90deg,#1a1a2e,#150a22)"><span style="color:#605068">Dawn Initiate</span></div></div>
+      </div>
+      <div class="phenom-note">
+        <h4>Vesper Phenom <span class="badge badge-purple" style="margin-left:6px">Lunar Adept+</span></h4>
+        <p style="font-size:.8rem;color:var(--text-sec);margin-bottom:8px">Vesper Phenoms are given many concessions, including but not limited to:</p>
+        <ul><li>Anonymity</li><li>Up to five Heralds</li><li>Direct patronage of an Obsidian Circle member</li><li>Able to advance past Eclipse Enforcer into the Higher Ranks</li></ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ STATS ═══════════════ -->
+<div class="page content-page" id="page-stats">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
+  <section>
+    <h2 class="sec-title">Quinlan's Progression</h2>
+    <p class="sec-desc">Stat milestones tracked across 1,442+ chapters of growth. Click any row to see the full breakdown.</p>
+    <hr class="sec-divider">
+    <div class="stats-table-wrap searchable" data-keywords="quinlan noir elysiar stats level health mana vitality strength agility magic xp progression">
+      <table class="stats-table">
+        <thead><tr><th>Chapter</th><th>Name</th><th>Level</th><th>HP</th><th>MP</th><th>Vit</th><th>Str</th><th>Agi</th><th>Mag</th></tr></thead>
+        <tbody>
+          <tr class="stat-row" data-detail="d1"><td class="ch">1</td><td>???</td><td class="lvl">1</td><td class="hp">110</td><td class="mp">100</td><td class="vit">11</td><td class="str">10</td><td class="agi">10</td><td class="mag">10</td></tr>
+          <tr class="stat-detail" id="d1"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">0 / 100</div></div><div class="detail-item"><div class="detail-label">Race</div><div class="detail-val">Primordial</div></div><div class="detail-note">Vitality base 10, +10% from Commoner Class = 11</div></div></td></tr>
+          <tr class="stat-row" data-detail="d2"><td class="ch">191</td><td>Quinlan Noir</td><td class="lvl">14</td><td class="hp">731</td><td class="mp">431</td><td class="vit">49</td><td class="str">44</td><td class="agi">45</td><td class="mag">29</td></tr>
+          <tr class="stat-detail" id="d2"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">344 / 3,029</div></div><div class="detail-item"><div class="detail-label">Level Range</div><div class="detail-val">9 &rarr; 14</div></div><div class="detail-item"><div class="detail-label">HP Range</div><div class="detail-val">340 &rarr; 731</div></div><div class="detail-item"><div class="detail-label">MP Range</div><div class="detail-val">180 &rarr; 431</div></div><div class="detail-item"><div class="detail-label">Vit</div><div class="detail-val">34 &rarr; 49 <span style="color:var(--text-muted)">(39 base +25%)</span></div></div><div class="detail-item"><div class="detail-label">Str</div><div class="detail-val">30 &rarr; 44 <span style="color:var(--text-muted)">(35 base +25%)</span></div></div><div class="detail-item"><div class="detail-label">Agi</div><div class="detail-val">34 &rarr; 45 <span style="color:var(--text-muted)">(31 base +25%)</span></div></div><div class="detail-item"><div class="detail-label">Mag</div><div class="detail-val">18 &rarr; 29 <span style="color:var(--text-muted)">(23 base +25%)</span></div></div><div class="detail-note">Unused Attribute Points: 40</div></div></td></tr>
+          <tr class="stat-row" data-detail="d3"><td class="ch">368</td><td>Quinlan Noir</td><td class="lvl">23</td><td class="hp">1,125</td><td class="mp">1,500</td><td class="vit">75</td><td class="str">61</td><td class="agi">73</td><td class="mag">100</td></tr>
+          <tr class="stat-detail" id="d3"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">1,278 / 32,118</div></div><div class="detail-item"><div class="detail-label">Level Range</div><div class="detail-val">19 &rarr; 23</div></div><div class="detail-item"><div class="detail-label">HP Range</div><div class="detail-val">1,050 &rarr; 1,125</div></div><div class="detail-item"><div class="detail-label">MP Range</div><div class="detail-val">1,275 &rarr; 1,500</div></div><div class="detail-item"><div class="detail-label">Vit</div><div class="detail-val">70 &rarr; 75</div></div><div class="detail-item"><div class="detail-label">Str</div><div class="detail-val">56 &rarr; 61</div></div><div class="detail-item"><div class="detail-label">Agi</div><div class="detail-val">57 &rarr; 73</div></div><div class="detail-item"><div class="detail-label">Mag</div><div class="detail-val">85 &rarr; 100</div></div><div class="detail-note">Unused Attribute Points: 20</div></div></td></tr>
+          <tr class="stat-row" data-detail="d4"><td class="ch">607</td><td>Quinlan Elysiar</td><td class="lvl">30</td><td class="hp">1,350</td><td class="mp">1,912</td><td class="vit">90</td><td class="str">81</td><td class="agi">95</td><td class="mag">128</td></tr>
+          <tr class="stat-detail" id="d4"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">1,157 / 201,538</div></div><div class="detail-note">Name changed: Quinlan Noir &rarr; Quinlan Elysiar</div></div></td></tr>
+          <tr class="stat-row" data-detail="d5"><td class="ch">898</td><td>Quinlan Elysiar</td><td class="lvl">40</td><td class="hp">1,913</td><td class="mp">3,319</td><td class="vit">128</td><td class="str">125</td><td class="agi">133</td><td class="mag">221</td></tr>
+          <tr class="stat-detail" id="d5"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">1,280 / 2,778,374</div></div></div></td></tr>
+          <tr class="stat-row" data-detail="d6"><td class="ch">1442</td><td>Quinlan Elysiar</td><td class="lvl">50</td><td class="hp">3,225</td><td class="mp">3,881</td><td class="vit">215</td><td class="str">156</td><td class="agi">164</td><td class="mag">259</td></tr>
+          <tr class="stat-detail" id="d6"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">? / 39,346,931</div></div></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chart-wrap"><h3>Stat Growth Over Time</h3><div class="chart-container"><canvas id="statChart"></canvas></div><div class="chart-fallback" id="fallback-stat">Charts require JavaScript and an internet connection.</div></div>
+    <div class="chart-wrap"><h3>Core Attributes Over Time</h3><div class="chart-container"><canvas id="coreChart"></canvas></div><div class="chart-fallback" id="fallback-core">Charts require JavaScript and an internet connection.</div></div>
+    <h3 class="vs-section-title" id="xref-black-fang-vs">Quinlan vs. <a href="javascript:void(0)" class="xref" data-xref-page="organizations" data-xref-id="xref-black-fang">Black Fang</a></h3>
+    <div class="vs-grid searchable" data-keywords="quinlan black fang comparison versus hanako fujimori">
+      <div class="vs-fighter q"><h3>Quinlan Elysiar</h3><div class="race">Primordial &middot; Level 50</div><div class="vs-stat"><span class="label">Health</span><span class="val win">3,225</span></div><div class="vs-stat"><span class="label">Mana</span><span class="val win">3,881</span></div><div class="vs-stat"><span class="label">Vitality</span><span class="val win">215</span></div><div class="vs-stat"><span class="label">Strength</span><span class="val lose">156</span></div><div class="vs-stat"><span class="label">Agility</span><span class="val lose">164</span></div><div class="vs-stat"><span class="label">Magic</span><span class="val win">259</span></div><div class="vs-stat vs-totals"><span class="label" style="font-weight:600">Core Stats</span><span class="val total-lose">794</span></div></div>
+      <div class="vs-mid">VS</div>
+      <div class="vs-fighter bf"><h3><a href="javascript:void(0)" class="xref" data-xref-page="organizations" data-xref-id="xref-black-fang" style="color:inherit">Black Fang</a></h3><div class="race">Human &middot; Level 74</div><div class="vs-stat"><span class="label">Health</span><span class="val lose">2,512</span></div><div class="vs-stat"><span class="label">Mana</span><span class="val lose">920</span></div><div class="vs-stat"><span class="label">Vitality</span><span class="val lose">201</span></div><div class="vs-stat"><span class="label">Strength</span><span class="val win">231</span></div><div class="vs-stat"><span class="label">Agility</span><span class="val win">342</span></div><div class="vs-stat"><span class="label">Magic</span><span class="val lose">92</span></div><div class="vs-stat vs-totals"><span class="label" style="font-weight:600">Core Stats</span><span class="val total-win">866</span></div></div>
+    </div>
+    <div class="vs-delta-wrap searchable" data-keywords="quinlan black fang delta difference"><h4>Difference (Pro-Quinlan)</h4><div class="delta-grid"><div class="delta-item"><div class="delta-label">Level</div><div class="delta-val neg">&minus;24</div></div><div class="delta-item"><div class="delta-label">Health</div><div class="delta-val pos">+713</div></div><div class="delta-item"><div class="delta-label">Mana</div><div class="delta-val pos">+2,961</div></div><div class="delta-item"><div class="delta-label">Vitality</div><div class="delta-val pos">+14</div></div><div class="delta-item"><div class="delta-label">Strength</div><div class="delta-val neg">&minus;75</div></div><div class="delta-item"><div class="delta-label">Agility</div><div class="delta-val neg">&minus;178</div></div><div class="delta-item"><div class="delta-label">Magic</div><div class="delta-val pos">+167</div></div></div></div>
+    <div class="chart-wrap"><h3>Quinlan vs. Black Fang &mdash; Radar</h3><div class="chart-container" style="max-width:480px;margin:0 auto"><canvas id="radarChart"></canvas></div><div class="chart-fallback" id="fallback-radar">Charts require JavaScript and an internet connection.</div></div>
+  </section>
+</div>
+
+<!-- ═══════════════ CLASSES ═══════════════ -->
+<div class="page content-page" id="page-classes">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
+  <section>
+    <h2 class="sec-title">Quinlan's Classes</h2>
+    <p class="sec-desc">Quinlan's major classes. The Primordial Villain is his primary hub&mdash;housing Necromancy and the Bloodfather under its Harbinger of Ruin subclass. The Harbinger of Aeons is his elemental combat class. The Primordial Subjugator is his anomalous second Primordial class.</p>
+    <hr class="sec-divider">
+
+    <!-- ── PRIMORDIAL VILLAIN ── -->
+    <div class="class-card open searchable" data-keywords="primordial villain hub class stat bonus warp gate harbinger ruin necromancy soul reaper eternal damnation march damned awaken soul fusion necromantic codex scar blood mage evil class dark plaguebearer chrono corruptor madness weaver hexblade dark ritualist nightmare herald chaos reaver abysswalker">
+      <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Primordial Villain</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-gold" style="margin-left:4px">Primary Class</span> <span class="badge badge-gray" style="margin-left:4px">Hub</span></div></div><span class="class-chevron">&#9660;</span></div>
+      <div class="class-body"><div class="class-inner">
+        <div class="class-desc">Quinlan's primary class. Functions as both a massive stat multiplier and the gateway to all his dark powers. The stacked bonuses from this class are the core reason Quinlan fights on par with Level 74s despite being in the low 50s.</div>
+
+        <div class="subsec-title" style="margin-top:18px;margin-bottom:12px">Passive Stat Bonuses</div>
+        <div class="stance-grid">
+          <div class="stance"><div class="stance-name" style="color:var(--gold)">+25% Core Stats</div><div class="stance-eff">Agility, Strength, Vitality, Magic</div></div>
+          <div class="stance"><div class="stance-name" style="color:var(--gold)">+50% Resource Pools</div><div class="stance-eff">Health Points, Mana Points</div></div>
+        </div>
+
+        <div class="subsec-title" style="margin-top:18px;margin-bottom:12px">Active Spell</div>
+        <div class="trait"><div class="trait-name">[Warp Gate]</div><div class="trait-desc">Spammable teleport that can be expanded for group transport. Only one gate can exist at a time&mdash;no portal pairs. Quinlan's primary mobility tool.</div></div>
+
+        <div class="subsec-title" style="margin-top:22px;margin-bottom:12px">Subclass: Harbinger of Ruin</div>
+        <div class="class-desc" style="margin-top:0">The combat subclass gating access to evil-aligned class trees. Unlike other classes where Free Skill Points unlock spells, Harbinger of Ruin requires meeting specific in-world conditions to unlock each branch.</div>
+
+        <div class="trait" id="xref-soul-reaper"><div class="trait-name">[Soul Reaper] &mdash; Weapon</div><div class="trait-desc">Pitch-black saber forged by <a href="javascript:void(0)" class="xref" data-xref-page="primordials" data-xref-id="xref-bjorn">Bj&ouml;rn</a>, the Primordial Blacksmith. Emits ghostly pale flames when soul powers activate. Channels all necromantic abilities. Quinlan's only physical weapon.</div></div>
+
+        <div class="subsec-title" style="margin-top:18px;margin-bottom:12px">Necromancy <span class="badge badge-teal" style="margin-left:6px">Unlocked</span></div>
+        <div class="trait"><div class="trait-name">[Eternal Damnation]</div><div class="trait-desc">Harvests souls from slain enemies and stores them in the Soul Reaper.</div></div>
+        <div class="trait"><div class="trait-name">[March of the Damned]</div><div class="trait-desc">Mass summon up to 100 lesser soul constructs. Units inherit minor traits from the original soul but are stripped of individuality. 24-hour lifespan. Follow basic formation and combat orders. Scales with Necromancy Rank.</div></div>
+        <div class="trait"><div class="trait-name">[Awaken]</div><div class="trait-desc">Mass-summon Elite souls. Quinlan commands approximately 180 Elites, all of whom can be awakened simultaneously in a single cast. Each retains advanced cognitive function, their original class abilities, and operates semi-autonomously. Led by <strong style="color:var(--text)">Scar</strong>, the only Rank 5 Elite&mdash;a restored assassin who serves as the army's general.</div></div>
+        <div class="trait"><div class="trait-name">[Soul Fusion]</div><div class="trait-desc">Ritualistic merge of 3+ lesser souls into an Elite soul, strengthening its stats and abilities. Consumed souls are permanently destroyed. Chance to unlock latent traits or dormant skills.</div></div>
+        <div class="trait"><div class="trait-name">[Necromantic Codex]</div><div class="trait-desc">Passive progress tracker bound via Soul Reaper initiation. Automatically records soul acquisitions, ritual outcomes, and summoning data. Unlocks hidden functions as mastery deepens. Some pages remain sealed by unknown criteria.</div></div>
+
+        <div class="subsec-title" style="margin-top:22px;margin-bottom:12px">Bloodfather <span class="badge badge-teal" style="margin-left:6px">Unlocked</span></div>
+        <div class="spoiler-warn">SPOILER &mdash; First revealed Ch 1638, mechanics Ch 1663</div>
+        <div class="class-desc" style="margin-top:0">A family-type primordial-tier class. Acquired when the Blood Mage integration failed&mdash;the Abyssal Genesis Physique rejected the mortal template and authored this class in its place. Its measure is not the strength of its holder but the strength of the family bonded to its holder. The first class in history to generate XP without a source kill.</div>
+        <div class="class-desc" style="margin-top:0;font-style:normal;color:var(--gold)">&ldquo;Bind only those you are willing to bleed for.&rdquo;</div>
+        <div class="trait"><div class="trait-name">Bond Pool</div><div class="trait-desc">Generates +20% bonus XP from any bonded family member's kills&mdash;created from nothing, not redistributed. The killer keeps 100%. Distributed inverse to level, pulling the weakest members up fastest. Stacks with Blessed Seed.</div></div>
+        <div class="trait"><div class="trait-name">Crimson Reservoir</div><div class="trait-desc">Tactical reserve integrated into Quinlan's body (formerly the Sangomar Line flask-stone). Refills through bonded kills. Bonded can draw for temporary stat amplification and class-ability enhancement. Cannot heal.</div></div>
+        <div class="trait"><div class="trait-name">Mark of the Bloodfather</div><div class="trait-desc">Unique demonic sigil placed on each bonded, drawn in Quinlan's blood. The bonded chooses placement and can refuse. Each mark carries a unique class augmentation.</div></div>
+        <div class="trait"><div class="trait-name">The Living Bond</div><div class="trait-desc">Quinlan feels every kill and every wound across any distance. In combat, intent flows between all bonded without speech&mdash;the family operates as a single organism.</div></div>
+        <div class="trait"><div class="trait-name" style="color:#e74c3c">The Cost</div><div class="trait-desc">Two bond types: <strong style="color:var(--text)">Beloved</strong> (bound in body and heart) and <strong style="color:var(--text)">Champions</strong> (bound in trust and war). A Beloved's death costs Quinlan permanent stat degradation and class ceiling reduction. A Champion's death causes temporary reduction in other Champions' mark gifts. Every binding costs literal blood.</div></div>
+
+        <div class="subsec-title" style="margin-top:22px;margin-bottom:12px">Other Evil Class Trees <span class="badge badge-gray" style="margin-left:6px">Locked</span></div>
+        <div class="evil-grid">
+          <div class="evil-item locked"><div class="evil-name">Plaguebearer</div><div class="evil-status" style="color:var(--text-muted)">Locked</div></div>
+          <div class="evil-item locked"><div class="evil-name">Chrono Corruptor</div><div class="evil-status" style="color:var(--text-muted)">Locked</div></div>
+          <div class="evil-item locked"><div class="evil-name">Madness Weaver</div><div class="evil-status" style="color:var(--text-muted)">Locked</div></div>
+          <div class="evil-item locked"><div class="evil-name">Hexblade</div><div class="evil-status" style="color:var(--text-muted)">Locked</div></div>
+          <div class="evil-item locked"><div class="evil-name">Dark Ritualist</div><div class="evil-status" style="color:var(--text-muted)">Locked</div></div>
+          <div class="evil-item locked"><div class="evil-name">Nightmare Herald</div><div class="evil-status" style="color:var(--text-muted)">Locked</div></div>
+          <div class="evil-item locked"><div class="evil-name">Chaos Reaver</div><div class="evil-status" style="color:var(--text-muted)">Locked</div></div>
+          <div class="evil-item locked"><div class="evil-name">Abysswalker</div><div class="evil-status" style="color:var(--text-muted)">Locked</div></div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- ── HARBINGER OF AEONS ── -->
+    <div class="class-card searchable" data-keywords="harbinger aeons mythic spellblade conceptual evolver aeon aether elemental stance flame tide gale stone herald qi gathering meridian core formation true foundation spirit tempering fire water earth wind ice lightning magma mana seven elements zhenwu">
+      <div class="class-header" role="button" tabindex="0" aria-expanded="false" onclick="toggleClass(this)"><div><h3>The Harbinger of Aeons</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-purple" style="margin-left:4px">Mythic Hybrid &mdash; SpellBlade</span></div></div><span class="class-chevron">&#9660;</span></div>
+      <div class="class-body"><div class="class-inner">
+        <div class="class-desc">&ldquo;You are no longer merely a mage, no longer a martial artist, no longer a survivor. You are the elemental storm that walks, the warrior-savant who forges worlds&mdash;and sunders them. Fire is your fury, Water is your will, Earth is your resolve, Wind is your freedom. You wield the elements not as tools, but as living extensions of your soul, channeled through blade, through spell, through sheer indomitable will. You are change incarnate, a living epoch. The Harbinger of Aeons is not merely a title. It is a destiny. A burden. A promise. Where you walk, the old world ends, and the new one begins. The Harbinger of Aeons is the herald of a new age.&rdquo;</div>
+        <div class="lore-note"><p>Evolved from Elemental Sovereign &rarr; Avatar of the Elements &rarr; <strong style="color:var(--teal)">Harbinger of Aeons</strong>. Quinlan wields <strong style="color:var(--teal)">seven elements</strong>&mdash;Earth, Wind, Fire, Water, Ice, Lightning, and Magma&mdash;and switches between them <strong style="color:var(--teal)">instantly with zero cooldown or transition time</strong>. Most mages specialize in one or two. Morgana, a Level 74 who spent centuries mastering elements, was stunned: &ldquo;All seven&hellip; It took me hundreds of years to get to where you are. And you switch between them instantly! No cooldown, no transition, seven elements rotating on demand.&rdquo; He learned martial arts in the world of Zhenwu, transforming from a strict mage into a true SpellBlade.</p></div>
+        <div class="subsec-title" style="margin-top:18px;margin-bottom:12px">Class Traits</div>
+        <div class="trait"><div class="trait-name">Aeon's Path</div><div class="trait-desc">Class evolves with every divine concept nurtured&mdash;Love, Wrath, Sacrifice, Freedom, or others yet unnamed. Final form determined by soul and choices.</div></div>
+        <div class="trait"><div class="trait-name">Aether-Threaded Body <span class="badge badge-teal" style="margin-left:6px">Silent Casting</span></div><div class="trait-desc">Quinlan's body is a living conduit of elemental will. He does not chant, gesture, or incant&mdash;he expresses power through pure will and motion, bypassing traditional casting entirely. Elements respond to his desire alone: fire dances across his knuckles without being summoned, earth rises at a flick of his wrist. Silent casting is extraordinarily rare in this world&mdash;first revealed in Ch 162 when he levitated using [Airwalk] while a silence spell suppressed all sound, leaving onlookers gawking in disbelief. He can also layer multiple elements simultaneously, combining fire behind wind for accelerated lances, magma with water for hardened barriers, or threading lightning through gaps in earth constructs.</div></div>
+        <div class="trait"><div class="trait-name">Elemental Stance</div><div class="trait-desc">Switch between elemental forms mid-combat. Each grants unique martial and magical buffs.</div>
+          <div class="stance-grid"><div class="stance flame"><div class="stance-name">Flame</div><div class="stance-eff">+Strength, +Damage</div></div><div class="stance tide"><div class="stance-name">Tide</div><div class="stance-eff">+Magic, +Regeneration</div></div><div class="stance gale"><div class="stance-name">Gale</div><div class="stance-eff">+Agility, +Multi-Hit Chaining</div></div><div class="stance stone"><div class="stance-name">Stone</div><div class="stance-eff">+Vitality, +Stability, +Parry Resistance</div></div></div>
+        </div>
+        <div class="subsec-title" style="margin-top:20px;margin-bottom:12px">Elemental Foundation</div>
+        <div class="trait"><div class="trait-name">Qi Gathering</div><div class="trait-desc">Refined Qi control has evolved into a streamlined mana circuit system. +100% Mana Regeneration.</div></div>
+        <div class="trait"><div class="trait-name">Meridian Opening</div><div class="trait-desc">Twelve open meridians serve as active mana channels. Enables active mana absorption.</div></div>
+        <div class="trait"><div class="trait-name">Core Formation</div><div class="trait-desc">Avatar core&mdash;harmony of all four elements&mdash;remains intact, each elemental fragment pulsing with identity.</div>
+          <div class="core-grid"><div class="core-item core-fire"><div class="core-name">Fire Core</div><div class="core-eff">Volatile &amp; Searing. +Combat Aggression, +Burst Output</div></div><div class="core-item core-water"><div class="core-name">Water Core</div><div class="core-eff">Dense &amp; Fluid. +Mana Reserves, +Control</div></div><div class="core-item core-earth"><div class="core-name">Earth Core</div><div class="core-eff">Immovable &amp; Solid. +Durability, +Resistance</div></div><div class="core-item core-wind"><div class="core-name">Wind Core</div><div class="core-eff">Swift &amp; Free. +Casting Speed, +Environmental Absorption</div></div></div>
+          <div class="core-bonus">Bonus: +25% Elemental Spell Potency</div>
+        </div>
+        <div class="trait"><div class="trait-name">True Foundation</div><div class="trait-desc">Body tempered by essence and battle becomes a vessel of war. +20 Strength, +20 Agility, +20 Vitality, +20 Magic.</div></div>
+        <div class="trait"><div class="trait-name">Spirit Tempering</div><div class="trait-desc">Soul stands still in the storm. Unyielding. Unbreakable. &lsquo;Still Heart&rsquo; Activated&mdash;greatly boosts focus, emotional stability, and resistance to mental disruption.</div></div>
+      </div></div>
+    </div>
+
+    <!-- ── PRIMORDIAL SUBJUGATOR ── -->
+    <div class="class-card searchable" data-keywords="primordial subjugator unique subjugate overlord eyes sacrifice magnanimity slave master contract link monitor collar anomaly second two classes">
+      <div class="class-header" role="button" tabindex="0" aria-expanded="false" onclick="toggleClass(this)"><div><h3>Primordial Subjugator</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-gold" style="margin-left:4px">2nd Primordial Class</span> <span class="badge badge-purple" style="margin-left:4px">Anomaly</span></div></div><span class="class-chevron">&#9660;</span></div>
+      <div class="class-body"><div class="class-inner">
+        <div class="anomaly-note">
+          <h4>System Anomaly</h4>
+          <p>Quinlan is the <strong>only Primordial in history</strong> to possess two Primordial classes. The system itself flagged this as unprecedented.</p>
+        </div>
+        <div class="class-desc">Evolved from the Slave Master class. Enables the subjugation and empowerment of others through bonds written into the soul. Everyone in Quinlan's inner circle is technically his slave, but the bond carries real benefits and is not treated as degrading among his lovers. Each girl has a personalized slave collar styled to her personality.</div>
+
+        <div class="subsec-title" style="margin-top:18px;margin-bottom:12px">Abilities</div>
+        <div class="trait"><div class="trait-name">[Subjugate]</div><div class="trait-desc">Force a contract upon those beaten by Quinlan. No collar medium required, unlike the Slave Contract spell. Willing participants can also be enslaved voluntarily. Limited subjugations per time frame.</div></div>
+        <div class="trait"><div class="trait-name">[Master's Link]</div><div class="trait-desc">Telepathic communication with all slaves. Denoted by &lt;angle brackets&gt; in dialogue. Works across any distance.</div></div>
+        <div class="trait"><div class="trait-name">[Overlord's Eyes]</div><div class="trait-desc">See through any subjugated underling's eyes from any distance.</div></div>
+        <div class="trait"><div class="trait-name">[Overlord's Sacrifice]</div><div class="trait-desc">When the Subjugator receives a fatal wound, all damage transfers to a designated subjugated target&mdash;only if the target can sustain the wounds. Quinlan is fully healed. 7-day cooldown.</div></div>
+        <div class="trait"><div class="trait-name">[Overlord's Magnanimity]</div><div class="trait-desc">Transfer up to 90% of stats to designated Subjugated targets. When split across multiple targets, effectiveness is reduced. Non-combat buff.</div></div>
+        <div class="trait"><div class="trait-name">[Slave Monitor]</div><div class="trait-desc">View and interact with slaves' status screens remotely.</div></div>
+      </div></div>
+    </div>
+
+  </section>
+</div>
+
+<!-- ═══════════════ FAMILIES ═══════════════ -->
+<div class="page content-page" id="page-families">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
+  <section>
+    <h2 class="sec-title">Harem &amp; Families</h2>
+    <p class="sec-desc">Quinlan's inner circle and their known family connections.</p>
+    <hr class="sec-divider">
+    <div class="fam-grid">
+      <div class="fam-card searchable" data-keywords="blossom natalie poppy mother sister harem void stalker"><h4>Blossom</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong>Natalie</strong> &mdash; Mother</div><div class="fam-member"><strong>Poppy</strong> &mdash; Sister</div></div>
+      <div class="fam-card searchable" data-keywords="seraphiel sera sylvaris mooncaller mother elf harem dawnbringer"><h4>Seraphiel</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong>Sylvaris</strong> &mdash; Mother (Mooncaller)</div></div>
+      <div class="fam-card searchable" data-keywords="jasmine gina argentis aurelion mother father harem tyrant commerce"><h4>Jasmine</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong>Gina Argentis</strong> &mdash; Mother</div><div class="fam-member"><strong>Aurelion</strong> &mdash; Father <span class="badge badge-dead" style="margin-left:4px">Deceased</span></div></div>
+      <div class="fam-card searchable" data-keywords="ayame kaede hanako fujimori black fang half sister harem skysplitter"><h4>Ayame</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong><a href="javascript:void(0)" class="xref" data-xref-page="kingdom" data-xref-id="xref-kaede">Kaede Fujimori</a></strong> &mdash; Younger Sister</div><div class="fam-member"><strong><a href="javascript:void(0)" class="xref" data-xref-page="organizations" data-xref-id="xref-black-fang">Hanako Fujimori</a></strong> &mdash; Half-Sister <span class="badge badge-red" style="margin-left:4px">a.k.a. Black Fang</span></div></div>
+      <div class="fam-card searchable" data-keywords="serika rykar vael mimi elysiar father sister reincarnated harem solar fist"><h4>Serika</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong>Rykar Vael</strong> &mdash; Father</div><div class="fam-member"><strong>Mimi Elysiar</strong> &mdash; Sister (reincarnated)</div></div>
+      <div class="fam-card searchable" data-keywords="aurora naomi gideon lioren mother father harem essenceweaver alchemist"><h4>Aurora</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong>Naomi Lioren</strong> &mdash; Mother</div><div class="fam-member"><strong>Gideon Lioren</strong> &mdash; Father</div></div>
+      <div class="fam-card searchable" data-keywords="lucille mavena robert daughter ex husband harem bloodmonger"><h4>Lucille</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong>Mavena</strong> &mdash; Daughter</div><div class="fam-member"><strong>Robert</strong> &mdash; Ex-Husband</div></div>
+      <div class="fam-card searchable" data-keywords="kitsara vargis dogkin father lord harem beast kin nine tailed sorceress"><h4>Kitsara</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong>Vargis</strong> &mdash; Father (Lord of the Dogkin)</div></div>
+      <div class="fam-card searchable" data-keywords="rosie elysiar daughter first quinlan children"><h4>Quinlan's Children</h4><div class="fam-role">Next Generation</div><div class="fam-member"><strong>Rosie Elysiar</strong> &mdash; 1st Daughter</div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ COMMUNITY CONTRIBUTIONS ═══════════════ -->
+<div class="page content-page" id="page-community">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
+  <section>
+    <h2 class="sec-title">Community Contributions</h2>
+    <p class="sec-desc">Approved submissions from the community. Want to add something? <a href="javascript:void(0)" onclick="navigateTo('submit')" style="border-bottom:1px dotted var(--gold-dim)">Submit here</a>.</p>
+    <hr class="sec-divider">
+    <div id="subSetupBanner" class="setup-banner" style="display:none">
+      <p>Submissions are not configured yet. Set <code>SHEET_ID</code> and <code>SCRIPT_URL</code> in the config to enable.</p>
+    </div>
+    <div class="sub-filter" id="subFilter"></div>
+    <div id="subLoading" class="sub-loading" style="display:none">Loading contributions...</div>
+    <div id="subList"></div>
+    <div id="subEmpty" class="sub-empty" style="display:none">No approved contributions yet. Be the first!</div>
+  </section>
+</div>
+
+<!-- ═══════════════ SUBMIT ═══════════════ -->
+<div class="page content-page" id="page-submit">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
+  <section>
+    <h2 class="sec-title">Submit Information</h2>
+    <p class="sec-desc">Contribute lore, character details, stat updates, corrections, or anything else about <em>Primordial Villain with a Slave Harem</em>. Submissions are reviewed by moderators before appearing on the site.</p>
+    <hr class="sec-divider">
+    <div id="submitSetupBanner" class="setup-banner" style="display:none">
+      <p>Submissions are not configured yet. Set <code>SHEET_ID</code> and <code>SCRIPT_URL</code> in the config to enable.</p>
+    </div>
+    <form id="submitForm" style="max-width:600px">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="subName">Discord Name</label>
+          <input class="form-input" type="text" id="subName" placeholder="e.g. Zaspho" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="subCategory">Category</label>
+          <select class="form-select" id="subCategory" required>
+            <option value="">Select...</option>
+            <option value="Kingdom">Kingdom &amp; Duchies</option>
+            <option value="Primordials">Primordials</option>
+            <option value="Organizations">Organizations</option>
+            <option value="Stats">Stats &amp; Progression</option>
+            <option value="Classes">Classes &amp; Abilities</option>
+            <option value="Harem">Harem &amp; Families</option>
+            <option value="Lore">General Lore</option>
+            <option value="Correction">Correction / Fix</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="subTitle">Title</label>
+        <input class="form-input" type="text" id="subTitle" placeholder="Short summary of what you're adding" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="subContent">Content</label>
+        <textarea class="form-textarea" id="subContent" placeholder="Full details. Include chapter references if possible." required></textarea>
+      </div>
+      <button type="submit" class="submit-btn" id="submitBtn">Submit for Review</button>
+      <div class="form-msg" id="formMsg"></div>
+      <p class="form-note">All submissions are reviewed by moderators before appearing. Include chapter numbers where possible to help verify.</p>
+    </form>
+  </section>
+</div>
+
+<div class="no-results" id="noResults">No matches found.</div>
+<footer class="footer"><p>Compiled by the community of <strong style="color:var(--gold)">Primordial Villain with a Slave Harem</strong></p></footer>
+</main>
+
+<!-- ════════════ Scripts ════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" onerror="document.querySelectorAll('.chart-fallback').forEach(f=>f.style.display='block')"></script>
+<script>
+(function(){
+'use strict';
+
+// ══════════════════════════════════════════════════════════════
+// CONFIGURATION — Set these after creating your Google Sheet.
+// See SETUP.md for step-by-step instructions.
+// ══════════════════════════════════════════════════════════════
+var CONFIG = {
+  SHEET_ID: '',       // Google Sheet ID (from the sheet URL)
+  SCRIPT_URL: ''      // Google Apps Script web app URL
+};
+// ══════════════════════════════════════════════════════════════
+
+// ── Page routing ──
+var currentPage = 'home';
+var chartsInitialized = false;
+
+window.navigateTo = function(pageId, scrollToId){
+  document.body.classList.remove('search-mode');
+  var searchInput = document.getElementById('searchInput');
+  if(searchInput.value){
+    searchInput.value = '';
+    searchInput.dispatchEvent(new Event('input'));
+  }
+
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  var target = document.getElementById('page-' + pageId);
+  if(target) target.classList.add('active');
+  currentPage = pageId;
+  window.scrollTo(0, 0);
+
+  document.querySelectorAll('.sidebar-nav a[data-page]').forEach(function(a){
+    a.classList.toggle('active', a.dataset.page === pageId);
+  });
+
+  closeSidebar();
+
+  if(pageId === 'stats' && !chartsInitialized) initCharts();
+
+  if(scrollToId){
+    requestAnimationFrame(function(){
+      setTimeout(function(){
+        var el = document.getElementById(scrollToId);
+        if(el){
+          var accordion = el.closest('.class-card:not(.open)');
+          if(accordion){ var h = accordion.querySelector('.class-header'); if(h) toggleClass(h); }
+          var collapsible = el.closest('.org-collapsible:not(.open)');
+          if(collapsible){ var oh = collapsible.querySelector('.org-header'); if(oh) toggleOrg(oh); }
+          el.scrollIntoView({ behavior:'smooth', block:'center' });
+          el.classList.add('xref-highlight');
+          setTimeout(function(){ el.classList.remove('xref-highlight'); }, 1000);
+        }
+      }, 100);
+    });
+  }
+
+  history.replaceState(null, '', pageId === 'home' ? '#' : '#' + pageId);
+};
+
+function handleHash(){
+  var hash = location.hash.replace('#','');
+  if(hash && document.getElementById('page-' + hash)){
+    navigateTo(hash);
+  }
+}
+window.addEventListener('hashchange', handleHash);
+if(location.hash) handleHash();
+
+// ── Sidebar toggle ──
+var sidebar = document.getElementById('sidebar');
+var overlay = document.getElementById('overlay');
+var menuToggle = document.getElementById('menuToggle');
+function openSidebar(){ sidebar.classList.add('open'); overlay.classList.add('open'); }
+function closeSidebar(){ sidebar.classList.remove('open'); overlay.classList.remove('open'); }
+menuToggle.addEventListener('click', function(){ sidebar.classList.contains('open') ? closeSidebar() : openSidebar(); });
+overlay.addEventListener('click', closeSidebar);
+
+// ── Back to top ──
+var backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', function(){ backToTop.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
+backToTop.addEventListener('click', function(){ window.scrollTo({ top:0, behavior:'smooth' }); });
+
+// ── Search (cross-page) ──
+var searchInput = document.getElementById('searchInput');
+var noResults = document.getElementById('noResults');
+var searchables = document.querySelectorAll('.searchable');
+
+function clearHighlights(){
+  document.querySelectorAll('.search-match').forEach(function(span){
+    var parent = span.parentNode;
+    parent.replaceChild(document.createTextNode(span.textContent), span);
+    parent.normalize();
+  });
+}
+function highlightText(el, query){
+  var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+  var matches = [];
+  while(walker.nextNode()){
+    var node = walker.currentNode;
+    if(node.parentNode.classList && node.parentNode.classList.contains('search-match')) continue;
+    var idx = node.textContent.toLowerCase().indexOf(query);
+    if(idx !== -1) matches.push({ node:node, idx:idx, len:query.length });
+  }
+  for(var i = matches.length - 1; i >= 0; i--){
+    var m = matches[i];
+    var span = document.createElement('span');
+    span.className = 'search-match';
+    var afterNode = m.node.splitText(m.idx);
+    span.textContent = afterNode.textContent.substring(0, m.len);
+    afterNode.textContent = afterNode.textContent.substring(m.len);
+    m.node.parentNode.insertBefore(span, afterNode);
+  }
+}
+
+searchInput.addEventListener('input', function(){
+  clearHighlights();
+  var q = this.value.toLowerCase().trim();
+  if(!q){
+    document.body.classList.remove('search-mode');
+    searchables.forEach(function(el){ el.classList.remove('search-hidden'); });
+    noResults.classList.remove('visible');
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+    document.getElementById('page-' + currentPage).classList.add('active');
+    return;
+  }
+  document.body.classList.add('search-mode');
+  var found = 0;
+  searchables.forEach(function(el){
+    var text = (el.textContent + ' ' + (el.dataset.keywords || '')).toLowerCase();
+    if(text.indexOf(q) !== -1){
+      el.classList.remove('search-hidden');
+      found++;
+      highlightText(el, q);
+    } else {
+      el.classList.add('search-hidden');
+    }
+  });
+  document.querySelectorAll('.page.content-page').forEach(function(p){
+    var vis = p.querySelectorAll('.searchable:not(.search-hidden)');
+    p.style.display = vis.length ? '' : 'none';
+  });
+  noResults.classList.toggle('visible', found === 0);
+});
+
+document.addEventListener('keydown', function(e){
+  if((e.ctrlKey || e.metaKey) && e.key === 'k'){ e.preventDefault(); searchInput.focus(); searchInput.select(); }
+  if(e.key === 'Escape' && document.activeElement === searchInput){
+    searchInput.value = '';
+    searchInput.dispatchEvent(new Event('input'));
+    searchInput.blur();
+  }
+});
+
+// ── Class accordion ──
+window.toggleClass = function(header){
+  var card = header.closest('.class-card');
+  var isOpen = card.classList.toggle('open');
+  header.setAttribute('aria-expanded', isOpen);
+};
+document.querySelectorAll('.class-header').forEach(function(h){
+  h.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggleClass(this); }});
+});
+
+// ── Org collapsible ──
+window.toggleOrg = function(header){
+  var block = header.closest('.org-collapsible');
+  var isOpen = block.classList.toggle('open');
+  header.setAttribute('aria-expanded', isOpen);
+};
+document.querySelectorAll('.org-collapsible .org-header').forEach(function(h){
+  h.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggleOrg(this); }});
+});
+
+// ── Stat table expandable rows ──
+document.querySelectorAll('.stat-row').forEach(function(row){
+  row.addEventListener('click', function(){
+    var detail = document.getElementById(this.dataset.detail);
+    if(detail){ var exp = detail.classList.toggle('expanded'); this.classList.toggle('expanded', exp); }
+  });
+});
+
+// ── Cross-reference navigation (cross-page) ──
+document.querySelectorAll('.xref').forEach(function(link){
+  link.addEventListener('click', function(e){
+    e.preventDefault();
+    var targetPage = this.dataset.xrefPage;
+    var targetId = this.dataset.xrefId;
+    if(targetPage && targetId){
+      navigateTo(targetPage, targetId);
+    }
+  });
+});
+
+// ── Charts (lazy init on first stats page visit) ──
+function initCharts(){
+  if(typeof Chart === 'undefined'){ document.querySelectorAll('.chart-fallback').forEach(function(f){ f.style.display='block'; }); return; }
+  chartsInitialized = true;
+  Chart.defaults.color = '#9999ad';
+  Chart.defaults.borderColor = 'rgba(255,255,255,0.06)';
+  Chart.defaults.font.family = "'Inter', -apple-system, sans-serif";
+  var chapters = ['Ch 1','Ch 191','Ch 368','Ch 607','Ch 898','Ch 1442'];
+  var chapterNums = [1,191,368,607,898,1442];
+  var tt = { backgroundColor:'#161628',borderColor:'#c9a84c',borderWidth:1,titleColor:'#c9a84c',bodyColor:'#dddde6',padding:12,callbacks:{title:function(i){return 'Chapter '+chapterNums[i[0].dataIndex];}} };
+  var leg = { labels:{padding:16,usePointStyle:true,pointStyle:'circle'} };
+  new Chart(document.getElementById('statChart'),{type:'line',data:{labels:chapters,datasets:[{label:'Health Points',data:[110,731,1125,1350,1913,3225],borderColor:'#e74c3c',backgroundColor:'rgba(231,76,60,0.1)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8},{label:'Mana Points',data:[100,431,1500,1912,3319,3881],borderColor:'#5b9bd5',backgroundColor:'rgba(91,155,213,0.1)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8},{label:'Level',data:[1,14,23,30,40,50],borderColor:'#1abc9c',borderDash:[6,4],backgroundColor:'transparent',tension:.35,pointRadius:4,pointHoverRadius:7,yAxisID:'y1'}]},options:{responsive:true,interaction:{mode:'index',intersect:false},plugins:{legend:leg,tooltip:tt},scales:{y:{beginAtZero:true,title:{display:true,text:'HP / MP',color:'#666'},grid:{color:'rgba(255,255,255,0.04)'}},y1:{position:'right',beginAtZero:true,title:{display:true,text:'Level',color:'#666'},grid:{drawOnChartArea:false}},x:{grid:{color:'rgba(255,255,255,0.04)'}}}}});
+  new Chart(document.getElementById('coreChart'),{type:'line',data:{labels:chapters,datasets:[{label:'Vitality',data:[11,49,75,90,128,215],borderColor:'#2ecc71',backgroundColor:'rgba(46,204,113,0.08)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8},{label:'Strength',data:[10,44,61,81,125,156],borderColor:'#e67e22',backgroundColor:'rgba(230,126,34,0.08)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8},{label:'Agility',data:[10,45,73,95,133,164],borderColor:'#1abc9c',backgroundColor:'rgba(26,188,156,0.08)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8},{label:'Magic',data:[10,29,100,128,221,259],borderColor:'#9b59b6',backgroundColor:'rgba(155,89,182,0.08)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8}]},options:{responsive:true,interaction:{mode:'index',intersect:false},plugins:{legend:leg,tooltip:tt},scales:{y:{beginAtZero:true,title:{display:true,text:'Stat Value',color:'#666'},grid:{color:'rgba(255,255,255,0.04)'}},x:{grid:{color:'rgba(255,255,255,0.04)'}}}}});
+  new Chart(document.getElementById('radarChart'),{type:'radar',data:{labels:['Vitality','Strength','Agility','Magic'],datasets:[{label:'Quinlan (Lv 50)',data:[215,156,164,259],borderColor:'#c9a84c',backgroundColor:'rgba(201,168,76,0.15)',pointBackgroundColor:'#c9a84c',pointBorderColor:'#c9a84c',pointRadius:5,pointHoverRadius:8,borderWidth:2},{label:'Black Fang (Lv 74)',data:[201,231,342,92],borderColor:'#a03050',backgroundColor:'rgba(160,48,80,0.15)',pointBackgroundColor:'#a03050',pointBorderColor:'#a03050',pointRadius:5,pointHoverRadius:8,borderWidth:2}]},options:{responsive:true,plugins:{legend:leg,tooltip:{backgroundColor:'#161628',borderColor:'#c9a84c',borderWidth:1,titleColor:'#c9a84c',bodyColor:'#dddde6',padding:12}},scales:{r:{beginAtZero:true,grid:{color:'rgba(255,255,255,0.08)'},angleLines:{color:'rgba(255,255,255,0.08)'},pointLabels:{color:'#dddde6',font:{size:13}},ticks:{color:'#5a5a70',backdropColor:'transparent'}}}}});
+}
+
+// ── Submission form ──
+var submitForm = document.getElementById('submitForm');
+var formMsg = document.getElementById('formMsg');
+var submitBtn = document.getElementById('submitBtn');
+
+if(!CONFIG.SCRIPT_URL){
+  var sb1 = document.getElementById('submitSetupBanner');
+  if(sb1) sb1.style.display = 'block';
+  if(submitForm) submitForm.style.display = 'none';
+}
+
+if(submitForm) submitForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  if(!CONFIG.SCRIPT_URL){
+    showFormMsg('error', 'Submissions not configured yet.');
+    return;
+  }
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting...';
+  formMsg.className = 'form-msg';
+  formMsg.classList.remove('visible');
+
+  var payload = {
+    discord: document.getElementById('subName').value.trim(),
+    category: document.getElementById('subCategory').value,
+    title: document.getElementById('subTitle').value.trim(),
+    content: document.getElementById('subContent').value.trim()
+  };
+
+  fetch(CONFIG.SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(payload)
+  }).then(function(){
+    showFormMsg('success', 'Submitted! Your entry will appear after moderator approval.');
+    submitForm.reset();
+  }).catch(function(){
+    showFormMsg('error', 'Something went wrong. Try again or report in Discord.');
+  }).finally(function(){
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit for Review';
+  });
+});
+
+function showFormMsg(type, text){
+  formMsg.textContent = text;
+  formMsg.className = 'form-msg visible ' + type;
+}
+
+// ── Fetch community submissions from Google Sheet ──
+var subList = document.getElementById('subList');
+var subLoading = document.getElementById('subLoading');
+var subEmpty = document.getElementById('subEmpty');
+var subFilter = document.getElementById('subFilter');
+var allSubmissions = [];
+var activeFilter = 'All';
+
+function loadSubmissions(){
+  if(!CONFIG.SHEET_ID){
+    var sb2 = document.getElementById('subSetupBanner');
+    if(sb2) sb2.style.display = 'block';
+    return;
+  }
+  subLoading.style.display = 'block';
+
+  var url = 'https://docs.google.com/spreadsheets/d/' + CONFIG.SHEET_ID + '/gviz/tq?tqx=out:json';
+  fetch(url)
+    .then(function(r){ return r.text(); })
+    .then(function(text){
+      var json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\((.+)\);/)[1]);
+      var rows = json.table.rows;
+      allSubmissions = [];
+
+      for(var i = 0; i < rows.length; i++){
+        var cells = rows[i].c;
+        if(!cells || !cells[5]) continue;
+        var status = (cells[5].v || '').toString().trim().toLowerCase();
+        if(status !== 'approved') continue;
+
+        allSubmissions.push({
+          date: cells[0] ? cells[0].f || cells[0].v || '' : '',
+          discord: cells[1] ? cells[1].v || '' : '',
+          category: cells[2] ? cells[2].v || '' : '',
+          title: cells[3] ? cells[3].v || '' : '',
+          content: cells[4] ? cells[4].v || '' : ''
+        });
+      }
+
+      buildFilters();
+      renderSubmissions();
+      subLoading.style.display = 'none';
+    })
+    .catch(function(){
+      subLoading.style.display = 'none';
+      subEmpty.style.display = 'block';
+      subEmpty.textContent = 'Could not load contributions. Check back later.';
+    });
+}
+
+function buildFilters(){
+  var cats = {};
+  allSubmissions.forEach(function(s){ if(s.category) cats[s.category] = true; });
+  var catList = Object.keys(cats).sort();
+
+  subFilter.innerHTML = '';
+  var allBtn = document.createElement('button');
+  allBtn.className = 'sub-filter-btn active';
+  allBtn.textContent = 'All';
+  allBtn.onclick = function(){ setFilter('All'); };
+  subFilter.appendChild(allBtn);
+
+  catList.forEach(function(cat){
+    var btn = document.createElement('button');
+    btn.className = 'sub-filter-btn';
+    btn.textContent = cat;
+    btn.onclick = function(){ setFilter(cat); };
+    subFilter.appendChild(btn);
+  });
+}
+
+function setFilter(cat){
+  activeFilter = cat;
+  document.querySelectorAll('.sub-filter-btn').forEach(function(b){
+    b.classList.toggle('active', b.textContent === cat);
+  });
+  renderSubmissions();
+}
+
+function renderSubmissions(){
+  var filtered = activeFilter === 'All' ? allSubmissions : allSubmissions.filter(function(s){ return s.category === activeFilter; });
+
+  if(filtered.length === 0){
+    subList.innerHTML = '';
+    subEmpty.style.display = 'block';
+    subEmpty.textContent = activeFilter === 'All' ? 'No approved contributions yet. Be the first!' : 'No contributions in this category yet.';
+    return;
+  }
+  subEmpty.style.display = 'none';
+
+  var html = '';
+  filtered.forEach(function(s){
+    html += '<div class="sub-card"><div class="sub-card-header"><h4>' + escHtml(s.title) + '</h4><span class="sub-card-meta">' + escHtml(s.date) + '</span></div>';
+    html += '<div class="sub-card-content">' + escHtml(s.content) + '</div>';
+    html += '<div class="sub-card-footer"><span class="sub-card-author">' + escHtml(s.discord) + '</span><span class="sub-card-cat">' + escHtml(s.category) + '</span></div></div>';
+  });
+  subList.innerHTML = html;
+}
+
+function escHtml(str){
+  var d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+loadSubmissions();
+
+})();
+</script>
+</body>
+</html>
