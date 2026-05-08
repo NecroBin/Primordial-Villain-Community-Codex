@@ -169,9 +169,6 @@ body.search-mode #page-home{display:none!important}
 .lb-name{font-size:.88rem;color:var(--text);font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .lb-count{font-size:.78rem;color:var(--text-muted);font-family:var(--font-h);flex-shrink:0}
 .lb-empty{font-size:.84rem;color:var(--text-muted);padding:16px 0}
-.discord-widget{max-width:900px;margin:0 auto;padding:0 48px 48px;text-align:center}
-.discord-widget h3{font-family:var(--font-h);font-size:1.1rem;color:var(--gold);margin-bottom:16px}
-.discord-widget iframe{border-radius:12px;border:1px solid var(--border);max-width:100%}
 .member-count{font-size:.72rem;opacity:.7;margin-top:4px}
 
 /* ── Section Headings ── */
@@ -541,10 +538,6 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <h3>Submit an Entry</h3>
       <p>Know something we're missing? Submit lore, corrections, or new entries to the codex.</p>
     </a>
-  </div>
-  <div class="discord-widget">
-    <h3>Join the Community</h3>
-    <iframe id="discordWidget" title="Necroverse Discord Widget" src="https://discord.com/widget?id=1266986937965744148&theme=dark" width="350" height="420" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
   </div>
 </div>
 
@@ -1211,16 +1204,6 @@ fetch(WORKER + '/members').then(function(r){ return r.json(); }).then(function(d
   }
 }).catch(function(){});
 
-function syncWidgetTheme(){
-  var w = document.getElementById('discordWidget');
-  if(w){
-    var t = document.documentElement.getAttribute('data-theme') || 'light';
-    w.src = 'https://discord.com/widget?id=1266986937965744148&theme=' + t;
-  }
-}
-syncWidgetTheme();
-var origToggle = window.toggleTheme;
-window.toggleTheme = function(){ origToggle(); syncWidgetTheme(); };
 
 function escHtml(s){ var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 function loadLeaderboard(){
