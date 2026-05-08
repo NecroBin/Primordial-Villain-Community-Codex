@@ -901,8 +901,10 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <div class="fam-card" onclick="navigateTo('girl-jasmine')"><h4>Jasmine</h4><div class="fam-role">Wife &middot; Tyrant of Commerce</div></div>
       <div class="fam-card" onclick="navigateTo('girl-lucille')"><h4>Lucille</h4><div class="fam-role">Wife &middot; Bloodmonger</div></div>
       <div class="fam-card" onclick="navigateTo('girl-kaelira')"><h4>Kaelira</h4><div class="fam-role">Wife &middot; Runeweaver Titan</div></div>
+      <div class="fam-card" onclick="navigateTo('girl-nyxara')"><h4>Nyxara</h4><div class="fam-role">Conquered Succubus Primordial</div></div>
       <div class="fam-card" onclick="navigateTo('girl-luminara')"><h4>Luminara</h4><div class="fam-role">Adoptive Mother &middot; Elf Primordial</div></div>
       <div class="fam-card" onclick="navigateTo('girl-mearie')"><h4>Mearie</h4><div class="fam-role">Adoptive Mother &middot; Human Primordial</div></div>
+      <div class="fam-card" onclick="navigateTo('girl-rosie')"><h4>Rosie</h4><div class="fam-role">Daughter</div></div>
     </div>
 
     <h3 class="vs-section-title" id="q-lore">Lore</h3>
@@ -1061,12 +1063,14 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <div class="char-card searchable" onclick="navigateTo('girl-jasmine')" data-keywords="jasmine gina argentis aurelion mother father harem tyrant commerce gold"><img src="images-web/jasmine.jpg" alt="Jasmine" loading="lazy"><div class="char-card-name">Jasmine<span class="char-card-role">Tyrant of Commerce</span></div></div>
       <div class="char-card searchable" onclick="navigateTo('girl-lucille')" data-keywords="lucille mavena robert daughter ex husband harem bloodmonger berserker"><img src="images-web/lucille.jpg" alt="Lucille" loading="lazy"><div class="char-card-name">Lucille<span class="char-card-role">Bloodmonger</span></div></div>
       <div class="char-card searchable" onclick="navigateTo('girl-kaelira')" data-keywords="kaelira runeweaver titan elf crafter seraphiel elvardian harem"><img src="images-web/kaelira.jpg" alt="Kaelira" loading="lazy"><div class="char-card-name">Kaelira<span class="char-card-role">Runeweaver Titan</span></div></div>
-      <div class="char-card searchable" data-keywords="nyxara succubus primordial demon ruin conquered soul realm"><img src="images-web/nyxara.jpg" alt="Nyxara" loading="lazy"><div class="char-card-name">Nyxara<span class="char-card-role">Conquered Succubus</span></div></div>
     </div>
     <h3 class="vs-section-title" style="margin-top:36px">Family</h3>
-    <div class="fam-grid">
-      <div class="fam-card searchable" data-keywords="quinlan luminara mearie katalin mothers adoptive biological earth primordial elf human"><h4>Quinlan's Mothers</h4><div class="fam-role">Mothers</div><div class="fam-member"><strong>Katalin</strong> &mdash; Biological Mother (Earth)</div><div class="fam-member"><strong><a href="#" class="xref" onclick="event.preventDefault();event.stopPropagation();navigateTo('girl-luminara')">Luminara</a></strong> &mdash; Adoptive Mother (Elf Primordial)</div><div class="fam-member"><strong><a href="#" class="xref" onclick="event.preventDefault();event.stopPropagation();navigateTo('girl-mearie')">Mearie</a></strong> &mdash; Adoptive Mother (Human Primordial)</div></div>
-      <div class="fam-card searchable" data-keywords="rosie elysiar daughter first quinlan children"><h4>Quinlan's Children</h4><div class="fam-role">Next Generation</div><div class="fam-member"><strong>Rosie Elysiar</strong> &mdash; 1st Daughter</div></div>
+    <div class="char-grid">
+      <div class="char-card searchable" onclick="navigateTo('girl-luminara')" data-keywords="luminara elf primordial adoptive mother"><img src="images-web/luminara.jpg" alt="Luminara" loading="lazy"><div class="char-card-name">Luminara<span class="char-card-role">Adoptive Mother &middot; Elf Primordial</span></div></div>
+      <div class="char-card searchable" onclick="navigateTo('girl-mearie')" data-keywords="mearie human primordial adoptive mother"><img src="images-web/mearie.jpg" alt="Mearie" loading="lazy"><div class="char-card-name">Mearie<span class="char-card-role">Adoptive Mother &middot; Human Primordial</span></div></div>
+      <div class="char-card searchable" data-keywords="katalin biological mother earth quinlan"><div style="width:100%;aspect-ratio:3/4;background:var(--bg-secondary);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:2rem">?</div><div class="char-card-name">Katalin<span class="char-card-role">Biological Mother (Earth)</span></div></div>
+      <div class="char-card searchable" onclick="navigateTo('girl-rosie')" data-keywords="rosie elysiar daughter first quinlan children"><img src="images-web/rosie.jpg" alt="Rosie" loading="lazy"><div class="char-card-name">Rosie Elysiar<span class="char-card-role">1st Daughter</span></div></div>
+      <div class="char-card searchable" onclick="navigateTo('girl-nyxara')" data-keywords="nyxara succubus primordial demon ruin conquered soul realm"><img src="images-web/nyxara.jpg" alt="Nyxara" loading="lazy"><div class="char-card-name">Nyxara<span class="char-card-role">Conquered Succubus Primordial</span></div></div>
     </div>
   </section>
 </div>
@@ -1615,6 +1619,32 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   </section>
 </div>
 
+<!-- ── ROSIE ── -->
+<div class="page content-page" id="page-girl-rosie">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('families')">&#8592; Harem &amp; Family</button></div>
+  <section>
+    <h2 class="sec-title">Rosie Elysiar</h2>
+    <p class="sec-desc">Quinlan's first daughter.</p>
+    <div class="char-portrait"><img src="images-web/rosie.jpg" alt="Rosie Elysiar" loading="lazy"></div>
+    <hr class="sec-divider">
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Rosie's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Rosie's lore</a></div>
+  </section>
+</div>
+
+<!-- ── NYXARA ── -->
+<div class="page content-page" id="page-girl-nyxara">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('families')">&#8592; Harem &amp; Family</button></div>
+  <section>
+    <h2 class="sec-title">Nyxara</h2>
+    <p class="sec-desc">Conquered Succubus Primordial. Resides in Quinlan's soul realm.</p>
+    <div class="char-portrait"><img src="images-web/nyxara.jpg" alt="Nyxara" loading="lazy"></div>
+    <hr class="sec-divider">
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Nyxara's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Nyxara's lore</a></div>
+  </section>
+</div>
+
 <!-- ── HANAE ── -->
 <div class="page content-page" id="page-char-hanae">
   <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
@@ -1666,7 +1696,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <div class="gallery-item" data-cat="harem"><img src="images-web/jasmine.jpg" alt="Jasmine" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-jasmine')">Jasmine<span>Tyrant of Commerce</span></div></div>
       <div class="gallery-item" data-cat="harem"><img src="images-web/lucille.jpg" alt="Lucille" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-lucille')">Lucille<span>Bloodmonger</span></div></div>
       <div class="gallery-item" data-cat="harem"><img src="images-web/kaelira.jpg" alt="Kaelira" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-kaelira')">Kaelira<span>Runeweaver Titan</span></div></div>
-      <div class="gallery-item gallery-nopage" data-cat="harem primordial"><img src="images-web/nyxara.jpg" alt="Nyxara" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Nyxara<span>Conquered Succubus</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
+      <div class="gallery-item" data-cat="harem primordial"><img src="images-web/nyxara.jpg" alt="Nyxara" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-nyxara')">Nyxara<span>Conquered Succubus Primordial</span></div></div>
+      <div class="gallery-item" data-cat="harem"><img src="images-web/rosie.jpg" alt="Rosie" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-rosie')">Rosie Elysiar<span>1st Daughter</span></div></div>
       <div class="gallery-item" data-cat="other"><img src="images-web/black-fang.jpg" alt="Black Fang" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-blackfang')">Black Fang<span>Hanako Fujimori</span></div></div>
       <div class="gallery-item" data-cat="primordial"><img src="images-web/luminara.jpg" alt="Luminara" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-luminara')">Luminara<span>Elf Primordial</span></div></div>
       <div class="gallery-item" data-cat="primordial"><img src="images-web/mearie.jpg" alt="Mearie" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-mearie')">Mearie<span>Human Primordial</span></div></div>
@@ -1726,6 +1757,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
               <option value="Organizations">Organizations</option>
               <option value="Lore">General Lore / World</option>
               <option value="Correction">Correction / Fix</option>
+              <option value="Suggestion">Suggestion / Website Improvement</option>
             </select>
           </div>
           <div class="form-group">
@@ -1866,7 +1898,9 @@ var girlList = [
   {id:'girl-aurora',name:'Aurora'},{id:'girl-jasmine',name:'Jasmine'},{id:'girl-lucille',name:'Lucille'},
   {id:'girl-kaelira',name:'Kaelira'},
   {id:'girl-luminara',name:'Luminara'},
-  {id:'girl-mearie',name:'Mearie'}
+  {id:'girl-mearie',name:'Mearie'},
+  {id:'girl-rosie',name:'Rosie'},
+  {id:'girl-nyxara',name:'Nyxara'}
 ];
 
 function updateSidebarSub(pageId){
