@@ -1056,7 +1056,6 @@ function handleHash(){
   }
 }
 window.addEventListener('hashchange', handleHash);
-if(location.hash) handleHash();
 
 // ── Sidebar toggle ──
 var sidebar = document.getElementById('sidebar');
@@ -1347,6 +1346,7 @@ function initCharts(){
   new Chart(document.getElementById('radarChart'),{type:'radar',data:{labels:['Vitality','Strength','Agility','Magic'],datasets:[{label:'Quinlan (Lv 50)',data:[215,156,164,259],borderColor:gold,backgroundColor:'rgba(139,92,246,0.15)',pointBackgroundColor:gold,pointBorderColor:gold,pointRadius:5,pointHoverRadius:8,borderWidth:2},{label:'Black Fang (Lv 74)',data:[201,231,342,92],borderColor:'#a03050',backgroundColor:'rgba(160,48,80,0.15)',pointBackgroundColor:'#a03050',pointBorderColor:'#a03050',pointRadius:5,pointHoverRadius:8,borderWidth:2}]},plugins:[allSpokeTicks],options:{responsive:true,plugins:{legend:leg,tooltip:{backgroundColor:bgCard,borderColor:gold,borderWidth:1,titleColor:gold,bodyColor:text,padding:12}},scales:{r:{beginAtZero:true,grid:{color:grid},angleLines:{color:grid},pointLabels:{color:text,font:{size:13}},ticks:{display:false,stepSize:50}}}}});
 }
 
+if(location.hash) handleHash();
 
 })();
 </script>
