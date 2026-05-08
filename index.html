@@ -27,6 +27,7 @@
   --text:#dddde6;--text-sec:#9999ad;--text-muted:#5a5a70;
   --shadow-card:0 2px 12px rgba(0,0,0,.3);
   --scrollbar-track:var(--bg-primary);--scrollbar-thumb:var(--border);
+  --chart-grid:rgba(255,255,255,.06);--chart-grid-fine:rgba(255,255,255,.04);
 }
 [data-theme="light"]{
   --bg-deep:#f0ede6;--bg-primary:#faf8f4;--bg-secondary:#efece5;
@@ -35,6 +36,7 @@
   --text:#1a1a1a;--text-sec:#4a4a4a;--text-muted:#8a8a8a;
   --shadow-card:0 2px 12px rgba(0,0,0,.06);
   --scrollbar-track:#efece5;--scrollbar-thumb:#ccc8be;
+  --chart-grid:rgba(0,0,0,.08);--chart-grid-fine:rgba(0,0,0,.05);
 }
 html{scroll-behavior:smooth;scrollbar-color:var(--scrollbar-thumb) var(--scrollbar-track)}
 body{font-family:var(--font-b);background:var(--bg-deep);color:var(--text);line-height:1.6;overflow-x:hidden;transition:background .3s,color .3s}
@@ -285,45 +287,6 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .fam-member:last-child{border-bottom:none}
 .fam-member strong{color:var(--text);font-weight:500}
 
-/* ── Forms ── */
-.form-group{margin-bottom:18px}
-.form-label{display:block;font-size:.84rem;color:var(--text-sec);margin-bottom:6px;font-weight:500}
-.form-input,.form-select,.form-textarea{width:100%;padding:10px 14px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.86rem;font-family:var(--font-b);outline:none;transition:border-color .2s}
-.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold)}
-.form-input::placeholder,.form-textarea::placeholder{color:var(--text-muted)}
-.form-textarea{min-height:140px;resize:vertical;line-height:1.6}
-.form-select{cursor:pointer}
-.form-select option{background:var(--bg-secondary);color:var(--text)}
-.submit-btn{background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:#0c0c16;border:none;border-radius:8px;padding:12px 32px;font-family:var(--font-h);font-size:.88rem;cursor:pointer;transition:all .3s;letter-spacing:.04em;font-weight:600}
-.submit-btn:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(201,168,76,.3)}
-.submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
-.form-msg{padding:12px 16px;border-radius:8px;font-size:.84rem;margin-top:16px;display:none}
-.form-msg.visible{display:block}
-.form-msg.success{background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.3);color:#2ecc71}
-.form-msg.error{background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.3);color:#e74c3c}
-.form-note{font-size:.78rem;color:var(--text-muted);margin-top:8px;line-height:1.5}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:480px){.form-row{grid-template-columns:1fr}}
-
-/* ── Community Submissions ── */
-.sub-empty{text-align:center;padding:40px;color:var(--text-muted);font-size:.88rem}
-.sub-loading{text-align:center;padding:40px;color:var(--text-sec);font-size:.88rem}
-.sub-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:14px;transition:border-color .3s}
-.sub-card:hover{border-color:var(--gold-dim)}
-.sub-card-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:12px}
-.sub-card h4{font-family:var(--font-h);font-size:.92rem;color:var(--gold)}
-.sub-card-meta{font-size:.72rem;color:var(--text-muted);white-space:nowrap}
-.sub-card-content{font-size:.84rem;color:var(--text-sec);line-height:1.7;white-space:pre-line}
-.sub-card-footer{margin-top:10px;padding-top:8px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.sub-card-author{font-size:.76rem;color:var(--purple)}
-.sub-card-cat{font-size:.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em}
-.sub-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
-.sub-filter-btn{background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;padding:6px 14px;color:var(--text-sec);font-size:.78rem;cursor:pointer;transition:all .2s;font-family:var(--font-b)}
-.sub-filter-btn:hover,.sub-filter-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.06)}
-.setup-banner{background:var(--bg-card);border:1px solid var(--gold-dim);border-radius:10px;padding:20px;margin-bottom:24px;text-align:center}
-.setup-banner p{color:var(--text-sec);font-size:.84rem;line-height:1.6}
-.setup-banner code{background:var(--bg-secondary);padding:2px 6px;border-radius:3px;font-size:.8rem;color:var(--gold)}
-
 /* ── Cross-references ── */
 .xref{color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold-dim);transition:all .2s;cursor:pointer}
 .xref:hover{color:#e0c060;border-bottom-color:#e0c060}
@@ -382,14 +345,12 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 
 /* ── Light-mode overrides ── */
 [data-theme="light"] .sidebar{background:var(--bg-primary);border-right-color:var(--border)}
-[data-theme="light"] .card,[data-theme="light"] .fam-card,[data-theme="light"] .div-card,[data-theme="light"] .class-card,[data-theme="light"] .vs-fighter,[data-theme="light"] .chart-wrap,[data-theme="light"] .vs-delta-wrap,[data-theme="light"] .nav-card,[data-theme="light"] .curators-inner,[data-theme="light"] .sub-card{background:var(--bg-card);border-color:var(--border);box-shadow:var(--shadow-card)}
+[data-theme="light"] .card,[data-theme="light"] .fam-card,[data-theme="light"] .div-card,[data-theme="light"] .class-card,[data-theme="light"] .vs-fighter,[data-theme="light"] .chart-wrap,[data-theme="light"] .vs-delta-wrap,[data-theme="light"] .nav-card,[data-theme="light"] .curators-inner{background:var(--bg-card);border-color:var(--border);box-shadow:var(--shadow-card)}
 [data-theme="light"] .member{border-bottom-color:rgba(0,0,0,.06)}
 [data-theme="light"] .fam-member{border-bottom-color:rgba(0,0,0,.06)}
 [data-theme="light"] .vs-stat{border-bottom-color:rgba(0,0,0,.06)}
 [data-theme="light"] .stats-table td{border-bottom-color:rgba(0,0,0,.06)}
 [data-theme="light"] .class-inner{border-top-color:var(--border)}
-[data-theme="light"] .form-input,[data-theme="light"] .form-select,[data-theme="light"] .form-textarea{background:var(--bg-secondary);border-color:var(--border);color:var(--text)}
-[data-theme="light"] .form-select option{background:var(--bg-card);color:var(--text)}
 [data-theme="light"] .bg-secondary,[data-theme="light"] .core-item,[data-theme="light"] .stance,[data-theme="light"] .evil-item,[data-theme="light"] .delta-item{background:var(--bg-secondary)}
 [data-theme="light"] .menu-toggle{background:var(--bg-card);border-color:var(--border)}
 [data-theme="light"] .overlay{background:rgba(0,0,0,.3)}
@@ -1089,20 +1050,24 @@ document.querySelectorAll('.xref').forEach(function(link){
 window._pvChartReady = function(){
   if(!chartsInitialized && currentPage === 'stats') initCharts();
 };
+function cv(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
 function initCharts(){
   if(typeof Chart === 'undefined') return;
   chartsInitialized = true;
-  Chart.defaults.color = '#9999ad';
-  Chart.defaults.borderColor = 'rgba(255,255,255,0.06)';
+  var textSec = cv('--text-sec'), text = cv('--text'), bgCard = cv('--bg-card'), gold = cv('--gold');
+  var grid = cv('--chart-grid'), gridFine = cv('--chart-grid-fine');
+  Chart.defaults.color = textSec;
+  Chart.defaults.borderColor = grid;
   Chart.defaults.font.family = "'Inter', -apple-system, sans-serif";
   var chapters = ['Ch 1','Ch 191','Ch 368','Ch 607','Ch 898','Ch 1442'];
   var chapterNums = [1,191,368,607,898,1442];
-  var tt = { backgroundColor:'#161628',borderColor:'#c9a84c',borderWidth:1,titleColor:'#c9a84c',bodyColor:'#dddde6',padding:12,callbacks:{title:function(i){return 'Chapter '+chapterNums[i[0].dataIndex];}} };
+  var tt = { backgroundColor:bgCard,borderColor:gold,borderWidth:1,titleColor:gold,bodyColor:text,padding:12,callbacks:{title:function(i){return 'Chapter '+chapterNums[i[0].dataIndex];}} };
   var leg = { labels:{padding:16,usePointStyle:true,pointStyle:'circle'} };
-  new Chart(document.getElementById('statChart'),{type:'line',data:{labels:chapters,datasets:[{label:'Health Points',data:[110,731,1125,1350,1913,3225],borderColor:'#e74c3c',backgroundColor:'rgba(231,76,60,0.1)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8},{label:'Mana Points',data:[100,431,1500,1912,3319,3881],borderColor:'#5b9bd5',backgroundColor:'rgba(91,155,213,0.1)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8},{label:'Level',data:[1,14,23,30,40,50],borderColor:'#1abc9c',borderDash:[6,4],backgroundColor:'transparent',tension:.35,pointRadius:4,pointHoverRadius:7,yAxisID:'y1'}]},options:{responsive:true,interaction:{mode:'index',intersect:false},plugins:{legend:leg,tooltip:tt},scales:{y:{beginAtZero:true,title:{display:true,text:'HP / MP',color:'#666'},grid:{color:'rgba(255,255,255,0.04)'}},y1:{position:'right',beginAtZero:true,title:{display:true,text:'Level',color:'#666'},grid:{drawOnChartArea:false}},x:{grid:{color:'rgba(255,255,255,0.04)'}}}}});
-  new Chart(document.getElementById('coreChart'),{type:'line',data:{labels:chapters,datasets:[{label:'Vitality',data:[11,49,75,90,128,215],borderColor:'#2ecc71',backgroundColor:'rgba(46,204,113,0.08)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8},{label:'Strength',data:[10,44,61,81,125,156],borderColor:'#e67e22',backgroundColor:'rgba(230,126,34,0.08)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8},{label:'Agility',data:[10,45,73,95,133,164],borderColor:'#1abc9c',backgroundColor:'rgba(26,188,156,0.08)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8},{label:'Magic',data:[10,29,100,128,221,259],borderColor:'#9b59b6',backgroundColor:'rgba(155,89,182,0.08)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8}]},options:{responsive:true,interaction:{mode:'index',intersect:false},plugins:{legend:leg,tooltip:tt},scales:{y:{beginAtZero:true,title:{display:true,text:'Stat Value',color:'#666'},grid:{color:'rgba(255,255,255,0.04)'}},x:{grid:{color:'rgba(255,255,255,0.04)'}}}}});
+  var axisTitle = cv('--text-muted');
+  new Chart(document.getElementById('statChart'),{type:'line',data:{labels:chapters,datasets:[{label:'Health Points',data:[110,731,1125,1350,1913,3225],borderColor:'#e74c3c',backgroundColor:'rgba(231,76,60,0.1)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8},{label:'Mana Points',data:[100,431,1500,1912,3319,3881],borderColor:'#5b9bd5',backgroundColor:'rgba(91,155,213,0.1)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8},{label:'Level',data:[1,14,23,30,40,50],borderColor:'#1abc9c',borderDash:[6,4],backgroundColor:'transparent',tension:.35,pointRadius:4,pointHoverRadius:7,yAxisID:'y1'}]},options:{responsive:true,interaction:{mode:'index',intersect:false},plugins:{legend:leg,tooltip:tt},scales:{y:{beginAtZero:true,title:{display:true,text:'HP / MP',color:axisTitle},grid:{color:gridFine}},y1:{position:'right',beginAtZero:true,title:{display:true,text:'Level',color:axisTitle},grid:{drawOnChartArea:false}},x:{grid:{color:gridFine}}}}});
+  new Chart(document.getElementById('coreChart'),{type:'line',data:{labels:chapters,datasets:[{label:'Vitality',data:[11,49,75,90,128,215],borderColor:'#2ecc71',backgroundColor:'rgba(46,204,113,0.08)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8},{label:'Strength',data:[10,44,61,81,125,156],borderColor:'#e67e22',backgroundColor:'rgba(230,126,34,0.08)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8},{label:'Agility',data:[10,45,73,95,133,164],borderColor:'#1abc9c',backgroundColor:'rgba(26,188,156,0.08)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8},{label:'Magic',data:[10,29,100,128,221,259],borderColor:'#9b59b6',backgroundColor:'rgba(155,89,182,0.08)',fill:true,tension:.35,pointRadius:5,pointHoverRadius:8}]},options:{responsive:true,interaction:{mode:'index',intersect:false},plugins:{legend:leg,tooltip:tt},scales:{y:{beginAtZero:true,title:{display:true,text:'Stat Value',color:axisTitle},grid:{color:gridFine}},x:{grid:{color:gridFine}}}}});
   var radarLabels = {id:'radarLabels',afterDatasetsDraw:function(chart){var ctx=chart.ctx;chart.data.datasets.forEach(function(ds,i){var meta=chart.getDatasetMeta(i);meta.data.forEach(function(pt,j){var cx=chart.scales.r.xCenter,cy=chart.scales.r.yCenter;var dx=pt.x-cx,dy=pt.y-cy;var dist=Math.sqrt(dx*dx+dy*dy);var ox=dist>0?dx/dist*14:0,oy=dist>0?dy/dist*14:-14;ctx.save();ctx.font='bold 11px Inter,sans-serif';ctx.fillStyle=ds.borderColor;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(ds.data[j],pt.x+ox,pt.y+oy);ctx.restore();});});}};
-  new Chart(document.getElementById('radarChart'),{type:'radar',data:{labels:['Vitality','Strength','Agility','Magic'],datasets:[{label:'Quinlan (Lv 50)',data:[215,156,164,259],borderColor:'#c9a84c',backgroundColor:'rgba(201,168,76,0.15)',pointBackgroundColor:'#c9a84c',pointBorderColor:'#c9a84c',pointRadius:5,pointHoverRadius:8,borderWidth:2},{label:'Black Fang (Lv 74)',data:[201,231,342,92],borderColor:'#a03050',backgroundColor:'rgba(160,48,80,0.15)',pointBackgroundColor:'#a03050',pointBorderColor:'#a03050',pointRadius:5,pointHoverRadius:8,borderWidth:2}]},plugins:[radarLabels],options:{responsive:true,plugins:{legend:leg,tooltip:{backgroundColor:'#161628',borderColor:'#c9a84c',borderWidth:1,titleColor:'#c9a84c',bodyColor:'#dddde6',padding:12}},scales:{r:{beginAtZero:true,grid:{color:'rgba(255,255,255,0.08)'},angleLines:{color:'rgba(255,255,255,0.08)'},pointLabels:{color:'#dddde6',font:{size:13}},ticks:{display:false}}}}});
+  new Chart(document.getElementById('radarChart'),{type:'radar',data:{labels:['Vitality','Strength','Agility','Magic'],datasets:[{label:'Quinlan (Lv 50)',data:[215,156,164,259],borderColor:gold,backgroundColor:'rgba(201,168,76,0.15)',pointBackgroundColor:gold,pointBorderColor:gold,pointRadius:5,pointHoverRadius:8,borderWidth:2},{label:'Black Fang (Lv 74)',data:[201,231,342,92],borderColor:'#a03050',backgroundColor:'rgba(160,48,80,0.15)',pointBackgroundColor:'#a03050',pointBorderColor:'#a03050',pointRadius:5,pointHoverRadius:8,borderWidth:2}]},plugins:[radarLabels],options:{responsive:true,plugins:{legend:leg,tooltip:{backgroundColor:bgCard,borderColor:gold,borderWidth:1,titleColor:gold,bodyColor:text,padding:12}},scales:{r:{beginAtZero:true,grid:{color:grid},angleLines:{color:grid},pointLabels:{color:text,font:{size:13}},ticks:{display:false}}}}});
 }
 
 
