@@ -430,6 +430,9 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <li><a onclick="navigateTo('classes')" data-page="classes">Classes</a></li>
       <li class="nav-group-title">Characters</li>
       <li><a onclick="navigateTo('families')" data-page="families">Harem &amp; Families</a></li>
+      <li class="nav-group-title">Community</li>
+      <li><a onclick="navigateTo('community')" data-page="community">Contributions</a></li>
+      <li><a onclick="navigateTo('submit')" data-page="submit">Submit Info</a></li>
     </ul>
   </nav>
   <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
@@ -484,6 +487,16 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <span class="nav-card-icon">&#9829;</span>
       <h3>Harem &amp; Families</h3>
       <p>Quinlan's inner circle and their known family connections.</p>
+    </a>
+    <a class="nav-card" onclick="navigateTo('community')">
+      <span class="nav-card-icon">&#9733;</span>
+      <h3>Community Contributions</h3>
+      <p>Approved submissions from the community&mdash;lore, corrections, and new data.</p>
+    </a>
+    <a class="nav-card" onclick="navigateTo('submit')">
+      <span class="nav-card-icon">&#9998;</span>
+      <h3>Submit Info</h3>
+      <p>Know something we don't? Submit lore, corrections, or character details for review.</p>
     </a>
   </div>
   <div class="curators">
@@ -878,6 +891,68 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   </section>
 </div>
 
+<!-- ═══════════════ COMMUNITY CONTRIBUTIONS ═══════════════ -->
+<div class="page content-page" id="page-community">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
+  <section>
+    <h2 class="sec-title">Community Contributions</h2>
+    <p class="sec-desc">Approved submissions from the community. Want to add something? <a href="javascript:void(0)" onclick="navigateTo('submit')" style="border-bottom:1px dotted var(--gold-dim)">Submit here</a>.</p>
+    <hr class="sec-divider">
+    <div id="subSetupBanner" class="setup-banner" style="display:none">
+      <p>Submissions are not configured yet. Set <code>SHEET_ID</code> and <code>SCRIPT_URL</code> in the config to enable.</p>
+    </div>
+    <div class="sub-filter" id="subFilter"></div>
+    <div id="subLoading" class="sub-loading" style="display:none">Loading contributions...</div>
+    <div id="subList"></div>
+    <div id="subEmpty" class="sub-empty" style="display:none">No approved contributions yet. Be the first!</div>
+  </section>
+</div>
+
+<!-- ═══════════════ SUBMIT ═══════════════ -->
+<div class="page content-page" id="page-submit">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
+  <section>
+    <h2 class="sec-title">Submit Information</h2>
+    <p class="sec-desc">Contribute lore, character details, stat updates, corrections, or anything else about <em>Primordial Villain with a Slave Harem</em>. Submissions are reviewed by moderators before appearing on the site.</p>
+    <hr class="sec-divider">
+    <div id="submitSetupBanner" class="setup-banner" style="display:none">
+      <p>Submissions are not configured yet. Set <code>SHEET_ID</code> and <code>SCRIPT_URL</code> in the config to enable.</p>
+    </div>
+    <form id="submitForm" style="max-width:600px">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="subName">Name</label>
+          <input class="form-input" type="text" id="subName" placeholder="Your name or Discord handle" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="subCategory">Category</label>
+          <select class="form-select" id="subCategory" required>
+            <option value="">Select...</option>
+            <option value="Kingdom">Kingdom &amp; Duchies</option>
+            <option value="Primordials">Primordials</option>
+            <option value="Organizations">Organizations</option>
+            <option value="Stats">Stats &amp; Progression</option>
+            <option value="Classes">Classes &amp; Abilities</option>
+            <option value="Harem">Harem &amp; Families</option>
+            <option value="Lore">General Lore</option>
+            <option value="Correction">Correction / Fix</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="subTitle">Title</label>
+        <input class="form-input" type="text" id="subTitle" placeholder="Short summary of what you're adding" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="subContent">Content</label>
+        <textarea class="form-textarea" id="subContent" placeholder="Full details. Include chapter references if possible." required></textarea>
+      </div>
+      <button type="submit" class="submit-btn" id="submitBtn">Submit for Review</button>
+      <div class="form-msg" id="formMsg"></div>
+      <p class="form-note">All submissions are reviewed by moderators before appearing. Include chapter numbers where possible to help verify.</p>
+    </form>
+  </section>
+</div>
 
 <div class="no-results" id="noResults">No matches found.</div>
 <footer class="footer"><p>Compiled by the community of <strong style="color:var(--gold)">Primordial Villain with a Slave Harem</strong></p></footer>
@@ -888,6 +963,16 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 <script>
 (function(){
 'use strict';
+
+// ══════════════════════════════════════════════════════════════
+// CONFIGURATION — Set these after creating your Google Sheet.
+// See SETUP.md for step-by-step instructions.
+// ══════════════════════════════════════════════════════════════
+var CONFIG = {
+  SHEET_ID: '1kjpopid2wpY98BGdZwik2PPdT1lm7xypwweXTziJoEg',
+  WEBHOOK_URL: 'https://discord.com/api/webhooks/1502227324148518962/t573_PvxrIV2HQsz8Jv2iN1GROeJnNkxU2asBOxO5sKBpqKIMDZIgG0jC4meMesJ2eF8'
+};
+// ══════════════════════════════════════════════════════════════
 
 // ── Theme toggle ──
 function updateThemeUI(){
@@ -1102,6 +1187,181 @@ function initCharts(){
   new Chart(document.getElementById('radarChart'),{type:'radar',data:{labels:['Vitality','Strength','Agility','Magic'],datasets:[{label:'Quinlan (Lv 50)',data:[215,156,164,259],borderColor:'#c9a84c',backgroundColor:'rgba(201,168,76,0.15)',pointBackgroundColor:'#c9a84c',pointBorderColor:'#c9a84c',pointRadius:5,pointHoverRadius:8,borderWidth:2},{label:'Black Fang (Lv 74)',data:[201,231,342,92],borderColor:'#a03050',backgroundColor:'rgba(160,48,80,0.15)',pointBackgroundColor:'#a03050',pointBorderColor:'#a03050',pointRadius:5,pointHoverRadius:8,borderWidth:2}]},options:{responsive:true,plugins:{legend:leg,tooltip:{backgroundColor:'#161628',borderColor:'#c9a84c',borderWidth:1,titleColor:'#c9a84c',bodyColor:'#dddde6',padding:12}},scales:{r:{beginAtZero:true,grid:{color:'rgba(255,255,255,0.08)'},angleLines:{color:'rgba(255,255,255,0.08)'},pointLabels:{color:'#dddde6',font:{size:13}},ticks:{color:'#5a5a70',backdropColor:'transparent'}}}}});
 }
 
+// ── Submission form ──
+var submitForm = document.getElementById('submitForm');
+var formMsg = document.getElementById('formMsg');
+var submitBtn = document.getElementById('submitBtn');
+
+if(!CONFIG.WEBHOOK_URL){
+  var sb1 = document.getElementById('submitSetupBanner');
+  if(sb1) sb1.style.display = 'block';
+  if(submitForm) submitForm.style.display = 'none';
+}
+
+if(submitForm) submitForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  if(!CONFIG.WEBHOOK_URL){
+    showFormMsg('error', 'Submissions not configured yet.');
+    return;
+  }
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting...';
+  formMsg.className = 'form-msg';
+  formMsg.classList.remove('visible');
+
+  var category = document.getElementById('subCategory').value;
+  var title = document.getElementById('subTitle').value.trim();
+  var content = document.getElementById('subContent').value.trim();
+  var userName = document.getElementById('subName').value.trim();
+  if(!userName){
+    showFormMsg('error', 'Please enter your Discord username.');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit for Review';
+    return;
+  }
+
+  var embed = {
+    title: '📥 New Codex Submission',
+    color: 0xC9A84C,
+    fields: [
+      { name: 'Submitted by', value: userName, inline: true },
+      { name: 'Category', value: category, inline: true },
+      { name: 'Title', value: title },
+      { name: 'Content', value: content.length > 1024 ? content.substring(0, 1021) + '...' : content }
+    ],
+    timestamp: new Date().toISOString()
+  };
+
+  fetch(CONFIG.WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ embeds: [embed] })
+  }).then(function(r){
+    if(r.ok || r.status === 204){
+      showFormMsg('success', 'Submitted! Your suggestion has been sent to the moderators for review.');
+      submitForm.reset();
+    } else {
+      showFormMsg('error', 'Something went wrong (status ' + r.status + '). Try again or report in Discord.');
+    }
+  }).catch(function(){
+    showFormMsg('error', 'Could not reach Discord. Check your connection and try again.');
+  }).finally(function(){
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit for Review';
+  });
+});
+
+function showFormMsg(type, text){
+  formMsg.textContent = text;
+  formMsg.className = 'form-msg visible ' + type;
+}
+
+// ── Fetch community submissions from Google Sheet ──
+var subList = document.getElementById('subList');
+var subLoading = document.getElementById('subLoading');
+var subEmpty = document.getElementById('subEmpty');
+var subFilter = document.getElementById('subFilter');
+var allSubmissions = [];
+var activeFilter = 'All';
+
+function loadSubmissions(){
+  if(!CONFIG.SHEET_ID){
+    var sb2 = document.getElementById('subSetupBanner');
+    if(sb2) sb2.style.display = 'block';
+    return;
+  }
+  subLoading.style.display = 'block';
+
+  var url = 'https://docs.google.com/spreadsheets/d/' + CONFIG.SHEET_ID + '/gviz/tq?tqx=out:json';
+  fetch(url)
+    .then(function(r){ return r.text(); })
+    .then(function(text){
+      var json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\((.+)\);/)[1]);
+      var rows = json.table.rows;
+      allSubmissions = [];
+
+      for(var i = 0; i < rows.length; i++){
+        var cells = rows[i].c;
+        if(!cells || !cells[5]) continue;
+        var status = (cells[5].v || '').toString().trim().toLowerCase();
+        if(status !== 'approved') continue;
+
+        allSubmissions.push({
+          date: cells[0] ? cells[0].f || cells[0].v || '' : '',
+          discord: cells[1] ? cells[1].v || '' : '',
+          category: cells[2] ? cells[2].v || '' : '',
+          title: cells[3] ? cells[3].v || '' : '',
+          content: cells[4] ? cells[4].v || '' : ''
+        });
+      }
+
+      buildFilters();
+      renderSubmissions();
+      subLoading.style.display = 'none';
+    })
+    .catch(function(){
+      subLoading.style.display = 'none';
+      subEmpty.style.display = 'block';
+      subEmpty.textContent = 'Could not load contributions. Check back later.';
+    });
+}
+
+function buildFilters(){
+  var cats = {};
+  allSubmissions.forEach(function(s){ if(s.category) cats[s.category] = true; });
+  var catList = Object.keys(cats).sort();
+
+  subFilter.innerHTML = '';
+  var allBtn = document.createElement('button');
+  allBtn.className = 'sub-filter-btn active';
+  allBtn.textContent = 'All';
+  allBtn.onclick = function(){ setFilter('All'); };
+  subFilter.appendChild(allBtn);
+
+  catList.forEach(function(cat){
+    var btn = document.createElement('button');
+    btn.className = 'sub-filter-btn';
+    btn.textContent = cat;
+    btn.onclick = function(){ setFilter(cat); };
+    subFilter.appendChild(btn);
+  });
+}
+
+function setFilter(cat){
+  activeFilter = cat;
+  document.querySelectorAll('.sub-filter-btn').forEach(function(b){
+    b.classList.toggle('active', b.textContent === cat);
+  });
+  renderSubmissions();
+}
+
+function renderSubmissions(){
+  var filtered = activeFilter === 'All' ? allSubmissions : allSubmissions.filter(function(s){ return s.category === activeFilter; });
+
+  if(filtered.length === 0){
+    subList.innerHTML = '';
+    subEmpty.style.display = 'block';
+    subEmpty.textContent = activeFilter === 'All' ? 'No approved contributions yet. Be the first!' : 'No contributions in this category yet.';
+    return;
+  }
+  subEmpty.style.display = 'none';
+
+  var html = '';
+  filtered.forEach(function(s){
+    html += '<div class="sub-card"><div class="sub-card-header"><h4>' + escHtml(s.title) + '</h4><span class="sub-card-meta">' + escHtml(s.date) + '</span></div>';
+    html += '<div class="sub-card-content">' + escHtml(s.content) + '</div>';
+    html += '<div class="sub-card-footer"><span class="sub-card-author">' + escHtml(s.discord) + '</span><span class="sub-card-cat">' + escHtml(s.category) + '</span></div></div>';
+  });
+  subList.innerHTML = html;
+}
+
+function escHtml(str){
+  var d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+loadSubmissions();
 
 })();
 </script>
