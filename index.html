@@ -341,7 +341,10 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 
 /* ── Families ── */
 .fam-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-.fam-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px;transition:border-color .3s}
+.fam-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px;transition:border-color .3s,box-shadow .2s;position:relative}
+.fam-card[onclick]{cursor:pointer}
+.fam-card[onclick]::after{content:'→';position:absolute;top:14px;right:16px;color:var(--text-muted);font-size:.85rem;transition:color .2s}
+.fam-card[onclick]:hover::after{color:var(--gold)}
 .fam-card:hover{border-color:var(--gold-dim)}
 .fam-card h4{font-family:var(--font-h);font-size:.9rem;color:var(--gold);margin-bottom:3px}
 .fam-role{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
@@ -890,16 +893,16 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Quinlan's inner circle and their known family connections.</p>
     <hr class="sec-divider">
     <div class="fam-grid">
-      <div class="fam-card searchable" data-keywords="blossom natalie poppy mother sister harem void stalker"><h4>Blossom</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong>Natalie</strong> &mdash; Mother</div><div class="fam-member"><strong>Poppy</strong> &mdash; Sister</div></div>
-      <div class="fam-card searchable" data-keywords="seraphiel sera sylvaris mooncaller mother elf harem dawnbringer"><h4>Seraphiel</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong>Sylvaris</strong> &mdash; Mother (Mooncaller)</div></div>
-      <div class="fam-card searchable" data-keywords="jasmine gina argentis aurelion mother father harem tyrant commerce"><h4>Jasmine</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong>Gina Argentis</strong> &mdash; Mother</div><div class="fam-member"><strong>Aurelion</strong> &mdash; Father <span class="badge badge-dead" style="margin-left:4px">Deceased</span></div></div>
-      <div class="fam-card searchable" data-keywords="ayame kaede hanako fujimori black fang half sister harem skysplitter"><h4>Ayame</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong><a href="javascript:void(0)" class="xref" data-xref-page="kingdom" data-xref-id="xref-kaede">Kaede Fujimori</a></strong> &mdash; Younger Sister</div><div class="fam-member"><strong><a href="javascript:void(0)" class="xref" data-xref-page="organizations" data-xref-id="xref-black-fang">Hanako Fujimori</a></strong> &mdash; Half-Sister <span class="badge badge-red" style="margin-left:4px">a.k.a. Black Fang</span></div></div>
-      <div class="fam-card searchable" data-keywords="serika rykar vael mimi elysiar father sister reincarnated harem solar fist"><h4>Serika</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong>Rykar Vael</strong> &mdash; Father</div><div class="fam-member"><strong>Mimi Elysiar</strong> &mdash; Sister (reincarnated)</div></div>
-      <div class="fam-card searchable" data-keywords="aurora naomi gideon lioren mother father harem essenceweaver alchemist"><h4>Aurora</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong>Naomi Lioren</strong> &mdash; Mother</div><div class="fam-member"><strong>Gideon Lioren</strong> &mdash; Father</div></div>
-      <div class="fam-card searchable" data-keywords="lucille mavena robert daughter ex husband harem bloodmonger"><h4>Lucille</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong>Mavena</strong> &mdash; Daughter</div><div class="fam-member"><strong>Robert</strong> &mdash; Ex-Husband</div></div>
-      <div class="fam-card searchable" data-keywords="kitsara vargis dogkin father lord harem beast kin nine tailed sorceress"><h4>Kitsara</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong>Vargis</strong> &mdash; Father (Lord of the Dogkin)</div></div>
-      <div class="fam-card searchable" data-keywords="vex hexwitch black fang disciple raika orianna lionkin sword curse harem white hair"><h4>Vex</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong><a href="javascript:void(0)" class="xref" data-xref-page="organizations" data-xref-id="xref-black-fang">Black Fang</a></strong> &mdash; Master (adopted her as disciple)</div><div class="fam-member"><strong>Raika</strong> &mdash; Fellow Disciple ("The Brutalizer")</div><div class="fam-member"><strong>Orianna</strong> &mdash; Fellow Disciple ("The Flower Queen")</div><div class="fam-member" style="color:var(--text-muted);font-style:italic">Birth family killed by lionkin</div></div>
-      <div class="fam-card searchable" data-keywords="kaelira runeweaver titan elf crafter seraphiel elvardian harem"><h4>Kaelira</h4><div class="fam-role">Harem Member</div><div class="fam-member"><strong>Seraphiel</strong> &mdash; Close Friend (fellow elf)</div><div class="fam-member" style="color:var(--text-muted);font-style:italic">No known family &mdash; exiled from Elvardian Alliance for illegal crafting</div></div>
+      <div class="fam-card searchable" onclick="navigateTo('girl-ayame')" data-keywords="ayame kaede hanako fujimori black fang half sister harem skysplitter"><h4>Ayame</h4><div class="fam-role">Skysplitter</div><div class="fam-member"><strong>Kaede Fujimori</strong> &mdash; Younger Sister</div><div class="fam-member"><strong>Hanako Fujimori</strong> &mdash; Half-Sister <span class="badge badge-red" style="margin-left:4px">a.k.a. Black Fang</span></div></div>
+      <div class="fam-card searchable" onclick="navigateTo('girl-sera')" data-keywords="seraphiel sera sylvaris mooncaller mother elf harem dawnbringer"><h4>Seraphiel</h4><div class="fam-role">Dawnbringer</div><div class="fam-member"><strong>Sylvaris</strong> &mdash; Mother (Mooncaller)</div></div>
+      <div class="fam-card searchable" onclick="navigateTo('girl-blossom')" data-keywords="blossom natalie poppy mother sister harem void stalker"><h4>Blossom</h4><div class="fam-role">Void Stalker</div><div class="fam-member"><strong>Natalie</strong> &mdash; Mother</div><div class="fam-member"><strong>Poppy</strong> &mdash; Sister</div></div>
+      <div class="fam-card searchable" onclick="navigateTo('girl-vex')" data-keywords="vex hexwitch black fang disciple raika orianna lionkin sword curse harem white hair"><h4>Vex</h4><div class="fam-role">Hexwitch</div><div class="fam-member"><strong>Black Fang</strong> &mdash; Master (adopted her as disciple)</div><div class="fam-member"><strong>Raika</strong> &mdash; Fellow Disciple</div><div class="fam-member"><strong>Orianna</strong> &mdash; Fellow Disciple</div></div>
+      <div class="fam-card searchable" onclick="navigateTo('girl-serika')" data-keywords="serika rykar vael mimi elysiar father sister reincarnated harem solar fist blazing"><h4>Serika</h4><div class="fam-role">Solar Fist</div><div class="fam-member"><strong>Rykar Vael</strong> &mdash; Father</div><div class="fam-member"><strong>Mimi Elysiar</strong> &mdash; Sister (reincarnated)</div></div>
+      <div class="fam-card searchable" onclick="navigateTo('girl-kitsara')" data-keywords="kitsara vargis dogkin father lord harem beast kin nine tailed sorceress"><h4>Kitsara</h4><div class="fam-role">Nine-Tailed Sorceress</div><div class="fam-member"><strong>Vargis</strong> &mdash; Father (Lord of the Dogkin)</div></div>
+      <div class="fam-card searchable" onclick="navigateTo('girl-aurora')" data-keywords="aurora naomi gideon lioren mother father harem essenceweaver alchemist"><h4>Aurora</h4><div class="fam-role">Essenceweaver / Alchemist</div><div class="fam-member"><strong>Naomi Lioren</strong> &mdash; Mother</div><div class="fam-member"><strong>Gideon Lioren</strong> &mdash; Father</div></div>
+      <div class="fam-card searchable" onclick="navigateTo('girl-jasmine')" data-keywords="jasmine gina argentis aurelion mother father harem tyrant commerce gold"><h4>Jasmine</h4><div class="fam-role">Tyrant of Gold</div><div class="fam-member"><strong>Gina Argentis</strong> &mdash; Mother</div><div class="fam-member"><strong>Aurelion</strong> &mdash; Father <span class="badge badge-dead" style="margin-left:4px">Deceased</span></div></div>
+      <div class="fam-card searchable" onclick="navigateTo('girl-lucille')" data-keywords="lucille mavena robert daughter ex husband harem bloodmonger"><h4>Lucille</h4><div class="fam-role">Bloodmonger</div><div class="fam-member"><strong>Mavena</strong> &mdash; Daughter</div><div class="fam-member"><strong>Robert</strong> &mdash; Ex-Husband</div></div>
+      <div class="fam-card searchable" onclick="navigateTo('girl-kaelira')" data-keywords="kaelira runeweaver titan elf crafter seraphiel elvardian harem"><h4>Kaelira</h4><div class="fam-role">Runeweaver Titan</div><div class="fam-member"><strong>Seraphiel</strong> &mdash; Close Friend (fellow elf)</div><div class="fam-member" style="color:var(--text-muted);font-style:italic">Exiled from Elvardian Alliance for illegal crafting</div></div>
       <div class="fam-card searchable" data-keywords="nyxara succubus primordial demon ruin conquered soul realm"><h4>Nyxara</h4><div class="fam-role">Conquered Succubus</div><div class="fam-member" style="color:var(--text-muted);font-style:italic">Succubus Primordial &mdash; conquered by Quinlan, resides in his soul realm</div></div>
       <div class="fam-card searchable" data-keywords="quinlan luminara mearie katalin mothers adoptive biological earth primordial elf human"><h4>Quinlan's Mothers</h4><div class="fam-role">Mothers</div><div class="fam-member"><strong>Katalin</strong> &mdash; Biological Mother (Earth)</div><div class="fam-member"><strong>Luminara</strong> &mdash; Adoptive Mother (Elf Primordial)</div><div class="fam-member"><strong>Mearie</strong> &mdash; Adoptive Mother (Human Primordial)</div></div>
       <div class="fam-card searchable" data-keywords="rosie elysiar daughter first quinlan children"><h4>Quinlan's Children</h4><div class="fam-role">Next Generation</div><div class="fam-member"><strong>Rosie Elysiar</strong> &mdash; 1st Daughter</div></div>
@@ -907,6 +910,255 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   </section>
 </div>
 
+<!-- ═══════════════ GIRL PAGES ═══════════════ -->
+
+<!-- ── AYAME ── -->
+<div class="page content-page" id="page-girl-ayame">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('families')">&#8592; Harem &amp; Family</button></div>
+  <section>
+    <h2 class="sec-title">Ayame</h2>
+    <p class="sec-desc">Second-in-command. Quinlan's first slave and the blade at his side.</p>
+    <hr class="sec-divider">
+    <div class="class-card open searchable" data-keywords="ayame skysplitter samurai sword heavenscar stormstride tempest skyborn endless edge final horizon thunderfall sundering skyshatter">
+      <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Skysplitter</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-purple" style="margin-left:4px">Samurai &rarr; Skysplitter</span></div></div><span class="class-chevron">&#9660;</span></div>
+      <div class="class-body"><div class="class-inner">
+        <div class="class-desc">The sword that sunders heaven. A warrior beyond mortal limits whose every strike carries the weight of the storm. She does not fight battles&mdash;she ends them.</div>
+        <div class="subsec-title" style="margin-top:18px;margin-bottom:12px">Abilities</div>
+        <div class="trait"><div class="trait-name">[Heavenscar Blade]</div><div class="trait-desc">Each swing leaves a rift in the air, cutting through barriers, armor, and spatial distortions with unstoppable force.</div></div>
+        <div class="trait"><div class="trait-name">[Stormstride]</div><div class="trait-desc">Supernaturally enhanced speed, agility, and reflexes. Strikes faster than the eye can follow.</div></div>
+        <div class="trait"><div class="trait-name">[Tempest Cleave]</div><div class="trait-desc">A single downward slash that unleashes a shockwave powerful enough to split mountains and tear through armies.</div></div>
+        <div class="trait"><div class="trait-name">[Skyborn Ascendance]</div><div class="trait-desc">Gravity holds no power. Can run on air, leap across the battlefield, and fight with absolute freedom of movement.</div></div>
+        <div class="trait"><div class="trait-name">[Endless Edge]</div><div class="trait-desc">As battle rages, the blade grows sharper. Each foe felled makes strikes swifter, stronger, and deadlier.</div></div>
+        <div class="trait"><div class="trait-name">[Thunderfall]</div><div class="trait-desc">Lightning-infused aerial strike.</div></div>
+        <div class="trait"><div class="trait-name">[Sundering Cleave]</div><div class="trait-desc">Armor-breaking heavy slash.</div></div>
+        <div class="trait"><div class="trait-name">[Skyshatter]</div><div class="trait-desc">Ultimate technique. A transcendent slash capable of sundering the heavens themselves.</div></div>
+      </div></div>
+    </div>
+    <h3 class="vs-section-title" style="margin-top:36px">Family &amp; Connections</h3>
+    <div style="padding:12px 0;font-size:.88rem;color:var(--text-sec)">
+      <div class="fam-member"><strong><a href="javascript:void(0)" class="xref" data-xref-page="kingdom" data-xref-id="xref-kaede">Kaede Fujimori</a></strong> &mdash; Younger Sister (Duchess of the Fujimori)</div>
+      <div class="fam-member"><strong><a href="javascript:void(0)" class="xref" data-xref-page="organizations" data-xref-id="xref-black-fang">Hanako Fujimori</a></strong> &mdash; Half-Sister (a.k.a. Black Fang)</div>
+    </div>
+  </section>
+</div>
+
+<!-- ── SERAPHIEL ── -->
+<div class="page content-page" id="page-girl-sera">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('families')">&#8592; Harem &amp; Family</button></div>
+  <section>
+    <h2 class="sec-title">Seraphiel</h2>
+    <p class="sec-desc">Bearer of light, harbinger of salvation. Both healer and executioner on the battlefield.</p>
+    <hr class="sec-divider">
+    <div class="class-card open searchable" data-keywords="seraphiel sera dawnbringer healer divine arsenal solar resurgence aegis dawn daybreak wrath twilight judgment light radiant">
+      <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Dawnbringer</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-purple" style="margin-left:4px">Healer &rarr; Dawnbringer</span></div></div><span class="class-chevron">&#9660;</span></div>
+      <div class="class-body"><div class="class-inner">
+        <div class="class-desc">A warrior of radiant might who wields both the power to heal and the strength to destroy. Unlike traditional healers, a Dawnbringer takes the fight to the enemy&mdash;both guardian and executioner.</div>
+        <div class="subsec-title" style="margin-top:18px;margin-bottom:12px">Abilities</div>
+        <div class="trait"><div class="trait-name">[Divine Arsenal]</div><div class="trait-desc">Wields weapons of pure light capable of devastating ranged and melee attacks. Strikes burn with radiance, bypassing darkness and corruption.</div></div>
+        <div class="trait"><div class="trait-name">[Solar Resurgence]</div><div class="trait-desc">When grievously wounded, erupts in golden light that purges ailments and restores vitality.</div></div>
+        <div class="trait"><div class="trait-name">[Aegis of Dawn]</div><div class="trait-desc">Enhanced healing magic that reinforces the recipient with divine resilience, enabling recovery faster than normal healing allows.</div></div>
+        <div class="trait"><div class="trait-name">[Daybreak's Wrath]</div><div class="trait-desc">The more she fights, the stronger her light becomes. Attacks gradually intensify into a devastating surge of power.</div></div>
+        <div class="trait"><div class="trait-name">[Twilight Judgment]</div><div class="trait-desc">Upon slaying an enemy, reclaims stolen light and converts their death into healing for allies.</div></div>
+      </div></div>
+    </div>
+    <h3 class="vs-section-title" style="margin-top:36px">Family &amp; Connections</h3>
+    <div style="padding:12px 0;font-size:.88rem;color:var(--text-sec)">
+      <div class="fam-member"><strong>Sylvaris</strong> &mdash; Mother (Mooncaller)</div>
+    </div>
+  </section>
+</div>
+
+<!-- ── BLOSSOM ── -->
+<div class="page content-page" id="page-girl-blossom">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('families')">&#8592; Harem &amp; Family</button></div>
+  <section>
+    <h2 class="sec-title">Blossom</h2>
+    <p class="sec-desc">Shadowborn predator. A hunter of the unseen who exists between reality and the abyss.</p>
+    <hr class="sec-divider">
+    <div class="class-card open searchable" data-keywords="blossom void stalker phantom canine dogkin shadow assassin veil umbral voidshroud nullfloat null rend">
+      <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Void Stalker</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-purple" style="margin-left:4px">Phantom Canine &rarr; Void Stalker</span></div></div><span class="class-chevron">&#9660;</span></div>
+      <div class="class-body"><div class="class-inner">
+        <div class="class-desc">An assassin who transcends the physical plane. By manipulating shadows and void, she weaves through existence unseen, striking before her prey ever senses her presence. Her dogkin senses have evolved to an unparalleled degree&mdash;not even the deadliest assassin can hide from her gaze.</div>
+        <div class="subsec-title" style="margin-top:18px;margin-bottom:12px">Abilities</div>
+        <div class="trait"><div class="trait-name">[Veil of the Hollow]</div><div class="trait-desc">Becomes one with the void itself, distorting space and phasing between shadows.</div></div>
+        <div class="trait"><div class="trait-name">[Umbral Step]</div><div class="trait-desc">Shadow-based movement that defies logic&mdash;blinking, distorting, and reforming elsewhere.</div></div>
+        <div class="trait"><div class="trait-name">[Voidshroud]</div><div class="trait-desc">Wraps herself in void energy, becoming undetectable to conventional senses.</div></div>
+        <div class="trait"><div class="trait-name">[Nullfloat]</div><div class="trait-desc">Void-based levitation and aerial mobility.</div></div>
+        <div class="trait"><div class="trait-name">[Null Rend]</div><div class="trait-desc">A strike that carries the weight of the void, bypassing physical armor entirely.</div></div>
+      </div></div>
+    </div>
+    <h3 class="vs-section-title" style="margin-top:36px">Family &amp; Connections</h3>
+    <div style="padding:12px 0;font-size:.88rem;color:var(--text-sec)">
+      <div class="fam-member"><strong>Natalie</strong> &mdash; Mother</div>
+      <div class="fam-member"><strong>Poppy</strong> &mdash; Sister</div>
+    </div>
+  </section>
+</div>
+
+<!-- ── VEX ── -->
+<div class="page content-page" id="page-girl-vex">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('families')">&#8592; Harem &amp; Family</button></div>
+  <section>
+    <h2 class="sec-title">Vex</h2>
+    <p class="sec-desc">Curse-weaver and swordswoman. Disciple of <a href="javascript:void(0)" class="xref" data-xref-page="organizations" data-xref-id="xref-black-fang">Black Fang</a>.</p>
+    <hr class="sec-divider">
+    <div class="class-card open searchable" data-keywords="vex hexwitch curse sword blood magic debuff white hair crimson tattoo">
+      <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Hexwitch</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-purple" style="margin-left:4px">Curse &amp; Blade Hybrid</span></div></div><span class="class-chevron">&#9660;</span></div>
+      <div class="class-body"><div class="class-inner">
+        <div class="class-desc">A dual-threat class combining curse magic with swordsmanship. Vex's curses bite through enemy defenses while her blade carries blood-magic that feeds the Bloodfather's Reservoir on every cut.</div>
+      </div></div>
+    </div>
+    <h3 class="vs-section-title" style="margin-top:36px">Family &amp; Connections</h3>
+    <div style="padding:12px 0;font-size:.88rem;color:var(--text-sec)">
+      <div class="fam-member"><strong><a href="javascript:void(0)" class="xref" data-xref-page="organizations" data-xref-id="xref-black-fang">Black Fang</a></strong> &mdash; Master (adopted her as disciple)</div>
+      <div class="fam-member"><strong>Raika</strong> &mdash; Fellow Disciple (&ldquo;The Brutalizer&rdquo;)</div>
+      <div class="fam-member"><strong>Orianna</strong> &mdash; Fellow Disciple (&ldquo;The Flower Queen&rdquo;)</div>
+      <div class="fam-member" style="color:var(--text-muted);font-style:italic">Birth family killed by lionkin</div>
+    </div>
+  </section>
+</div>
+
+<!-- ── SERIKA ── -->
+<div class="page content-page" id="page-girl-serika">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('families')">&#8592; Harem &amp; Family</button></div>
+  <section>
+    <h2 class="sec-title">Serika</h2>
+    <p class="sec-desc">Living inferno. Practitioner of the Blazing Tyrant Fist.</p>
+    <hr class="sec-divider">
+    <div class="class-card open searchable" data-keywords="serika solar fist blazing tyrant fire martial arts fang comet crash heaven burning punch qi">
+      <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Solar Fist</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-purple" style="margin-left:4px">Martial &middot; Fire</span></div></div><span class="class-chevron">&#9660;</span></div>
+      <div class="class-body"><div class="class-inner">
+        <div class="class-desc">Flames do not retreat. They consume. Each strike feeds the next, each movement forces enemies back. Her Qi control is not about balance but about wielding fire before it burns you alive.</div>
+        <div class="subsec-title" style="margin-top:18px;margin-bottom:12px">Blazing Tyrant Fist &mdash; Forms</div>
+        <div class="trait"><div class="trait-name">Form I &mdash; Rapid Assault</div><div class="trait-desc">Speed, aggression, shallow Qi bursts. The more consecutive strikes, the more Qi pressure builds. Finisher: <strong style="color:var(--text)">Blazing Fang</strong>&mdash;detonates built-up Qi on impact.</div></div>
+        <div class="trait"><div class="trait-name">Form II &mdash; No Escape</div><div class="trait-desc">Aggressive footwork, leaping attacks, midair dashes via Qi bursts. Dodging fuels the next step. Finisher: <strong style="color:var(--text)">Scorching Comet Step</strong>&mdash;lunging strike with sudden Qi ignition.</div></div>
+        <div class="trait"><div class="trait-name">Form III &mdash; Break All Defense</div><div class="trait-desc">Wild two-handed attacks, shoulder charges, explosive swings. Even blocked strikes deal damage. Finisher: <strong style="color:var(--text)">Flame Crash</strong>&mdash;shoulder bash that knocks enemies off their feet.</div></div>
+        <div class="trait"><div class="trait-name">Form IV &mdash; All-Out Burst</div><div class="trait-desc">Burn Qi without restraint. Pure offensive destruction.</div></div>
+        <div class="trait"><div class="trait-name" style="color:#e74c3c">[Heaven-Burning Tyrant Fist]</div><div class="trait-desc">Ultimate technique. Compresses all Qi into one arm, sacrificing defense and body integrity for a planet-cracking punch. Blue-white flames vaporize the air. Not meant to be used more than once.</div></div>
+      </div></div>
+    </div>
+    <h3 class="vs-section-title" style="margin-top:36px">Family &amp; Connections</h3>
+    <div style="padding:12px 0;font-size:.88rem;color:var(--text-sec)">
+      <div class="fam-member"><strong>Rykar Vael</strong> &mdash; Father</div>
+      <div class="fam-member"><strong>Mimi Elysiar</strong> &mdash; Sister (reincarnated)</div>
+    </div>
+  </section>
+</div>
+
+<!-- ── KITSARA ── -->
+<div class="page content-page" id="page-girl-kitsara">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('families')">&#8592; Harem &amp; Family</button></div>
+  <section>
+    <h2 class="sec-title">Kitsara</h2>
+    <p class="sec-desc">Illusionist. Each tail unlocks greater mastery over deception and reality manipulation.</p>
+    <hr class="sec-divider">
+    <div class="class-card open searchable" data-keywords="kitsara nine tailed sorceress fox illusion phantom clone veil deception foxfire tail kitsune dogkin">
+      <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Nine-Tailed Sorceress</h3><div class="class-badges"><span class="badge badge-purple">Current: Three-Tailed</span></div></div><span class="class-chevron">&#9660;</span></div>
+      <div class="class-body"><div class="class-inner">
+        <div class="class-desc">A legendary class that grows in power as Kitsara matures, with each additional tail unlocking greater mastery over illusions, deception, and reality manipulation.</div>
+        <div class="subsec-title" style="margin-top:18px;margin-bottom:12px">Tail Progression</div>
+        <div class="trait"><div class="trait-name">One-Tailed &mdash; Novice Trickster</div><div class="trait-desc">[Veil of Deception] &mdash; alter appearance, voice, and scent. [Fox's Step] &mdash; lightened footsteps, harder to detect.</div></div>
+        <div class="trait"><div class="trait-name">Two-Tailed &mdash; Illusory Mirage</div><div class="trait-desc">[Phantom Mask] &mdash; project illusions over others. [Foxfire Phantasm] &mdash; conjure distracting blue flames. [Deceiver's Veil] &mdash; erase presence from weaker detection.</div></div>
+        <div class="trait"><div class="trait-name" style="color:var(--gold)">Three-Tailed &mdash; Mistress of Misdirection (Current)</div><div class="trait-desc">[Illusory Overlap] &mdash; multiple layers of overlapping illusions. [Phantom Clones] &mdash; false bodies that mimic her movements. Each tail enhances a different aspect: Glamour, Deception, Shadow Blend.</div></div>
+        <div class="trait" style="opacity:.6"><div class="trait-name">Four-Tailed &mdash; Weaver of Lies</div><div class="trait-desc">Reality distortion and psychological warfare. Illusions persist after leaving her range.</div></div>
+        <div class="trait" style="opacity:.6"><div class="trait-name">Five-Tailed &mdash; Architect of Falsehoods</div><div class="trait-desc">Near-indistinguishable illusions. [Fox's Labyrinth] &mdash; spatial maze of shifting paths.</div></div>
+        <div class="trait" style="opacity:.45"><div class="trait-name">Six through Nine</div><div class="trait-desc">Mirage Sovereign &rarr; Nightmare Weaver &rarr; Enchantress of the Fabled Veil &rarr; <strong style="color:var(--gold)">The Kitsune Empress</strong>. Full reality manipulation at the nine-tailed pinnacle.</div></div>
+      </div></div>
+    </div>
+    <h3 class="vs-section-title" style="margin-top:36px">Family &amp; Connections</h3>
+    <div style="padding:12px 0;font-size:.88rem;color:var(--text-sec)">
+      <div class="fam-member"><strong>Vargis</strong> &mdash; Father (Lord of the Dogkin)</div>
+    </div>
+  </section>
+</div>
+
+<!-- ── AURORA ── -->
+<div class="page content-page" id="page-girl-aurora">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('families')">&#8592; Harem &amp; Family</button></div>
+  <section>
+    <h2 class="sec-title">Aurora</h2>
+    <p class="sec-desc">Shield-weaver and alchemist. Protects with barriers and brews with precision.</p>
+    <hr class="sec-divider">
+    <div class="class-card open searchable" data-keywords="aurora essenceweaver alchemist dreamveil shield potion barrier brew">
+      <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Essenceweaver / Alchemist</h3><div class="class-badges"><span class="badge badge-purple">Dual Role</span></div></div><span class="class-chevron">&#9660;</span></div>
+      <div class="class-body"><div class="class-inner">
+        <div class="class-desc">A dual-role class combining defensive barrier magic with alchemical crafting. In combat, [Dreamveil] shields repel powerful attacks. Outside combat, she brews potions seeded with rare essences.</div>
+      </div></div>
+    </div>
+    <h3 class="vs-section-title" style="margin-top:36px">Family &amp; Connections</h3>
+    <div style="padding:12px 0;font-size:.88rem;color:var(--text-sec)">
+      <div class="fam-member"><strong>Naomi Lioren</strong> &mdash; Mother</div>
+      <div class="fam-member"><strong>Gideon Lioren</strong> &mdash; Father</div>
+    </div>
+  </section>
+</div>
+
+<!-- ── JASMINE ── -->
+<div class="page content-page" id="page-girl-jasmine">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('families')">&#8592; Harem &amp; Family</button></div>
+  <section>
+    <h2 class="sec-title">Jasmine</h2>
+    <p class="sec-desc">Sovereign of commerce. Wealth is not a tool&mdash;it is an unstoppable force.</p>
+    <hr class="sec-divider">
+    <div class="class-card open searchable" data-keywords="jasmine tyrant gold merchant commerce gilded legion mercenary wealth trade argentis">
+      <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Tyrant of Gold</h3><div class="class-badges"><span class="badge badge-purple">Merchant &rarr; Tyrant of Gold</span></div></div><span class="class-chevron">&#9660;</span></div>
+      <div class="class-body"><div class="class-inner">
+        <div class="class-desc">A true sovereign of commerce who wields wealth as an unstoppable force. Every coin spent is an investment in supremacy, every deal struck a binding law. She can bolster allies beyond mortal constraints, conjure mercenaries from nothing, or curse enemies with inescapable debts.</div>
+        <div class="subsec-title" style="margin-top:18px;margin-bottom:12px">Abilities</div>
+        <div class="trait"><div class="trait-name">[Gilded Legion]</div><div class="trait-desc">Conjure mercenary forces funded by her vast wealth. Can deploy them across the empire when Quinlan cannot reach.</div></div>
+      </div></div>
+    </div>
+    <h3 class="vs-section-title" style="margin-top:36px">Family &amp; Connections</h3>
+    <div style="padding:12px 0;font-size:.88rem;color:var(--text-sec)">
+      <div class="fam-member"><strong>Gina Argentis</strong> &mdash; Mother</div>
+      <div class="fam-member"><strong>Aurelion</strong> &mdash; Father <span class="badge badge-dead" style="margin-left:4px">Deceased</span></div>
+    </div>
+  </section>
+</div>
+
+<!-- ── LUCILLE ── -->
+<div class="page content-page" id="page-girl-lucille">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('families')">&#8592; Harem &amp; Family</button></div>
+  <section>
+    <h2 class="sec-title">Lucille</h2>
+    <p class="sec-desc">Blood-drinker. Her axe feeds the family's war machine.</p>
+    <hr class="sec-divider">
+    <div class="class-card open searchable" data-keywords="lucille bloodmonger axe blood reservoir refiller vampire berserker">
+      <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Bloodmonger</h3><div class="class-badges"><span class="badge badge-purple">Berserker &middot; Blood</span></div></div><span class="class-chevron">&#9660;</span></div>
+      <div class="class-body"><div class="class-inner">
+        <div class="class-desc">Lucille's axe drinks slain blood directly into the Bloodfather's Crimson Reservoir, making her the family's fastest battlefield refiller. Her class theme already aligns with the Bloodfather bond&mdash;the grafting was seamless.</div>
+      </div></div>
+    </div>
+    <h3 class="vs-section-title" style="margin-top:36px">Family &amp; Connections</h3>
+    <div style="padding:12px 0;font-size:.88rem;color:var(--text-sec)">
+      <div class="fam-member"><strong>Mavena</strong> &mdash; Daughter</div>
+      <div class="fam-member"><strong>Robert</strong> &mdash; Ex-Husband</div>
+    </div>
+  </section>
+</div>
+
+<!-- ── KAELIRA ── -->
+<div class="page content-page" id="page-girl-kaelira">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('families')">&#8592; Harem &amp; Family</button></div>
+  <section>
+    <h2 class="sec-title">Kaelira</h2>
+    <p class="sec-desc">Elven crafter and titan of runes. Exiled for pursuing forbidden craft.</p>
+    <hr class="sec-divider">
+    <div class="class-card open searchable" data-keywords="kaelira runeweaver titan elf rune armor forge smithing crafter armory inscription">
+      <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Runeweaver Titan</h3><div class="class-badges"><span class="badge badge-purple">Crafter &middot; Rune Inscription</span></div></div><span class="class-chevron">&#9660;</span></div>
+      <div class="class-body"><div class="class-inner">
+        <div class="class-desc">A crafter class capable of inscribing runes that hold against the strongest strikes. Her armor reinforces over time the longer it is worn. Exiled from the Elvardian Alliance for pursuing illegal crafting techniques.</div>
+        <div class="subsec-title" style="margin-top:18px;margin-bottom:12px">Abilities</div>
+        <div class="trait"><div class="trait-name">[Runeweaver's Armory]</div><div class="trait-desc">Inscribe and maintain runic enchantments on weapons and armor, scaling with inscription mastery.</div></div>
+      </div></div>
+    </div>
+    <h3 class="vs-section-title" style="margin-top:36px">Family &amp; Connections</h3>
+    <div style="padding:12px 0;font-size:.88rem;color:var(--text-sec)">
+      <div class="fam-member"><strong>Seraphiel</strong> &mdash; Close Friend (fellow elf)</div>
+      <div class="fam-member" style="color:var(--text-muted);font-style:italic">No known family &mdash; exiled from Elvardian Alliance for illegal crafting</div>
+    </div>
+  </section>
+</div>
 
 <!-- ═══════════════ SUBMIT ENTRY ═══════════════ -->
 <div class="page content-page" id="page-submit">
