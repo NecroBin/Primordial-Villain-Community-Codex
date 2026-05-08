@@ -883,39 +883,27 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">The Primordial Villain. Stats, progression milestones, classes, and abilities.</p>
     <div class="char-portrait"><div class="portrait-blur" onclick="revealQuinlan(this)"><img src="images-web/quinlan.jpg" alt="Quinlan Elysiar" loading="lazy"><div class="blur-overlay"><div class="blur-msg"><em>The author wishes you to imagine Quinlan for yourself.</em>However, due to popular demand, he chose an image.</div><button class="blur-cta" onclick="revealQuinlan(this.closest('.portrait-blur'))">Click to reveal</button></div></div></div>
     <hr class="sec-divider">
-    <div class="sticky-toc" id="quinlanToc"><a onclick="document.getElementById('q-stats').scrollIntoView({behavior:'smooth'})">Progression &amp; Stats</a><a onclick="document.getElementById('q-classes').scrollIntoView({behavior:'smooth'})">Classes</a></div>
-    <h3 class="vs-section-title" id="q-stats" style="margin-top:0">Progression &amp; Stats</h3>
-    <p style="font-size:.82rem;color:var(--text-sec);margin-bottom:18px">Stat milestones tracked across 1,442+ chapters of growth. Click any row to see the full breakdown.</p>
-    <hr class="sec-divider">
-    <div class="stats-table-wrap searchable" data-keywords="quinlan noir elysiar stats level health mana vitality strength agility magic xp progression">
-      <table class="stats-table">
-        <thead><tr><th>Chapter</th><th>Name</th><th>Level</th><th>HP</th><th>MP</th><th>Vit</th><th>Str</th><th>Agi</th><th>Mag</th></tr></thead>
-        <tbody>
-          <tr class="stat-row" data-detail="d1"><td class="ch">1</td><td>???</td><td class="lvl">1</td><td class="hp">110</td><td class="mp">100</td><td class="vit">11</td><td class="str">10</td><td class="agi">10</td><td class="mag">10</td></tr>
-          <tr class="stat-detail" id="d1"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">0 / 100</div></div><div class="detail-item"><div class="detail-label">Race</div><div class="detail-val">Primordial</div></div><div class="detail-note">Vitality base 10, +10% from Commoner Class = 11</div></div></td></tr>
-          <tr class="stat-row" data-detail="d2"><td class="ch">191</td><td>Quinlan Noir</td><td class="lvl">14</td><td class="hp">731</td><td class="mp">431</td><td class="vit">49</td><td class="str">44</td><td class="agi">45</td><td class="mag">29</td></tr>
-          <tr class="stat-detail" id="d2"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">344 / 3,029</div></div><div class="detail-item"><div class="detail-label">Level Range</div><div class="detail-val">9 &rarr; 14</div></div><div class="detail-item"><div class="detail-label">HP Range</div><div class="detail-val">340 &rarr; 731</div></div><div class="detail-item"><div class="detail-label">MP Range</div><div class="detail-val">180 &rarr; 431</div></div><div class="detail-item"><div class="detail-label">Vit</div><div class="detail-val">34 &rarr; 49 <span style="color:var(--text-muted)">(39 base +25%)</span></div></div><div class="detail-item"><div class="detail-label">Str</div><div class="detail-val">30 &rarr; 44 <span style="color:var(--text-muted)">(35 base +25%)</span></div></div><div class="detail-item"><div class="detail-label">Agi</div><div class="detail-val">34 &rarr; 45 <span style="color:var(--text-muted)">(31 base +25%)</span></div></div><div class="detail-item"><div class="detail-label">Mag</div><div class="detail-val">18 &rarr; 29 <span style="color:var(--text-muted)">(23 base +25%)</span></div></div><div class="detail-note">Unused Attribute Points: 40</div></div></td></tr>
-          <tr class="stat-row" data-detail="d3"><td class="ch">368</td><td>Quinlan Noir</td><td class="lvl">23</td><td class="hp">1,125</td><td class="mp">1,500</td><td class="vit">75</td><td class="str">61</td><td class="agi">73</td><td class="mag">100</td></tr>
-          <tr class="stat-detail" id="d3"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">1,278 / 32,118</div></div><div class="detail-item"><div class="detail-label">Level Range</div><div class="detail-val">19 &rarr; 23</div></div><div class="detail-item"><div class="detail-label">HP Range</div><div class="detail-val">1,050 &rarr; 1,125</div></div><div class="detail-item"><div class="detail-label">MP Range</div><div class="detail-val">1,275 &rarr; 1,500</div></div><div class="detail-item"><div class="detail-label">Vit</div><div class="detail-val">70 &rarr; 75</div></div><div class="detail-item"><div class="detail-label">Str</div><div class="detail-val">56 &rarr; 61</div></div><div class="detail-item"><div class="detail-label">Agi</div><div class="detail-val">57 &rarr; 73</div></div><div class="detail-item"><div class="detail-label">Mag</div><div class="detail-val">85 &rarr; 100</div></div><div class="detail-note">Unused Attribute Points: 20</div></div></td></tr>
-          <tr class="stat-row" data-detail="d4"><td class="ch">607</td><td>Quinlan Elysiar</td><td class="lvl">30</td><td class="hp">1,350</td><td class="mp">1,912</td><td class="vit">90</td><td class="str">81</td><td class="agi">95</td><td class="mag">128</td></tr>
-          <tr class="stat-detail" id="d4"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">1,157 / 201,538</div></div><div class="detail-note">Name changed: Quinlan Noir &rarr; Quinlan Elysiar</div></div></td></tr>
-          <tr class="stat-row" data-detail="d5"><td class="ch">898</td><td>Quinlan Elysiar</td><td class="lvl">40</td><td class="hp">1,913</td><td class="mp">3,319</td><td class="vit">128</td><td class="str">125</td><td class="agi">133</td><td class="mag">221</td></tr>
-          <tr class="stat-detail" id="d5"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">1,280 / 2,778,374</div></div></div></td></tr>
-          <tr class="stat-row" data-detail="d6"><td class="ch">1442</td><td>Quinlan Elysiar</td><td class="lvl">50</td><td class="hp">3,225</td><td class="mp">3,881</td><td class="vit">215</td><td class="str">156</td><td class="agi">164</td><td class="mag">259</td></tr>
-          <tr class="stat-detail" id="d6"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">? / 39,346,931</div></div></div></td></tr>
-        </tbody>
-      </table>
+    <div class="sticky-toc" id="quinlanToc"><a onclick="document.getElementById('q-relations').scrollIntoView({behavior:'smooth'})">Relations</a><a onclick="document.getElementById('q-lore').scrollIntoView({behavior:'smooth'})">Lore</a><a onclick="document.getElementById('q-classes').scrollIntoView({behavior:'smooth'})">Classes</a><a onclick="document.getElementById('q-stats').scrollIntoView({behavior:'smooth'})">Stats</a></div>
+
+    <h3 class="vs-section-title" id="q-relations" style="margin-top:0">Relations</h3>
+    <div class="fam-grid" style="margin-bottom:32px">
+      <div class="fam-card" onclick="navigateTo('girl-ayame')"><h4>Ayame</h4><div class="fam-role">Wife &middot; Skysplitter</div></div>
+      <div class="fam-card" onclick="navigateTo('girl-sera')"><h4>Seraphiel</h4><div class="fam-role">Wife &middot; Dawnbringer</div></div>
+      <div class="fam-card" onclick="navigateTo('girl-blossom')"><h4>Blossom</h4><div class="fam-role">Wife &middot; Void Stalker</div></div>
+      <div class="fam-card" onclick="navigateTo('girl-vex')"><h4>Vex</h4><div class="fam-role">Wife &middot; Hexwitch</div></div>
+      <div class="fam-card" onclick="navigateTo('girl-serika')"><h4>Serika</h4><div class="fam-role">Wife &middot; Solar Fist</div></div>
+      <div class="fam-card" onclick="navigateTo('girl-kitsara')"><h4>Kitsara</h4><div class="fam-role">Wife &middot; Nine-Tailed Sorceress</div></div>
+      <div class="fam-card" onclick="navigateTo('girl-aurora')"><h4>Aurora</h4><div class="fam-role">Wife &middot; Essenceweaver</div></div>
+      <div class="fam-card" onclick="navigateTo('girl-jasmine')"><h4>Jasmine</h4><div class="fam-role">Wife &middot; Tyrant of Commerce</div></div>
+      <div class="fam-card" onclick="navigateTo('girl-lucille')"><h4>Lucille</h4><div class="fam-role">Wife &middot; Bloodmonger</div></div>
+      <div class="fam-card" onclick="navigateTo('girl-kaelira')"><h4>Kaelira</h4><div class="fam-role">Wife &middot; Runeweaver Titan</div></div>
+      <div class="fam-card" onclick="navigateTo('girl-luminara')"><h4>Luminara</h4><div class="fam-role">Adoptive Mother &middot; Elf Primordial</div></div>
+      <div class="fam-card" onclick="navigateTo('girl-mearie')"><h4>Mearie</h4><div class="fam-role">Adoptive Mother &middot; Human Primordial</div></div>
     </div>
-    <div class="chart-wrap"><h3>Stat Growth Over Time</h3><div class="chart-container"><canvas id="statChart"></canvas></div><div class="chart-fallback" id="fallback-stat">Charts require JavaScript and an internet connection.</div></div>
-    <div class="chart-wrap"><h3>Core Attributes Over Time</h3><div class="chart-container"><canvas id="coreChart"></canvas></div><div class="chart-fallback" id="fallback-core">Charts require JavaScript and an internet connection.</div></div>
-    <h3 class="vs-section-title" id="xref-black-fang-vs">Quinlan vs. <a href="#" class="xref" data-xref-page="organizations" data-xref-id="xref-black-fang">Black Fang</a></h3>
-    <div class="vs-grid searchable" data-keywords="quinlan black fang comparison versus hanako fujimori">
-      <div class="vs-fighter q"><h3>Quinlan Elysiar</h3><div class="race">Primordial &middot; Level 50</div><div class="vs-stat"><span class="label">Health</span><span class="val win">3,225</span></div><div class="vs-stat"><span class="label">Mana</span><span class="val win">3,881</span></div><div class="vs-stat"><span class="label">Vitality</span><span class="val win">215</span></div><div class="vs-stat"><span class="label">Strength</span><span class="val lose">156</span></div><div class="vs-stat"><span class="label">Agility</span><span class="val lose">164</span></div><div class="vs-stat"><span class="label">Magic</span><span class="val win">259</span></div><div class="vs-stat vs-totals"><span class="label" style="font-weight:600">Core Stats</span><span class="val total-lose">794</span></div></div>
-      <div class="vs-mid">VS</div>
-      <div class="vs-fighter bf"><h3><a href="#" class="xref" data-xref-page="organizations" data-xref-id="xref-black-fang" style="color:inherit">Black Fang</a></h3><div class="race">Human &middot; Level 74</div><div class="vs-stat"><span class="label">Health</span><span class="val lose">2,512</span></div><div class="vs-stat"><span class="label">Mana</span><span class="val lose">920</span></div><div class="vs-stat"><span class="label">Vitality</span><span class="val lose">201</span></div><div class="vs-stat"><span class="label">Strength</span><span class="val win">231</span></div><div class="vs-stat"><span class="label">Agility</span><span class="val win">342</span></div><div class="vs-stat"><span class="label">Magic</span><span class="val lose">92</span></div><div class="vs-stat vs-totals"><span class="label" style="font-weight:600">Core Stats</span><span class="val total-win">866</span></div></div>
-    </div>
-    <div class="vs-delta-wrap searchable" data-keywords="quinlan black fang delta difference"><h4>Difference (Pro-Quinlan)</h4><div class="delta-grid"><div class="delta-item"><div class="delta-label">Level</div><div class="delta-val neg">&minus;24</div></div><div class="delta-item"><div class="delta-label">Health</div><div class="delta-val pos">+713</div></div><div class="delta-item"><div class="delta-label">Mana</div><div class="delta-val pos">+2,961</div></div><div class="delta-item"><div class="delta-label">Vitality</div><div class="delta-val pos">+14</div></div><div class="delta-item"><div class="delta-label">Strength</div><div class="delta-val neg">&minus;75</div></div><div class="delta-item"><div class="delta-label">Agility</div><div class="delta-val neg">&minus;178</div></div><div class="delta-item"><div class="delta-label">Magic</div><div class="delta-val pos">+167</div></div></div></div>
-    <div class="chart-wrap"><h3>Quinlan vs. Black Fang &mdash; Radar</h3><div class="chart-container" style="max-width:600px;margin:0 auto;height:450px"><canvas id="radarChart"></canvas></div><div class="chart-fallback" id="fallback-radar">Charts require JavaScript and an internet connection.</div></div>
+
+    <h3 class="vs-section-title" id="q-lore">Lore</h3>
+    <div class="entry-cta"><p>Quinlan's backstory, major events, and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Quinlan's lore</a></div>
+
     <h3 class="vs-section-title" id="q-classes" style="margin-top:48px">Classes</h3>
     <p style="font-size:.82rem;color:var(--text-sec);margin-bottom:18px">Quinlan's major classes. The Primordial Villain is his primary hub&mdash;housing Necromancy and the Bloodfather under its Harbinger of Ruin subclass. The Harbinger of Aeons is his elemental combat class. The Primordial Subjugator is his anomalous second Primordial class.</p>
 
@@ -1014,6 +1002,39 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       </div></div>
     </div>
 
+    <h3 class="vs-section-title" id="q-stats" style="margin-top:48px">Stats &amp; Progression</h3>
+    <p style="font-size:.82rem;color:var(--text-sec);margin-bottom:18px">Stat milestones tracked across 1,442+ chapters of growth. Click any row to see the full breakdown.</p>
+    <hr class="sec-divider">
+    <div class="stats-table-wrap searchable" data-keywords="quinlan noir elysiar stats level health mana vitality strength agility magic xp progression">
+      <table class="stats-table">
+        <thead><tr><th>Chapter</th><th>Name</th><th>Level</th><th>HP</th><th>MP</th><th>Vit</th><th>Str</th><th>Agi</th><th>Mag</th></tr></thead>
+        <tbody>
+          <tr class="stat-row" data-detail="d1"><td class="ch">1</td><td>???</td><td class="lvl">1</td><td class="hp">110</td><td class="mp">100</td><td class="vit">11</td><td class="str">10</td><td class="agi">10</td><td class="mag">10</td></tr>
+          <tr class="stat-detail" id="d1"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">0 / 100</div></div><div class="detail-item"><div class="detail-label">Race</div><div class="detail-val">Primordial</div></div><div class="detail-note">Vitality base 10, +10% from Commoner Class = 11</div></div></td></tr>
+          <tr class="stat-row" data-detail="d2"><td class="ch">191</td><td>Quinlan Noir</td><td class="lvl">14</td><td class="hp">731</td><td class="mp">431</td><td class="vit">49</td><td class="str">44</td><td class="agi">45</td><td class="mag">29</td></tr>
+          <tr class="stat-detail" id="d2"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">344 / 3,029</div></div><div class="detail-item"><div class="detail-label">Level Range</div><div class="detail-val">9 &rarr; 14</div></div><div class="detail-item"><div class="detail-label">HP Range</div><div class="detail-val">340 &rarr; 731</div></div><div class="detail-item"><div class="detail-label">MP Range</div><div class="detail-val">180 &rarr; 431</div></div><div class="detail-item"><div class="detail-label">Vit</div><div class="detail-val">34 &rarr; 49 <span style="color:var(--text-muted)">(39 base +25%)</span></div></div><div class="detail-item"><div class="detail-label">Str</div><div class="detail-val">30 &rarr; 44 <span style="color:var(--text-muted)">(35 base +25%)</span></div></div><div class="detail-item"><div class="detail-label">Agi</div><div class="detail-val">34 &rarr; 45 <span style="color:var(--text-muted)">(31 base +25%)</span></div></div><div class="detail-item"><div class="detail-label">Mag</div><div class="detail-val">18 &rarr; 29 <span style="color:var(--text-muted)">(23 base +25%)</span></div></div><div class="detail-note">Unused Attribute Points: 40</div></div></td></tr>
+          <tr class="stat-row" data-detail="d3"><td class="ch">368</td><td>Quinlan Noir</td><td class="lvl">23</td><td class="hp">1,125</td><td class="mp">1,500</td><td class="vit">75</td><td class="str">61</td><td class="agi">73</td><td class="mag">100</td></tr>
+          <tr class="stat-detail" id="d3"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">1,278 / 32,118</div></div><div class="detail-item"><div class="detail-label">Level Range</div><div class="detail-val">19 &rarr; 23</div></div><div class="detail-item"><div class="detail-label">HP Range</div><div class="detail-val">1,050 &rarr; 1,125</div></div><div class="detail-item"><div class="detail-label">MP Range</div><div class="detail-val">1,275 &rarr; 1,500</div></div><div class="detail-item"><div class="detail-label">Vit</div><div class="detail-val">70 &rarr; 75</div></div><div class="detail-item"><div class="detail-label">Str</div><div class="detail-val">56 &rarr; 61</div></div><div class="detail-item"><div class="detail-label">Agi</div><div class="detail-val">57 &rarr; 73</div></div><div class="detail-item"><div class="detail-label">Mag</div><div class="detail-val">85 &rarr; 100</div></div><div class="detail-note">Unused Attribute Points: 20</div></div></td></tr>
+          <tr class="stat-row" data-detail="d4"><td class="ch">607</td><td>Quinlan Elysiar</td><td class="lvl">30</td><td class="hp">1,350</td><td class="mp">1,912</td><td class="vit">90</td><td class="str">81</td><td class="agi">95</td><td class="mag">128</td></tr>
+          <tr class="stat-detail" id="d4"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">1,157 / 201,538</div></div><div class="detail-note">Name changed: Quinlan Noir &rarr; Quinlan Elysiar</div></div></td></tr>
+          <tr class="stat-row" data-detail="d5"><td class="ch">898</td><td>Quinlan Elysiar</td><td class="lvl">40</td><td class="hp">1,913</td><td class="mp">3,319</td><td class="vit">128</td><td class="str">125</td><td class="agi">133</td><td class="mag">221</td></tr>
+          <tr class="stat-detail" id="d5"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">1,280 / 2,778,374</div></div></div></td></tr>
+          <tr class="stat-row" data-detail="d6"><td class="ch">1442</td><td>Quinlan Elysiar</td><td class="lvl">50</td><td class="hp">3,225</td><td class="mp">3,881</td><td class="vit">215</td><td class="str">156</td><td class="agi">164</td><td class="mag">259</td></tr>
+          <tr class="stat-detail" id="d6"><td colspan="9"><div class="detail-grid"><div class="detail-item"><div class="detail-label">XP</div><div class="detail-val">? / 39,346,931</div></div></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chart-wrap"><h3>Stat Growth Over Time</h3><div class="chart-container"><canvas id="statChart"></canvas></div><div class="chart-fallback" id="fallback-stat">Charts require JavaScript and an internet connection.</div></div>
+    <div class="chart-wrap"><h3>Core Attributes Over Time</h3><div class="chart-container"><canvas id="coreChart"></canvas></div><div class="chart-fallback" id="fallback-core">Charts require JavaScript and an internet connection.</div></div>
+    <h3 class="vs-section-title" id="xref-black-fang-vs">Quinlan vs. <a href="#" class="xref" data-xref-page="organizations" data-xref-id="xref-black-fang">Black Fang</a></h3>
+    <div class="vs-grid searchable" data-keywords="quinlan black fang comparison versus hanako fujimori">
+      <div class="vs-fighter q"><h3>Quinlan Elysiar</h3><div class="race">Primordial &middot; Level 50</div><div class="vs-stat"><span class="label">Health</span><span class="val win">3,225</span></div><div class="vs-stat"><span class="label">Mana</span><span class="val win">3,881</span></div><div class="vs-stat"><span class="label">Vitality</span><span class="val win">215</span></div><div class="vs-stat"><span class="label">Strength</span><span class="val lose">156</span></div><div class="vs-stat"><span class="label">Agility</span><span class="val lose">164</span></div><div class="vs-stat"><span class="label">Magic</span><span class="val win">259</span></div><div class="vs-stat vs-totals"><span class="label" style="font-weight:600">Core Stats</span><span class="val total-lose">794</span></div></div>
+      <div class="vs-mid">VS</div>
+      <div class="vs-fighter bf"><h3><a href="#" class="xref" data-xref-page="organizations" data-xref-id="xref-black-fang" style="color:inherit">Black Fang</a></h3><div class="race">Human &middot; Level 74</div><div class="vs-stat"><span class="label">Health</span><span class="val lose">2,512</span></div><div class="vs-stat"><span class="label">Mana</span><span class="val lose">920</span></div><div class="vs-stat"><span class="label">Vitality</span><span class="val lose">201</span></div><div class="vs-stat"><span class="label">Strength</span><span class="val win">231</span></div><div class="vs-stat"><span class="label">Agility</span><span class="val win">342</span></div><div class="vs-stat"><span class="label">Magic</span><span class="val lose">92</span></div><div class="vs-stat vs-totals"><span class="label" style="font-weight:600">Core Stats</span><span class="val total-win">866</span></div></div>
+    </div>
+    <div class="vs-delta-wrap searchable" data-keywords="quinlan black fang delta difference"><h4>Difference (Pro-Quinlan)</h4><div class="delta-grid"><div class="delta-item"><div class="delta-label">Level</div><div class="delta-val neg">&minus;24</div></div><div class="delta-item"><div class="delta-label">Health</div><div class="delta-val pos">+713</div></div><div class="delta-item"><div class="delta-label">Mana</div><div class="delta-val pos">+2,961</div></div><div class="delta-item"><div class="delta-label">Vitality</div><div class="delta-val pos">+14</div></div><div class="delta-item"><div class="delta-label">Strength</div><div class="delta-val neg">&minus;75</div></div><div class="delta-item"><div class="delta-label">Agility</div><div class="delta-val neg">&minus;178</div></div><div class="delta-item"><div class="delta-label">Magic</div><div class="delta-val pos">+167</div></div></div></div>
+    <div class="chart-wrap"><h3>Quinlan vs. Black Fang &mdash; Radar</h3><div class="chart-container" style="max-width:600px;margin:0 auto;height:450px"><canvas id="radarChart"></canvas></div><div class="chart-fallback" id="fallback-radar">Charts require JavaScript and an internet connection.</div></div>
+
   </section>
 </div>
 
@@ -1052,6 +1073,9 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Second-in-command. Quinlan's first slave and the blade at his side.</p>
     <div class="char-portrait"><img src="images-web/ayame.jpg" alt="Ayame" loading="lazy"></div>
     <hr class="sec-divider">
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Ayame's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Ayame's lore</a></div>
+    <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="ayame skysplitter samurai sword heavenscar stormstride tempest skyborn endless edge final horizon thunderfall sundering skyshatter">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Skysplitter</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-purple" style="margin-left:4px">Samurai &rarr; Skysplitter</span></div></div><span class="class-chevron">&#9660;</span></div>
       <div class="class-body"><div class="class-inner">
@@ -1083,6 +1107,9 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Bearer of light, harbinger of salvation. Both healer and executioner on the battlefield.</p>
     <div class="char-portrait"><img src="images-web/seraphiel.jpg" alt="Seraphiel" loading="lazy"></div>
     <hr class="sec-divider">
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Seraphiel's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Seraphiel's lore</a></div>
+    <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="seraphiel sera dawnbringer healer divine arsenal solar resurgence aegis dawn daybreak wrath twilight judgment light radiant">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Dawnbringer</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-purple" style="margin-left:4px">Healer &rarr; Dawnbringer</span></div></div><span class="class-chevron">&#9660;</span></div>
       <div class="class-body"><div class="class-inner">
@@ -1110,6 +1137,9 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Shadowborn predator. A hunter of the unseen who exists between reality and the abyss.</p>
     <div class="char-portrait"><img src="images-web/blossom.jpg" alt="Blossom" loading="lazy"></div>
     <hr class="sec-divider">
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Blossom's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Blossom's lore</a></div>
+    <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="blossom void stalker phantom canine dogkin shadow assassin veil umbral voidshroud nullfloat null rend">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Void Stalker</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-purple" style="margin-left:4px">Phantom Canine &rarr; Void Stalker</span></div></div><span class="class-chevron">&#9660;</span></div>
       <div class="class-body"><div class="class-inner">
@@ -1138,6 +1168,9 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Curse-weaver and swordswoman. Disciple of <a href="#" class="xref" data-xref-page="organizations" data-xref-id="xref-black-fang">Black Fang</a>.</p>
     <div class="char-portrait"><img src="images-web/vex.jpg" alt="Vex" loading="lazy"></div>
     <hr class="sec-divider">
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Vex's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Vex's lore</a></div>
+    <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="vex hexwitch curse sword blood magic debuff white hair crimson tattoo">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Hexwitch</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-purple" style="margin-left:4px">Curse &amp; Blade Hybrid</span></div></div><span class="class-chevron">&#9660;</span></div>
       <div class="class-body"><div class="class-inner">
@@ -1163,6 +1196,9 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Living inferno. Practitioner of the Blazing Tyrant Fist.</p>
     <div class="char-portrait"><img src="images-web/serika.jpg" alt="Serika" loading="lazy"></div>
     <hr class="sec-divider">
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Serika's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Serika's lore</a></div>
+    <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="serika solar fist blazing tyrant fire martial arts fang comet crash heaven burning punch qi">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Solar Fist</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-purple" style="margin-left:4px">Martial &middot; Fire</span></div></div><span class="class-chevron">&#9660;</span></div>
       <div class="class-body"><div class="class-inner">
@@ -1191,6 +1227,9 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Illusionist. Currently three-tailed, with a maximum of nine.</p>
     <div class="char-portrait"><img src="images-web/kitsara.jpg" alt="Kitsara" loading="lazy"></div>
     <hr class="sec-divider">
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Kitsara's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Kitsara's lore</a></div>
+    <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="kitsara nine tailed sorceress fox illusion phantom clone veil deception foxfire tail kitsune dogkin">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Nine-Tailed Sorceress</h3><div class="class-badges"><span class="badge badge-purple">Current: Three-Tailed</span></div></div><span class="class-chevron">&#9660;</span></div>
       <div class="class-body"><div class="class-inner">
@@ -1214,6 +1253,9 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Shield-weaver and alchemist. Protects with barriers and brews with precision.</p>
     <div class="char-portrait"><img src="images-web/aurora.jpg" alt="Aurora" loading="lazy"></div>
     <hr class="sec-divider">
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Aurora's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Aurora's lore</a></div>
+    <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="aurora essenceweaver dreamveil shield barrier defensive">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Essenceweaver</h3><div class="class-badges"><span class="badge badge-purple">Defensive &middot; Barriers</span></div></div><span class="class-chevron">&#9660;</span></div>
       <div class="class-body"><div class="class-inner">
@@ -1242,6 +1284,9 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Sovereign of commerce. Wealth is not a tool&mdash;it is an unstoppable force.</p>
     <div class="char-portrait"><img src="images-web/jasmine.jpg" alt="Jasmine" loading="lazy"></div>
     <hr class="sec-divider">
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Jasmine's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Jasmine's lore</a></div>
+    <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="jasmine tyrant gold merchant commerce gilded legion mercenary wealth trade argentis">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Tyrant of Commerce</h3><div class="class-badges"><span class="badge badge-purple">Merchant &rarr; Tyrant of Commerce</span></div></div><span class="class-chevron">&#9660;</span></div>
       <div class="class-body"><div class="class-inner">
@@ -1266,6 +1311,9 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Bloodmonger. One who spreads carnage through bloodshed.</p>
     <div class="char-portrait"><img src="images-web/lucille.jpg" alt="Lucille" loading="lazy"></div>
     <hr class="sec-divider">
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Lucille's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Lucille's lore</a></div>
+    <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="lucille bloodmonger berserker blood carnage">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Bloodmonger</h3><div class="class-badges"><span class="badge badge-purple">Evolved from Berserker</span></div></div><span class="class-chevron">&#9660;</span></div>
       <div class="class-body"><div class="class-inner">
@@ -1289,6 +1337,9 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Elven crafter and titan of runes. Exiled for pursuing forbidden craft.</p>
     <div class="char-portrait"><img src="images-web/kaelira.jpg" alt="Kaelira" loading="lazy"></div>
     <hr class="sec-divider">
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Kaelira's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Kaelira's lore</a></div>
+    <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="kaelira runeweaver titan elf rune armor forge smithing crafter armory inscription">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Runeweaver Titan</h3><div class="class-badges"><span class="badge badge-purple">Crafter &middot; Rune Inscription</span></div></div><span class="class-chevron">&#9660;</span></div>
       <div class="class-body"><div class="class-inner">
@@ -1343,7 +1394,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Hanako Fujimori. Ayame's half-sister and master of the Vesper Consortium's deadliest disciples.</p>
     <div class="char-portrait"><img src="images-web/black-fang.jpg" alt="Black Fang" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Black Fang's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Black Fang's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Black Fang's lore</a></div>
   </section>
 </div>
 
@@ -1355,7 +1407,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Duchess of Silverwind. Ayame's younger sister.</p>
     <div class="char-portrait"><img src="images-web/kaede.jpg" alt="Kaede Fujimori" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Kaede's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Kaede's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Kaede's lore</a></div>
   </section>
 </div>
 
@@ -1367,7 +1420,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">The Mooncaller. Seraphiel's mother.</p>
     <div class="char-portrait"><img src="images-web/sylvaris.jpg" alt="Sylvaris" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Sylvaris's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Sylvaris's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Sylvaris's lore</a></div>
   </section>
 </div>
 
@@ -1379,7 +1433,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Queen of the Vraven Kingdom.</p>
     <div class="char-portrait"><img src="images-web/morgana.jpg" alt="Morgana" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Morgana's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Morgana's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Morgana's lore</a></div>
   </section>
 </div>
 
@@ -1391,7 +1446,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Third Princess of the Vraven Kingdom.</p>
     <div class="char-portrait"><img src="images-web/felicity.jpg" alt="Felicity" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Felicity's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Felicity's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Felicity's lore</a></div>
   </section>
 </div>
 
@@ -1403,7 +1459,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc"></p>
     <div class="char-portrait"><img src="images-web/iris.jpg" alt="Iris" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Iris's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Iris's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Iris's lore</a></div>
   </section>
 </div>
 
@@ -1415,7 +1472,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc"></p>
     <div class="char-portrait"><img src="images-web/lyra.jpg" alt="Lyra" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Lyra's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Lyra's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Lyra's lore</a></div>
   </section>
 </div>
 
@@ -1427,7 +1485,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Vesper Consortium. Fellow disciple of Black Fang.</p>
     <div class="char-portrait"><img src="images-web/orianna.jpg" alt="Orianna" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Orianna's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Orianna's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Orianna's lore</a></div>
   </section>
 </div>
 
@@ -1439,7 +1498,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Vesper Consortium. Fellow disciple of Black Fang.</p>
     <div class="char-portrait"><img src="images-web/raika.jpg" alt="Raika" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Raika's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Raika's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Raika's lore</a></div>
   </section>
 </div>
 
@@ -1451,7 +1511,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc"></p>
     <div class="char-portrait"><img src="images-web/scar.jpg" alt="Scar" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Scar's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Scar's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Scar's lore</a></div>
   </section>
 </div>
 
@@ -1463,7 +1524,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc"></p>
     <div class="char-portrait"><img src="images-web/feng.jpg" alt="Feng" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Feng's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Feng's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Feng's lore</a></div>
   </section>
 </div>
 
@@ -1475,7 +1537,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc"></p>
     <div class="char-portrait"><img src="images-web/yoruha.jpg" alt="Yoruha" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Yoruha's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Yoruha's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Yoruha's lore</a></div>
   </section>
 </div>
 
@@ -1487,7 +1550,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc"></p>
     <div class="char-portrait"><img src="images-web/lilith.jpg" alt="Lilith" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Lilith's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Lilith's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Lilith's lore</a></div>
   </section>
 </div>
 
@@ -1499,7 +1563,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc"></p>
     <div class="char-portrait"><img src="images-web/myrasyn.jpg" alt="Myrasyn" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Myrasyn's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Myrasyn's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Myrasyn's lore</a></div>
   </section>
 </div>
 
@@ -1511,7 +1576,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc"></p>
     <div class="char-portrait"><img src="images-web/lilyanna.jpg" alt="Lilyanna" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Lilyanna's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Lilyanna's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Lilyanna's lore</a></div>
   </section>
 </div>
 
@@ -1523,7 +1589,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">The Elf Primordial. Quinlan's adoptive mother.</p>
     <div class="char-portrait"><img src="images-web/luminara.jpg" alt="Luminara" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Luminara's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Luminara's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Luminara's lore</a></div>
   </section>
 </div>
 
@@ -1535,7 +1602,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">The Human Primordial. Quinlan's adoptive mother.</p>
     <div class="char-portrait"><img src="images-web/mearie.jpg" alt="Mearie" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Mearie's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Mearie's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Mearie's lore</a></div>
   </section>
 </div>
 
@@ -1547,7 +1615,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">The Fujimori Primordial.</p>
     <div class="char-portrait"><img src="images-web/hanae.jpg" alt="Hanae" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Hanae's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Hanae's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Hanae's lore</a></div>
   </section>
 </div>
 
@@ -1559,7 +1628,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">The Drow Primordial.</p>
     <div class="char-portrait"><img src="images-web/kiryssa.jpg" alt="Kiryssa" loading="lazy"></div>
     <hr class="sec-divider">
-    <div class="entry-cta"><p>This entry needs content. Know Kiryssa's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
+    <div class="entry-cta"><p>Kiryssa's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Kiryssa's lore</a></div>
   </section>
 </div>
 
@@ -1787,8 +1857,10 @@ function updateSidebarSub(pageId){
   var html = '';
   if(pageId === 'quinlan'){
     html = '<div class="sub-title">Quinlan</div>'
-      + '<a onclick="navigateTo(\'quinlan\',\'q-stats\')">Progression &amp; Stats</a>'
-      + '<a onclick="navigateTo(\'quinlan\',\'q-classes\')">Classes</a>';
+      + '<a onclick="navigateTo(\'quinlan\',\'q-relations\')">Relations</a>'
+      + '<a onclick="navigateTo(\'quinlan\',\'q-lore\')">Lore</a>'
+      + '<a onclick="navigateTo(\'quinlan\',\'q-classes\')">Classes</a>'
+      + '<a onclick="navigateTo(\'quinlan\',\'q-stats\')">Stats &amp; Progression</a>';
   } else if(pageId === 'families' || pageId.indexOf('girl-') === 0){
     html = '<div class="sub-title">Harem</div>';
     girlList.forEach(function(g){
