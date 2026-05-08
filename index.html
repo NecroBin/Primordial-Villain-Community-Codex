@@ -459,6 +459,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       Read
     </a>
   </div>
+  <div id="sidebarSub" class="sidebar-sub"></div>
   <nav class="sidebar-nav" aria-label="Codex navigation">
     <ul>
       <li><a onclick="navigateTo('home')" data-page="home">Home</a></li>
@@ -473,7 +474,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <li><a onclick="navigateTo('submit')" data-page="submit">Submit Entry</a></li>
     </ul>
   </nav>
-  <div id="sidebarSub" class="sidebar-sub"></div>
+
 </aside>
 
 <div class="overlay" id="overlay"></div>
@@ -1288,11 +1289,13 @@ function updateSidebarSub(pageId){
 
 function scrollToSection(id){
   closeSidebar();
-  var el = document.getElementById(id);
-  if(!el) return;
-  var accordion = el.closest('.class-card:not(.open)');
-  if(accordion){ var h = accordion.querySelector('.class-header'); if(h) toggleClass(h); }
-  setTimeout(function(){ el.scrollIntoView({behavior:'smooth',block:'start'}); }, 60);
+  setTimeout(function(){
+    var el = document.getElementById(id);
+    if(!el) return;
+    var accordion = el.closest('.class-card:not(.open)');
+    if(accordion){ var h = accordion.querySelector('.class-header'); if(h) toggleClass(h); }
+    setTimeout(function(){ el.scrollIntoView({behavior:'smooth',block:'start'}); }, 50);
+  }, 350);
 }
 
 window.navigateTo = function(pageId, scrollToId){
