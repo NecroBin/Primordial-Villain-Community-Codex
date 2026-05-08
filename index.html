@@ -1829,9 +1829,6 @@ window.navigateTo = function(pageId, scrollToId){
     } else if(pageId === 'kingdom' || pageId === 'primordials' || pageId === 'organizations'){
       var names = {kingdom:'Vraven Kingdom',primordials:'Primordials',organizations:'Criminal Organizations'};
       bc = '<nav class="breadcrumb"><a onclick="navigateTo(\'home\')">Home</a><span class="bc-sep">&#8250;</span><a onclick="navigateTo(\'world\')">World &amp; Factions</a><span class="bc-sep">&#8250;</span><span class="bc-current">' + names[pageId] + '</span></nav>';
-    } else if(pageId !== 'home'){
-      var pNames = {quinlan:'Quinlan',families:'Harem &amp; Family',world:'World &amp; Factions',gallery:'Gallery',submit:'Contribute',characters:'Other Characters'};
-      if(pNames[pageId]) bc = '<nav class="breadcrumb"><a onclick="navigateTo(\'home\')">Home</a><span class="bc-sep">&#8250;</span><span class="bc-current">' + pNames[pageId] + '</span></nav>';
     }
     if(bc) bar.insertAdjacentHTML('beforeend', bc);
   }
