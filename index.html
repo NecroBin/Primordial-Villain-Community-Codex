@@ -969,6 +969,11 @@ function handleDiscordCallback(){
         sessionStorage.setItem('discord_token', params.access_token);
         sessionStorage.setItem('discord_user', JSON.stringify(user));
         updateDiscordUI();
+        var returnPage = sessionStorage.getItem('discord_return_page');
+        if(returnPage){
+          sessionStorage.removeItem('discord_return_page');
+          navigateTo(returnPage);
+        }
       });
     }
   } else {
@@ -1010,6 +1015,7 @@ window.discordLogin = function(){
     alert('Discord login not configured yet.');
     return;
   }
+  sessionStorage.setItem('discord_return_page', currentPage);
   var url = 'https://discord.com/api/oauth2/authorize'
     + '?client_id=' + CONFIG.DISCORD_CLIENT_ID
     + '&redirect_uri=' + encodeURIComponent(REDIRECT_URI)
@@ -1024,8 +1030,6 @@ window.discordLogout = function(){
   sessionStorage.removeItem('discord_user');
   updateDiscordUI();
 };
-
-handleDiscordCallback();
 
 // ── Page routing ──
 var currentPage = 'home';
@@ -1072,6 +1076,8 @@ window.navigateTo = function(pageId, scrollToId){
 
   history.replaceState(null, '', pageId === 'home' ? '#' : '#' + pageId);
 };
+
+handleDiscordCallback();
 
 function handleHash(){
   var hash = location.hash.replace('#','');
