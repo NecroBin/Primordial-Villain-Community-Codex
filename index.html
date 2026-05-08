@@ -129,6 +129,21 @@ body.search-mode #page-home{display:none!important}
 .sidebar-ext-read{color:var(--gold)}
 .sidebar-ext-read:hover{background:rgba(139,92,246,.06)}
 
+/* ── Submit Form ── */
+.submit-wrap{max-width:640px}
+.form-group{margin-bottom:20px}
+.form-label{display:block;font-size:.82rem;color:var(--text-sec);margin-bottom:6px;font-weight:500}
+.form-input,.form-select,.form-textarea{width:100%;padding:10px 14px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.88rem;font-family:var(--font-b);outline:none;transition:border-color .2s}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold)}
+.form-select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239999ad' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.form-textarea{min-height:140px;resize:vertical;line-height:1.6}
+.form-submit{display:inline-flex;align-items:center;gap:8px;padding:12px 32px;background:var(--gold);color:#fff;border:none;border-radius:8px;font-family:var(--font-h);font-size:.92rem;cursor:pointer;transition:all .2s;letter-spacing:.03em}
+.form-submit:hover{background:var(--gold-dim);box-shadow:0 4px 16px var(--gold-glow)}
+.form-submit:disabled{opacity:.5;cursor:not-allowed}
+.form-msg{margin-top:16px;padding:14px 18px;border-radius:8px;font-size:.84rem;display:none}
+.form-msg.success{display:block;background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.3);color:#2ecc71}
+.form-msg.error{display:block;background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.3);color:#e74c3c}
+
 /* ── Section Headings ── */
 section{padding:40px 48px 40px;max-width:1000px}
 .sec-title{font-family:var(--font-h);font-size:1.5rem;color:var(--gold);margin-bottom:8px;letter-spacing:.03em}
@@ -406,6 +421,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <li><a onclick="navigateTo('classes')" data-page="classes">Classes</a></li>
       <li class="nav-group-title">Characters</li>
       <li><a onclick="navigateTo('families')" data-page="families">Harem &amp; Family</a></li>
+      <li class="nav-group-title">Contribute</li>
+      <li><a onclick="navigateTo('submit')" data-page="submit">Submit Entry</a></li>
     </ul>
   </nav>
   <div class="sidebar-links">
@@ -471,6 +488,11 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <span class="nav-card-icon">&#9829;</span>
       <h3>Harem &amp; Family</h3>
       <p>Quinlan's inner circle and their known family connections.</p>
+    </a>
+    <a class="nav-card" onclick="navigateTo('submit')">
+      <span class="nav-card-icon">&#9998;</span>
+      <h3>Submit an Entry</h3>
+      <p>Know something we're missing? Submit lore, corrections, or new entries to the codex.</p>
     </a>
   </div>
   <div class="link-row">
@@ -871,6 +893,47 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 </div>
 
 
+<!-- ═══════════════ SUBMIT ENTRY ═══════════════ -->
+<div class="page content-page" id="page-submit">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
+  <section>
+    <h2 class="sec-title">Submit an Entry</h2>
+    <p class="sec-desc">Know something we're missing? Submit lore, corrections, character details, or new entries. Submissions are reviewed by the moderation team on Discord before appearing in the codex.</p>
+    <hr class="sec-divider">
+    <div class="submit-wrap">
+      <form id="submitForm">
+        <div class="form-group">
+          <label class="form-label" for="subName">Your Discord Name</label>
+          <input class="form-input" type="text" id="subName" placeholder="e.g. Zaspho#1234" maxlength="100">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="subCategory">Category</label>
+          <select class="form-select" id="subCategory">
+            <option value="Kingdom">Vraven Kingdom</option>
+            <option value="Primordials">Primordials</option>
+            <option value="Organizations">Criminal Organizations</option>
+            <option value="Stats">Progression &amp; Stats</option>
+            <option value="Classes">Classes</option>
+            <option value="Harem">Harem &amp; Family</option>
+            <option value="Lore">General Lore</option>
+            <option value="Correction">Correction / Fix</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="subTitle">Title</label>
+          <input class="form-input" type="text" id="subTitle" placeholder="Short summary of your entry" maxlength="200" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="subContent">Content</label>
+          <textarea class="form-textarea" id="subContent" placeholder="Describe the lore, correction, or details you'd like to add..." maxlength="4000" required></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="submitBtn">&#10148; Submit Entry</button>
+      </form>
+      <div class="form-msg" id="submitMsg"></div>
+    </div>
+  </section>
+</div>
+
 <div class="no-results" id="noResults">No matches found.</div>
 <footer class="footer"><p>Compiled by the community of <strong style="color:var(--gold)">Primordial Villain with a Slave Harem</strong></p></footer>
 </main>
@@ -1033,6 +1096,46 @@ document.addEventListener('keydown', function(e){
     searchInput.dispatchEvent(new Event('input'));
     searchInput.blur();
   }
+});
+
+// ── Submit form ──
+var submitForm = document.getElementById('submitForm');
+if(submitForm) submitForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  var btn = document.getElementById('submitBtn');
+  var msg = document.getElementById('submitMsg');
+  var title = document.getElementById('subTitle').value.trim();
+  var content = document.getElementById('subContent').value.trim();
+  if(!title || !content) return;
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+  msg.className = 'form-msg';
+  msg.style.display = 'none';
+  fetch('https://pv-codex-proxy.necrobin1.workers.dev', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: document.getElementById('subName').value.trim() || 'Anonymous',
+      category: document.getElementById('subCategory').value,
+      title: title,
+      content: content
+    })
+  }).then(function(res){
+    if(!res.ok) throw new Error('Server error');
+    return res.json();
+  }).then(function(){
+    msg.className = 'form-msg success';
+    msg.textContent = 'Submission received! The moderation team will review it shortly.';
+    msg.style.display = 'block';
+    submitForm.reset();
+  }).catch(function(){
+    msg.className = 'form-msg error';
+    msg.textContent = 'Something went wrong. Please try again or post directly in the Discord.';
+    msg.style.display = 'block';
+  }).finally(function(){
+    btn.disabled = false;
+    btn.innerHTML = '&#10148; Submit Entry';
+  });
 });
 
 // ── Class accordion ──
