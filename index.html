@@ -943,7 +943,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 // ══════════════════════════════════════════════════════════════
 var CONFIG = {
   SHEET_ID: '1kjpopid2wpY98BGdZwik2PPdT1lm7xypwweXTziJoEg',
-  SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbyd-LsUryN-Am2Eq5F01BtE74NiQYFF6zB-zDFGF3lW59NcKwOpJr15liSTYsmfy54W/exec',
+  WEBHOOK_URL: 'https://discord.com/api/webhooks/1502227324148518962/t573_PvxrIV2HQsz8Jv2iN1GROeJnNkxU2asBOxO5sKBpqKIMDZIgG0jC4meMesJ2eF8',
   DISCORD_CLIENT_ID: '1502223149876645888'
 };
 // ══════════════════════════════════════════════════════════════
@@ -1228,7 +1228,7 @@ var submitForm = document.getElementById('submitForm');
 var formMsg = document.getElementById('formMsg');
 var submitBtn = document.getElementById('submitBtn');
 
-if(!CONFIG.SCRIPT_URL){
+if(!CONFIG.WEBHOOK_URL){
   var sb1 = document.getElementById('submitSetupBanner');
   if(sb1) sb1.style.display = 'block';
   if(submitForm) submitForm.style.display = 'none';
@@ -1236,7 +1236,7 @@ if(!CONFIG.SCRIPT_URL){
 
 if(submitForm) submitForm.addEventListener('submit', function(e){
   e.preventDefault();
-  if(!CONFIG.SCRIPT_URL){
+  if(!CONFIG.WEBHOOK_URL){
     showFormMsg('error', 'Submissions not configured yet.');
     return;
   }
@@ -1251,23 +1251,39 @@ if(submitForm) submitForm.addEventListener('submit', function(e){
     submitBtn.textContent = 'Submit for Review';
     return;
   }
-  var payload = {
-    discord: discordUser.username + ' (' + discordUser.id + ')',
-    category: document.getElementById('subCategory').value,
-    title: document.getElementById('subTitle').value.trim(),
-    content: document.getElementById('subContent').value.trim()
-  };
+  var category = document.getElementById('subCategory').value;
+  var title = document.getElementById('subTitle').value.trim();
+  var content = document.getElementById('subContent').value.trim();
+  var userName = discordUser.global_name || discordUser.username;
 
-  fetch(CONFIG.SCRIPT_URL, {
+  var embed = {
+    title: '📥 New Codex Submission',
+    color: 0xC9A84C,
+    fields: [
+      { name: 'Submitted by', value: userName + ' (`' + discordUser.username + '` / `' + discordUser.id + '`)', inline: true },
+      { name: 'Category', value: category, inline: true },
+      { name: 'Title', value: title },
+      { name: 'Content', value: content.length > 1024 ? content.substring(0, 1021) + '...' : content }
+    ],
+    timestamp: new Date().toISOString()
+  };
+  if(discordUser.avatar){
+    embed.thumbnail = { url: 'https://cdn.discordapp.com/avatars/' + discordUser.id + '/' + discordUser.avatar + '.png?size=64' };
+  }
+
+  fetch(CONFIG.WEBHOOK_URL, {
     method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify(payload)
-  }).then(function(){
-    showFormMsg('success', 'Submitted! Your entry will appear after moderator approval.');
-    submitForm.reset();
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ embeds: [embed] })
+  }).then(function(r){
+    if(r.ok || r.status === 204){
+      showFormMsg('success', 'Submitted! Your suggestion has been sent to the moderators for review.');
+      submitForm.reset();
+    } else {
+      showFormMsg('error', 'Something went wrong (status ' + r.status + '). Try again or report in Discord.');
+    }
   }).catch(function(){
-    showFormMsg('error', 'Something went wrong. Try again or report in Discord.');
+    showFormMsg('error', 'Could not reach Discord. Check your connection and try again.');
   }).finally(function(){
     submitBtn.disabled = false;
     submitBtn.textContent = 'Submit for Review';
