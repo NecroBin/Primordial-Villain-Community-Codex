@@ -1027,6 +1027,7 @@ window.navigateTo = function(pageId, scrollToId){
   closeSidebar();
 
   if(pageId === 'stats' && !chartsInitialized) initCharts();
+  if(pageId === 'submit'){ updateSubmitUI(); if(typeof loadLeaderboard === 'function') loadLeaderboard(); }
 
   if(scrollToId){
     requestAnimationFrame(function(){
@@ -1147,9 +1148,9 @@ var WORKER = 'https://pv-codex-proxy.necrobin1.workers.dev';
 var OAUTH_URL = 'https://discord.com/api/oauth2/authorize?client_id=1502223149876645888&redirect_uri=' + encodeURIComponent('https://necrobin.github.io/Primordial-Villain-Community-Codex/') + '&response_type=code&scope=identify%20guilds';
 
 function getDiscordUser(){
-  try { return JSON.parse(sessionStorage.getItem('pv_discord_user')); } catch(e){ return null; }
+  try { return JSON.parse(localStorage.getItem('pv_discord_user')); } catch(e){ return null; }
 }
-function setDiscordUser(u){ sessionStorage.setItem('pv_discord_user', JSON.stringify(u)); }
+function setDiscordUser(u){ localStorage.setItem('pv_discord_user', JSON.stringify(u)); }
 
 function updateSubmitUI(){
   var user = getDiscordUser();
@@ -1170,7 +1171,7 @@ function updateSubmitUI(){
 }
 
 window.discordLogin = function(){ window.location.href = OAUTH_URL; };
-window.discordLogout = function(){ sessionStorage.removeItem('pv_discord_user'); updateSubmitUI(); };
+window.discordLogout = function(){ localStorage.removeItem('pv_discord_user'); updateSubmitUI(); };
 
 (function handleOAuthCallback(){
   var params = new URLSearchParams(window.location.search);
@@ -1187,13 +1188,11 @@ window.discordLogout = function(){ sessionStorage.removeItem('pv_discord_user');
       navigateTo('submit');
       updateSubmitUI();
     } else if(data.error === 'not_member'){
-      alert('You must be a member of the Necroverse Discord server to submit entries. Join at discord.gg/XAwgpNKAHr');
-    } else {
-      alert('Discord login failed: ' + JSON.stringify(data));
+      navigateTo('submit');
+      var msg = document.getElementById('submitMsg');
+      if(msg){ msg.className = 'form-msg error'; msg.textContent = 'You must be a member of the Necroverse Discord server to submit. Join at discord.gg/XAwgpNKAHr'; msg.style.display = 'block'; }
     }
-  }).catch(function(err){
-    alert('Login error: ' + err.message);
-  });
+  }).catch(function(){});
 })();
 
 updateSubmitUI();
@@ -1264,7 +1263,7 @@ if(submitForm) submitForm.addEventListener('submit', function(e){
       content: content
     })
   }).then(function(res){
-    if(res.status === 401){ sessionStorage.removeItem('pv_discord_user'); updateSubmitUI(); throw new Error('Session expired'); }
+    if(res.status === 401){ localStorage.removeItem('pv_discord_user'); updateSubmitUI(); throw new Error('Session expired'); }
     if(!res.ok) throw new Error('Server error');
     return res.json();
   }).then(function(){
