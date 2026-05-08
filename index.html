@@ -114,12 +114,12 @@ body.search-mode #page-home{display:none!important}
 .home-divider{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:36px auto;border:none}
 
 /* ── Home: Nav Cards ── */
-.home-nav{max-width:900px;margin:0 auto;padding:0 48px 40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
-.nav-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;cursor:pointer;transition:all .3s var(--ease);text-decoration:none;display:block;border-left:3px solid var(--border);box-shadow:var(--shadow-card)}
+.home-nav{max-width:900px;margin:0 auto;padding:0 48px 40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;justify-content:center}
+.nav-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;cursor:pointer;transition:all .3s var(--ease);text-decoration:none;display:block;border-left:3px solid var(--border);box-shadow:var(--shadow-card);text-align:center}
 .nav-card:hover{border-color:var(--gold-dim);box-shadow:0 4px 24px rgba(139,92,246,.12);transform:translateY(-3px);border-left-color:var(--gold)}
 .nav-card h3{font-family:var(--font-h);font-size:.95rem;color:var(--gold);margin-bottom:6px}
 .nav-card p{font-size:.82rem;color:var(--text-sec);line-height:1.5}
-.nav-card .nav-card-icon{font-size:1.3rem;margin-bottom:10px;display:block}
+.nav-card .nav-card-icon{font-size:1.8rem;margin-bottom:10px;display:block}
 
 /* ── Hero Credits ── */
 .hero-credits{margin-top:14px;font-size:.76rem;color:var(--text-muted);letter-spacing:.04em}
@@ -1532,8 +1532,26 @@ window.navigateTo = function(pageId, scrollToId){
     });
   }
 
-  history.replaceState(null, '', pageId === 'home' ? '#' : '#' + pageId);
+  history.pushState({ page: pageId }, '', pageId === 'home' ? '#' : '#' + pageId);
 };
+
+window.addEventListener('popstate', function(){
+  var hash = location.hash.replace('#','');
+  var target = hash && document.getElementById('page-' + hash) ? hash : 'home';
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  var el = document.getElementById('page-' + target);
+  if(el) el.classList.add('active');
+  currentPage = target;
+  document.title = pageTitles[target] || defaultTitle;
+  document.querySelectorAll('.sidebar-nav a[data-page]').forEach(function(a){
+    var match = a.dataset.page === target;
+    if(target.indexOf('girl-') === 0) match = a.dataset.page === 'families';
+    a.classList.toggle('active', match);
+  });
+  updateSidebarSub(target);
+  closeSidebar();
+  window.scrollTo(0, 0);
+});
 
 function handleHash(){
   var hash = location.hash.replace('#','');
@@ -1541,7 +1559,6 @@ function handleHash(){
     navigateTo(hash);
   }
 }
-window.addEventListener('hashchange', handleHash);
 
 // ── Sidebar toggle ──
 var sidebar = document.getElementById('sidebar');
