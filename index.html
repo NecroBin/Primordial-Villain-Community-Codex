@@ -475,6 +475,15 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .entry-cta p{font-size:.85rem;color:var(--text-sec);margin-bottom:12px}
 .entry-cta a{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:var(--gold);color:#fff;border-radius:8px;font-family:var(--font-h);font-size:.85rem;cursor:pointer;text-decoration:none;transition:all .2s;letter-spacing:.03em}
 .entry-cta a:hover{background:var(--gold-dim);box-shadow:0 4px 16px var(--gold-glow)}
+.sticky-toc{position:sticky;top:0;z-index:50;background:var(--bg-primary);border-bottom:1px solid var(--border);padding:10px 48px;display:flex;gap:18px;font-size:.8rem;font-family:var(--font-h);margin:0 -48px}
+.sticky-toc a{color:var(--text-sec);cursor:pointer;transition:color .15s;text-decoration:none;white-space:nowrap}
+.sticky-toc a:hover,.sticky-toc a.active{color:var(--gold)}
+.char-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-top:20px}
+.char-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:all .3s var(--ease);text-align:center;box-shadow:var(--shadow-card)}
+.char-card:hover{transform:translateY(-3px);border-color:var(--gold-dim);box-shadow:0 4px 24px rgba(139,92,246,.12)}
+.char-card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:var(--bg-secondary)}
+.char-card .char-card-name{padding:10px 8px;font-size:.82rem;font-weight:600}
+.char-card .char-card-role{font-size:.68rem;color:var(--text-muted);font-weight:400;display:block;margin-top:2px}
 .gallery-contribute{padding:6px 14px;font-size:.72rem;font-weight:600;color:var(--purple);text-align:center;letter-spacing:.04em;border-top:1px solid var(--border)}
 /* Quinlan blur reveal */
 .portrait-blur{position:relative;cursor:pointer;max-width:420px;margin:0 auto}
@@ -550,6 +559,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <li class="nav-group-title">Characters</li>
       <li><a onclick="navigateTo('quinlan')" data-page="quinlan">Quinlan</a></li>
       <li><a onclick="navigateTo('families')" data-page="families">Harem &amp; Family</a></li>
+      <li><a onclick="navigateTo('characters')" data-page="characters">Other Characters</a></li>
       <li class="nav-group-title">World</li>
       <li><a onclick="navigateTo('world')" data-page="world">World &amp; Factions</a></li>
       <li class="nav-group-title">Media</li>
@@ -588,6 +598,11 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <span class="nav-card-icon">&#9829;</span>
       <h3>Harem &amp; Family</h3>
       <p>Quinlan's inner circle and their known family connections.</p>
+    </a>
+    <a class="nav-card" onclick="navigateTo('characters')">
+      <span class="nav-card-icon">&#9734;</span>
+      <h3>Other Characters</h3>
+      <p>Allies, enemies, royals, and other notable figures of Thalorind.</p>
     </a>
     <a class="nav-card" onclick="navigateTo('world')">
       <span class="nav-card-icon">&#9813;</span>
@@ -867,6 +882,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">The Primordial Villain. Stats, progression milestones, classes, and abilities.</p>
     <div class="char-portrait"><div class="portrait-blur" onclick="revealQuinlan(this)"><img src="images-web/quinlan.jpg" alt="Quinlan Elysiar" loading="lazy"><div class="blur-overlay"><div class="blur-msg"><em>The author wishes you to imagine Quinlan for yourself.</em>However, due to popular demand, he chose an image.</div><button class="blur-cta" onclick="revealQuinlan(this.closest('.portrait-blur'))">Click to reveal</button></div></div></div>
     <hr class="sec-divider">
+    <div class="sticky-toc" id="quinlanToc"><a onclick="document.getElementById('q-stats').scrollIntoView({behavior:'smooth'})">Progression &amp; Stats</a><a onclick="document.getElementById('q-classes').scrollIntoView({behavior:'smooth'})">Classes</a></div>
     <h3 class="vs-section-title" id="q-stats" style="margin-top:0">Progression &amp; Stats</h3>
     <p style="font-size:.82rem;color:var(--text-sec);margin-bottom:18px">Stat milestones tracked across 1,442+ chapters of growth. Click any row to see the full breakdown.</p>
     <hr class="sec-divider">
@@ -1288,6 +1304,266 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   </section>
 </div>
 
+<!-- ═══════════════ OTHER CHARACTERS ═══════════════ -->
+<div class="page content-page" id="page-characters">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
+  <section>
+    <h2 class="sec-title">Other Characters</h2>
+    <p class="sec-desc">Allies, enemies, royals, primordials, and other notable figures of Thalorind.</p>
+    <hr class="sec-divider">
+    <div class="char-grid">
+      <div class="char-card" onclick="navigateTo('char-blackfang')"><img src="images-web/black-fang.jpg" alt="Black Fang" loading="lazy"><div class="char-card-name">Black Fang<span class="char-card-role">Hanako Fujimori</span></div></div>
+      <div class="char-card" onclick="navigateTo('char-kaede')"><img src="images-web/kaede.jpg" alt="Kaede" loading="lazy"><div class="char-card-name">Kaede Fujimori<span class="char-card-role">Duchess of Silverwind</span></div></div>
+      <div class="char-card" onclick="navigateTo('char-sylvaris')"><img src="images-web/sylvaris.jpg" alt="Sylvaris" loading="lazy"><div class="char-card-name">Sylvaris<span class="char-card-role">Mooncaller</span></div></div>
+      <div class="char-card" onclick="navigateTo('char-morgana')"><img src="images-web/morgana.jpg" alt="Morgana" loading="lazy"><div class="char-card-name">Morgana<span class="char-card-role">Queen of Vraven</span></div></div>
+      <div class="char-card" onclick="navigateTo('char-felicity')"><img src="images-web/felicity.jpg" alt="Felicity" loading="lazy"><div class="char-card-name">Felicity<span class="char-card-role">3rd Princess</span></div></div>
+      <div class="char-card" onclick="navigateTo('char-iris')"><img src="images-web/iris.jpg" alt="Iris" loading="lazy"><div class="char-card-name">Iris</div></div>
+      <div class="char-card" onclick="navigateTo('char-lyra')"><img src="images-web/lyra.jpg" alt="Lyra" loading="lazy"><div class="char-card-name">Lyra</div></div>
+      <div class="char-card" onclick="navigateTo('char-orianna')"><img src="images-web/orianna.jpg" alt="Orianna" loading="lazy"><div class="char-card-name">Orianna<span class="char-card-role">Vesper Consortium</span></div></div>
+      <div class="char-card" onclick="navigateTo('char-raika')"><img src="images-web/raika.jpg" alt="Raika" loading="lazy"><div class="char-card-name">Raika<span class="char-card-role">Vesper Consortium</span></div></div>
+      <div class="char-card" onclick="navigateTo('char-scar')"><img src="images-web/scar.jpg" alt="Scar" loading="lazy"><div class="char-card-name">Scar</div></div>
+      <div class="char-card" onclick="navigateTo('char-feng')"><img src="images-web/feng.jpg" alt="Feng" loading="lazy"><div class="char-card-name">Feng</div></div>
+      <div class="char-card" onclick="navigateTo('char-yoruha')"><img src="images-web/yoruha.jpg" alt="Yoruha" loading="lazy"><div class="char-card-name">Yoruha</div></div>
+      <div class="char-card" onclick="navigateTo('char-lilith')"><img src="images-web/lilith.jpg" alt="Lilith" loading="lazy"><div class="char-card-name">Lilith</div></div>
+      <div class="char-card" onclick="navigateTo('char-myrasyn')"><img src="images-web/myrasyn.jpg" alt="Myrasyn" loading="lazy"><div class="char-card-name">Myrasyn</div></div>
+      <div class="char-card" onclick="navigateTo('char-lilyanna')"><img src="images-web/lilyanna.jpg" alt="Lilyanna" loading="lazy"><div class="char-card-name">Lilyanna</div></div>
+      <div class="char-card" onclick="navigateTo('char-luminara')"><img src="images-web/luminara.jpg" alt="Luminara" loading="lazy"><div class="char-card-name">Luminara<span class="char-card-role">Elf Primordial</span></div></div>
+      <div class="char-card" onclick="navigateTo('char-mearie')"><img src="images-web/mearie.jpg" alt="Mearie" loading="lazy"><div class="char-card-name">Mearie<span class="char-card-role">Human Primordial</span></div></div>
+      <div class="char-card" onclick="navigateTo('char-hanae')"><img src="images-web/hanae.jpg" alt="Hanae" loading="lazy"><div class="char-card-name">Hanae<span class="char-card-role">Fujimori Primordial</span></div></div>
+      <div class="char-card" onclick="navigateTo('char-kiryssa')"><img src="images-web/kiryssa.jpg" alt="Kiryssa" loading="lazy"><div class="char-card-name">Kiryssa<span class="char-card-role">Drow Primordial</span></div></div>
+    </div>
+    <div class="entry-cta" style="margin-top:32px"><p>Know a character that's missing from this list?</p><a onclick="navigateTo('submit')">&#9998; Add a character to the codex</a></div>
+  </section>
+</div>
+
+<!-- ── BLACK FANG ── -->
+<div class="page content-page" id="page-char-blackfang">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Black Fang</h2>
+    <p class="sec-desc">Hanako Fujimori. Ayame's half-sister and master of the Vesper Consortium's deadliest disciples.</p>
+    <div class="char-portrait"><img src="images-web/black-fang.jpg" alt="Black Fang" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Black Fang's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── KAEDE ── -->
+<div class="page content-page" id="page-char-kaede">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Kaede Fujimori</h2>
+    <p class="sec-desc">Duchess of Silverwind. Ayame's younger sister.</p>
+    <div class="char-portrait"><img src="images-web/kaede.jpg" alt="Kaede Fujimori" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Kaede's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── SYLVARIS ── -->
+<div class="page content-page" id="page-char-sylvaris">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Sylvaris</h2>
+    <p class="sec-desc">The Mooncaller. Seraphiel's mother.</p>
+    <div class="char-portrait"><img src="images-web/sylvaris.jpg" alt="Sylvaris" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Sylvaris's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── MORGANA ── -->
+<div class="page content-page" id="page-char-morgana">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Morgana</h2>
+    <p class="sec-desc">Queen of the Vraven Kingdom.</p>
+    <div class="char-portrait"><img src="images-web/morgana.jpg" alt="Morgana" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Morgana's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── FELICITY ── -->
+<div class="page content-page" id="page-char-felicity">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Felicity</h2>
+    <p class="sec-desc">Third Princess of the Vraven Kingdom.</p>
+    <div class="char-portrait"><img src="images-web/felicity.jpg" alt="Felicity" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Felicity's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── IRIS ── -->
+<div class="page content-page" id="page-char-iris">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Iris</h2>
+    <p class="sec-desc"></p>
+    <div class="char-portrait"><img src="images-web/iris.jpg" alt="Iris" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Iris's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── LYRA ── -->
+<div class="page content-page" id="page-char-lyra">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Lyra</h2>
+    <p class="sec-desc"></p>
+    <div class="char-portrait"><img src="images-web/lyra.jpg" alt="Lyra" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Lyra's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── ORIANNA ── -->
+<div class="page content-page" id="page-char-orianna">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Orianna</h2>
+    <p class="sec-desc">Vesper Consortium. Fellow disciple of Black Fang.</p>
+    <div class="char-portrait"><img src="images-web/orianna.jpg" alt="Orianna" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Orianna's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── RAIKA ── -->
+<div class="page content-page" id="page-char-raika">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Raika</h2>
+    <p class="sec-desc">Vesper Consortium. Fellow disciple of Black Fang.</p>
+    <div class="char-portrait"><img src="images-web/raika.jpg" alt="Raika" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Raika's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── SCAR ── -->
+<div class="page content-page" id="page-char-scar">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Scar</h2>
+    <p class="sec-desc"></p>
+    <div class="char-portrait"><img src="images-web/scar.jpg" alt="Scar" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Scar's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── FENG ── -->
+<div class="page content-page" id="page-char-feng">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Feng</h2>
+    <p class="sec-desc"></p>
+    <div class="char-portrait"><img src="images-web/feng.jpg" alt="Feng" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Feng's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── YORUHA ── -->
+<div class="page content-page" id="page-char-yoruha">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Yoruha</h2>
+    <p class="sec-desc"></p>
+    <div class="char-portrait"><img src="images-web/yoruha.jpg" alt="Yoruha" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Yoruha's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── LILITH ── -->
+<div class="page content-page" id="page-char-lilith">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Lilith</h2>
+    <p class="sec-desc"></p>
+    <div class="char-portrait"><img src="images-web/lilith.jpg" alt="Lilith" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Lilith's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── MYRASYN ── -->
+<div class="page content-page" id="page-char-myrasyn">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Myrasyn</h2>
+    <p class="sec-desc"></p>
+    <div class="char-portrait"><img src="images-web/myrasyn.jpg" alt="Myrasyn" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Myrasyn's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── LILYANNA ── -->
+<div class="page content-page" id="page-char-lilyanna">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Lilyanna</h2>
+    <p class="sec-desc"></p>
+    <div class="char-portrait"><img src="images-web/lilyanna.jpg" alt="Lilyanna" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Lilyanna's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── LUMINARA ── -->
+<div class="page content-page" id="page-char-luminara">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Luminara</h2>
+    <p class="sec-desc">The Elf Primordial.</p>
+    <div class="char-portrait"><img src="images-web/luminara.jpg" alt="Luminara" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Luminara's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── MEARIE ── -->
+<div class="page content-page" id="page-char-mearie">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Mearie</h2>
+    <p class="sec-desc">The Human Primordial.</p>
+    <div class="char-portrait"><img src="images-web/mearie.jpg" alt="Mearie" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Mearie's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── HANAE ── -->
+<div class="page content-page" id="page-char-hanae">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Hanae</h2>
+    <p class="sec-desc">The Fujimori Primordial.</p>
+    <div class="char-portrait"><img src="images-web/hanae.jpg" alt="Hanae" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Hanae's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
+<!-- ── KIRYSSA ── -->
+<div class="page content-page" id="page-char-kiryssa">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
+  <section>
+    <h2 class="sec-title">Kiryssa</h2>
+    <p class="sec-desc">The Drow Primordial.</p>
+    <div class="char-portrait"><img src="images-web/kiryssa.jpg" alt="Kiryssa" loading="lazy"></div>
+    <hr class="sec-divider">
+    <div class="entry-cta"><p>This entry needs content. Know Kiryssa's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+  </section>
+</div>
+
 <!-- ═══════════════ GALLERY ═══════════════ -->
 <div class="page content-page" id="page-gallery">
   <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
@@ -1314,25 +1590,25 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <div class="gallery-item" data-cat="harem"><img src="images-web/lucille.jpg" alt="Lucille" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-lucille')">Lucille<span>Bloodmonger</span></div></div>
       <div class="gallery-item" data-cat="harem"><img src="images-web/kaelira.jpg" alt="Kaelira" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-kaelira')">Kaelira<span>Runeweaver Titan</span></div></div>
       <div class="gallery-item gallery-nopage" data-cat="harem primordial"><img src="images-web/nyxara.jpg" alt="Nyxara" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Nyxara<span>Conquered Succubus</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="other"><img src="images-web/black-fang.jpg" alt="Black Fang" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Black Fang<span>Hanako Fujimori</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="primordial"><img src="images-web/luminara.jpg" alt="Luminara" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Luminara<span>Elf Primordial</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="primordial"><img src="images-web/mearie.jpg" alt="Mearie" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Mearie<span>Human Primordial</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="primordial"><img src="images-web/hanae.jpg" alt="Hanae" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Hanae<span>Fujimori Primordial</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="primordial"><img src="images-web/kiryssa.jpg" alt="Kiryssa" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Kiryssa<span>Drow Primordial</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="other"><img src="images-web/kaede.jpg" alt="Kaede" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Kaede Fujimori<span>Duchess of Silverwind</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="other"><img src="images-web/sylvaris.jpg" alt="Sylvaris" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Sylvaris<span>Mooncaller</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="other"><img src="images-web/morgana.jpg" alt="Morgana" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Morgana<span>Queen of Vraven</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="other"><img src="images-web/felicity.jpg" alt="Felicity" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Felicity<span>3rd Princess</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="other"><img src="images-web/iris.jpg" alt="Iris" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Iris</div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="other"><img src="images-web/lyra.jpg" alt="Lyra" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Lyra</div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="other"><img src="images-web/orianna.jpg" alt="Orianna" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Orianna<span>Vesper Consortium</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="other"><img src="images-web/raika.jpg" alt="Raika" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Raika<span>Vesper Consortium</span></div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="other"><img src="images-web/scar.jpg" alt="Scar" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Scar</div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="other"><img src="images-web/feng.jpg" alt="Feng" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Feng</div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="other"><img src="images-web/yoruha.jpg" alt="Yoruha" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Yoruha</div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="other"><img src="images-web/lilith.jpg" alt="Lilith" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Lilith</div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="other"><img src="images-web/myrasyn.jpg" alt="Myrasyn" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Myrasyn</div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
-      <div class="gallery-item gallery-nopage" data-cat="other"><img src="images-web/lilyanna.jpg" alt="Lilyanna" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('submit')">Lilyanna</div><div class="gallery-contribute" onclick="navigateTo('submit')">Write this entry</div></div>
+      <div class="gallery-item" data-cat="other"><img src="images-web/black-fang.jpg" alt="Black Fang" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-blackfang')">Black Fang<span>Hanako Fujimori</span></div></div>
+      <div class="gallery-item" data-cat="primordial"><img src="images-web/luminara.jpg" alt="Luminara" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-luminara')">Luminara<span>Elf Primordial</span></div></div>
+      <div class="gallery-item" data-cat="primordial"><img src="images-web/mearie.jpg" alt="Mearie" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-mearie')">Mearie<span>Human Primordial</span></div></div>
+      <div class="gallery-item" data-cat="primordial"><img src="images-web/hanae.jpg" alt="Hanae" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-hanae')">Hanae<span>Fujimori Primordial</span></div></div>
+      <div class="gallery-item" data-cat="primordial"><img src="images-web/kiryssa.jpg" alt="Kiryssa" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-kiryssa')">Kiryssa<span>Drow Primordial</span></div></div>
+      <div class="gallery-item" data-cat="other"><img src="images-web/kaede.jpg" alt="Kaede" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-kaede')">Kaede Fujimori<span>Duchess of Silverwind</span></div></div>
+      <div class="gallery-item" data-cat="other"><img src="images-web/sylvaris.jpg" alt="Sylvaris" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-sylvaris')">Sylvaris<span>Mooncaller</span></div></div>
+      <div class="gallery-item" data-cat="other"><img src="images-web/morgana.jpg" alt="Morgana" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-morgana')">Morgana<span>Queen of Vraven</span></div></div>
+      <div class="gallery-item" data-cat="other"><img src="images-web/felicity.jpg" alt="Felicity" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-felicity')">Felicity<span>3rd Princess</span></div></div>
+      <div class="gallery-item" data-cat="other"><img src="images-web/iris.jpg" alt="Iris" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-iris')">Iris</div></div>
+      <div class="gallery-item" data-cat="other"><img src="images-web/lyra.jpg" alt="Lyra" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-lyra')">Lyra</div></div>
+      <div class="gallery-item" data-cat="other"><img src="images-web/orianna.jpg" alt="Orianna" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-orianna')">Orianna<span>Vesper Consortium</span></div></div>
+      <div class="gallery-item" data-cat="other"><img src="images-web/raika.jpg" alt="Raika" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-raika')">Raika<span>Vesper Consortium</span></div></div>
+      <div class="gallery-item" data-cat="other"><img src="images-web/scar.jpg" alt="Scar" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-scar')">Scar</div></div>
+      <div class="gallery-item" data-cat="other"><img src="images-web/feng.jpg" alt="Feng" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-feng')">Feng</div></div>
+      <div class="gallery-item" data-cat="other"><img src="images-web/yoruha.jpg" alt="Yoruha" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-yoruha')">Yoruha</div></div>
+      <div class="gallery-item" data-cat="other"><img src="images-web/lilith.jpg" alt="Lilith" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-lilith')">Lilith</div></div>
+      <div class="gallery-item" data-cat="other"><img src="images-web/myrasyn.jpg" alt="Myrasyn" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-myrasyn')">Myrasyn</div></div>
+      <div class="gallery-item" data-cat="other"><img src="images-web/lilyanna.jpg" alt="Lilyanna" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-lilyanna')">Lilyanna</div></div>
     </div>
   </section>
 </div>
@@ -1463,7 +1739,27 @@ var pageTitles = {
   'girl-jasmine': 'Jasmine — Tyrant of Commerce | PV Codex',
   'girl-lucille': 'Lucille — Bloodmonger | PV Codex',
   'girl-kaelira': 'Kaelira — Runeweaver Titan | PV Codex',
-  'gallery': 'Gallery — Character Portraits | PV Codex'
+  'gallery': 'Gallery — Character Portraits | PV Codex',
+  'characters': 'Other Characters | PV Codex',
+  'char-blackfang': 'Black Fang — Hanako Fujimori | PV Codex',
+  'char-kaede': 'Kaede Fujimori — Duchess of Silverwind | PV Codex',
+  'char-sylvaris': 'Sylvaris — Mooncaller | PV Codex',
+  'char-morgana': 'Morgana — Queen of Vraven | PV Codex',
+  'char-felicity': 'Felicity — 3rd Princess | PV Codex',
+  'char-iris': 'Iris | PV Codex',
+  'char-lyra': 'Lyra | PV Codex',
+  'char-orianna': 'Orianna — Vesper Consortium | PV Codex',
+  'char-raika': 'Raika — Vesper Consortium | PV Codex',
+  'char-scar': 'Scar | PV Codex',
+  'char-feng': 'Feng | PV Codex',
+  'char-yoruha': 'Yoruha | PV Codex',
+  'char-lilith': 'Lilith | PV Codex',
+  'char-myrasyn': 'Myrasyn | PV Codex',
+  'char-lilyanna': 'Lilyanna | PV Codex',
+  'char-luminara': 'Luminara — Elf Primordial | PV Codex',
+  'char-mearie': 'Mearie — Human Primordial | PV Codex',
+  'char-hanae': 'Hanae — Fujimori Primordial | PV Codex',
+  'char-kiryssa': 'Kiryssa — Drow Primordial | PV Codex'
 };
 var pageDescs = {
   'home': defaultDesc,
@@ -1473,7 +1769,8 @@ var pageDescs = {
   'kingdom': 'The six duchies of the Vraven Kingdom, their rulers, and the alliances that hold the kingdom together.',
   'primordials': 'The original beings of each race — Human, Dwarf, Elf, Drow, Demon, Titan, Shapeshifter, and Gnome primordials.',
   'organizations': 'Criminal syndicates of Thalorind — the Vesper Consortium, Covenant of Eternity, and the fallen Phantom League.',
-  'gallery': 'Character portraits and artwork from the world of Thalorind — Quinlan, the harem, primordials, and more.'
+  'gallery': 'Character portraits and artwork from the world of Thalorind — Quinlan, the harem, primordials, and more.',
+  'characters': 'Allies, enemies, royals, primordials, and other notable figures from Primordial Villain with a Slave Harem.'
 };
 
 var girlList = [
@@ -1524,11 +1821,15 @@ window.navigateTo = function(pageId, scrollToId){
       var gName = '';
       girlList.forEach(function(g){ if(g.id === pageId) gName = g.name; });
       bc = '<nav class="breadcrumb"><a onclick="navigateTo(\'home\')">Home</a><span class="bc-sep">&#8250;</span><a onclick="navigateTo(\'families\')">Harem &amp; Family</a><span class="bc-sep">&#8250;</span><span class="bc-current">' + gName + '</span></nav>';
+    } else if(pageId.indexOf('char-') === 0){
+      var cTitle = target ? target.querySelector('.sec-title') : null;
+      var cName = cTitle ? cTitle.textContent : pageId.replace('char-','');
+      bc = '<nav class="breadcrumb"><a onclick="navigateTo(\'home\')">Home</a><span class="bc-sep">&#8250;</span><a onclick="navigateTo(\'characters\')">Other Characters</a><span class="bc-sep">&#8250;</span><span class="bc-current">' + cName + '</span></nav>';
     } else if(pageId === 'kingdom' || pageId === 'primordials' || pageId === 'organizations'){
       var names = {kingdom:'Vraven Kingdom',primordials:'Primordials',organizations:'Criminal Organizations'};
       bc = '<nav class="breadcrumb"><a onclick="navigateTo(\'home\')">Home</a><span class="bc-sep">&#8250;</span><a onclick="navigateTo(\'world\')">World &amp; Factions</a><span class="bc-sep">&#8250;</span><span class="bc-current">' + names[pageId] + '</span></nav>';
     } else if(pageId !== 'home'){
-      var pNames = {quinlan:'Quinlan',families:'Harem &amp; Family',world:'World &amp; Factions',gallery:'Gallery',submit:'Contribute'};
+      var pNames = {quinlan:'Quinlan',families:'Harem &amp; Family',world:'World &amp; Factions',gallery:'Gallery',submit:'Contribute',characters:'Other Characters'};
       if(pNames[pageId]) bc = '<nav class="breadcrumb"><a onclick="navigateTo(\'home\')">Home</a><span class="bc-sep">&#8250;</span><span class="bc-current">' + pNames[pageId] + '</span></nav>';
     }
     if(bc) bar.insertAdjacentHTML('beforeend', bc);
@@ -1537,11 +1838,18 @@ window.navigateTo = function(pageId, scrollToId){
   document.title = pageTitles[pageId] || defaultTitle;
   var metaDesc = document.querySelector('meta[name="description"]');
   if(metaDesc) metaDesc.setAttribute('content', pageDescs[pageId] || defaultDesc);
+  var baseUrl = 'https://necrobin.github.io/Primordial-Villain-Community-Codex/';
+  var canonical = document.querySelector('link[rel="canonical"]');
+  var ogUrl = document.querySelector('meta[property="og:url"]');
+  var fullUrl = pageId === 'home' ? baseUrl : baseUrl + '#' + pageId;
+  if(canonical) canonical.setAttribute('href', fullUrl);
+  if(ogUrl) ogUrl.setAttribute('content', fullUrl);
   if(!scrollToId) window.scrollTo(0, 0);
 
   document.querySelectorAll('.sidebar-nav a[data-page]').forEach(function(a){
     var match = a.dataset.page === pageId;
     if(pageId.indexOf('girl-') === 0) match = a.dataset.page === 'families';
+    if(pageId.indexOf('char-') === 0) match = a.dataset.page === 'characters';
     a.classList.toggle('active', match);
   });
 
@@ -1582,6 +1890,7 @@ window.addEventListener('popstate', function(){
   document.querySelectorAll('.sidebar-nav a[data-page]').forEach(function(a){
     var match = a.dataset.page === target;
     if(target.indexOf('girl-') === 0) match = a.dataset.page === 'families';
+    if(target.indexOf('char-') === 0) match = a.dataset.page === 'characters';
     a.classList.toggle('active', match);
   });
   updateSidebarSub(target);
