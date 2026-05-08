@@ -1,10 +1,13 @@
 export default {
   async fetch(request, env) {
+    const CLIENT_ID = '1502223149876645888';
+    const GUILD_ID = '1266986937965744148';
+    const INVITE_CODE = 'XAwgpNKAHr';
     const WEBHOOK = 'https://discord.com/api/webhooks/1502227324148518962/t573_PvxrIV2HQsz8Jv2iN1GROeJnNkxU2asBOxO5sKBpqKIMDZIgG0jC4meMesJ2eF8';
     const REDIRECT_URI = 'https://necrobin.github.io/Primordial-Villain-Community-Codex/';
     const CORS = {
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       'Content-Type': 'application/json'
     };
@@ -12,6 +15,20 @@ export default {
     if (request.method === 'OPTIONS') return new Response(null, { headers: CORS });
 
     const path = new URL(request.url).pathname;
+
+    if (path === '/members' && request.method === 'GET') {
+      try {
+        const res = await fetch('https://discord.com/api/v10/invites/' + INVITE_CODE + '?with_counts=true');
+        if (!res.ok) return new Response('{"error":"Failed to fetch"}', { status: 502, headers: CORS });
+        const data = await res.json();
+        return new Response(JSON.stringify({
+          members: data.approximate_member_count || 0,
+          online: data.approximate_presence_count || 0
+        }), { headers: CORS });
+      } catch (e) {
+        return new Response('{"error":"Fetch error"}', { status: 500, headers: CORS });
+      }
+    }
 
     if (path === '/token' && request.method === 'POST') {
       try {
@@ -22,7 +39,7 @@ export default {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams({
-            client_id: env.DISCORD_CLIENT_ID,
+            client_id: CLIENT_ID,
             client_secret: env.DISCORD_CLIENT_SECRET,
             grant_type: 'authorization_code',
             code: code,
@@ -36,12 +53,30 @@ export default {
         }
         const tokenData = await tokenRes.json();
 
-        const userRes = await fetch('https://discord.com/api/users/@me', {
-          headers: { Authorization: 'Bearer ' + tokenData.access_token }
-        });
+        const [userRes, guildsRes] = await Promise.all([
+          fetch('https://discord.com/api/users/@me', {
+            headers: { Authorization: 'Bearer ' + tokenData.access_token }
+          }),
+          fetch('https://discord.com/api/users/@me/guilds', {
+            headers: { Authorization: 'Bearer ' + tokenData.access_token }
+          })
+        ]);
 
         if (!userRes.ok) return new Response('{"error":"Failed to get user"}', { status: 401, headers: CORS });
         const user = await userRes.json();
+
+        let isMember = false;
+        if (guildsRes.ok) {
+          const guilds = await guildsRes.json();
+          isMember = guilds.some(function(g) { return g.id === GUILD_ID; });
+        }
+
+        if (!isMember) {
+          return new Response(JSON.stringify({
+            error: 'not_member',
+            message: 'You must be a member of the Necroverse Discord server to submit entries.'
+          }), { status: 403, headers: CORS });
+        }
 
         return new Response(JSON.stringify({
           access_token: tokenData.access_token,

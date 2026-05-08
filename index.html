@@ -150,6 +150,10 @@ body.search-mode #page-home{display:none!important}
 .submit-avatar{width:40px;height:40px;border-radius:50%;border:2px solid #5865F2}
 .submit-logout{margin-left:auto;background:none;border:1px solid var(--border);color:var(--text-muted);border-radius:6px;padding:6px 14px;cursor:pointer;font-size:.78rem;font-family:var(--font-b);transition:all .2s}
 .submit-logout:hover{border-color:var(--crimson);color:var(--crimson)}
+.discord-widget{max-width:900px;margin:0 auto;padding:0 48px 48px;text-align:center}
+.discord-widget h3{font-family:var(--font-h);font-size:1.1rem;color:var(--gold);margin-bottom:16px}
+.discord-widget iframe{border-radius:12px;border:1px solid var(--border);max-width:100%}
+.member-count{font-size:.72rem;opacity:.7;margin-top:4px}
 
 /* ── Section Headings ── */
 section{padding:40px 48px 40px;max-width:1000px}
@@ -518,6 +522,10 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <strong>Read the Novel</strong>
       <span>Start reading on Webnovel</span>
     </a>
+  </div>
+  <div class="discord-widget">
+    <h3>Join the Community</h3>
+    <iframe id="discordWidget" src="https://discord.com/widget?id=1266986937965744148&theme=dark" width="350" height="420" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
   </div>
 </div>
 
@@ -1120,7 +1128,7 @@ document.addEventListener('keydown', function(e){
 
 // ── Discord OAuth + Submit form ──
 var WORKER = 'https://pv-codex-proxy.necrobin1.workers.dev';
-var OAUTH_URL = 'https://discord.com/api/oauth2/authorize?client_id=1502223149876645888&redirect_uri=' + encodeURIComponent('https://necrobin.github.io/Primordial-Villain-Community-Codex/') + '&response_type=code&scope=identify';
+var OAUTH_URL = 'https://discord.com/api/oauth2/authorize?client_id=1502223149876645888&redirect_uri=' + encodeURIComponent('https://necrobin.github.io/Primordial-Villain-Community-Codex/') + '&response_type=code&scope=identify%20guilds';
 
 function getDiscordUser(){
   try { return JSON.parse(sessionStorage.getItem('pv_discord_user')); } catch(e){ return null; }
@@ -1162,6 +1170,8 @@ window.discordLogout = function(){ sessionStorage.removeItem('pv_discord_user');
       setDiscordUser(data);
       navigateTo('submit');
       updateSubmitUI();
+    } else if(data.error === 'not_member'){
+      alert('You must be a member of the Necroverse Discord server to submit entries. Join at discord.gg/XAwgpNKAHr');
     } else {
       alert('Discord login failed: ' + JSON.stringify(data));
     }
@@ -1171,6 +1181,25 @@ window.discordLogout = function(){ sessionStorage.removeItem('pv_discord_user');
 })();
 
 updateSubmitUI();
+
+fetch(WORKER + '/members').then(function(r){ return r.json(); }).then(function(data){
+  if(data.members){
+    document.querySelectorAll('.member-count').forEach(function(el){ el.textContent = data.members.toLocaleString() + ' members'; });
+    var discordSpan = document.querySelector('.link-discord span');
+    if(discordSpan) discordSpan.innerHTML = 'Discuss chapters, theories, and see amazing art of the girls<div class="member-count">' + data.members.toLocaleString() + ' members &bull; ' + data.online.toLocaleString() + ' online</div>';
+  }
+}).catch(function(){});
+
+function syncWidgetTheme(){
+  var w = document.getElementById('discordWidget');
+  if(w){
+    var t = document.documentElement.getAttribute('data-theme') || 'light';
+    w.src = 'https://discord.com/widget?id=1266986937965744148&theme=' + t;
+  }
+}
+syncWidgetTheme();
+var origToggle = window.toggleTheme;
+window.toggleTheme = function(){ origToggle(); syncWidgetTheme(); };
 
 var submitForm = document.getElementById('submitForm');
 if(submitForm) submitForm.addEventListener('submit', function(e){
