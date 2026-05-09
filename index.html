@@ -2498,32 +2498,41 @@ function applyMembers(data){
 
 
 function escHtml(s){ var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-function loadLeaderboard(){
+function renderLeaderboard(lb, data){
+  if(!data || !data.length){ lb.innerHTML = '<div class="lb-empty">No submissions yet. Be the first!</div>'; return; }
+  var html = '';
+  var medals = ['gold','silver','bronze'];
+  data.forEach(function(e, i){
+    var rankClass = i < 3 ? ' ' + medals[i] : '';
+    var safeId = encodeURIComponent(e.id || '0');
+    var safeAvatar = encodeURIComponent(e.avatar || '');
+    var safeCount = parseInt(e.count, 10) || 0;
+    var avatarUrl = e.avatar
+      ? 'https://cdn.discordapp.com/avatars/' + safeId + '/' + safeAvatar + '.png?size=64'
+      : 'https://cdn.discordapp.com/embed/avatars/' + (i % 5) + '.png';
+    html += '<div class="lb-row">'
+      + '<div class="lb-rank' + rankClass + '">#' + (i+1) + '</div>'
+      + '<img class="lb-avatar" src="' + escHtml(avatarUrl) + '" alt="">'
+      + '<div class="lb-name">' + escHtml(e.global_name || e.username || 'Unknown') + '</div>'
+      + '<div class="lb-count">' + safeCount + ' submission' + (safeCount !== 1 ? 's' : '') + '</div>'
+      + '</div>';
+  });
+  lb.innerHTML = html;
+}
+function loadLeaderboard(skipCache){
   var lb = document.getElementById('leaderboard');
   if(!lb) return;
+  if(!skipCache){
+    try{
+      var c = JSON.parse(sessionStorage.getItem('pv_lb_cache'));
+      if(c && Date.now() - c.ts < 300000){ renderLeaderboard(lb, c.data); return; }
+    } catch(e){}
+  }
   fetch(WORKER + '/leaderboard').then(function(r){ return r.json(); }).then(function(data){
-    if(!data.length){ lb.innerHTML = '<div class="lb-empty">No submissions yet. Be the first!</div>'; return; }
-    var html = '';
-    var medals = ['gold','silver','bronze'];
-    data.forEach(function(e, i){
-      var rankClass = i < 3 ? ' ' + medals[i] : '';
-      var safeId = encodeURIComponent(e.id || '0');
-      var safeAvatar = encodeURIComponent(e.avatar || '');
-      var safeCount = parseInt(e.count, 10) || 0;
-      var avatarUrl = e.avatar
-        ? 'https://cdn.discordapp.com/avatars/' + safeId + '/' + safeAvatar + '.png?size=64'
-        : 'https://cdn.discordapp.com/embed/avatars/' + (i % 5) + '.png';
-      html += '<div class="lb-row">'
-        + '<div class="lb-rank' + rankClass + '">#' + (i+1) + '</div>'
-        + '<img class="lb-avatar" src="' + escHtml(avatarUrl) + '" alt="">'
-        + '<div class="lb-name">' + escHtml(e.global_name || e.username || 'Unknown') + '</div>'
-        + '<div class="lb-count">' + safeCount + ' submission' + (safeCount !== 1 ? 's' : '') + '</div>'
-        + '</div>';
-    });
-    lb.innerHTML = html;
+    renderLeaderboard(lb, data);
+    try { sessionStorage.setItem('pv_lb_cache', JSON.stringify({data:data,ts:Date.now()})); } catch(e){}
   }).catch(function(){ lb.innerHTML = '<div class="lb-empty">Could not load leaderboard.</div>'; });
 }
-loadLeaderboard();
 
 var submitFormLoaded = Date.now();
 var subCategoryEl = document.getElementById('subCategory');
@@ -2585,7 +2594,7 @@ if(submitForm) submitForm.addEventListener('submit', function(e){
     msg.textContent = 'Submission received! The moderation team will review it shortly.';
     msg.style.display = 'block';
     submitForm.reset();
-    loadLeaderboard();
+    loadLeaderboard(true);
   }).catch(function(err){
     msg.className = 'form-msg error';
     msg.textContent = err.message === 'Session expired' ? 'Session expired. Please log in again.' : 'Something went wrong. Please try again or post directly in the Discord.';
