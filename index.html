@@ -534,7 +534,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .trivia-answers{display:flex;flex-direction:column;gap:10px}
 .trivia-answer{padding:14px 18px;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:.88rem;color:var(--text);transition:all .2s;background:var(--bg-primary)}
 .trivia-answer:hover:not(.locked){border-color:var(--gold-dim);background:rgba(139,92,246,.04)}
-.trivia-answer.locked{cursor:default}
+.trivia-answer.locked{cursor:default;pointer-events:none}
+.trivia-answer.selected{border-color:var(--gold);background:rgba(139,92,246,.1);font-weight:500}
 .trivia-answer.correct{border-color:#2ecc71;background:rgba(46,204,113,.12);color:#2ecc71;font-weight:600}
 .trivia-answer.wrong{border-color:#e74c3c;background:rgba(231,76,60,.1);color:#e74c3c}
 .trivia-answer.reveal-correct{border-color:#2ecc71;background:rgba(46,204,113,.08)}
@@ -549,6 +550,25 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .trivia-btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .trivia-leaderboard{margin-top:32px;border-top:1px solid var(--border);padding-top:24px;max-width:480px;margin-left:auto;margin-right:auto}
 .trivia-leaderboard h3{font-family:var(--font-h);font-size:1rem;color:var(--gold);margin-bottom:16px;text-align:center}
+.trivia-score-ring{width:120px;height:120px;margin:0 auto 16px}
+.trivia-score-ring svg{transform:rotate(-90deg)}
+.trivia-score-ring circle{fill:none;stroke-width:8}
+.trivia-score-ring .ring-bg{stroke:var(--border)}
+.trivia-score-ring .ring-fill{stroke:var(--gold);stroke-linecap:round;transition:stroke-dashoffset 1s ease}
+.trivia-score-ring .ring-text{font-family:var(--font-h);font-size:1.6rem;fill:var(--gold)}
+.trivia-review{max-width:640px;margin:32px auto 0;text-align:left}
+.trivia-review h3{font-family:var(--font-h);font-size:1rem;color:var(--text);margin-bottom:16px;text-align:center}
+.trivia-review-item{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:12px;box-shadow:var(--shadow-card)}
+.trivia-review-item.review-correct{border-left:3px solid #2ecc71}
+.trivia-review-item.review-wrong{border-left:3px solid #e74c3c}
+.trivia-review-q{font-size:.88rem;color:var(--text);font-weight:500;margin-bottom:10px;display:flex;gap:8px;align-items:flex-start}
+.trivia-review-q .review-num{color:var(--text-muted);font-family:var(--font-h);font-size:.78rem;flex-shrink:0}
+.trivia-review-answers{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:.8rem}
+.trivia-review-a{padding:6px 10px;border-radius:6px;background:var(--bg-secondary);color:var(--text-muted)}
+.trivia-review-a.picked{font-weight:600;color:var(--text)}
+.trivia-review-a.picked.was-wrong{background:rgba(231,76,60,.1);color:#e74c3c}
+.trivia-review-a.was-correct{background:rgba(46,204,113,.1);color:#2ecc71;font-weight:600}
+@media(max-width:600px){.trivia-review-answers{grid-template-columns:1fr}}
 .sticky-toc{position:sticky;top:0;z-index:50;background:var(--bg-primary);border-bottom:1px solid var(--border);padding:10px 48px;display:flex;gap:18px;font-size:.8rem;font-family:var(--font-h);margin:0 -48px}
 .sticky-toc a{color:var(--text-sec);cursor:pointer;transition:color .15s;text-decoration:none;white-space:nowrap}
 .sticky-toc a:hover,.sticky-toc a.active{color:var(--gold)}
@@ -2860,9 +2880,11 @@ function initTriviaPage(){
 }
 
 function startTrivia(modeKey){
+  var user = getDiscordUser();
+  if(!user || !user.access_token){ discordLogin(); return; }
   var mode = triviaModes[modeKey];
   var questions = buildTriviaQuestions(mode);
-  triviaState = {mode:modeKey, questions:questions, current:0, correct:0, answered:false};
+  triviaState = {mode:modeKey, questions:questions, current:0, correct:0, answered:false, picks:[]};
   document.getElementById('triviaMenu').style.display = 'none';
   document.getElementById('triviaResultsArea').style.display = 'none';
   document.getElementById('triviaGameArea').style.display = '';
@@ -2874,7 +2896,7 @@ function renderTriviaQuestion(){
   if(!s) return;
   var total = s.questions.length;
   document.getElementById('triviaQNum').textContent = 'Question ' + (s.current + 1) + ' / ' + total;
-  document.getElementById('triviaScore').textContent = s.correct + ' correct';
+  document.getElementById('triviaScore').textContent = '';
   document.getElementById('triviaProgressBar').style.width = ((s.current / total) * 100) + '%';
   var q = s.questions[s.current];
   var html = '<div class="trivia-question-card">' +
@@ -2894,36 +2916,18 @@ function answerTrivia(idx){
   if(!s || s.answered) return;
   s.answered = true;
   var q = s.questions[s.current];
-  var isCorrect = idx === q.c;
-  if(isCorrect) s.correct++;
+  s.picks.push(idx);
+  if(idx === q.c) s.correct++;
   var answers = document.querySelectorAll('#triviaQuestionCard .trivia-answer');
   answers.forEach(function(el){
     el.classList.add('locked');
-    var i = parseInt(el.dataset.idx);
-    if(i === q.c) el.classList.add('correct');
-    if(i === idx && !isCorrect) el.classList.add('wrong');
-    if(i === q.c && !isCorrect) el.classList.add('reveal-correct');
+    if(parseInt(el.dataset.idx) === idx) el.classList.add('selected');
   });
-  document.getElementById('triviaScore').textContent = s.correct + ' correct';
-  var card = document.querySelector('#triviaQuestionCard .trivia-question-card');
-  if(card){
-    var btn = document.createElement('button');
-    btn.className = 'trivia-next-btn';
-    btn.textContent = s.current < s.questions.length - 1 ? 'Next Question' : 'See Results';
-    btn.onclick = function(){ nextTriviaQuestion(); };
-    card.appendChild(btn);
-  }
-}
-
-function nextTriviaQuestion(){
-  var s = triviaState;
-  if(!s) return;
-  s.current++;
-  if(s.current >= s.questions.length){
-    showTriviaResults();
-    return;
-  }
-  renderTriviaQuestion();
+  setTimeout(function(){
+    s.current++;
+    if(s.current >= s.questions.length) showTriviaResults();
+    else renderTriviaQuestion();
+  }, 400);
 }
 
 function showTriviaResults(){
@@ -2932,23 +2936,49 @@ function showTriviaResults(){
   var total = s.questions.length;
   var pct = Math.round((s.correct / total) * 100);
   var wrong = total - s.correct;
+  var modeName = triviaModes[s.mode].name;
   document.getElementById('triviaGameArea').style.display = 'none';
+  document.getElementById('triviaProgressBar').style.width = '100%';
   var area = document.getElementById('triviaResultsArea');
   area.style.display = '';
-  var modeName = triviaModes[s.mode].name;
-  area.innerHTML = '<div class="trivia-results">' +
-    '<div class="trivia-score-big">' + pct + '%</div>' +
+  var circ = Math.PI * 2 * 52;
+  var offset = circ - (pct / 100) * circ;
+  var grade = pct === 100 ? 'Flawless' : pct >= 80 ? 'Excellent' : pct >= 60 ? 'Solid' : pct >= 40 ? 'Rough' : 'Yikes';
+  var html = '<div class="trivia-results">' +
+    '<div class="trivia-score-ring"><svg viewBox="0 0 120 120" width="120" height="120">' +
+      '<circle class="ring-bg" cx="60" cy="60" r="52" />' +
+      '<circle class="ring-fill" cx="60" cy="60" r="52" stroke-dasharray="' + circ.toFixed(1) + '" stroke-dashoffset="' + offset.toFixed(1) + '" />' +
+      '<text class="ring-text" x="60" y="60" text-anchor="middle" dominant-baseline="central" transform="rotate(90 60 60)">' + pct + '%</text>' +
+    '</svg></div>' +
+    '<div class="trivia-score-label" style="font-size:1.1rem;color:var(--gold);font-family:var(--font-h);margin-bottom:4px">' + grade + '</div>' +
     '<div class="trivia-score-label">' + modeName + ' — ' + s.correct + ' / ' + total + '</div>' +
     '<div class="trivia-score-breakdown">' +
-      '<span><strong>' + s.correct + '</strong>Correct</span>' +
-      '<span><strong>' + wrong + '</strong>Wrong</span>' +
+      '<span><strong style="color:#2ecc71">' + s.correct + '</strong>Correct</span>' +
+      '<span><strong style="color:#e74c3c">' + wrong + '</strong>Wrong</span>' +
     '</div>' +
     '<div class="trivia-btn-row">' +
       '<button class="trivia-next-btn" onclick="startTrivia(\'' + s.mode + '\')">Play Again</button>' +
       '<button class="trivia-next-btn" onclick="initTriviaPage()" style="background:var(--bg-secondary);color:var(--text);border:1px solid var(--border)">Back to Modes</button>' +
     '</div>' +
+    '<div class="trivia-review"><h3>Question Review</h3>';
+  s.questions.forEach(function(q, i){
+    var pick = s.picks[i];
+    var gotIt = pick === q.c;
+    html += '<div class="trivia-review-item ' + (gotIt ? 'review-correct' : 'review-wrong') + '">' +
+      '<div class="trivia-review-q"><span class="review-num">' + (i+1) + '.</span>' + escHtml(q.q) + '</div>' +
+      '<div class="trivia-review-answers">';
+    q.a.forEach(function(ans, j){
+      var cls = 'trivia-review-a';
+      if(j === q.c) cls += ' was-correct';
+      if(j === pick) cls += ' picked' + (j !== q.c ? ' was-wrong' : '');
+      html += '<div class="' + cls + '">' + escHtml(ans) + '</div>';
+    });
+    html += '</div></div>';
+  });
+  html += '</div>' +
     '<div class="trivia-leaderboard" id="triviaLbResults"><h3>' + modeName + ' Leaderboard</h3><div id="triviaLbResultsInner"></div></div>' +
   '</div>';
+  area.innerHTML = html;
   submitTriviaScore(s.mode, s.correct, total);
   loadTriviaLeaderboard('triviaLbResultsInner', s.mode);
 }
