@@ -432,20 +432,12 @@
     "wrong": ["They were never named", "Marcus, Darius, and Theron", "Thorn, Bramble, and Nettle"]
   },
   {
-    "id": 55,
-    "difficulty": "hard",
-    "category": "worldbuilding",
-    "question": "How long had Gorthrax the Eternal gone without speaking before breaking his silence?",
-    "correct": "Three centuries",
-    "wrong": ["One millennium", "Fifty years", "Seven centuries"]
-  },
-  {
     "id": 56,
     "difficulty": "hard",
     "category": "adult",
     "question": "How long did Quinlan's 'correction session' with Seraphiel last?",
     "correct": "7 hours",
-    "wrong": ["3 hours", "12 hours", "2 full days"]
+    "wrong": ["30 minutes", "3 full days", "an entire week"]
   },
   {
     "id": 57,
@@ -464,14 +456,6 @@
     "wrong": ["Kill 1000 monsters", "Conquer a dungeon solo", "Survive for 30 days"]
   },
   {
-    "id": 59,
-    "difficulty": "hard",
-    "category": "character",
-    "question": "What did Blossom say Duchess Maerina Ravenshade's race had been changed to?",
-    "correct": "Cosmetics",
-    "wrong": ["Perfume", "Porcelain", "Enchantments"]
-  },
-  {
     "id": 60,
     "difficulty": "hard",
     "category": "adult",
@@ -485,7 +469,7 @@
     "category": "plot",
     "question": "How much gold did Quinlan pay for Seraphiel?",
     "correct": "53 gold",
-    "wrong": ["50 gold", "65 gold", "40 gold"]
+    "wrong": ["200 gold", "10 gold", "500 gold"]
   },
   {
     "id": 62,
@@ -517,7 +501,7 @@
     "category": "plot",
     "question": "What is the name of the ritual that bound Vex to Quinlan?",
     "correct": "The Ebon Vow",
-    "wrong": ["The Shadow Pact", "The Hex Bond", "The Dark Binding"]
+    "wrong": ["The Shadow Pact", "The Soul Tether", "The Dark Binding"]
   },
   {
     "id": 67,
