@@ -291,9 +291,9 @@
     "id": 37,
     "difficulty": "medium",
     "category": "worldbuilding",
-    "question": "Who was Sel'Ashra, The Withered Flame, before she became corrupted?",
-    "correct": "Flame Mother N'shara",
-    "wrong": ["Goddess of Dawn", "The Primordial Ember", "Firekeeper of the Pantheon"]
+    "question": "What did Lilyanna admit about Sel'Ashra after driving her from Quinlan's mind?",
+    "correct": "Sel'Ashra is stronger than her",
+    "wrong": ["Sel'Ashra is dying", "Sel'Ashra can't return", "Sel'Ashra was bluffing"]
   },
   {
     "id": 38,
