@@ -2225,6 +2225,7 @@ function updateSubmitUI(){
 window.discordLogin = function(){
   var state = generateState();
   sessionStorage.setItem('pv_oauth_state', state);
+  sessionStorage.setItem('pv_oauth_return', currentPage || 'submit');
   window.location.href = OAUTH_BASE + '&state=' + state;
 };
 window.discordLogout = function(){ localStorage.removeItem('pv_discord_user'); sessionStorage.removeItem('pv_discord_token'); updateSubmitUI(); };
@@ -2236,14 +2237,16 @@ window.discordLogout = function(){ localStorage.removeItem('pv_discord_user'); s
   var returnedState = params.get('state');
   var savedState = sessionStorage.getItem('pv_oauth_state');
   sessionStorage.removeItem('pv_oauth_state');
+  var returnPage = sessionStorage.getItem('pv_oauth_return') || 'submit';
+  sessionStorage.removeItem('pv_oauth_return');
   if(!returnedState || returnedState !== savedState){
-    history.replaceState(null, '', window.location.pathname + '#submit');
-    navigateTo('submit');
+    history.replaceState(null, '', window.location.pathname + '#' + returnPage);
+    navigateTo(returnPage);
     var msg = document.getElementById('submitMsg');
     if(msg){ msg.className = 'form-msg error'; msg.textContent = 'Login failed: invalid session state. Please try again.'; msg.style.display = 'block'; }
     return;
   }
-  history.replaceState(null, '', window.location.pathname + '#submit');
+  history.replaceState(null, '', window.location.pathname + '#' + returnPage);
   fetch(WORKER + '/token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -2251,19 +2254,19 @@ window.discordLogout = function(){ localStorage.removeItem('pv_discord_user'); s
   }).then(function(r){ return r.json(); }).then(function(data){
     if(data.access_token){
       setDiscordUser(data);
-      navigateTo('submit');
+      navigateTo(returnPage);
       updateSubmitUI();
     } else if(data.error === 'not_member'){
-      navigateTo('submit');
+      navigateTo(returnPage);
       var msg = document.getElementById('submitMsg');
-      if(msg){ msg.className = 'form-msg error'; msg.textContent = 'You must be a member of the Necroverse Discord server to submit. Join at discord.gg/XAwgpNKAHr'; msg.style.display = 'block'; }
+      if(msg){ msg.className = 'form-msg error'; msg.textContent = 'You must be a member of the Necroverse Discord server. Join at discord.gg/XAwgpNKAHr'; msg.style.display = 'block'; }
     } else {
-      navigateTo('submit');
+      navigateTo(returnPage);
       var msg = document.getElementById('submitMsg');
       if(msg){ msg.className = 'form-msg error'; msg.textContent = 'Login failed: ' + (data.error || 'unknown error') + '. Try again.'; msg.style.display = 'block'; }
     }
   }).catch(function(err){
-    navigateTo('submit');
+    navigateTo(returnPage);
     var msg = document.getElementById('submitMsg');
     if(msg){ msg.className = 'form-msg error'; msg.textContent = 'Login failed: ' + (err.message || 'network error') + '. Try again.'; msg.style.display = 'block'; }
   });
