@@ -3110,8 +3110,8 @@ function showTriviaResults(){
     } else {
       el.innerHTML = '<div class="board-empty">Log in to track rankings</div>';
     }
+    loadTriviaLeaderboard('triviaLbResultsInner', s.mode);
   });
-  loadTriviaLeaderboard('triviaLbResultsInner', s.mode);
 }
 
 function submitTriviaScore(mode, correct, total, timeMs){
