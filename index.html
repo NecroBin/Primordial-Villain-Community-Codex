@@ -678,7 +678,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <li class="nav-group-title">Media</li>
       <li><a tabindex="0" role="link" onclick="navigateTo('gallery')" data-page="gallery">Gallery</a></li>
       <li class="nav-group-title">Community</li>
-      <li><a tabindex="0" role="link" onclick="navigateTo('trivia')" data-page="trivia">Trivia</a></li>
+      <li><a tabindex="0" role="link" onclick="navigateTo('trivia')" data-page="trivia">Trivia Game</a></li>
       <li><a tabindex="0" role="link" onclick="navigateTo('votes')" data-page="votes">Votes</a></li>
       <li><a tabindex="0" role="link" onclick="navigateTo('submit')" data-page="submit">Contribute</a></li>
     </ul>
@@ -731,7 +731,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     </a>
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('trivia')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#127919;</span>
-      <h3>Trivia</h3>
+      <h3>Trivia Game</h3>
       <p>Test your PV knowledge with community-made trivia questions.</p>
     </a>
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('votes')" onkeydown="if(event.key==='Enter')this.click()">
@@ -1964,7 +1964,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 <div class="page content-page" id="page-trivia">
   <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
   <section>
-    <h2 class="sec-title">PV Trivia</h2>
+    <h2 class="sec-title">Trivia Game</h2>
     <p class="sec-desc">Test your knowledge of Primordial Villain and see how you stack up against the community.</p>
     <hr class="sec-divider">
 
@@ -2058,7 +2058,7 @@ var pageTitles = {
   'kingdom': 'Vraven Kingdom — Duchies & Rulers | PV Codex',
   'primordials': 'The Primordials | PV Codex',
   'organizations': 'Criminal Organizations | PV Codex',
-  'trivia': 'PV Trivia | PV Codex',
+  'trivia': 'Trivia Game | PV Codex',
   'votes': 'Community Votes | PV Codex',
   'submit': 'Contribute to the Codex | PV Codex',
   'girl-ayame': 'Ayame — Skysplitter | PV Codex',
@@ -2914,7 +2914,7 @@ var triviaQuestions = [
 ];
 
 var triviaModes = {
-  challenge: {name:'PV Challenge', icon:'🎯', count:25, dist:{easy:10,medium:8,hard:7}, desc:'25 questions — easy to hard'}
+  challenge: {name:'Trivia Game', icon:'🎯', count:25, dist:{easy:10,medium:8,hard:7}, desc:'25 questions — easy to hard'}
 };
 
 var triviaState = null;
@@ -2965,16 +2965,16 @@ function initTriviaPage(){
   var container = document.getElementById('triviaModes');
   if(!container) return;
   var mode = triviaModes.challenge;
-  container.innerHTML = '<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;max-width:680px;margin:0 auto">' +
-    '<div class="trivia-mode-card" id="triviaStartCard" style="flex:1;min-width:200px;max-width:320px">' +
+  container.innerHTML = '<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;max-width:680px;margin:0 auto;align-items:stretch">' +
+    '<div class="trivia-mode-card" id="triviaStartCard" style="flex:1 1 280px;max-width:320px;display:flex;flex-direction:column;justify-content:center">' +
       '<div class="trivia-mode-icon">' + mode.icon + '</div>' +
       '<div class="trivia-mode-name">' + mode.name + '</div>' +
       '<div class="trivia-mode-desc">' + mode.desc + '<br>10 easy, 8 medium, 7 hard</div>' +
     '</div>' +
-    '<div class="trivia-mode-card" id="triviaCtaCard" style="flex:1;min-width:200px;max-width:320px;border-style:dashed">' +
+    '<div class="trivia-mode-card" id="triviaCtaCard" style="flex:1 1 280px;max-width:320px;border-style:dashed;display:flex;flex-direction:column;justify-content:center">' +
       '<div class="trivia-mode-icon">&#9998;</div>' +
       '<div class="trivia-mode-name">Submit Questions</div>' +
-      '<div class="trivia-mode-desc">The game is in its early stages and needs a lot more questions. Help take it to the next level!</div>' +
+      '<div class="trivia-mode-desc">Help grow the trivia — submit your own questions!</div>' +
     '</div>' +
   '</div>';
   document.getElementById('triviaStartCard').onclick = function(){ startTrivia('challenge'); };
