@@ -123,6 +123,7 @@ body.search-mode .page.search-has-results .sec-title{display:block!important;fon
 .home-hero .subtitle{font-family:var(--font-h);font-size:.9rem;color:var(--text-sec);margin-top:6px;letter-spacing:.1em}
 .home-hero .tagline{color:var(--text-sec);margin:20px auto 0;font-size:.92rem;max-width:540px;line-height:1.7}
 .home-divider{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:36px auto;border:none}
+.home-divider-sm{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:20px auto;border:none}
 
 /* ── Home: Nav Cards ── */
 .home-nav{max-width:900px;margin:0 auto;padding:0 48px 40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;justify-content:center}
@@ -701,10 +702,11 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <h1>Primordial Villain with a Slave Harem</h1>
     <div class="subtitle">Community Codex</div>
     <p class="tagline">A community-compiled information hub for the webnovel <em>Primordial Villain with a Slave Harem</em>, cataloguing characters, factions, stats, classes, and the harem across the world of Thalorind.</p>
-    <p class="tagline" style="margin-top:0">Or, if you think you know everything there is to know already, <a onclick="navigateTo('trivia')" style="color:var(--gold);cursor:pointer;text-decoration:underline">test yourself in the trivia game!</a></p>
     <div class="hero-credits">Foundation compiled by <span class="lead-credit">Zaspho</span> with <span>Ahaan160</span> <span>BvBear</span> <span>SpecterxRetcepS</span><br>The rest is up to you — this codex grows with the community.</div>
   </header>
-  <hr class="home-divider">
+  <hr class="home-divider-sm">
+  <p class="tagline" style="text-align:center;padding:0 48px">Or, if you think you know everything there is to know already, test yourself in the trivia game! <a onclick="navigateTo('trivia')" style="color:var(--gold);cursor:pointer;font-size:1.2em;vertical-align:middle" title="Play Trivia">&#9654;</a></p>
+  <hr class="home-divider-sm">
   <div class="home-nav">
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('quinlan')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#10070;</span>
@@ -747,6 +749,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <p>Know a character's abilities or lore? Write it up and add it to the codex.</p>
     </a>
   </div>
+  <hr class="home-divider-sm">
   <div class="link-row">
     <a href="https://discord.gg/XAwgpNKAHr" target="_blank" rel="noopener" class="link-card link-discord">
       <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
@@ -2968,13 +2971,13 @@ function initTriviaPage(){
   var container = document.getElementById('triviaModes');
   if(!container) return;
   var mode = triviaModes.challenge;
-  container.innerHTML = '<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;max-width:680px;margin:0 auto;align-items:stretch">' +
-    '<div class="trivia-mode-card" id="triviaStartCard" style="flex:1 1 280px;max-width:320px;display:flex;flex-direction:column;justify-content:center">' +
+  container.innerHTML = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:680px;margin:0 auto">' +
+    '<div class="trivia-mode-card" id="triviaStartCard" style="display:flex;flex-direction:column;justify-content:center">' +
       '<div class="trivia-mode-icon">' + mode.icon + '</div>' +
       '<div class="trivia-mode-name">' + mode.name + '</div>' +
       '<div class="trivia-mode-desc">' + mode.desc + '<br>10 easy, 8 medium, 7 hard</div>' +
     '</div>' +
-    '<div class="trivia-mode-card" id="triviaCtaCard" style="flex:1 1 280px;max-width:320px;border-style:dashed;display:flex;flex-direction:column;justify-content:center">' +
+    '<div class="trivia-mode-card" id="triviaCtaCard" style="border-style:dashed;display:flex;flex-direction:column;justify-content:center">' +
       '<div class="trivia-mode-icon">&#9998;</div>' +
       '<div class="trivia-mode-name">Submit Questions</div>' +
       '<div class="trivia-mode-desc">Help grow the trivia — submit your own questions!</div>' +
