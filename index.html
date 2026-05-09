@@ -2971,11 +2971,11 @@ function initTriviaPage(){
   var container = document.getElementById('triviaModes');
   if(!container) return;
   var mode = triviaModes.challenge;
-  container.innerHTML = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:680px;margin:0 auto">' +
+  container.innerHTML = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:560px;margin:0 auto">' +
     '<div class="trivia-mode-card" id="triviaStartCard" style="display:flex;flex-direction:column;justify-content:center">' +
       '<div class="trivia-mode-icon">' + mode.icon + '</div>' +
       '<div class="trivia-mode-name">' + mode.name + '</div>' +
-      '<div class="trivia-mode-desc">' + mode.desc + '<br>10 easy, 8 medium, 7 hard</div>' +
+      '<div class="trivia-mode-desc">' + mode.desc + '</div>' +
     '</div>' +
     '<div class="trivia-mode-card" id="triviaCtaCard" style="border-style:dashed;display:flex;flex-direction:column;justify-content:center">' +
       '<div class="trivia-mode-icon">&#9998;</div>' +
