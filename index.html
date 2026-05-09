@@ -2832,6 +2832,9 @@ function buildTriviaQuestions(mode){
   return questions;
 }
 
+window.initTriviaPage = initTriviaPage;
+window.startTrivia = startTrivia;
+window.answerTrivia = answerTrivia;
 function initTriviaPage(){
   var container = document.getElementById('triviaModes');
   if(!container) return;
