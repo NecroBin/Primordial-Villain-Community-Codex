@@ -24,7 +24,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2L28 16L16 30L4 16Z' fill='%238B5CF6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('pv-theme')||'light')</script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -198,8 +198,7 @@ section{padding:40px 48px 40px;max-width:1000px}
 
 /* ── Cards ── */
 .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
-.card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:22px;transition:all .3s var(--ease)}
-.card{box-shadow:var(--shadow-card)}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:22px;transition:all .3s var(--ease);box-shadow:var(--shadow-card)}
 .card:hover{border-color:var(--gold-dim);box-shadow:0 0 20px rgba(139,92,246,.1)}
 .card-title{font-family:var(--font-h);font-size:1rem;color:var(--gold);margin-bottom:4px}
 .card-role{font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
@@ -399,6 +398,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   .menu-toggle{display:flex;align-items:center;justify-content:center}
   .content{margin-left:0}
   section,.page-bar{padding-left:20px;padding-right:20px}
+  .page-bar{padding-left:60px}
   .home-hero{padding:60px 20px 30px}
   .home-hero h1{font-size:1.7rem}
   .home-nav,.link-row{padding-left:20px;padding-right:20px}
@@ -411,6 +411,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   .core-grid,.stance-grid,.evil-grid{grid-template-columns:1fr}
   .delta-grid{grid-template-columns:repeat(auto-fill,minmax(90px,1fr))}
   .footer{padding-left:20px;padding-right:20px}
+  .sticky-toc{margin:0 -20px;padding-left:60px;padding-right:20px}
 }
 @media(max-width:480px){
   .home-hero h1{font-size:1.4rem}
@@ -434,16 +435,18 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 [data-theme="light"] .bg-secondary,[data-theme="light"] .core-item,[data-theme="light"] .stance,[data-theme="light"] .evil-item,[data-theme="light"] .delta-item{background:var(--bg-secondary)}
 [data-theme="light"] .menu-toggle{background:var(--bg-card);border-color:var(--border)}
 [data-theme="light"] .overlay{background:rgba(0,0,0,.3)}
+[data-theme="light"] .rank-bar{filter:brightness(1.4) saturate(1.2)}
 
 /* ── Print ── */
 @media print{
-  .sidebar,.overlay,.menu-toggle,.back-to-top,.sidebar-search,.page-bar,.back-btn{display:none!important}
+  .sidebar,.overlay,.menu-toggle,.back-to-top,.sidebar-search,.page-bar,.back-btn,.sticky-toc,.entry-cta,.gallery-filter,.lightbox,.portrait-blur .blur-overlay,.theme-btn{display:none!important}
   .content{margin-left:0}
   .page{display:block!important;animation:none!important}
   body{background:#fff;color:#111}
   section{padding:16px 0}
   .card,.fam-card,.div-card,.class-card,.vs-fighter,.chart-wrap,.vs-delta-wrap,.nav-card{background:#f9f9f9;border-color:#ccc}
   .card-title,.sec-title,.org-name,.class-header h3,.fam-card h4,.home-hero h1,.nav-card h3{color:#333}
+  .portrait-blur img{filter:none!important}
 }
 /* ── Character portrait ── */
 .char-portrait{text-align:center;margin-bottom:28px}
@@ -451,14 +454,14 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .char-portrait .portrait-name{margin-top:10px;font-size:.78rem;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase}
 /* ── Gallery ── */
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:24px}
-.gallery-item{position:relative;border-radius:12px;overflow:hidden;border:2px solid var(--border);background:var(--card-bg);transition:transform .2s,box-shadow .2s}
+.gallery-item{position:relative;border-radius:12px;overflow:hidden;border:2px solid var(--border);background:var(--bg-card);transition:transform .2s,box-shadow .2s}
 .gallery-item:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.4)}
 .gallery-item img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;cursor:zoom-in;background:var(--bg-secondary)}
 .gallery-item .gallery-label{padding:10px 14px;font-size:.85rem;font-weight:600;color:var(--text);text-align:center;cursor:pointer;transition:color .15s}
 .gallery-item .gallery-label:hover{color:var(--purple)}
 .gallery-item .gallery-label span{display:block;font-size:.72rem;font-weight:400;color:var(--text-muted);margin-top:2px}
 .gallery-filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
-.gallery-filter button{padding:6px 14px;border-radius:999px;border:1px solid var(--border);background:var(--card-bg);color:var(--text-sec);font-size:.78rem;cursor:pointer;transition:all .15s}
+.gallery-filter button{padding:6px 14px;border-radius:999px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-sec);font-size:.78rem;cursor:pointer;transition:all .15s}
 .gallery-filter button.active,.gallery-filter button:hover{background:var(--purple);color:#fff;border-color:var(--purple)}
 /* gallery lightbox */
 .lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.88);align-items:center;justify-content:center;cursor:pointer}
@@ -488,7 +491,6 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .char-card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:var(--bg-secondary)}
 .char-card .char-card-name{padding:10px 8px;font-size:.82rem;font-weight:600}
 .char-card .char-card-role{font-size:.68rem;color:var(--text-muted);font-weight:400;display:block;margin-top:2px}
-.gallery-contribute{padding:6px 14px;font-size:.72rem;font-weight:600;color:var(--purple);text-align:center;letter-spacing:.04em;border-top:1px solid var(--border)}
 /* Quinlan blur reveal */
 .portrait-blur{position:relative;cursor:pointer;max-width:420px;margin:0 auto}
 .portrait-blur img{filter:blur(18px) saturate(.6);transition:filter .6s ease}
@@ -496,10 +498,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .portrait-blur .blur-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:rgba(0,0,0,.3);border-radius:12px;transition:opacity .4s ease;pointer-events:none}
 .portrait-blur.revealed .blur-overlay{opacity:0}
 .portrait-blur .blur-msg{font-size:.88rem;color:#fff;line-height:1.5;max-width:280px;text-shadow:0 2px 8px rgba(0,0,0,.6)}
-.portrait-blur .blur-msg em{display:block;font-style:italic;margin-bottom:12px;font-size:.82rem;color:var(--ink-dim,#ccc)}
+.portrait-blur .blur-msg em{display:block;font-style:italic;margin-bottom:12px;font-size:.82rem;color:#ccc}
 .portrait-blur .blur-cta{margin-top:14px;padding:8px 20px;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:rgba(139,92,246,.25);color:#fff;font-size:.78rem;font-weight:600;letter-spacing:.04em;pointer-events:auto;cursor:pointer}
-.gallery-nopage .gallery-contribute::before{content:"+ "}
-.gallery-nopage{opacity:.85}.gallery-nopage:hover{opacity:1}
 </style>
 <script type="application/ld+json">
 {
@@ -594,32 +594,32 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   </header>
   <hr class="home-divider">
   <div class="home-nav">
-    <a class="nav-card" onclick="navigateTo('quinlan')">
+    <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('quinlan')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#10070;</span>
       <h3>Quinlan</h3>
       <p>Stats, progression, classes, abilities&mdash;everything about the Primordial Villain.</p>
     </a>
-    <a class="nav-card" onclick="navigateTo('families')">
+    <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('families')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#9829;</span>
       <h3>Harem &amp; Family</h3>
       <p>Quinlan's inner circle and their known family connections.</p>
     </a>
-    <a class="nav-card" onclick="navigateTo('characters')">
+    <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('characters')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#9734;</span>
       <h3>Other Characters</h3>
       <p>Allies, enemies, royals, and other notable figures of Thalorind.</p>
     </a>
-    <a class="nav-card" onclick="navigateTo('world')">
+    <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('world')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#9813;</span>
       <h3>World &amp; Factions</h3>
       <p>The Vraven Kingdom, the Primordials, criminal syndicates, and the lore of Thalorind.</p>
     </a>
-<a class="nav-card" onclick="navigateTo('gallery')">
+    <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('gallery')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#127912;</span>
       <h3>Gallery</h3>
       <p>Character portraits and artwork from the world of Thalorind.</p>
     </a>
-    <a class="nav-card" onclick="navigateTo('submit')">
+    <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('submit')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#9998;</span>
       <h3>Contribute</h3>
       <p>Know a character's abilities or lore? Write it up and add it to the codex.</p>
@@ -1468,7 +1468,6 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
   <section>
     <h2 class="sec-title">Iris</h2>
-    <p class="sec-desc"></p>
     <div class="char-portrait"><img src="images-web/iris.jpg" alt="Iris" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
@@ -1481,7 +1480,6 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
   <section>
     <h2 class="sec-title">Lyra</h2>
-    <p class="sec-desc"></p>
     <div class="char-portrait"><img src="images-web/lyra.jpg" alt="Lyra" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
@@ -1520,7 +1518,6 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
   <section>
     <h2 class="sec-title">Scar</h2>
-    <p class="sec-desc"></p>
     <div class="char-portrait"><img src="images-web/scar.jpg" alt="Scar" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
@@ -1533,7 +1530,6 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
   <section>
     <h2 class="sec-title">Feng</h2>
-    <p class="sec-desc"></p>
     <div class="char-portrait"><img src="images-web/feng.jpg" alt="Feng" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
@@ -1546,7 +1542,6 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
   <section>
     <h2 class="sec-title">Yoruha</h2>
-    <p class="sec-desc"></p>
     <div class="char-portrait"><img src="images-web/yoruha.jpg" alt="Yoruha" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
@@ -1559,7 +1554,6 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
   <section>
     <h2 class="sec-title">Lilith</h2>
-    <p class="sec-desc"></p>
     <div class="char-portrait"><img src="images-web/lilith.jpg" alt="Lilith" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
@@ -1572,7 +1566,6 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
   <section>
     <h2 class="sec-title">Myrasyn</h2>
-    <p class="sec-desc"></p>
     <div class="char-portrait"><img src="images-web/myrasyn.jpg" alt="Myrasyn" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
@@ -1585,7 +1578,6 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <div class="page-bar"><button class="back-btn" onclick="navigateTo('characters')">&#8592; Other Characters</button></div>
   <section>
     <h2 class="sec-title">Lilyanna</h2>
-    <p class="sec-desc"></p>
     <div class="char-portrait"><img src="images-web/lilyanna.jpg" alt="Lilyanna" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
@@ -1696,8 +1688,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <div class="gallery-item" data-cat="harem"><img src="images-web/jasmine.jpg" alt="Jasmine" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-jasmine')">Jasmine<span>Tyrant of Commerce</span></div></div>
       <div class="gallery-item" data-cat="harem"><img src="images-web/lucille.jpg" alt="Lucille" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-lucille')">Lucille<span>Bloodmonger</span></div></div>
       <div class="gallery-item" data-cat="harem"><img src="images-web/kaelira.jpg" alt="Kaelira" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-kaelira')">Kaelira<span>Runeweaver Titan</span></div></div>
-      <div class="gallery-item" data-cat="harem primordial"><img src="images-web/nyxara.jpg" alt="Nyxara" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-nyxara')">Nyxara<span>Conquered Succubus Primordial</span></div></div>
-      <div class="gallery-item" data-cat="harem"><img src="images-web/rosie.jpg" alt="Rosie" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-rosie')">Rosie Elysiar<span>1st Daughter</span></div></div>
+      <div class="gallery-item" data-cat="other primordial"><img src="images-web/nyxara.jpg" alt="Nyxara" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-nyxara')">Nyxara<span>Conquered Succubus Primordial</span></div></div>
+      <div class="gallery-item" data-cat="other"><img src="images-web/rosie.jpg" alt="Rosie" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-rosie')">Rosie Elysiar<span>1st Daughter</span></div></div>
       <div class="gallery-item" data-cat="other"><img src="images-web/black-fang.jpg" alt="Black Fang" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-blackfang')">Black Fang<span>Hanako Fujimori</span></div></div>
       <div class="gallery-item" data-cat="primordial"><img src="images-web/luminara.jpg" alt="Luminara" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-luminara')">Luminara<span>Elf Primordial</span></div></div>
       <div class="gallery-item" data-cat="primordial"><img src="images-web/mearie.jpg" alt="Mearie" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-mearie')">Mearie<span>Human Primordial</span></div></div>
@@ -1738,7 +1730,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       </div>
       <div id="submitAuthed" style="display:none">
         <div class="submit-user">
-          <img id="submitAvatar" class="submit-avatar" src="" alt="">
+          <img id="submitAvatar" class="submit-avatar" alt="">
           <div>
             <div id="submitUsername" style="font-weight:600;color:var(--text)"></div>
             <div style="font-size:.75rem;color:var(--text-muted)">Logged in via Discord</div>
@@ -1770,8 +1762,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
           </div>
           <button type="submit" class="form-submit" id="submitBtn">&#10148; Submit Entry</button>
         </form>
-        <div class="form-msg" id="submitMsg"></div>
       </div>
+      <div class="form-msg" id="submitMsg"></div>
       <div class="leaderboard">
         <h3>Top Contributors</h3>
         <div id="leaderboard"><div class="lb-empty">Loading...</div></div>
@@ -1878,7 +1870,10 @@ var pageTitles = {
   'girl-luminara': 'Luminara — Elf Primordial | PV Codex',
   'girl-mearie': 'Mearie — Human Primordial | PV Codex',
   'char-hanae': 'Hanae — Fujimori Primordial | PV Codex',
-  'char-kiryssa': 'Kiryssa — Drow Primordial | PV Codex'
+  'char-kiryssa': 'Kiryssa — Drow Primordial | PV Codex',
+  'girl-rosie': 'Rosie Elysiar — 1st Daughter | PV Codex',
+  'girl-nyxara': 'Nyxara — Conquered Succubus Primordial | PV Codex',
+  '404': 'Page Not Found | PV Codex'
 };
 var pageDescs = {
   'home': defaultDesc,
@@ -1889,7 +1884,9 @@ var pageDescs = {
   'primordials': 'The original beings of each race — Human, Dwarf, Elf, Drow, Demon, Titan, Shapeshifter, and Gnome primordials.',
   'organizations': 'Criminal syndicates of Thalorind — the Vesper Consortium, Covenant of Eternity, and the fallen Phantom League.',
   'gallery': 'Character portraits and artwork from the world of Thalorind — Quinlan, the harem, primordials, and more.',
-  'characters': 'Allies, enemies, royals, primordials, and other notable figures from Primordial Villain with a Slave Harem.'
+  'characters': 'Allies, enemies, royals, primordials, and other notable figures from Primordial Villain with a Slave Harem.',
+  'girl-rosie': 'Rosie Elysiar, Quinlan\'s first daughter.',
+  'girl-nyxara': 'Nyxara, the Conquered Succubus Primordial bound to Quinlan.'
 };
 
 var girlList = [
@@ -1924,7 +1921,7 @@ function updateSidebarSub(pageId){
   sub.classList.toggle('visible', html !== '');
 }
 
-window.navigateTo = function(pageId, scrollToId){
+window.navigateTo = function(pageId, scrollToId, skipPush){
   document.body.classList.remove('search-mode');
   var searchInput = document.getElementById('searchInput');
   if(searchInput.value){
@@ -1978,7 +1975,7 @@ window.navigateTo = function(pageId, scrollToId){
   updateSidebarSub(pageId);
   closeSidebar();
 
-  if(pageId === 'quinlan' && !chartsInitialized) initCharts();
+  if(pageId === 'quinlan'){ if(!chartsInitialized) initCharts(); loadChartJs(); }
   if(pageId === 'submit'){ updateSubmitUI(); if(typeof loadLeaderboard === 'function') loadLeaderboard(); }
 
   if(scrollToId){
@@ -1998,26 +1995,13 @@ window.navigateTo = function(pageId, scrollToId){
     });
   }
 
-  history.pushState({ page: pageId }, '', pageId === 'home' ? '#' : '#' + pageId);
+  if(!skipPush) history.pushState({ page: pageId }, '', pageId === 'home' ? '#' : '#' + pageId);
 };
 
 window.addEventListener('popstate', function(){
   var hash = location.hash.replace('#','');
   var target = hash && document.getElementById('page-' + hash) ? hash : 'home';
-  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
-  var el = document.getElementById('page-' + target);
-  if(el) el.classList.add('active');
-  currentPage = target;
-  document.title = pageTitles[target] || defaultTitle;
-  document.querySelectorAll('.sidebar-nav a[data-page]').forEach(function(a){
-    var match = a.dataset.page === target;
-    if(target.indexOf('girl-') === 0) match = a.dataset.page === 'families';
-    if(target.indexOf('char-') === 0) match = a.dataset.page === 'characters';
-    a.classList.toggle('active', match);
-  });
-  updateSidebarSub(target);
-  closeSidebar();
-  window.scrollTo(0, 0);
+  navigateTo(target, null, true);
 });
 
 function handleHash(){
@@ -2078,15 +2062,18 @@ function highlightText(el, query){
   }
 }
 
-searchInput.addEventListener('input', function(){
+var searchTimer = null;
+function doSearch(){
   clearHighlights();
-  var q = this.value.toLowerCase().trim();
+  var q = searchInput.value.toLowerCase().trim();
   if(!q){
     document.body.classList.remove('search-mode');
     searchables.forEach(function(el){ el.classList.remove('search-hidden'); });
     noResults.classList.remove('visible');
+    document.querySelectorAll('.page.content-page').forEach(function(p){ p.style.display = ''; });
     document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
-    document.getElementById('page-' + currentPage).classList.add('active');
+    var cur = document.getElementById('page-' + currentPage);
+    if(cur) cur.classList.add('active');
     return;
   }
   document.body.classList.add('search-mode');
@@ -2106,20 +2093,40 @@ searchInput.addEventListener('input', function(){
     p.style.display = vis.length ? '' : 'none';
   });
   noResults.classList.toggle('visible', found === 0);
+}
+searchInput.addEventListener('input', function(){
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(doSearch, 120);
 });
 
 document.addEventListener('keydown', function(e){
-  if((e.ctrlKey || e.metaKey) && e.key === 'k'){ e.preventDefault(); searchInput.focus(); searchInput.select(); }
-  if(e.key === 'Escape' && document.activeElement === searchInput){
-    searchInput.value = '';
-    searchInput.dispatchEvent(new Event('input'));
-    searchInput.blur();
+  if((e.ctrlKey || e.metaKey) && e.key === 'k'){ e.preventDefault(); searchInput.focus(); searchInput.select(); return; }
+  if(e.key === 'Escape'){
+    var lb = document.getElementById('lightbox');
+    if(lb && lb.classList.contains('open')){ closeLightbox(); return; }
+    if(document.activeElement === searchInput){
+      searchInput.value = '';
+      clearTimeout(searchTimer);
+      doSearch();
+      searchInput.blur();
+    }
+    return;
+  }
+  var lbEl = document.getElementById('lightbox');
+  if(lbEl && lbEl.classList.contains('open')){
+    if(e.key === 'ArrowLeft') lbNav(-1);
+    if(e.key === 'ArrowRight') lbNav(1);
   }
 });
 
 // ── Discord OAuth + Submit form ──
 var WORKER = 'https://pv-codex-proxy.necrobin1.workers.dev';
-var OAUTH_URL = 'https://discord.com/api/oauth2/authorize?client_id=1502223149876645888&redirect_uri=' + encodeURIComponent('https://necrobin.github.io/Primordial-Villain-Community-Codex/') + '&response_type=code&scope=identify%20guilds';
+function generateState(){
+  var arr = new Uint8Array(16);
+  crypto.getRandomValues(arr);
+  return Array.prototype.map.call(arr, function(b){ return ('0' + b.toString(16)).slice(-2); }).join('');
+}
+var OAUTH_BASE = 'https://discord.com/api/oauth2/authorize?client_id=1502223149876645888&redirect_uri=' + encodeURIComponent('https://necrobin.github.io/Primordial-Villain-Community-Codex/') + '&response_type=code&scope=identify%20guilds';
 
 function getDiscordUser(){
   try { return JSON.parse(localStorage.getItem('pv_discord_user')); } catch(e){ return null; }
@@ -2135,22 +2142,39 @@ function updateSubmitUI(){
     loginDiv.style.display = 'none';
     authedDiv.style.display = 'block';
     var av = document.getElementById('submitAvatar');
-    if(user.avatar) av.src = 'https://cdn.discordapp.com/avatars/' + user.id + '/' + user.avatar + '.png?size=80';
-    else av.src = 'https://cdn.discordapp.com/embed/avatars/' + (parseInt(user.id) % 5) + '.png';
-    document.getElementById('submitUsername').textContent = user.global_name || user.username;
+    if(av){
+      if(user.avatar) av.src = 'https://cdn.discordapp.com/avatars/' + encodeURIComponent(user.id) + '/' + encodeURIComponent(user.avatar) + '.png?size=80';
+      else av.src = 'https://cdn.discordapp.com/embed/avatars/' + (Math.abs(parseInt(user.id) || 0) % 5) + '.png';
+    }
+    var un = document.getElementById('submitUsername');
+    if(un) un.textContent = user.global_name || user.username;
   } else {
     loginDiv.style.display = '';
     authedDiv.style.display = 'none';
   }
 }
 
-window.discordLogin = function(){ window.location.href = OAUTH_URL; };
+window.discordLogin = function(){
+  var state = generateState();
+  sessionStorage.setItem('pv_oauth_state', state);
+  window.location.href = OAUTH_BASE + '&state=' + state;
+};
 window.discordLogout = function(){ localStorage.removeItem('pv_discord_user'); updateSubmitUI(); };
 
 (function handleOAuthCallback(){
   var params = new URLSearchParams(window.location.search);
   var code = params.get('code');
   if(!code) return;
+  var returnedState = params.get('state');
+  var savedState = sessionStorage.getItem('pv_oauth_state');
+  sessionStorage.removeItem('pv_oauth_state');
+  if(!returnedState || returnedState !== savedState){
+    history.replaceState(null, '', window.location.pathname + '#submit');
+    navigateTo('submit');
+    var msg = document.getElementById('submitMsg');
+    if(msg){ msg.className = 'form-msg error'; msg.textContent = 'Login failed: invalid session state. Please try again.'; msg.style.display = 'block'; }
+    return;
+  }
   history.replaceState(null, '', window.location.pathname + '#submit');
   fetch(WORKER + '/token', {
     method: 'POST',
@@ -2194,11 +2218,20 @@ updateSubmitUI();
   }).catch(function(){});
 })();
 function applyMembers(data){
-  document.querySelectorAll('.member-count').forEach(function(el){ el.textContent = data.members.toLocaleString() + ' members'; });
+  var members = typeof data.members === 'number' ? data.members : 0;
+  var online = typeof data.online === 'number' ? data.online : 0;
+  document.querySelectorAll('.member-count').forEach(function(el){ el.textContent = members.toLocaleString() + ' members'; });
   var discordSpan = document.querySelector('.link-discord span');
-  if(discordSpan) discordSpan.innerHTML = 'Discuss chapters, theories, and see amazing art of the girls<div class="member-count">' + data.members.toLocaleString() + ' members &bull; ' + data.online.toLocaleString() + ' online</div>';
+  if(discordSpan){
+    discordSpan.textContent = '';
+    discordSpan.appendChild(document.createTextNode('Discuss chapters, theories, and see amazing art of the girls'));
+    var countDiv = document.createElement('div');
+    countDiv.className = 'member-count';
+    countDiv.textContent = members.toLocaleString() + ' members • ' + online.toLocaleString() + ' online';
+    discordSpan.appendChild(countDiv);
+  }
   var sidebarOnline = document.getElementById('sidebarOnline');
-  if(sidebarOnline && data.online){ sidebarOnline.textContent = data.online.toLocaleString() + ' online'; sidebarOnline.style.display = 'inline'; }
+  if(sidebarOnline && online){ sidebarOnline.textContent = online.toLocaleString() + ' online'; sidebarOnline.style.display = 'inline'; }
 }
 
 
@@ -2363,23 +2396,45 @@ window.lbNav = function(dir){
   lbIndex = (lbIndex + dir + lbItems.length) % lbItems.length;
   showLbItem(lbItems[lbIndex]);
 };
+var lbPrevFocus = null;
+window.openLightbox = (function(orig){
+  return function(el){
+    lbPrevFocus = document.activeElement;
+    orig(el);
+  };
+})(window.openLightbox);
 window.closeLightbox = function(){
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
+  if(lbPrevFocus){ try { lbPrevFocus.focus(); } catch(e){} lbPrevFocus = null; }
 };
-document.addEventListener('keydown', function(e){
-  if(e.key === 'Escape') closeLightbox();
-  if(document.getElementById('lightbox').classList.contains('open')){
-    if(e.key === 'ArrowLeft') lbNav(-1);
-    if(e.key === 'ArrowRight') lbNav(1);
-  }
-});
 window.revealQuinlan = function(el){
   el.classList.add('revealed');
 };
 
+// ── Auto-add keyboard accessibility to onclick elements ──
+document.querySelectorAll('.fam-card[onclick],.char-card[onclick],.nav-card:not([tabindex]),.gallery-label[onclick],.sidebar-brand[onclick]').forEach(function(el){
+  if(!el.getAttribute('tabindex')) el.setAttribute('tabindex', '0');
+  if(!el.getAttribute('role')) el.setAttribute('role', 'button');
+  el.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); this.click(); }});
+});
+
+// ── Lazy-load Chart.js ──
+var chartScriptLoaded = false;
+function loadChartJs(){
+  if(chartScriptLoaded) return;
+  chartScriptLoaded = true;
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js';
+  s.integrity = 'sha256-IGtui7APx7uix+6AykHbPp4FunvgqjWr66nP1TV/XQ4=';
+  s.crossOrigin = 'anonymous';
+  s.async = true;
+  s.onload = function(){ if(window._pvChartReady) window._pvChartReady(); };
+  s.onerror = function(){ document.querySelectorAll('.chart-fallback').forEach(function(f){ f.style.display = 'block'; }); };
+  document.body.appendChild(s);
+}
+
 })();
 </script>
-<script async src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" integrity="sha256-IGtui7APx7uix+6AykHbPp4FunvgqjWr66nP1TV/XQ4=" crossorigin="anonymous" onload="if(window._pvChartReady)window._pvChartReady()" onerror="document.querySelectorAll('.chart-fallback').forEach(function(f){f.style.display='block'})"></script>
 </body>
 </html>
