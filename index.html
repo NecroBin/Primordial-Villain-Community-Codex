@@ -138,7 +138,7 @@ body.search-mode .page.search-has-results .sec-title{display:block!important;fon
 .hero-credits .lead-credit{font-size:.88rem;font-weight:700}
 
 /* ── Link Row (Discord / Patreon / Read) ── */
-.link-row{max-width:900px;margin:0 auto;padding:0 48px 48px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.link-row{max-width:900px;margin:0 auto;padding:0 48px 48px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .link-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:24px 16px;border-radius:12px;text-decoration:none;transition:all .3s var(--ease);border:1px solid var(--border);box-shadow:var(--shadow-card)}
 .link-card:hover{transform:translateY(-3px)}
 .link-card strong{font-family:var(--font-h);font-size:.9rem;display:block}
@@ -761,6 +761,11 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
       <strong>Read the Novel</strong>
       <span>Start reading on Webnovel</span>
+    </a>
+    <a class="link-card link-read" tabindex="0" role="link" onclick="navigateTo('trivia')" style="cursor:pointer">
+      <span style="font-size:1.6rem">&#127919;</span>
+      <strong>Trivia Game</strong>
+      <span>Test your PV knowledge!</span>
     </a>
   </div>
 </div>
@@ -2002,7 +2007,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 </div>
 
 <div class="no-results" id="noResults">No matches found.</div>
-<footer class="footer"><p>Compiled by the community of <strong style="color:var(--gold)">Primordial Villain with a Slave Harem</strong></p></footer>
+<footer class="footer"><p>Compiled by the community of <strong style="color:var(--gold)">Primordial Villain with a Slave Harem</strong></p><p style="margin-top:6px">Think you know PV? <a onclick="navigateTo('trivia')" style="cursor:pointer">Try the Trivia Game</a></p></footer>
 </main>
 <div class="lightbox" id="lightbox" onclick="closeLightbox()"><button class="lb-arrow lb-prev" onclick="event.stopPropagation();lbNav(-1)">&#8249;</button><img id="lbImg" src="" alt="" onclick="event.stopPropagation()"><button class="lb-arrow lb-next" onclick="event.stopPropagation();lbNav(1)">&#8250;</button><div class="lb-name" id="lbName"></div></div>
 
@@ -2955,6 +2960,7 @@ function buildTriviaQuestions(mode){
       questions.push({q:orig.q, a:newAnswers, c:newCorrect, d:d});
     }
   });
+  shuffleArray(questions);
   return questions;
 }
 

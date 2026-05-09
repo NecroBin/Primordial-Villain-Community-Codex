@@ -39,6 +39,20 @@ export default {
       return false;
     }
 
+    // --- Helpers ---
+    async function verifyGuildMember(authHeader) {
+      var guildsRes = await fetch('https://discord.com/api/users/@me/guilds', { headers: { Authorization: authHeader } });
+      if (!guildsRes.ok) return false;
+      var guilds = await guildsRes.json();
+      return guilds.some(function(g) { return g.id === GUILD_ID; });
+    }
+
+    function checkBodySize(request, maxBytes) {
+      var len = request.headers.get('Content-Length');
+      if (len && parseInt(len, 10) > maxBytes) return true;
+      return false;
+    }
+
     // --- /interactions (Discord webhook, no CORS needed) ---
     if (path === '/interactions' && request.method === 'POST') {
       const signature = request.headers.get('X-Signature-Ed25519');
@@ -147,6 +161,8 @@ export default {
 
     // --- /token (rate limited: 5 per minute per IP) ---
     if (path === '/token' && request.method === 'POST') {
+      if (checkBodySize(request, 2048))
+        return new Response('{"error":"Request too large"}', { status: 413, headers: CORS });
       const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
       if (await checkRateLimit('token:' + ip, 5, 60)) {
         return new Response('{"error":"Too many requests. Try again in a minute."}', { status: 429, headers: CORS });
@@ -211,6 +227,8 @@ export default {
 
     // --- /submit (rate limited: 10 per hour per IP) ---
     if (path === '/submit' && request.method === 'POST') {
+      if (checkBodySize(request, 10240))
+        return new Response('{"error":"Request too large"}', { status: 413, headers: CORS });
       const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
       if (await checkRateLimit('submit:' + ip, 10, 3600)) {
         return new Response('{"error":"Too many submissions. Try again later."}', { status: 429, headers: CORS });
@@ -225,6 +243,9 @@ export default {
         });
         if (!userRes.ok) return new Response('{"error":"Invalid token"}', { status: 401, headers: CORS });
         const user = await userRes.json();
+
+        if (!await verifyGuildMember(auth))
+          return new Response('{"error":"You must be a member of the Discord server."}', { status: 403, headers: CORS });
 
         const d = await request.json();
         const embed = {
@@ -309,6 +330,8 @@ export default {
 
     // --- /vote (cast a vote, rate limited: 30 per hour per IP) ---
     if (path === '/vote' && request.method === 'POST') {
+      if (checkBodySize(request, 1024))
+        return new Response('{"error":"Request too large"}', { status: 413, headers: CORS });
       var ip = request.headers.get('CF-Connecting-IP') || 'unknown';
       if (await checkRateLimit('vote:' + ip, 30, 3600))
         return new Response('{"error":"Too many requests. Try again later."}', { status: 429, headers: CORS });
@@ -321,6 +344,9 @@ export default {
         });
         if (!userRes.ok) return new Response('{"error":"Invalid token"}', { status: 401, headers: CORS });
         var user = await userRes.json();
+
+        if (!await verifyGuildMember(auth))
+          return new Response('{"error":"You must be a member of the Discord server."}', { status: 403, headers: CORS });
 
         var voteBody = await request.json();
         var pollId = voteBody.pollId;
@@ -363,6 +389,8 @@ export default {
 
     // --- /trivia/submit (rate limited: 20 per hour per IP) ---
     if (path === '/trivia/submit' && request.method === 'POST') {
+      if (checkBodySize(request, 1024))
+        return new Response('{"error":"Request too large"}', { status: 413, headers: CORS });
       var ip = request.headers.get('CF-Connecting-IP') || 'unknown';
       if (await checkRateLimit('trivia:' + ip, 20, 3600))
         return new Response('{"error":"Too many requests."}', { status: 429, headers: CORS });
@@ -375,6 +403,9 @@ export default {
         });
         if (!userRes.ok) return new Response('{"error":"Invalid token"}', { status: 401, headers: CORS });
         var user = await userRes.json();
+
+        if (!await verifyGuildMember(auth))
+          return new Response('{"error":"You must be a member of the Discord server."}', { status: 403, headers: CORS });
 
         var body = await request.json();
         var mode = body.mode;
