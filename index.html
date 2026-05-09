@@ -1970,7 +1970,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div id="triviaMenu">
       <div class="trivia-modes" id="triviaModes"></div>
       <div id="triviaLeaderboardMenu" style="display:none;margin-top:32px">
-        <h3 style="font-family:var(--font-h);font-size:1rem;color:var(--gold);text-align:center;margin-bottom:16px">Leaderboards <a onclick="loadTriviaLeaderboard('triviaLbMenu','challenge')" style="font-size:.65rem;color:var(--text-muted);cursor:pointer;font-weight:400">&#8635; refresh</a></h3>
+        <h3 style="font-family:var(--font-h);font-size:1rem;color:var(--gold);text-align:center;margin-bottom:16px">Leaderboards <a onclick="this.style.opacity='.3';var s=this;refreshTriviaLb('triviaLbMenu','challenge');setTimeout(function(){s.style.opacity=''},400)" style="font-size:.65rem;color:var(--text-muted);cursor:pointer;font-weight:400">&#8635; refresh</a></h3>
         <div id="triviaLbMenu" class="trivia-boards"></div>
       </div>
     </div>
@@ -2947,18 +2947,19 @@ function buildTriviaQuestions(mode){
 
 window.initTriviaPage = initTriviaPage;
 window.startTrivia = startTrivia;
+window.refreshTriviaLb = function(id, mode){ var el=document.getElementById(id); if(el){el.style.opacity='.3';setTimeout(function(){el.style.opacity='1';},600);} loadTriviaLeaderboard(id, mode); };
 window.answerTrivia = answerTrivia;
 function initTriviaPage(){
   var container = document.getElementById('triviaModes');
   if(!container) return;
   var mode = triviaModes.challenge;
   container.innerHTML = '<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;max-width:680px;margin:0 auto">' +
-    '<div class="trivia-mode-card" id="triviaStartCard" style="flex:1;min-width:260px;max-width:320px">' +
+    '<div class="trivia-mode-card" id="triviaStartCard" style="flex:1;min-width:200px;max-width:320px">' +
       '<div class="trivia-mode-icon">' + mode.icon + '</div>' +
       '<div class="trivia-mode-name">' + mode.name + '</div>' +
       '<div class="trivia-mode-desc">' + mode.desc + '<br>10 easy, 8 medium, 7 hard</div>' +
     '</div>' +
-    '<div class="trivia-mode-card" id="triviaCtaCard" style="flex:1;min-width:260px;max-width:320px;border-style:dashed">' +
+    '<div class="trivia-mode-card" id="triviaCtaCard" style="flex:1;min-width:200px;max-width:320px;border-style:dashed">' +
       '<div class="trivia-mode-icon">&#9998;</div>' +
       '<div class="trivia-mode-name">Submit Questions</div>' +
       '<div class="trivia-mode-desc">The game is in its early stages and needs a lot more questions. Help take it to the next level!</div>' +
@@ -3084,7 +3085,7 @@ function showTriviaResults(){
     '</div>' +
     '<div style="margin-top:28px"><h3 style="font-family:var(--font-h);font-size:.9rem;color:var(--text);text-align:center;margin-bottom:8px">Your Rankings</h3>' +
     '<div class="trivia-your-ranks" id="triviaRankBadges"><div class="board-empty">Submitting score...</div></div></div>' +
-    '<div style="margin-top:24px"><h3 style="font-family:var(--font-h);font-size:.95rem;color:var(--gold);text-align:center;margin-bottom:8px">Leaderboards <a onclick="loadTriviaLeaderboard(\'triviaLbResultsInner\',\'' + s.mode + '\')" style="font-size:.6rem;color:var(--text-muted);cursor:pointer;font-weight:400">&#8635; refresh</a></h3>' +
+    '<div style="margin-top:24px"><h3 style="font-family:var(--font-h);font-size:.95rem;color:var(--gold);text-align:center;margin-bottom:8px">Leaderboards <a onclick="refreshTriviaLb(\'triviaLbResultsInner\',\'' + s.mode + '\')" style="font-size:.6rem;color:var(--text-muted);cursor:pointer;font-weight:400">&#8635; refresh</a></h3>' +
     '<div id="triviaLbResultsInner" class="trivia-boards"></div></div>' +
     '<div class="trivia-review"><h3>Question Review</h3>';
   s.questions.forEach(function(q, i){
