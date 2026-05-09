@@ -148,7 +148,7 @@ export default {
         const entries = [];
         for (const key of list.keys) {
           const val = await env.SUBS.get(key.name, { type: 'json' });
-          if (val && val.count > 0) entries.push({ username: val.username, global_name: val.global_name, avatar: val.avatar, count: val.count });
+          if (val && val.count > 0) entries.push({ id: val.id, username: val.username, global_name: val.global_name, avatar: val.avatar, count: val.count });
         }
         entries.sort(function(a, b) { return b.count - a.count; });
         var body = JSON.stringify(entries.slice(0, 10));
@@ -428,7 +428,7 @@ export default {
         existing.avatar = user.avatar;
         existing.games = (existing.games || 0) + 1;
         existing.totalCorrect = (existing.totalCorrect || 0) + correct;
-        if (pct === 100) {
+        if (correct >= total - 1) {
           existing.streak = (existing.streak || 0) + 1;
         } else {
           existing.streak = 0;
@@ -492,7 +492,7 @@ export default {
           var val = await env.SUBS.get(k.name, { type: 'json' });
           if (val) entries.push(val);
         }
-        function stripId(e){ return { username:e.username, global_name:e.global_name, avatar:e.avatar, pct:e.pct, bestTime:e.bestTime, games:e.games, streak:e.streak, totalCorrect:e.totalCorrect }; }
+        function stripId(e){ return { id:e.id, username:e.username, global_name:e.global_name, avatar:e.avatar, pct:e.pct, bestTime:e.bestTime, games:e.games, streak:e.streak, totalCorrect:e.totalCorrect }; }
         var speed = entries.filter(function(e){ return e.pct === 100 && e.bestTime > 0; })
           .sort(function(a,b){ return a.bestTime - b.bestTime; }).slice(0,10).map(stripId);
         var streak = entries.filter(function(e){ return (e.streak||0) > 0; })
