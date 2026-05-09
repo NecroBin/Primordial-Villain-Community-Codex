@@ -83,11 +83,15 @@ export default {
         if (action === 'approve') {
           try {
             const key = 'sub:' + userId;
-            const existing = await env.SUBS.get(key, { type: 'json' });
-            if (existing) {
-              existing.count = (existing.count || 0) + 1;
-              await env.SUBS.put(key, JSON.stringify(existing));
+            var existing = await env.SUBS.get(key, { type: 'json' });
+            if (!existing) {
+              var submitter = embed.fields.find(function(f){ return f.name === 'Submitted by'; });
+              var username = submitter ? submitter.value.split(' (')[0] : 'Unknown';
+              existing = { id: userId, username: username, global_name: username, avatar: null, count: 0 };
             }
+            existing.count = (existing.count || 0) + 1;
+            await env.SUBS.put(key, JSON.stringify(existing));
+            ctx.waitUntil(edgeCache.delete(cacheBase + '/__c/contrib-lb'));
           } catch (e) {}
 
           embed.color = 0x2ecc71;
