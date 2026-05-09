@@ -3070,14 +3070,8 @@ function showTriviaResults(){
     var gotIt = pick === q.c;
     html += '<div class="trivia-review-item ' + (gotIt ? 'review-correct' : 'review-wrong') + '">' +
       '<div class="trivia-review-q"><span class="review-num">' + (i+1) + '.</span>' + escHtml(q.q) + '</div>' +
-      '<div class="trivia-review-answers">';
-    q.a.forEach(function(ans, j){
-      var cls = 'trivia-review-a';
-      if(j === q.c) cls += ' was-correct';
-      if(j === pick) cls += ' picked' + (j !== q.c ? ' was-wrong' : '');
-      html += '<div class="' + cls + '">' + escHtml(ans) + '</div>';
-    });
-    html += '</div></div>';
+      '<div style="font-size:.78rem;color:' + (gotIt ? '#2ecc71' : '#e74c3c') + '">' + (gotIt ? 'Correct' : 'Wrong') + '</div>' +
+    '</div>';
   });
   html += '</div></div>';
   area.innerHTML = html;
