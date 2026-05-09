@@ -2971,7 +2971,10 @@ function initTriviaPage(){
   var container = document.getElementById('triviaModes');
   if(!container) return;
   var mode = triviaModes.challenge;
-  container.innerHTML = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:560px;margin:0 auto">' +
+  container.style.gridTemplateColumns = '1fr 1fr';
+  container.style.maxWidth = '560px';
+  container.style.margin = '24px auto';
+  container.innerHTML =
     '<div class="trivia-mode-card" id="triviaStartCard" style="display:flex;flex-direction:column;justify-content:center">' +
       '<div class="trivia-mode-icon">' + mode.icon + '</div>' +
       '<div class="trivia-mode-name">' + mode.name + '</div>' +
@@ -2981,8 +2984,7 @@ function initTriviaPage(){
       '<div class="trivia-mode-icon">&#9998;</div>' +
       '<div class="trivia-mode-name">Submit Questions</div>' +
       '<div class="trivia-mode-desc">Help grow the trivia — submit your own questions!</div>' +
-    '</div>' +
-  '</div>';
+    '</div>';
   document.getElementById('triviaStartCard').onclick = function(){ startTrivia('challenge'); };
   document.getElementById('triviaCtaCard').onclick = function(){ goContribute('Trivia'); };
   document.getElementById('triviaMenu').style.display = '';
