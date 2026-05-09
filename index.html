@@ -2878,11 +2878,23 @@ function initTriviaPage(){
   document.getElementById('triviaResultsArea').style.display = 'none';
   loadTriviaLeaderboard('triviaLbMenu', 'sprint');
   document.getElementById('triviaLeaderboardMenu').style.display = '';
+  var pendingMode = sessionStorage.getItem('pv_trivia_mode');
+  if(pendingMode){
+    sessionStorage.removeItem('pv_trivia_mode');
+    var user = getDiscordUser();
+    if(user && user.access_token && triviaModes[pendingMode] && canPlayMode(triviaModes[pendingMode])){
+      startTrivia(pendingMode);
+    }
+  }
 }
 
 function startTrivia(modeKey){
   var user = getDiscordUser();
-  if(!user || !user.access_token){ discordLogin(); return; }
+  if(!user || !user.access_token){
+    sessionStorage.setItem('pv_trivia_mode', modeKey);
+    discordLogin();
+    return;
+  }
   var mode = triviaModes[modeKey];
   var questions = buildTriviaQuestions(mode);
   triviaState = {mode:modeKey, questions:questions, current:0, correct:0, answered:false, picks:[]};
