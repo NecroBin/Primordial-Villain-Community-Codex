@@ -102,10 +102,11 @@ a:hover{color:#a78bfa}
 .page{display:none}
 .page.active{display:block;animation:pageIn .25s ease}
 @keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-body.search-mode .page.content-page{display:block!important;animation:none}
-body.search-mode #page-home{display:none!important}
-body.search-mode .page.content-page .page-bar,body.search-mode .page.content-page .sec-desc,body.search-mode .page.content-page .sec-divider,body.search-mode .page.content-page .chart-wrap,body.search-mode .page.content-page .char-portrait,body.search-mode .page.content-page .sticky-toc,body.search-mode .page.content-page .entry-cta,body.search-mode .page.content-page .vs-section-title,body.search-mode .page.content-page .char-grid,body.search-mode .page.content-page .gallery-grid,body.search-mode .page.content-page .gallery-filter,body.search-mode .page.content-page .submit-section,body.search-mode .page.content-page .leaderboard,body.search-mode .page.content-page .poll-widget,body.search-mode .page.content-page .polls-list{display:none!important}
-body.search-mode .page.content-page .sec-title{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;padding-top:12px;border-top:1px solid var(--border)}
+body.search-mode .page{display:none!important}
+body.search-mode .page.search-has-results{display:block!important;animation:none}
+body.search-mode .page.search-has-results section>*{display:none!important}
+body.search-mode .page.search-has-results .searchable:not(.search-hidden){display:block!important}
+body.search-mode .page.search-has-results .sec-title{display:block!important;font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;padding-top:12px;border-top:1px solid var(--border)}
 
 /* ── Page Bar ── */
 .page-bar{display:flex;align-items:center;gap:12px;padding:24px 48px 0;max-width:1000px}
@@ -1977,6 +1978,7 @@ function updateSidebarSub(pageId){
 
 window.navigateTo = function(pageId, scrollToId, skipPush){
   document.body.classList.remove('search-mode');
+  document.querySelectorAll('.search-has-results').forEach(function(p){ p.classList.remove('search-has-results'); });
   var searchInput = document.getElementById('searchInput');
   if(searchInput.value){
     searchInput.value = '';
@@ -2125,9 +2127,8 @@ function doSearch(){
   if(!q){
     document.body.classList.remove('search-mode');
     searchables.forEach(function(el){ el.classList.remove('search-hidden'); });
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('search-has-results','active'); });
     noResults.classList.remove('visible');
-    document.querySelectorAll('.page.content-page').forEach(function(p){ p.style.display = ''; });
-    document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
     var cur = document.getElementById('page-' + currentPage);
     if(cur) cur.classList.add('active');
     return;
@@ -2146,7 +2147,8 @@ function doSearch(){
   });
   document.querySelectorAll('.page.content-page').forEach(function(p){
     var vis = p.querySelectorAll('.searchable:not(.search-hidden)');
-    p.style.display = vis.length ? '' : 'none';
+    if(vis.length) p.classList.add('search-has-results');
+    else p.classList.remove('search-has-results');
   });
   noResults.classList.toggle('visible', found === 0);
 }
