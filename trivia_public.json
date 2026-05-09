@@ -1,0 +1,538 @@
+[
+  {
+    "id": 1,
+    "difficulty": "easy",
+    "category": "character",
+    "question": "What weapon does Ayame wield?",
+    "correct": "A katana",
+    "wrong": ["A longsword", "A naginata", "Dual daggers"]
+  },
+  {
+    "id": 2,
+    "difficulty": "easy",
+    "category": "character",
+    "question": "What is Kitsara's infamous nickname?",
+    "correct": "Slutty Foxy",
+    "wrong": ["Naughty Vixen", "Foxy Princess", "The Crimson Tease"]
+  },
+  {
+    "id": 3,
+    "difficulty": "easy",
+    "category": "character",
+    "question": "What does Vex call Quinlan?",
+    "correct": "Hubby",
+    "wrong": ["Daddy", "My king", "My lord"]
+  },
+  {
+    "id": 4,
+    "difficulty": "easy",
+    "category": "character",
+    "question": "What race is Blossom?",
+    "correct": "Dogkin",
+    "wrong": ["Foxkin", "Wolfkin", "Catkin"]
+  },
+  {
+    "id": 5,
+    "difficulty": "easy",
+    "category": "character",
+    "question": "What is Blossom's most treasured possession?",
+    "correct": "Her slave collar",
+    "wrong": ["Her claw gauntlets", "A locket from Quinlan", "A ring from her mother"]
+  },
+  {
+    "id": 6,
+    "difficulty": "easy",
+    "category": "factions",
+    "question": "What is Jasmine's role in Quinlan's territories?",
+    "correct": "Governor",
+    "wrong": ["Finance Minister", "Treasurer", "Spymaster"]
+  },
+  {
+    "id": 7,
+    "difficulty": "easy",
+    "category": "character",
+    "question": "Which girl is Quinlan's second-in-command?",
+    "correct": "Ayame",
+    "wrong": ["Jasmine", "Aurora", "Vex"]
+  },
+  {
+    "id": 8,
+    "difficulty": "easy",
+    "category": "classes",
+    "question": "What class evolved from Jasmine's Merchant class?",
+    "correct": "Tyrant of Commerce",
+    "wrong": ["Gilded Empress", "Merchant Sovereign", "Queen of Coin"]
+  },
+  {
+    "id": 9,
+    "difficulty": "easy",
+    "category": "character",
+    "question": "What phrase sends Blossom into a full panic?",
+    "correct": "Being called \"bad girl\"",
+    "wrong": ["Being told to sit", "Hearing the word \"bath\"", "Someone threatening her collar"]
+  },
+  {
+    "id": 10,
+    "difficulty": "easy",
+    "category": "combat",
+    "question": "What weapon does Lucille fight with?",
+    "correct": "A big axe",
+    "wrong": ["A warhammer", "Dual swords", "A greatsword"]
+  },
+  {
+    "id": 11,
+    "difficulty": "easy",
+    "category": "character",
+    "question": "Who is the only mother in Quinlan's harem?",
+    "correct": "Lucille",
+    "wrong": ["Aurora", "Jasmine", "Serika"]
+  },
+  {
+    "id": 12,
+    "difficulty": "easy",
+    "category": "combat",
+    "question": "How does Serika fight?",
+    "correct": "Close-range brawler with her fists",
+    "wrong": ["Dual-wielding swords", "Fire magic at range", "With a polearm"]
+  },
+  {
+    "id": 13,
+    "difficulty": "easy",
+    "category": "combat",
+    "question": "What is Quinlan's weapon called?",
+    "correct": "Soul Reaper",
+    "wrong": ["Deathbringer", "Soulcleaver", "Grim Edge"]
+  },
+  {
+    "id": 14,
+    "difficulty": "easy",
+    "category": "combat",
+    "question": "What is Aurora's role in combat?",
+    "correct": "Backline support — shields and buffs",
+    "wrong": ["AoE damage dealer", "Frontline tank", "Debuff specialist"]
+  },
+  {
+    "id": 15,
+    "difficulty": "easy",
+    "category": "worldbuilding",
+    "question": "How are Quinlan's telepathic messages formatted?",
+    "correct": "Angle brackets <Like this>",
+    "wrong": ["Italics", "Square brackets [Like this]", "ALL CAPS"]
+  },
+  {
+    "id": 16,
+    "difficulty": "easy",
+    "category": "relationships",
+    "question": "What is Felicity's relationship with Quinlan?",
+    "correct": "Platonic — she's a friend, not a love interest",
+    "wrong": ["His youngest lover", "Engaged to be married", "She has an unrequited crush"]
+  },
+  {
+    "id": 17,
+    "difficulty": "easy",
+    "category": "plot",
+    "question": "Who sold Ayame into slavery?",
+    "correct": "Her sister",
+    "wrong": ["Her father", "A rival clan lord", "Slavers who raided her home"]
+  },
+  {
+    "id": 18,
+    "difficulty": "easy",
+    "category": "character",
+    "question": "What is Quinlan's daughter's name?",
+    "correct": "Rosie",
+    "wrong": ["Mavena", "Lily", "Felicity"]
+  },
+  {
+    "id": 19,
+    "difficulty": "easy",
+    "category": "classes",
+    "question": "What is Blossom's class?",
+    "correct": "Void Stalker",
+    "wrong": ["Shadow Fang", "Phantom Canine", "Nightwalker"]
+  },
+  {
+    "id": 20,
+    "difficulty": "easy",
+    "category": "character",
+    "question": "What does Kitsara like to call Quinlan — much to his annoyance?",
+    "correct": "Quinnie",
+    "wrong": ["Q-baby", "Quin-Quin", "Quinnypoo"]
+  },
+  {
+    "id": 21,
+    "difficulty": "easy",
+    "category": "worldbuilding",
+    "question": "What does [Blessed Seed] do for Quinlan's lovers?",
+    "correct": "Triples their XP from kills and makes them unaging",
+    "wrong": ["Doubles their base stats permanently", "Gives them copies of his abilities", "Links their health pools to his"]
+  },
+  {
+    "id": 22,
+    "difficulty": "easy",
+    "category": "relationships",
+    "question": "Who is Quinlan's adoptive primordial mother?",
+    "correct": "Mearie",
+    "wrong": ["Thyra", "Kiryssa", "Hanae"]
+  },
+  {
+    "id": 23,
+    "difficulty": "easy",
+    "category": "factions",
+    "question": "What division does Black Fang run in the Vesper Consortium?",
+    "correct": "Narcotics",
+    "wrong": ["Intelligence", "Assassination", "Finance"]
+  },
+  {
+    "id": 24,
+    "difficulty": "easy",
+    "category": "plot",
+    "question": "Who was the first girl Quinlan ever purchased?",
+    "correct": "Ayame",
+    "wrong": ["Blossom", "Jasmine", "Seraphiel"]
+  },
+  {
+    "id": 25,
+    "difficulty": "easy",
+    "category": "plot",
+    "question": "What happened when Quinlan drank a drop from the Mother's Weeping Requiem?",
+    "correct": "Radiant light blazed from him",
+    "wrong": ["He gained a new class", "He was teleported to the primordial realm", "The shrine maidens gave him their virginity"]
+  },
+  {
+    "id": 26,
+    "difficulty": "medium",
+    "category": "worldbuilding",
+    "question": "What is the level cap on the continent of Iskaris?",
+    "correct": "74",
+    "wrong": ["75", "70", "80"]
+  },
+  {
+    "id": 27,
+    "difficulty": "medium",
+    "category": "character",
+    "question": "How many fox tails does Kitsara currently have (before chapter 1600)?",
+    "correct": "3",
+    "wrong": ["1", "5", "9"]
+  },
+  {
+    "id": 28,
+    "difficulty": "medium",
+    "category": "relationships",
+    "question": "Who is Ayame's half-sister?",
+    "correct": "Black Fang",
+    "wrong": ["Iris", "Vex", "Kaede"]
+  },
+  {
+    "id": 29,
+    "difficulty": "medium",
+    "category": "character",
+    "question": "Which primordial trained Blossom?",
+    "correct": "Kiryssa",
+    "wrong": ["Thyra", "Luminara", "Nyxara"]
+  },
+  {
+    "id": 30,
+    "difficulty": "medium",
+    "category": "adult",
+    "question": "What body part gives Seraphiel intense orgasms when Quinlan touches it?",
+    "correct": "Her feet",
+    "wrong": ["Her ears", "Her neck", "The small of her back"]
+  },
+  {
+    "id": 31,
+    "difficulty": "medium",
+    "category": "adult",
+    "question": "What is Lucille's signature bedroom specialty?",
+    "correct": "Fellatio — she's the throat specialist",
+    "wrong": ["Roleplay and costumes", "Being the most dominant", "Dirty talk that makes everyone blush"]
+  },
+  {
+    "id": 32,
+    "difficulty": "medium",
+    "category": "adult",
+    "question": "What was Seraphiel's situation before Quinlan bought her?",
+    "correct": "She was a zero-rights slave",
+    "wrong": ["She was a temple priestess who lost her faith", "She was a gladiator in an underground arena", "She was a noble stripped of her title"]
+  },
+  {
+    "id": 33,
+    "difficulty": "medium",
+    "category": "adult",
+    "question": "Which of Quinlan's lovers has NOT slept with him yet (before chapter 1600)?",
+    "correct": "Kaelira",
+    "wrong": ["Seraphiel", "Orianna", "Jasmine"]
+  },
+  {
+    "id": 34,
+    "difficulty": "medium",
+    "category": "classes",
+    "question": "What is Iris's evolved class called?",
+    "correct": "Child of Reckoning",
+    "wrong": ["Child of Wrath", "Child of Vengeance", "Child of Agony"]
+  },
+  {
+    "id": 35,
+    "difficulty": "medium",
+    "category": "adult",
+    "question": "What bedroom weakness do the girls joke about regarding Ayame?",
+    "correct": "She's a masochist",
+    "wrong": ["She yaps too much during sex", "She falls asleep immediately after creampie", "She gets too competitive and turns sex into a contest"]
+  },
+  {
+    "id": 36,
+    "difficulty": "medium",
+    "category": "worldbuilding",
+    "question": "What was the name of the corrupted God of Elements that Quinlan defeated?",
+    "correct": "Venthros",
+    "wrong": ["Thael'Zir", "Virellex", "Xar'Zal"]
+  },
+  {
+    "id": 37,
+    "difficulty": "medium",
+    "category": "worldbuilding",
+    "question": "Who was Sel'Ashra, The Withered Flame, before she became corrupted?",
+    "correct": "Flame Mother N'shara",
+    "wrong": ["Goddess of Dawn", "The Primordial Ember", "Firekeeper of the Pantheon"]
+  },
+  {
+    "id": 38,
+    "difficulty": "medium",
+    "category": "adult",
+    "question": "What running gag did Aurora have with Quinlan in the early parts of the story?",
+    "correct": "A daddy complex — acting like daddy's little girl",
+    "wrong": ["A rivalry over who's smarter", "Calling him Professor", "Pretending not to know him in public"]
+  },
+  {
+    "id": 39,
+    "difficulty": "medium",
+    "category": "character",
+    "question": "What nation did Serika rule in Zhenwu?",
+    "correct": "The Fire Nation",
+    "wrong": ["The Lightning Empire", "The Solar Kingdom", "The Wind Nation"]
+  },
+  {
+    "id": 40,
+    "difficulty": "medium",
+    "category": "character",
+    "question": "Who is Kitsara's adoptive father?",
+    "correct": "Vargis",
+    "wrong": ["Malakar", "Silver", "Björn"]
+  },
+  {
+    "id": 41,
+    "difficulty": "medium",
+    "category": "adult",
+    "question": "What were Vex and Quinlan doing while the city of Lionheart burned around them?",
+    "correct": "Making out passionately",
+    "wrong": ["Performing a blood ritual", "Torturing the lionkin warlord", "Looting the treasury"]
+  },
+  {
+    "id": 42,
+    "difficulty": "medium",
+    "category": "character",
+    "question": "What is the name of Lucille's daughter?",
+    "correct": "Mavena",
+    "wrong": ["Rosie", "Lily", "Aurelia"]
+  },
+  {
+    "id": 43,
+    "difficulty": "medium",
+    "category": "character",
+    "question": "Which Scarlet Lilies member literally sleeps way too much?",
+    "correct": "Void",
+    "wrong": ["Jallen", "Bronnya", "Lilith"]
+  },
+  {
+    "id": 44,
+    "difficulty": "medium",
+    "category": "character",
+    "question": "What is Karl the primordial shapeshifter known for?",
+    "correct": "Wearing suits and being repulsed by women",
+    "wrong": ["Transforming into dragons and collecting gold", "Impersonating queens to charm their husbands", "Being the oldest living primordial"]
+  },
+  {
+    "id": 45,
+    "difficulty": "medium",
+    "category": "character",
+    "question": "Who was psychologically broken after Rosie forced her to play house for days?",
+    "correct": "Yoruha",
+    "wrong": ["Blossom", "Sylvaris", "One of her five elven handmaidens"]
+  },
+  {
+    "id": 46,
+    "difficulty": "medium",
+    "category": "plot",
+    "question": "What was the theme of Quinlan's third Primordial Rank-Up Mission (level 40)?",
+    "correct": "Martial Arts — he was judged too reliant on magic",
+    "wrong": ["Necromancy — he had to master Soul Reaper", "Diplomacy — he had to negotiate peace", "Survival — he was dropped in a dungeon alone"]
+  },
+  {
+    "id": 47,
+    "difficulty": "medium",
+    "category": "plot",
+    "question": "Where was Quinlan sent for his third Primordial Rank-Up Mission (level 40)?",
+    "correct": "The World of Zhenwu",
+    "wrong": ["The World of Drakwyn", "A simulation", "Back to Thalorind"]
+  },
+  {
+    "id": 48,
+    "difficulty": "medium",
+    "category": "plot",
+    "question": "What did Quinlan have to master during his second Primordial Rank-Up Mission (level 30)?",
+    "correct": "The four elements",
+    "wrong": ["Martial arts", "Soul harvesting", "Sword arts"]
+  },
+  {
+    "id": 49,
+    "difficulty": "hard",
+    "category": "character",
+    "question": "What was Nyxara famously called upon her introduction?",
+    "correct": "Thalorind's biggest slut and most successful homewrecker",
+    "wrong": ["The most beautiful woman in the primordial realm", "The Demon of Desire made flesh", "The primordial who bedded every race"]
+  },
+  {
+    "id": 50,
+    "difficulty": "hard",
+    "category": "worldbuilding",
+    "question": "Who forged the Soul Reaper?",
+    "correct": "Björn",
+    "wrong": ["Malakar", "Quinlan", "Unknown"]
+  },
+  {
+    "id": 51,
+    "difficulty": "hard",
+    "category": "adult",
+    "question": "What memorable quote comes from the Blackthorn patriarch?",
+    "correct": "\"I knew fucking my sister was a horrible idea.\"",
+    "wrong": ["\"Every Blackthorn dies standing.\"", "\"Blood is thicker than honor.\"", "\"You think chains hold power? Power holds chains.\""]
+  },
+  {
+    "id": 52,
+    "difficulty": "hard",
+    "category": "worldbuilding",
+    "question": "Which primordial shapeshifter died by jumping into a volcano?",
+    "correct": "Lysaria",
+    "wrong": ["Hyrmara", "Syrion", "Thindlebrim"]
+  },
+  {
+    "id": 53,
+    "difficulty": "hard",
+    "category": "worldbuilding",
+    "question": "Who is the Supreme God of Corruption itself?",
+    "correct": "Xar'Zal, The Unmaking",
+    "wrong": ["Venthros, The Corrupted Element", "Sel'Ashra, The Withered Flame", "Thael'Zir, The Whispering Rot"]
+  },
+  {
+    "id": 54,
+    "difficulty": "hard",
+    "category": "plot",
+    "question": "What were the names of the three Blackthorn men Quinlan sentenced to crucifixion?",
+    "correct": "Tristan, Triston, and Tristun",
+    "wrong": ["They were never named", "Marcus, Darius, and Theron", "Thorn, Bramble, and Nettle"]
+  },
+  {
+    "id": 55,
+    "difficulty": "hard",
+    "category": "worldbuilding",
+    "question": "How long had Gorthrax the Eternal gone without speaking before breaking his silence?",
+    "correct": "Three centuries",
+    "wrong": ["One millennium", "Fifty years", "Seven centuries"]
+  },
+  {
+    "id": 56,
+    "difficulty": "hard",
+    "category": "adult",
+    "question": "How long did Quinlan's 'correction session' with Seraphiel last?",
+    "correct": "7 hours",
+    "wrong": ["3 hours", "12 hours", "2 full days"]
+  },
+  {
+    "id": 57,
+    "difficulty": "hard",
+    "category": "plot",
+    "question": "What was Quinlan's first Primordial Rank-Up Mission (level 20) officially called?",
+    "correct": "Gauntlet of Suffering",
+    "wrong": ["Trial of Endurance", "Crucible of Pain", "Baptism of Agony"]
+  },
+  {
+    "id": 58,
+    "difficulty": "hard",
+    "category": "plot",
+    "question": "What was the task Quinlan had to complete during his first Primordial Rank-Up Mission (level 20)?",
+    "correct": "Remain Sane",
+    "wrong": ["Kill 1000 monsters", "Conquer a dungeon solo", "Survive for 30 days"]
+  },
+  {
+    "id": 59,
+    "difficulty": "hard",
+    "category": "character",
+    "question": "What did Blossom say Duchess Maerina Ravenshade's race had been changed to?",
+    "correct": "Cosmetics",
+    "wrong": ["Perfume", "Porcelain", "Enchantments"]
+  },
+  {
+    "id": 60,
+    "difficulty": "hard",
+    "category": "adult",
+    "question": "What is Rule 4 of 'How to be Quinlan's Proper Woman' — according to Seraphiel?",
+    "correct": "Never waste his seed",
+    "wrong": ["Always swallow your pride", "Never refuse sex", "Always part your legs for him"]
+  },
+  {
+    "id": 61,
+    "difficulty": "hard",
+    "category": "plot",
+    "question": "How much gold did Quinlan pay for Seraphiel?",
+    "correct": "53 gold",
+    "wrong": ["50 gold", "65 gold", "40 gold"]
+  },
+  {
+    "id": 62,
+    "difficulty": "hard",
+    "category": "worldbuilding",
+    "question": "What is the full name of Broderick's adventurer team?",
+    "correct": "Broderick's Busty Belles & Queens",
+    "wrong": ["Broderick's Battle Band", "Broderick's Mighty Queens", "Broderick's Busty Babes"]
+  },
+{
+    "id": 64,
+    "difficulty": "hard",
+    "category": "adult",
+    "question": "Why does Dragnar hate Karl?",
+    "correct": "Karl disguised himself as Dragnar's wife and slept with him",
+    "wrong": ["Karl invaded his territory", "Karl killed his family members", "Karl ate his pet"]
+  },
+  {
+    "id": 65,
+    "difficulty": "hard",
+    "category": "character",
+    "question": "What is the secret relationship between Fire Sovereign Serika and Water Sovereign Nalai?",
+    "correct": "They're twin sisters",
+    "wrong": ["Childhood rivals", "Former lovers", "Mentor and student"]
+  },
+  {
+    "id": 66,
+    "difficulty": "hard",
+    "category": "plot",
+    "question": "What is the name of the ritual that bound Vex to Quinlan?",
+    "correct": "The Ebon Vow",
+    "wrong": ["The Shadow Pact", "The Hex Bond", "The Dark Binding"]
+  },
+  {
+    "id": 67,
+    "difficulty": "hard",
+    "category": "character",
+    "question": "Why did the foxkin refuse to take Kitsara back when Vargis tried to return her?",
+    "correct": "She was tainted by the stench of hounds",
+    "wrong": ["She was considered an ill omen", "They didn't recognize her", "She had dogkin tendencies"]
+  },
+  {
+    "id": 68,
+    "difficulty": "hard",
+    "category": "character",
+    "question": "What was Malakar doing when Quinlan first met him in the Primordial Dimension?",
+    "correct": "Fishing",
+    "wrong": ["Meditating", "Sleeping under a tree", "Fighting Nyxara"]
+  }
+]

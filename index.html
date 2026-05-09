@@ -3176,8 +3176,8 @@ function loadTriviaLeaderboard(containerId, mode){
       return h + '</div>';
     }
     el.innerHTML =
-      board('⚡','Speedrun','Fastest perfect run', data.speed, function(e){ return formatTime(e.bestTime); }) +
-      board('🔥','Streak','Consecutive 100% runs', data.streak, function(e){ return '×' + (e.streak||0); }) +
+      board('⚡','Speedrun','Fastest run (1 miss allowed)', data.speed, function(e){ return formatTime(e.bestTime); }) +
+      board('🔥','Streak','Consecutive runs (1 miss allowed)', data.streak, function(e){ return '×' + (e.streak||0); }) +
       board('🎮','Veteran','Most games played', data.veteran, function(e){ return (e.games||0) + ' games'; });
   }).catch(function(){
     el.innerHTML = '<div class="board-empty">Could not load leaderboards.</div>';
