@@ -1945,7 +1945,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <div class="trivia-game">
         <div class="trivia-header">
           <span id="triviaQNum"></span>
-          <span id="triviaScore"></span>
+          <span id="triviaTimer" style="color:var(--gold)"></span>
         </div>
         <div class="trivia-progress"><div class="trivia-progress-bar" id="triviaProgressBar"></div></div>
         <div id="triviaQuestionCard"></div>
@@ -2886,6 +2886,19 @@ function initTriviaPage(){
   }
 }
 
+var triviaTimerInterval = null;
+function formatTime(ms){
+  var secs = Math.floor(ms / 1000);
+  var m = Math.floor(secs / 60);
+  var s = secs % 60;
+  return m > 0 ? m + ':' + (s < 10 ? '0' : '') + s : s + 's';
+}
+function updateTriviaTimer(){
+  if(!triviaState || !triviaState.startTime) return;
+  var el = document.getElementById('triviaTimer');
+  if(el) el.textContent = formatTime(Date.now() - triviaState.startTime);
+}
+
 function startTrivia(modeKey){
   var user = getDiscordUser();
   if(!user || !user.access_token){
@@ -2895,7 +2908,9 @@ function startTrivia(modeKey){
   }
   var mode = triviaModes[modeKey];
   var questions = buildTriviaQuestions(mode);
-  triviaState = {mode:modeKey, questions:questions, current:0, correct:0, answered:false, picks:[]};
+  if(triviaTimerInterval) clearInterval(triviaTimerInterval);
+  triviaState = {mode:modeKey, questions:questions, current:0, correct:0, answered:false, picks:[], startTime:Date.now()};
+  triviaTimerInterval = setInterval(updateTriviaTimer, 200);
   document.getElementById('triviaMenu').style.display = 'none';
   document.getElementById('triviaResultsArea').style.display = 'none';
   document.getElementById('triviaGameArea').style.display = '';
@@ -2907,7 +2922,6 @@ function renderTriviaQuestion(){
   if(!s) return;
   var total = s.questions.length;
   document.getElementById('triviaQNum').textContent = 'Question ' + (s.current + 1) + ' / ' + total;
-  document.getElementById('triviaScore').textContent = '';
   document.getElementById('triviaProgressBar').style.width = ((s.current / total) * 100) + '%';
   var q = s.questions[s.current];
   var html = '<div class="trivia-question-card">' +
@@ -2944,6 +2958,8 @@ function answerTrivia(idx){
 function showTriviaResults(){
   var s = triviaState;
   if(!s) return;
+  if(triviaTimerInterval){ clearInterval(triviaTimerInterval); triviaTimerInterval = null; }
+  var elapsed = Date.now() - s.startTime;
   var total = s.questions.length;
   var pct = Math.round((s.correct / total) * 100);
   var wrong = total - s.correct;
@@ -2962,10 +2978,11 @@ function showTriviaResults(){
       '<text class="ring-text" x="60" y="60" text-anchor="middle" dominant-baseline="central" transform="rotate(90 60 60)">' + pct + '%</text>' +
     '</svg></div>' +
     '<div class="trivia-score-label" style="font-size:1.1rem;color:var(--gold);font-family:var(--font-h);margin-bottom:4px">' + grade + '</div>' +
-    '<div class="trivia-score-label">' + modeName + ' — ' + s.correct + ' / ' + total + '</div>' +
+    '<div class="trivia-score-label">' + modeName + ' — ' + s.correct + ' / ' + total + ' in ' + formatTime(elapsed) + '</div>' +
     '<div class="trivia-score-breakdown">' +
       '<span><strong style="color:#2ecc71">' + s.correct + '</strong>Correct</span>' +
       '<span><strong style="color:#e74c3c">' + wrong + '</strong>Wrong</span>' +
+      '<span><strong style="color:var(--gold)">' + formatTime(elapsed) + '</strong>Time</span>' +
     '</div>' +
     '<div class="trivia-btn-row">' +
       '<button class="trivia-next-btn" onclick="startTrivia(\'' + s.mode + '\')">Play Again</button>' +
@@ -2990,17 +3007,17 @@ function showTriviaResults(){
     '<div class="trivia-leaderboard" id="triviaLbResults"><h3>' + modeName + ' Leaderboard</h3><div id="triviaLbResultsInner"></div></div>' +
   '</div>';
   area.innerHTML = html;
-  submitTriviaScore(s.mode, s.correct, total);
+  submitTriviaScore(s.mode, s.correct, total, elapsed);
   loadTriviaLeaderboard('triviaLbResultsInner', s.mode);
 }
 
-function submitTriviaScore(mode, correct, total){
+function submitTriviaScore(mode, correct, total, timeMs){
   var user = getDiscordUser();
   if(!user || !user.access_token) return;
   fetch(WORKER + '/trivia/submit', {
     method:'POST',
     headers:{'Content-Type':'application/json','Authorization':'Bearer ' + user.access_token},
-    body:JSON.stringify({mode:mode, correct:correct, total:total})
+    body:JSON.stringify({mode:mode, correct:correct, total:total, time:timeMs})
   }).catch(function(){});
 }
 
@@ -3017,12 +3034,20 @@ function loadTriviaLeaderboard(containerId, mode){
       var safeId = encodeURIComponent(e.id || '0');
       var safeAvatar = encodeURIComponent(e.avatar || '');
       var pct = parseInt(e.pct, 10) || 0;
+      var timeStr = e.bestTime ? formatTime(e.bestTime) : '--';
+      var games = parseInt(e.games, 10) || 0;
+      var streak = parseInt(e.streak, 10) || 0;
       var avatarUrl = e.avatar ? 'https://cdn.discordapp.com/avatars/' + safeId + '/' + safeAvatar + '.png?size=64' : '';
       html += '<div class="lb-row">' +
         '<span class="lb-rank ' + cls + '">#' + rank + '</span>' +
         (avatarUrl ? '<img class="lb-avatar" src="' + avatarUrl + '" alt="">' : '<span class="lb-avatar" style="background:var(--bg-secondary)"></span>') +
         '<span class="lb-name">' + escHtml(e.global_name || e.username || 'Unknown') + '</span>' +
-        '<span class="lb-count">' + pct + '%</span>' +
+        '<span class="lb-count" style="min-width:auto;gap:8px;display:flex;align-items:center">' +
+          '<span title="Best score">' + pct + '%</span>' +
+          '<span title="Best time" style="color:var(--gold);font-size:.72rem">' + timeStr + '</span>' +
+          (streak > 1 ? '<span title="Perfect streak" style="color:#f1c40f;font-size:.72rem">' + streak + 'x</span>' : '') +
+          '<span title="Games played" style="font-size:.68rem;opacity:.6">' + games + 'g</span>' +
+        '</span>' +
       '</div>';
     });
     el.innerHTML = html;
