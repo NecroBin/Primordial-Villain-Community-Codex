@@ -104,7 +104,7 @@ a:hover{color:#a78bfa}
 @keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 body.search-mode .page.content-page{display:block!important;animation:none}
 body.search-mode #page-home{display:none!important}
-body.search-mode .page.content-page .page-bar,body.search-mode .page.content-page .sec-desc,body.search-mode .page.content-page .sec-divider,body.search-mode .page.content-page .chart-wrap,body.search-mode .page.content-page .char-portrait,body.search-mode .page.content-page .sticky-toc,body.search-mode .page.content-page .entry-cta,body.search-mode .page.content-page .vs-section-title,body.search-mode .page.content-page .char-grid,body.search-mode .page.content-page .gallery-grid,body.search-mode .page.content-page .gallery-filter,body.search-mode .page.content-page .submit-section,body.search-mode .page.content-page .leaderboard{display:none!important}
+body.search-mode .page.content-page .page-bar,body.search-mode .page.content-page .sec-desc,body.search-mode .page.content-page .sec-divider,body.search-mode .page.content-page .chart-wrap,body.search-mode .page.content-page .char-portrait,body.search-mode .page.content-page .sticky-toc,body.search-mode .page.content-page .entry-cta,body.search-mode .page.content-page .vs-section-title,body.search-mode .page.content-page .char-grid,body.search-mode .page.content-page .gallery-grid,body.search-mode .page.content-page .gallery-filter,body.search-mode .page.content-page .submit-section,body.search-mode .page.content-page .leaderboard,body.search-mode .page.content-page .poll-widget,body.search-mode .page.content-page .polls-list{display:none!important}
 body.search-mode .page.content-page .sec-title{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;padding-top:12px;border-top:1px solid var(--border)}
 
 /* ── Page Bar ── */
@@ -439,6 +439,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 [data-theme="light"] .menu-toggle{background:var(--bg-card);border-color:var(--border)}
 [data-theme="light"] .overlay{background:rgba(0,0,0,.3)}
 [data-theme="light"] .rank-bar{filter:brightness(1.4) saturate(1.2)}
+[data-theme="light"] .poll-widget{background:var(--bg-card);border-color:var(--border);box-shadow:var(--shadow-card)}
 
 /* ── Print ── */
 @media print{
@@ -485,6 +486,27 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .entry-cta p{font-size:.85rem;color:var(--text-sec);margin-bottom:12px}
 .entry-cta a{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:var(--gold);color:#fff;border-radius:8px;font-family:var(--font-h);font-size:.85rem;cursor:pointer;text-decoration:none;transition:all .2s;letter-spacing:.03em}
 .entry-cta a:hover{background:var(--gold-dim);box-shadow:0 4px 16px var(--gold-glow)}
+/* ── Poll Widget ── */
+.poll-widget{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:22px;margin:20px 0;box-shadow:var(--shadow-card)}
+.poll-question{font-family:var(--font-h);font-size:.95rem;color:var(--gold);margin-bottom:16px}
+.poll-options{display:flex;flex-direction:column;gap:10px}
+.poll-option{position:relative;border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color .2s}
+.poll-option:hover{border-color:var(--gold-dim)}
+.poll-option.selected{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.poll-option.disabled{cursor:default;opacity:.7}
+.poll-bar{position:absolute;top:0;left:0;height:100%;background:rgba(139,92,246,.1);border-radius:7px;transition:width .5s var(--ease);pointer-events:none}
+.poll-option.selected .poll-bar{background:rgba(139,92,246,.18)}
+.poll-label{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;padding:10px 14px;font-size:.84rem}
+.poll-label-text{color:var(--text);font-weight:500}
+.poll-label-pct{color:var(--text-muted);font-size:.78rem;font-family:var(--font-h);min-width:44px;text-align:right}
+.poll-meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:.72rem;color:var(--text-muted)}
+.poll-login-prompt{text-align:center;padding:14px;font-size:.82rem;color:var(--text-sec)}
+.poll-login-prompt a{color:var(--gold);cursor:pointer;font-weight:500}
+.poll-status{font-size:.72rem;color:var(--text-muted);margin-top:6px;min-height:16px}
+.poll-status.error{color:#e74c3c}
+.poll-status.success{color:#2ecc71}
+.polls-list{display:flex;flex-direction:column;gap:24px;max-width:640px}
+.polls-list .poll-widget{margin:0}
 .sticky-toc{position:sticky;top:0;z-index:50;background:var(--bg-primary);border-bottom:1px solid var(--border);padding:10px 48px;display:flex;gap:18px;font-size:.8rem;font-family:var(--font-h);margin:0 -48px}
 .sticky-toc a{color:var(--text-sec);cursor:pointer;transition:color .15s;text-decoration:none;white-space:nowrap}
 .sticky-toc a:hover,.sticky-toc a.active{color:var(--gold)}
@@ -572,7 +594,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <li><a tabindex="0" role="link" onclick="navigateTo('world')" data-page="world">World &amp; Factions</a></li>
       <li class="nav-group-title">Media</li>
       <li><a tabindex="0" role="link" onclick="navigateTo('gallery')" data-page="gallery">Gallery</a></li>
-      <li class="nav-group-title">Contribute</li>
+      <li class="nav-group-title">Community</li>
+      <li><a tabindex="0" role="link" onclick="navigateTo('votes')" data-page="votes">Votes</a></li>
       <li><a tabindex="0" role="link" onclick="navigateTo('submit')" data-page="submit">Contribute</a></li>
     </ul>
   </nav>
@@ -621,6 +644,11 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <span class="nav-card-icon">&#127912;</span>
       <h3>Gallery</h3>
       <p>Character portraits and artwork from the world of Thalorind.</p>
+    </a>
+    <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('votes')" onkeydown="if(event.key==='Enter')this.click()">
+      <span class="nav-card-icon">&#9745;</span>
+      <h3>Votes</h3>
+      <p>Vote on character debates and community polls. Discord login required.</p>
     </a>
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('submit')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#9998;</span>
@@ -1638,6 +1666,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
     <div class="entry-cta"><p>Nyxara's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Nyxara's lore</a></div>
+    <div class="poll-widget" data-poll="nyxara-harem" data-question="Is Nyxara a true harem member?" data-options="Harem member,Not harem"></div>
   </section>
 </div>
 
@@ -1778,6 +1807,23 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   </section>
 </div>
 
+<!-- ═══════════════ VOTES ═══════════════ -->
+<div class="page content-page" id="page-votes">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
+  <section>
+    <h2 class="sec-title">Community Votes</h2>
+    <p class="sec-desc">Vote on community debates and character questions. Log in with Discord to cast your vote. One vote per poll &mdash; you can change it any time.</p>
+    <hr class="sec-divider">
+    <div id="votesLoginPrompt" style="display:none">
+      <div class="poll-login-prompt" style="margin-bottom:24px">
+        <p style="margin-bottom:12px">You need to be logged in via Discord to vote.</p>
+        <button class="discord-login-btn" onclick="discordLogin()" style="font-size:.85rem;padding:10px 24px">Login with Discord</button>
+      </div>
+    </div>
+    <div class="polls-list" id="votesPagePolls"></div>
+  </section>
+</div>
+
 <div class="page content-page" id="page-404">
   <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
   <section style="text-align:center;padding:80px 24px">
@@ -1845,6 +1891,7 @@ var pageTitles = {
   'kingdom': 'Vraven Kingdom — Duchies & Rulers | PV Codex',
   'primordials': 'The Primordials | PV Codex',
   'organizations': 'Criminal Organizations | PV Codex',
+  'votes': 'Community Votes | PV Codex',
   'submit': 'Contribute to the Codex | PV Codex',
   'girl-ayame': 'Ayame — Skysplitter | PV Codex',
   'girl-sera': 'Seraphiel — Dawnbringer | PV Codex',
@@ -1892,7 +1939,8 @@ var pageDescs = {
   'gallery': 'Character portraits and artwork from the world of Thalorind — Quinlan, the harem, primordials, and more.',
   'characters': 'Allies, enemies, royals, primordials, and other notable figures from Primordial Villain with a Slave Harem.',
   'girl-rosie': 'Rosie Elysiar, Quinlan\'s first daughter.',
-  'girl-nyxara': 'Nyxara, the Conquered Succubus Primordial bound to Quinlan.'
+  'girl-nyxara': 'Nyxara, the Conquered Succubus Primordial bound to Quinlan.',
+  'votes': 'Vote on character debates and community polls for Primordial Villain with a Slave Harem.'
 };
 
 var girlList = [
@@ -1983,6 +2031,8 @@ window.navigateTo = function(pageId, scrollToId, skipPush){
 
   if(pageId === 'quinlan'){ if(!chartsInitialized) initCharts(); loadChartJs(); }
   if(pageId === 'submit'){ updateSubmitUI(); if(typeof loadLeaderboard === 'function') loadLeaderboard(); }
+  initVisiblePolls(pageId);
+  if(pageId === 'votes') updateVotesPageUI();
 
   if(scrollToId){
     requestAnimationFrame(function(){
@@ -2441,6 +2491,125 @@ document.querySelectorAll('.fam-card[onclick],.char-card[onclick],.nav-card:not(
   if(!el.getAttribute('role')) el.setAttribute('role', 'button');
   el.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); this.click(); }});
 });
+
+// ── Poll System ──
+var pollCache = {};
+
+function renderPollWidget(el){
+  var pollId = el.dataset.poll;
+  var question = el.dataset.question;
+  var options = el.dataset.options.split(',');
+  var user = getDiscordUser();
+  var data = pollCache[pollId] || {options:{},total:0,userVote:null};
+  var html = '<div class="poll-question">' + escHtml(question) + '</div><div class="poll-options">';
+  for(var i = 0; i < options.length; i++){
+    var opt = options[i].trim();
+    var count = (data.options && data.options[opt]) || 0;
+    var pct = data.total > 0 ? Math.round(count / data.total * 100) : 0;
+    var isSelected = data.userVote === opt;
+    var cls = 'poll-option' + (isSelected ? ' selected' : '') + (!user ? ' disabled' : '');
+    html += '<div class="' + cls + '" data-poll="' + escHtml(pollId) + '" data-value="' + escHtml(opt) + '">'
+      + '<div class="poll-bar" style="width:' + pct + '%"></div>'
+      + '<div class="poll-label"><span class="poll-label-text">' + escHtml(opt) + '</span>'
+      + '<span class="poll-label-pct">' + (data.total > 0 ? pct + '%' : '') + '</span></div></div>';
+  }
+  html += '</div><div class="poll-meta"><span>' + data.total + ' vote' + (data.total !== 1 ? 's' : '') + '</span>';
+  if(user && data.userVote) html += '<span>Your vote: ' + escHtml(data.userVote) + '</span>';
+  html += '</div><div class="poll-status" id="poll-status-' + escHtml(pollId) + '"></div>';
+  if(!user) html += '<div class="poll-login-prompt"><a onclick="discordLogin()">Log in with Discord</a> to vote</div>';
+  el.innerHTML = html;
+  if(user){
+    el.querySelectorAll('.poll-option').forEach(function(optEl){
+      optEl.addEventListener('click', function(){ castVote(this.dataset.poll, this.dataset.value); });
+    });
+  }
+}
+
+function renderAllInstances(pollId){
+  document.querySelectorAll('.poll-widget[data-poll="' + pollId + '"]').forEach(function(el){ renderPollWidget(el); });
+}
+
+function loadPollResults(pollId){
+  var user = getDiscordUser();
+  var url = WORKER + '/votes/' + encodeURIComponent(pollId);
+  if(user && user.id) url += '?userId=' + encodeURIComponent(user.id);
+  return fetch(url).then(function(r){ if(!r.ok) throw new Error('Failed'); return r.json(); }).then(function(data){
+    pollCache[pollId] = data;
+    renderAllInstances(pollId);
+  }).catch(function(){
+    if(!pollCache[pollId]) pollCache[pollId] = {options:{},total:0,userVote:null};
+    renderAllInstances(pollId);
+  });
+}
+
+function castVote(pollId, value){
+  var user = getDiscordUser();
+  if(!user || !user.access_token){ discordLogin(); return; }
+  var prev = pollCache[pollId] || {options:{},total:0,userVote:null};
+  if(prev.userVote === value) return;
+  var oldVote = prev.userVote;
+  if(oldVote && prev.options[oldVote]) prev.options[oldVote] = Math.max(0, prev.options[oldVote] - 1);
+  if(!oldVote) prev.total += 1;
+  prev.options[value] = (prev.options[value] || 0) + 1;
+  prev.userVote = value;
+  pollCache[pollId] = prev;
+  renderAllInstances(pollId);
+  fetch(WORKER + '/vote', {
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer ' + user.access_token},
+    body:JSON.stringify({pollId:pollId,vote:value})
+  }).then(function(res){
+    if(res.status === 401){ localStorage.removeItem('pv_discord_user'); sessionStorage.removeItem('pv_discord_token'); updateSubmitUI(); throw new Error('Session expired'); }
+    if(!res.ok) throw new Error('Vote failed');
+    return res.json();
+  }).then(function(data){
+    pollCache[pollId] = data;
+    renderAllInstances(pollId);
+  }).catch(function(err){
+    loadPollResults(pollId);
+    document.querySelectorAll('#poll-status-' + pollId).forEach(function(s){
+      s.className = 'poll-status error';
+      s.textContent = err.message === 'Session expired' ? 'Session expired. Please log in again.' : 'Could not save vote. Try again.';
+    });
+  });
+}
+
+function initVisiblePolls(pageId){
+  var page = document.getElementById('page-' + pageId);
+  if(!page) return;
+  page.querySelectorAll('.poll-widget[data-poll]').forEach(function(w){
+    var pollId = w.dataset.poll;
+    if(!pollCache[pollId]) loadPollResults(pollId);
+    else renderPollWidget(w);
+  });
+}
+
+function updateVotesPageUI(){
+  var container = document.getElementById('votesPagePolls');
+  var loginPrompt = document.getElementById('votesLoginPrompt');
+  if(!container) return;
+  var user = getDiscordUser();
+  if(loginPrompt) loginPrompt.style.display = user ? 'none' : '';
+  var seen = {};
+  var allPolls = [];
+  document.querySelectorAll('.poll-widget[data-poll]').forEach(function(el){
+    if(el.closest('#votesPagePolls')) return;
+    var id = el.dataset.poll;
+    if(seen[id]) return;
+    seen[id] = true;
+    allPolls.push({id:id, question:el.dataset.question, options:el.dataset.options});
+  });
+  container.innerHTML = '';
+  allPolls.forEach(function(p){
+    var div = document.createElement('div');
+    div.className = 'poll-widget';
+    div.dataset.poll = p.id;
+    div.dataset.question = p.question;
+    div.dataset.options = p.options;
+    container.appendChild(div);
+  });
+  allPolls.forEach(function(p){ loadPollResults(p.id); });
+}
 
 // ── Lazy-load Chart.js ──
 var chartScriptLoaded = false;
