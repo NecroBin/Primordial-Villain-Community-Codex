@@ -433,6 +433,9 @@ export default {
         } else {
           existing.streak = 0;
         }
+        if ((existing.streak || 0) > (existing.bestStreak || 0)) {
+          existing.bestStreak = existing.streak;
+        }
         if (pct > (existing.pct || 0) || (pct === existing.pct && timeMs > 0 && (!existing.bestTime || timeMs < existing.bestTime))) {
           existing.pct = pct;
           if (timeMs > 0) existing.bestTime = timeMs;
@@ -455,9 +458,9 @@ export default {
           for (var si = 0; si < sp.length; si++) { if (sp[si].id === user.id) { speedRank = si + 1; break; } }
         }
         var streakRank = null;
-        if ((existing.streak || 0) > 0) {
-          var st = all.filter(function(e){ return (e.streak || 0) > 0; })
-            .sort(function(a,b){ return (b.streak||0) - (a.streak||0); });
+        if ((existing.bestStreak || 0) > 0) {
+          var st = all.filter(function(e){ return (e.bestStreak || e.streak || 0) > 0; })
+            .sort(function(a,b){ return (b.bestStreak||b.streak||0) - (a.bestStreak||a.streak||0); });
           for (var sti = 0; sti < st.length; sti++) { if (st[sti].id === user.id) { streakRank = sti + 1; break; } }
         }
         var vetRank = null;
@@ -492,12 +495,12 @@ export default {
           var val = await env.SUBS.get(k.name, { type: 'json' });
           if (val) entries.push(val);
         }
-        function stripId(e){ return { id:e.id, username:e.username, global_name:e.global_name, avatar:e.avatar, pct:e.pct, bestTime:e.bestTime, games:e.games, streak:e.streak, totalCorrect:e.totalCorrect }; }
+        function stripId(e){ return { id:e.id, username:e.username, global_name:e.global_name, avatar:e.avatar, pct:e.pct, bestTime:e.bestTime, games:e.games, streak:e.streak, bestStreak:e.bestStreak||e.streak||0, totalCorrect:e.totalCorrect }; }
         var speed = entries.filter(function(e){ return e.pct === 100 && e.bestTime > 0; })
           .sort(function(a,b){ return a.bestTime - b.bestTime; }).slice(0,10).map(stripId);
-        var streak = entries.filter(function(e){ return (e.streak||0) > 0; })
+        var streak = entries.filter(function(e){ return (e.bestStreak||e.streak||0) > 0; })
           .sort(function(a,b){
-            if((b.streak||0) !== (a.streak||0)) return (b.streak||0) - (a.streak||0);
+            if((b.bestStreak||b.streak||0) !== (a.bestStreak||a.streak||0)) return (b.bestStreak||b.streak||0) - (a.bestStreak||a.streak||0);
             return (a.bestTime||999999999) - (b.bestTime||999999999);
           }).slice(0,10).map(stripId);
         var veteran = entries.slice()
