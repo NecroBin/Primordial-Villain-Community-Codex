@@ -2959,7 +2959,8 @@ function buildTriviaQuestions(mode){
       questions.push({q:orig.q, a:newAnswers, c:newCorrect, d:d});
     }
   });
-  shuffleArray(questions);
+  var order = {easy:0, medium:1, hard:2};
+  questions.sort(function(a,b){ return order[a.d] - order[b.d]; });
   return questions;
 }
 
@@ -2978,7 +2979,7 @@ function initTriviaPage(){
     '<div class="trivia-mode-card" id="triviaStartCard" style="display:flex;flex-direction:column;justify-content:center">' +
       '<div class="trivia-mode-icon">' + mode.icon + '</div>' +
       '<div class="trivia-mode-name">' + mode.name + '</div>' +
-      '<div class="trivia-mode-desc">' + mode.desc + '</div>' +
+      '<div class="trivia-mode-desc">' + mode.desc + '<br><span style="color:var(--text-muted);font-size:.72rem">1 wrong answer allowed for streaks &amp; speedruns</span></div>' +
     '</div>' +
     '<div class="trivia-mode-card" id="triviaCtaCard" style="border-style:dashed;display:flex;flex-direction:column;justify-content:center">' +
       '<div class="trivia-mode-icon">&#9998;</div>' +
