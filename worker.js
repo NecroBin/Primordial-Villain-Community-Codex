@@ -428,13 +428,16 @@ export default {
         existing.avatar = user.avatar;
         existing.games = (existing.games || 0) + 1;
         existing.totalCorrect = (existing.totalCorrect || 0) + correct;
-        if (correct >= total - 1) {
-          existing.streak = (existing.streak || 0) + 1;
-        } else {
-          existing.streak = 0;
-        }
         if ((existing.streak || 0) > (existing.bestStreak || 0)) {
           existing.bestStreak = existing.streak;
+        }
+        if (correct >= total - 1) {
+          existing.streak = (existing.streak || 0) + 1;
+          if (existing.streak > (existing.bestStreak || 0)) {
+            existing.bestStreak = existing.streak;
+          }
+        } else {
+          existing.streak = 0;
         }
         if (pct > (existing.pct || 0) || (pct === existing.pct && timeMs > 0 && (!existing.bestTime || timeMs < existing.bestTime))) {
           existing.pct = pct;

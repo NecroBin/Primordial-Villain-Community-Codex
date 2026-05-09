@@ -108,7 +108,7 @@
     "difficulty": "easy",
     "category": "combat",
     "question": "What is Aurora's role in combat?",
-    "correct": "Backline support — shields and buffs",
+    "correct": "Shields and buffs",
     "wrong": ["AoE damage dealer", "Frontline tank", "Debuff specialist"]
   },
   {
@@ -124,7 +124,7 @@
     "difficulty": "easy",
     "category": "relationships",
     "question": "What is Felicity's relationship with Quinlan?",
-    "correct": "Platonic — she's a friend, not a love interest",
+    "correct": "Platonic friend",
     "wrong": ["His youngest lover", "Engaged to be married", "She has an unrequited crush"]
   },
   {
@@ -244,7 +244,7 @@
     "difficulty": "medium",
     "category": "adult",
     "question": "What is Lucille's signature bedroom specialty?",
-    "correct": "Fellatio — she's the throat specialist",
+    "correct": "Blowjob skills",
     "wrong": ["Roleplay and costumes", "Being the most dominant", "Dirty talk that makes everyone blush"]
   },
   {
@@ -300,7 +300,7 @@
     "difficulty": "medium",
     "category": "adult",
     "question": "What running gag did Aurora have with Quinlan in the early parts of the story?",
-    "correct": "A daddy complex — acting like daddy's little girl",
+    "correct": "A daddy complex",
     "wrong": ["A rivalry over who's smarter", "Calling him Professor", "Pretending not to know him in public"]
   },
   {
@@ -411,9 +411,9 @@
     "id": 52,
     "difficulty": "hard",
     "category": "worldbuilding",
-    "question": "Which primordial shapeshifter died by jumping into a volcano?",
-    "correct": "Lysaria",
-    "wrong": ["Hyrmara", "Syrion", "Thindlebrim"]
+    "question": "Which primordial died by jumping into a volcano?",
+    "correct": "Lysaria — the Shapeshifter",
+    "wrong": ["Hyrmara — the Titan", "Syrion — the Incubus", "Thindlebrim — the Gnome"]
   },
   {
     "id": 53,
