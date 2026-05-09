@@ -22,10 +22,11 @@
 <link rel="canonical" href="https://necrobin.github.io/Primordial-Villain-Community-Codex/">
 <title>Primordial Villain with a Slave Harem &mdash; Codex</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2L28 16L16 30L4 16Z' fill='%238B5CF6'/%3E%3C/svg%3E">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src https://pv-codex-proxy.necrobin1.workers.dev https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' https://cdn.discordapp.com data: blob:; frame-src 'none'; base-uri 'self'; form-action 'none'">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<script>document.documentElement.setAttribute('data-theme',localStorage.getItem('pv-theme')||'light')</script>
+<script>document.documentElement.setAttribute('data-theme',localStorage.getItem('pv-theme')||'light');if(window.top!==window.self)window.top.location=window.self.location;</script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -1738,6 +1739,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
           <button class="submit-logout" onclick="discordLogout()">Logout</button>
         </div>
         <form id="submitForm">
+          <div style="position:absolute;left:-9999px" aria-hidden="true"><input type="text" id="subWebsite" tabindex="-1" autocomplete="off"></div>
           <div class="form-group">
             <label class="form-label" for="subCategory">Category</label>
             <select class="form-select" id="subCategory">
@@ -1946,7 +1948,7 @@ window.navigateTo = function(pageId, scrollToId, skipPush){
     } else if(pageId.indexOf('char-') === 0){
       var cTitle = target ? target.querySelector('.sec-title') : null;
       var cName = cTitle ? cTitle.textContent : pageId.replace('char-','');
-      bc = '<nav class="breadcrumb"><a onclick="navigateTo(\'home\')">Home</a><span class="bc-sep">&#8250;</span><a onclick="navigateTo(\'characters\')">Other Characters</a><span class="bc-sep">&#8250;</span><span class="bc-current">' + cName + '</span></nav>';
+      bc = '<nav class="breadcrumb"><a onclick="navigateTo(\'home\')">Home</a><span class="bc-sep">&#8250;</span><a onclick="navigateTo(\'characters\')">Other Characters</a><span class="bc-sep">&#8250;</span><span class="bc-current">' + escHtml(cName) + '</span></nav>';
     } else if(pageId === 'kingdom' || pageId === 'primordials' || pageId === 'organizations'){
       var names = {kingdom:'Vraven Kingdom',primordials:'Primordials',organizations:'Criminal Organizations'};
       bc = '<nav class="breadcrumb"><a onclick="navigateTo(\'home\')">Home</a><span class="bc-sep">&#8250;</span><a onclick="navigateTo(\'world\')">World &amp; Factions</a><span class="bc-sep">&#8250;</span><span class="bc-current">' + names[pageId] + '</span></nav>';
@@ -2255,14 +2257,17 @@ function loadLeaderboard(){
     var medals = ['gold','silver','bronze'];
     data.forEach(function(e, i){
       var rankClass = i < 3 ? ' ' + medals[i] : '';
+      var safeId = encodeURIComponent(e.id || '0');
+      var safeAvatar = encodeURIComponent(e.avatar || '');
+      var safeCount = parseInt(e.count, 10) || 0;
       var avatarUrl = e.avatar
-        ? 'https://cdn.discordapp.com/avatars/' + (e.id || '0') + '/' + e.avatar + '.png?size=64'
+        ? 'https://cdn.discordapp.com/avatars/' + safeId + '/' + safeAvatar + '.png?size=64'
         : 'https://cdn.discordapp.com/embed/avatars/' + (i % 5) + '.png';
       html += '<div class="lb-row">'
         + '<div class="lb-rank' + rankClass + '">#' + (i+1) + '</div>'
         + '<img class="lb-avatar" src="' + escHtml(avatarUrl) + '" alt="">'
         + '<div class="lb-name">' + escHtml(e.global_name || e.username || 'Unknown') + '</div>'
-        + '<div class="lb-count">' + e.count + ' submission' + (e.count !== 1 ? 's' : '') + '</div>'
+        + '<div class="lb-count">' + safeCount + ' submission' + (safeCount !== 1 ? 's' : '') + '</div>'
         + '</div>';
     });
     lb.innerHTML = html;
@@ -2270,9 +2275,13 @@ function loadLeaderboard(){
 }
 loadLeaderboard();
 
+var submitFormLoaded = Date.now();
 var submitForm = document.getElementById('submitForm');
 if(submitForm) submitForm.addEventListener('submit', function(e){
   e.preventDefault();
+  var hp = document.getElementById('subWebsite');
+  if(hp && hp.value) return;
+  if(Date.now() - submitFormLoaded < 3000) return;
   var user = getDiscordUser();
   if(!user || !user.access_token) return discordLogin();
   var btn = document.getElementById('submitBtn');
