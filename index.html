@@ -655,10 +655,12 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <a href="https://www.patreon.com/NecroBin" target="_blank" rel="noopener" class="sidebar-ext sidebar-ext-patreon">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M14.82 2.41c3.96 0 7.18 3.24 7.18 7.21 0 3.96-3.22 7.18-7.18 7.18-3.97 0-7.21-3.22-7.21-7.18 0-3.97 3.24-7.21 7.21-7.21M2 21.6h3.5V2.41H2V21.6z"/></svg>
       Patreon
+      <span style="font-size:.52rem;font-weight:400;color:var(--text-muted);margin-top:-2px">For the cultured</span>
     </a>
     <a href="https://www.webnovel.com/book/primordial-villain-with-a-slave-harem_30056099600577905" target="_blank" rel="noopener" class="sidebar-ext sidebar-ext-read">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
       Read
+      <span style="font-size:.52rem;font-weight:400;color:var(--text-muted);margin-top:-2px">Begin the journey</span>
     </a>
   </div>
   <div id="sidebarSub" class="sidebar-sub"></div>
@@ -994,7 +996,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     </div>
     <div class="entry-cta" style="margin-top:32px">
       <p>Know a faction, organization, or location that's missing?</p>
-      <a onclick="navigateTo('submit')">&#9998; Add to the world lore</a>
+      <a onclick="goContribute()">&#9998; Add to the world lore</a>
     </div>
   </section>
 </div>
@@ -1028,7 +1030,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     </div>
 
     <h3 class="vs-section-title" id="q-lore">Lore</h3>
-    <div class="entry-cta"><p>Quinlan's backstory, major events, and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Quinlan's lore</a></div>
+    <div class="entry-cta"><p>Quinlan's backstory, major events, and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Quinlan's lore</a></div>
 
     <h3 class="vs-section-title" id="q-classes" style="margin-top:48px">Classes</h3>
     <p style="font-size:.82rem;color:var(--text-sec);margin-bottom:18px">Quinlan's major classes. The Primordial Villain is his primary hub&mdash;housing Necromancy and the Bloodfather under its Harbinger of Ruin subclass. The Harbinger of Aeons is his elemental combat class. The Primordial Subjugator is his anomalous second Primordial class.</p>
@@ -1206,7 +1208,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/ayame.jpg" alt="Ayame" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Ayame's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Ayame's lore</a></div>
+    <div class="entry-cta"><p>Ayame's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Ayame's lore</a></div>
     <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="ayame skysplitter samurai sword heavenscar stormstride tempest skyborn endless edge final horizon thunderfall sundering skyshatter">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Skysplitter</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-purple" style="margin-left:4px">Samurai &rarr; Skysplitter</span></div></div><span class="class-chevron">&#9660;</span></div>
@@ -1240,7 +1242,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/seraphiel.jpg" alt="Seraphiel" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Seraphiel's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Seraphiel's lore</a></div>
+    <div class="entry-cta"><p>Seraphiel's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Seraphiel's lore</a></div>
     <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="seraphiel sera dawnbringer healer divine arsenal solar resurgence aegis dawn daybreak wrath twilight judgment light radiant">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Dawnbringer</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-purple" style="margin-left:4px">Healer &rarr; Dawnbringer</span></div></div><span class="class-chevron">&#9660;</span></div>
@@ -1270,7 +1272,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/blossom.jpg" alt="Blossom" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Blossom's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Blossom's lore</a></div>
+    <div class="entry-cta"><p>Blossom's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Blossom's lore</a></div>
     <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="blossom void stalker phantom canine dogkin shadow assassin veil umbral voidshroud nullfloat null rend">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Void Stalker</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-purple" style="margin-left:4px">Phantom Canine &rarr; Void Stalker</span></div></div><span class="class-chevron">&#9660;</span></div>
@@ -1301,7 +1303,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/vex.jpg" alt="Vex" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Vex's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Vex's lore</a></div>
+    <div class="entry-cta"><p>Vex's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Vex's lore</a></div>
     <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="vex hexwitch curse sword blood magic debuff white hair crimson tattoo">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Hexwitch</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-purple" style="margin-left:4px">Curse &amp; Blade Hybrid</span></div></div><span class="class-chevron">&#9660;</span></div>
@@ -1316,7 +1318,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <div class="fam-member"><strong>Orianna</strong> &mdash; Fellow Disciple (&ldquo;The Flower Queen&rdquo;)</div>
       <div class="fam-member" style="color:var(--text-muted);font-style:italic">Birth family killed by lionkin</div>
     </div>
-    <div class="entry-cta"><p>This entry is incomplete. Know Vex's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <div class="entry-cta"><p>This entry is incomplete. Know Vex's abilities, stats, or lore?</p><a onclick="goContribute()">&#9998; Help complete this entry</a></div>
   </section>
 </div>
 
@@ -1329,7 +1331,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/serika.jpg" alt="Serika" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Serika's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Serika's lore</a></div>
+    <div class="entry-cta"><p>Serika's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Serika's lore</a></div>
     <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="serika solar fist blazing tyrant fire martial arts fang comet crash heaven burning punch qi">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Solar Fist</h3><div class="class-badges"><span class="badge badge-red">Unique</span> <span class="badge badge-purple" style="margin-left:4px">Martial &middot; Fire</span></div></div><span class="class-chevron">&#9660;</span></div>
@@ -1360,7 +1362,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/kitsara.jpg" alt="Kitsara" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Kitsara's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Kitsara's lore</a></div>
+    <div class="entry-cta"><p>Kitsara's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Kitsara's lore</a></div>
     <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="kitsara nine tailed sorceress fox illusion phantom clone veil deception foxfire tail kitsune dogkin">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Nine-Tailed Sorceress</h3><div class="class-badges"><span class="badge badge-purple">Current: Three-Tailed</span></div></div><span class="class-chevron">&#9660;</span></div>
@@ -1373,7 +1375,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div style="padding:12px 0;font-size:.88rem;color:var(--text-sec)">
       <div class="fam-member"><strong>Vargis</strong> &mdash; Father (Lord of the Dogkin)</div>
     </div>
-    <div class="entry-cta"><p>This entry is incomplete. Know Kitsara's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <div class="entry-cta"><p>This entry is incomplete. Know Kitsara's abilities, stats, or lore?</p><a onclick="goContribute()">&#9998; Help complete this entry</a></div>
   </section>
 </div>
 
@@ -1386,7 +1388,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/aurora.jpg" alt="Aurora" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Aurora's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Aurora's lore</a></div>
+    <div class="entry-cta"><p>Aurora's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Aurora's lore</a></div>
     <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="aurora essenceweaver dreamveil shield barrier defensive">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Essenceweaver</h3><div class="class-badges"><span class="badge badge-purple">Defensive &middot; Barriers</span></div></div><span class="class-chevron">&#9660;</span></div>
@@ -1417,7 +1419,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/jasmine.jpg" alt="Jasmine" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Jasmine's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Jasmine's lore</a></div>
+    <div class="entry-cta"><p>Jasmine's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Jasmine's lore</a></div>
     <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="jasmine tyrant gold merchant commerce gilded legion mercenary wealth trade argentis">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Tyrant of Commerce</h3><div class="class-badges"><span class="badge badge-purple">Merchant &rarr; Tyrant of Commerce</span></div></div><span class="class-chevron">&#9660;</span></div>
@@ -1444,7 +1446,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/lucille.jpg" alt="Lucille" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Lucille's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Lucille's lore</a></div>
+    <div class="entry-cta"><p>Lucille's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Lucille's lore</a></div>
     <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="lucille bloodmonger berserker blood carnage">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Bloodmonger</h3><div class="class-badges"><span class="badge badge-purple">Evolved from Berserker</span></div></div><span class="class-chevron">&#9660;</span></div>
@@ -1457,7 +1459,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <div class="fam-member"><strong>Mavena</strong> &mdash; Daughter</div>
       <div class="fam-member"><strong>Robert</strong> &mdash; Ex-Husband</div>
     </div>
-    <div class="entry-cta"><p>This entry is incomplete. Know Lucille's abilities, stats, or lore?</p><a onclick="navigateTo('submit')">&#9998; Help complete this entry</a></div>
+    <div class="entry-cta"><p>This entry is incomplete. Know Lucille's abilities, stats, or lore?</p><a onclick="goContribute()">&#9998; Help complete this entry</a></div>
   </section>
 </div>
 
@@ -1470,7 +1472,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/kaelira.jpg" alt="Kaelira" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Kaelira's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Kaelira's lore</a></div>
+    <div class="entry-cta"><p>Kaelira's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Kaelira's lore</a></div>
     <h3 class="vs-section-title" style="margin-top:36px">Classes</h3>
     <div class="class-card open searchable" data-keywords="kaelira runeweaver titan elf rune armor forge smithing crafter armory inscription">
       <div class="class-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleClass(this)"><div><h3>Runeweaver Titan</h3><div class="class-badges"><span class="badge badge-purple">Crafter &middot; Rune Inscription</span></div></div><span class="class-chevron">&#9660;</span></div>
@@ -1514,7 +1516,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <div class="char-card searchable" onclick="navigateTo('char-hanae')" data-keywords="hanae eastern primordial samurai fujimori"><img src="images-web/hanae.jpg" alt="Hanae" loading="lazy"><div class="char-card-name">Hanae<span class="char-card-role">Eastern Primordial</span></div></div>
       <div class="char-card searchable" onclick="navigateTo('char-kiryssa')" data-keywords="kiryssa drow primordial shadow"><img src="images-web/kiryssa.jpg" alt="Kiryssa" loading="lazy"><div class="char-card-name">Kiryssa<span class="char-card-role">Drow Primordial</span></div></div>
     </div>
-    <div class="entry-cta" style="margin-top:32px"><p>Know a character that's missing from this list?</p><a onclick="navigateTo('submit')">&#9998; Add a character to the codex</a></div>
+    <div class="entry-cta" style="margin-top:32px"><p>Know a character that's missing from this list?</p><a onclick="goContribute()">&#9998; Add a character to the codex</a></div>
   </section>
 </div>
 
@@ -1528,7 +1530,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
     <div class="card"><p>Born Hanako Fujimori, a name she discarded. She holds the title of Venomborne Terror and leads the drug division of the Vesper Consortium.</p></div>
-    <div class="entry-cta"><p>Know more about Black Fang?</p><a onclick="navigateTo('submit')">&#9998; Add to Black Fang's lore</a></div>
+    <div class="entry-cta"><p>Know more about Black Fang?</p><a onclick="goContribute()">&#9998; Add to Black Fang's lore</a></div>
   </section>
 </div>
 
@@ -1541,7 +1543,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/kaede.jpg" alt="Kaede Fujimori" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Kaede's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Kaede's lore</a></div>
+    <div class="entry-cta"><p>Kaede's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Kaede's lore</a></div>
   </section>
 </div>
 
@@ -1554,7 +1556,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/sylvaris.jpg" alt="Sylvaris" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Sylvaris's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Sylvaris's lore</a></div>
+    <div class="entry-cta"><p>Sylvaris's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Sylvaris's lore</a></div>
   </section>
 </div>
 
@@ -1567,7 +1569,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/morgana.jpg" alt="Morgana" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Morgana's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Morgana's lore</a></div>
+    <div class="entry-cta"><p>Morgana's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Morgana's lore</a></div>
   </section>
 </div>
 
@@ -1580,7 +1582,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/felicity.jpg" alt="Felicity" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Felicity's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Felicity's lore</a></div>
+    <div class="entry-cta"><p>Felicity's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Felicity's lore</a></div>
   </section>
 </div>
 
@@ -1592,7 +1594,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/iris.jpg" alt="Iris" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Iris's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Iris's lore</a></div>
+    <div class="entry-cta"><p>Iris's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Iris's lore</a></div>
   </section>
 </div>
 
@@ -1604,7 +1606,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/lyra.jpg" alt="Lyra" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Lyra's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Lyra's lore</a></div>
+    <div class="entry-cta"><p>Lyra's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Lyra's lore</a></div>
   </section>
 </div>
 
@@ -1617,7 +1619,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/orianna.jpg" alt="Orianna" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Orianna's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Orianna's lore</a></div>
+    <div class="entry-cta"><p>Orianna's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Orianna's lore</a></div>
   </section>
 </div>
 
@@ -1630,7 +1632,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/raika.jpg" alt="Raika" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Raika's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Raika's lore</a></div>
+    <div class="entry-cta"><p>Raika's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Raika's lore</a></div>
   </section>
 </div>
 
@@ -1642,7 +1644,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/scar.jpg" alt="Scar" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Scar's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Scar's lore</a></div>
+    <div class="entry-cta"><p>Scar's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Scar's lore</a></div>
   </section>
 </div>
 
@@ -1654,7 +1656,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/feng.jpg" alt="Feng" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Feng's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Feng's lore</a></div>
+    <div class="entry-cta"><p>Feng's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Feng's lore</a></div>
   </section>
 </div>
 
@@ -1666,7 +1668,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/yoruha.jpg" alt="Yoruha" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Yoruha's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Yoruha's lore</a></div>
+    <div class="entry-cta"><p>Yoruha's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Yoruha's lore</a></div>
   </section>
 </div>
 
@@ -1678,7 +1680,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/lilith.jpg" alt="Lilith" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Lilith's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Lilith's lore</a></div>
+    <div class="entry-cta"><p>Lilith's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Lilith's lore</a></div>
   </section>
 </div>
 
@@ -1690,7 +1692,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/myrasyn.jpg" alt="Myrasyn" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Myrasyn's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Myrasyn's lore</a></div>
+    <div class="entry-cta"><p>Myrasyn's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Myrasyn's lore</a></div>
   </section>
 </div>
 
@@ -1702,7 +1704,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/lilyanna.jpg" alt="Lilyanna" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Lilyanna's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Lilyanna's lore</a></div>
+    <div class="entry-cta"><p>Lilyanna's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Lilyanna's lore</a></div>
   </section>
 </div>
 
@@ -1715,7 +1717,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/luminara.jpg" alt="Luminara" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Luminara's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Luminara's lore</a></div>
+    <div class="entry-cta"><p>Luminara's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Luminara's lore</a></div>
   </section>
 </div>
 
@@ -1728,7 +1730,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/mearie.jpg" alt="Mearie" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Mearie's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Mearie's lore</a></div>
+    <div class="entry-cta"><p>Mearie's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Mearie's lore</a></div>
   </section>
 </div>
 
@@ -1741,7 +1743,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/rosie.jpg" alt="Rosie Elysiar" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Rosie's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Rosie's lore</a></div>
+    <div class="entry-cta"><p>Rosie's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Rosie's lore</a></div>
   </section>
 </div>
 
@@ -1754,7 +1756,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/nyxara.jpg" alt="Nyxara" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Nyxara's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Nyxara's lore</a></div>
+    <div class="entry-cta"><p>Nyxara's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Nyxara's lore</a></div>
     <div class="poll-widget" data-poll="nyxara-harem" data-question="Is Nyxara a true harem member?" data-options="Harem member,Not harem"></div>
   </section>
 </div>
@@ -1769,7 +1771,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
     <div class="card"><p>Hanae is one of the Eastern Human Primordials, alongside Zen. The Fujimori Clan are among her descendants, one clan of many tracing their bloodline back to her. She trained Quinlan in saber technique.</p></div>
-    <div class="entry-cta"><p>Know more about Hanae?</p><a onclick="navigateTo('submit')">&#9998; Add to Hanae's lore</a></div>
+    <div class="entry-cta"><p>Know more about Hanae?</p><a onclick="goContribute()">&#9998; Add to Hanae's lore</a></div>
   </section>
 </div>
 
@@ -1782,7 +1784,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="char-portrait"><img src="images-web/kiryssa.jpg" alt="Kiryssa" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
-    <div class="entry-cta"><p>Kiryssa's backstory and story arcs are not yet documented.</p><a onclick="navigateTo('submit')">&#9998; Help write Kiryssa's lore</a></div>
+    <div class="entry-cta"><p>Kiryssa's backstory and story arcs are not yet documented.</p><a onclick="goContribute()">&#9998; Help write Kiryssa's lore</a></div>
   </section>
 </div>
 
@@ -1868,10 +1870,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
               <option value="Quinlan">Quinlan (Stats / Classes / Lore)</option>
               <option value="Harem">Harem &amp; Family</option>
               <option value="Characters">Other Characters</option>
-              <option value="Kingdom">Vraven Kingdom</option>
-              <option value="Primordials">Primordials</option>
-              <option value="Organizations">Organizations</option>
-              <option value="Lore">General Lore / World</option>
+              <option value="World">World &amp; Factions</option>
               <option value="Correction">Correction / Fix</option>
               <option value="Poll">Poll Suggestion</option>
               <option value="Trivia">Trivia Question</option>
@@ -1975,7 +1974,6 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     </div>
 
     <div id="triviaResultsArea" style="display:none"></div>
-    <div class="entry-cta" style="margin-top:32px"><p>Got a good trivia question? Submit it and challenge the community.</p><a onclick="navigateTo('submit')">&#9998; Submit a trivia question</a></div>
   </section>
 </div>
 
@@ -2132,6 +2130,22 @@ function updateSidebarSub(pageId){
   sub.classList.toggle('visible', html !== '');
 }
 
+window.goContribute = function(category){
+  if(!category){
+    if(currentPage === 'quinlan') category = 'Quinlan';
+    else if(currentPage.indexOf('girl-') === 0) category = 'Harem';
+    else if(currentPage.indexOf('char-') === 0 || currentPage === 'characters') category = 'Characters';
+    else if(currentPage === 'world' || currentPage === 'kingdom' || currentPage === 'primordials' || currentPage === 'organizations') category = 'World';
+    else if(currentPage === 'trivia') category = 'Trivia';
+  }
+  navigateTo('submit');
+  if(category){
+    setTimeout(function(){
+      var sel = document.getElementById('subCategory');
+      if(sel){ sel.value = category; sel.dispatchEvent(new Event('change')); }
+    }, 0);
+  }
+};
 window.navigateTo = function(pageId, scrollToId, skipPush){
   document.body.classList.remove('search-mode');
   document.querySelectorAll('.search-has-results').forEach(function(p){ p.classList.remove('search-has-results'); });
@@ -2916,12 +2930,20 @@ function initTriviaPage(){
   var container = document.getElementById('triviaModes');
   if(!container) return;
   var mode = triviaModes.challenge;
-  container.innerHTML = '<div class="trivia-mode-card" id="triviaStartCard" style="max-width:320px;margin:0 auto">' +
-    '<div class="trivia-mode-icon">' + mode.icon + '</div>' +
-    '<div class="trivia-mode-name">' + mode.name + '</div>' +
-    '<div class="trivia-mode-desc">' + mode.desc + '<br>10 easy, 8 medium, 7 hard</div>' +
+  container.innerHTML = '<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;max-width:680px;margin:0 auto">' +
+    '<div class="trivia-mode-card" id="triviaStartCard" style="flex:1;min-width:260px;max-width:320px">' +
+      '<div class="trivia-mode-icon">' + mode.icon + '</div>' +
+      '<div class="trivia-mode-name">' + mode.name + '</div>' +
+      '<div class="trivia-mode-desc">' + mode.desc + '<br>10 easy, 8 medium, 7 hard</div>' +
+    '</div>' +
+    '<div class="trivia-mode-card" id="triviaCtaCard" style="flex:1;min-width:260px;max-width:320px;border-style:dashed">' +
+      '<div class="trivia-mode-icon">&#9998;</div>' +
+      '<div class="trivia-mode-name">Submit Questions</div>' +
+      '<div class="trivia-mode-desc">The game is in its early stages and needs a lot more questions. Help take it to the next level!</div>' +
+    '</div>' +
   '</div>';
   document.getElementById('triviaStartCard').onclick = function(){ startTrivia('challenge'); };
+  document.getElementById('triviaCtaCard').onclick = function(){ goContribute('Trivia'); };
   document.getElementById('triviaMenu').style.display = '';
   document.getElementById('triviaGameArea').style.display = 'none';
   document.getElementById('triviaResultsArea').style.display = 'none';
