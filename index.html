@@ -3191,9 +3191,9 @@ function initTriviaPage(){
   document.getElementById('triviaLeaderboardMenu').style.display = '';
   var pendingMode = sessionStorage.getItem('pv_trivia_mode');
   if(pendingMode){
-    sessionStorage.removeItem('pv_trivia_mode');
     var user = getDiscordUser();
     if(user && user.access_token && triviaModes[pendingMode] && canPlayMode(triviaModes[pendingMode])){
+      sessionStorage.removeItem('pv_trivia_mode');
       startTrivia(pendingMode);
     }
   }
