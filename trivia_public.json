@@ -1577,11 +1577,11 @@
     "difficulty": "medium",
     "category": "factions",
     "question": "What is the lowest rank in the Vesper Consortium?",
-    "correct": "Twilight Apprentice",
+    "correct": "Dawn Initiate",
     "wrong": [
       "Lunar Adept",
       "Shadow Vanguard",
-      "Dark Initiate"
+      "Twilight Apprentice"
     ]
   },
   {
@@ -3190,6 +3190,18 @@
       "He sold her willingly and disappeared",
       "He died of illness",
       "Blossom escaped and nothing happened to him"
+    ]
+  },
+  {
+    "id": 440,
+    "difficulty": "easy",
+    "category": "plot",
+    "question": "Which Scarlet Lily member did Quinlan successfully kill and claim the soul of?",
+    "correct": "Scar",
+    "wrong": [
+      "Lilith",
+      "Void",
+      "Bronya"
     ]
   }
 ]
