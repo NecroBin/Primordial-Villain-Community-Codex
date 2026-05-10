@@ -72,11 +72,21 @@ export default {
             if (!existing) {
               var submitter = embed.fields.find(function(f){ return f.name === 'Submitted by'; });
               var username = submitter ? submitter.value.split(' (')[0] : 'Unknown';
-              existing = { id: userId, username: username, global_name: username, avatar: null, count: 0 };
+              existing = { id: userId, username: username, global_name: username, avatar: null, words: 0, trivia_count: 0 };
             }
-            existing.count = (existing.count || 0) + 1;
+            // Detect trivia vs content submission
+            var catField = embed.fields.find(function(f){ return f.name === 'Category'; });
+            var isTrivia = catField && catField.value === 'Trivia';
+            if (isTrivia) {
+              existing.trivia_count = (existing.trivia_count || 0) + 1;
+              countMsg = ' (trivia: ' + existing.trivia_count + ')';
+            } else {
+              var contentField = embed.fields.find(function(f){ return f.name === 'Content'; });
+              var wordCount = contentField ? contentField.value.trim().split(/\s+/).length : 0;
+              existing.words = (existing.words || 0) + wordCount;
+              countMsg = ' (words: ' + existing.words + ')';
+            }
             await env.SUBS.put(key, JSON.stringify(existing));
-            countMsg = ' (count: ' + existing.count + ')';
           } catch (e) {
             countMsg = ' (KV error: ' + (e.message || e) + ')';
           }
@@ -126,14 +136,21 @@ export default {
     // --- /leaderboard (edge-cached 30s) ---
     if (path === '/leaderboard' && request.method === 'GET') {
       try {
-        var ck = cacheBase + '/__c/contrib-lb';
+        var url = new URL(request.url);
+        var lbType = url.searchParams.get('type') || 'words';
+        var ck = cacheBase + '/__c/contrib-lb-' + lbType;
         var cr = await edgeCache.match(ck);
         if (cr) return new Response(await cr.text(), { headers: CORS });
         const list = await env.SUBS.list({ prefix: 'sub:' });
         const entries = [];
         for (const key of list.keys) {
           const val = await env.SUBS.get(key.name, { type: 'json' });
-          if (val && val.count > 0) entries.push({ id: val.id, username: val.username, global_name: val.global_name, avatar: val.avatar, count: val.count });
+          if (!val) continue;
+          if (lbType === 'trivia') {
+            if ((val.trivia_count || 0) > 0) entries.push({ id: val.id, username: val.username, global_name: val.global_name, avatar: val.avatar, count: val.trivia_count });
+          } else {
+            if ((val.words || 0) > 0) entries.push({ id: val.id, username: val.username, global_name: val.global_name, avatar: val.avatar, count: val.words });
+          }
         }
         entries.sort(function(a, b) { return b.count - a.count; });
         var body = JSON.stringify(entries.slice(0, 10));

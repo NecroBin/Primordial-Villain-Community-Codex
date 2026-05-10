@@ -1945,8 +1945,12 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       </div>
       <div class="form-msg" id="submitMsg"></div>
       <div class="leaderboard">
-        <h3>Top Contributors</h3>
-        <div id="leaderboard"><div class="lb-empty">Loading...</div></div>
+        <h3>Top Contributors — Words</h3>
+        <div id="leaderboard-words"><div class="lb-empty">Loading...</div></div>
+      </div>
+      <div class="leaderboard">
+        <h3>Top Contributors — Trivia Questions</h3>
+        <div id="leaderboard-trivia"><div class="lb-empty">Loading...</div></div>
       </div>
     </div>
   </section>
@@ -2507,8 +2511,8 @@ function applyMembers(data){
 
 
 function escHtml(s){ var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-function renderLeaderboard(lb, data){
-  if(!data || !data.length){ lb.innerHTML = '<div class="lb-empty">No submissions yet. Be the first!</div>'; return; }
+function renderLeaderboard(lb, data, unit){
+  if(!data || !data.length){ lb.innerHTML = '<div class="lb-empty">No contributions yet. Be the first!</div>'; return; }
   var html = '';
   var medals = ['gold','silver','bronze'];
   data.forEach(function(e, i){
@@ -2519,28 +2523,37 @@ function renderLeaderboard(lb, data){
     var avatarUrl = e.avatar
       ? 'https://cdn.discordapp.com/avatars/' + safeId + '/' + safeAvatar + '.png?size=64'
       : 'https://cdn.discordapp.com/embed/avatars/' + (i % 5) + '.png';
+    var label = unit === 'trivia' ? (safeCount + ' question' + (safeCount !== 1 ? 's' : '')) : safeCount.toLocaleString() + ' words';
     html += '<div class="lb-row">'
       + '<div class="lb-rank' + rankClass + '">#' + (i+1) + '</div>'
       + '<img class="lb-avatar" src="' + escHtml(avatarUrl) + '" alt="">'
       + '<div class="lb-name">' + escHtml(e.global_name || e.username || 'Unknown') + '</div>'
-      + '<div class="lb-count">' + safeCount + ' submission' + (safeCount !== 1 ? 's' : '') + '</div>'
+      + '<div class="lb-count">' + label + '</div>'
       + '</div>';
   });
   lb.innerHTML = html;
 }
 function loadLeaderboard(skipCache){
-  var lb = document.getElementById('leaderboard');
-  if(!lb) return;
+  var lbW = document.getElementById('leaderboard-words');
+  var lbT = document.getElementById('leaderboard-trivia');
+  if(!lbW && !lbT) return;
   if(!skipCache){
     try{
-      var c = JSON.parse(sessionStorage.getItem('pv_lb_cache'));
-      if(c && Date.now() - c.ts < 300000){ renderLeaderboard(lb, c.data); return; }
+      var c = JSON.parse(sessionStorage.getItem('pv_lb_cache_v2'));
+      if(c && Date.now() - c.ts < 300000){ if(lbW) renderLeaderboard(lbW, c.words, 'words'); if(lbT) renderLeaderboard(lbT, c.trivia, 'trivia'); return; }
     } catch(e){}
   }
-  fetch(WORKER + '/leaderboard').then(function(r){ return r.json(); }).then(function(data){
-    renderLeaderboard(lb, data);
-    try { sessionStorage.setItem('pv_lb_cache', JSON.stringify({data:data,ts:Date.now()})); } catch(e){}
-  }).catch(function(){ lb.innerHTML = '<div class="lb-empty">Could not load leaderboard.</div>'; });
+  Promise.all([
+    fetch(WORKER + '/leaderboard?type=words').then(function(r){ return r.json(); }),
+    fetch(WORKER + '/leaderboard?type=trivia').then(function(r){ return r.json(); })
+  ]).then(function(results){
+    if(lbW) renderLeaderboard(lbW, results[0], 'words');
+    if(lbT) renderLeaderboard(lbT, results[1], 'trivia');
+    try { sessionStorage.setItem('pv_lb_cache_v2', JSON.stringify({words:results[0],trivia:results[1],ts:Date.now()})); } catch(e){}
+  }).catch(function(){
+    if(lbW) lbW.innerHTML = '<div class="lb-empty">Could not load leaderboard.</div>';
+    if(lbT) lbT.innerHTML = '<div class="lb-empty">Could not load leaderboard.</div>';
+  });
 }
 
 var submitFormLoaded = Date.now();
