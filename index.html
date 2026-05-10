@@ -242,6 +242,9 @@ fetch('https://pv-codex-proxy.necrobin1.workers.dev/members')
     }
   }).catch(function(){});
 
+document.querySelectorAll('a[href="pvcodex.html"]').forEach(function(a){
+  a.addEventListener('click', function(){ sessionStorage.setItem('pv-entry','1'); });
+});
 </script>
 </body>
 </html>

@@ -3508,9 +3508,11 @@ if(tocLinks.length){
   });
 }
 
-// Entry transition on first visit this session
+// Entry transition: first visit OR navigating from landing page
 (function(){
-  if(!sessionStorage.getItem('pv-visited')){
+  var fromLanding = sessionStorage.getItem('pv-entry');
+  if(fromLanding) sessionStorage.removeItem('pv-entry');
+  if(fromLanding || !sessionStorage.getItem('pv-visited')){
     sessionStorage.setItem('pv-visited','1');
     var el = document.getElementById('entryTransition');
     var slashBox = document.getElementById('entrySlashes');
