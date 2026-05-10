@@ -623,9 +623,10 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .trivia-review-a.picked.was-wrong{background:rgba(231,76,60,.1);color:#e74c3c}
 .trivia-review-a.was-correct{background:rgba(46,204,113,.1);color:#2ecc71;font-weight:600}
 @media(max-width:600px){.trivia-review-answers{grid-template-columns:1fr}}
-.sticky-toc{position:sticky;top:0;z-index:50;background:var(--bg-primary);border-bottom:1px solid var(--border);padding:10px 48px;display:flex;gap:18px;font-size:.8rem;font-family:var(--font-h);margin:0 -48px}
-.sticky-toc a{color:var(--text-sec);cursor:pointer;transition:color .15s;text-decoration:none;white-space:nowrap}
-.sticky-toc a:hover,.sticky-toc a.active{color:var(--gold)}
+.sticky-toc{position:sticky;top:0;z-index:50;background:var(--bg-primary);border-bottom:1px solid var(--border);padding:10px 48px;display:flex;gap:8px;font-size:.75rem;font-family:var(--font-h);margin:16px -48px 0}
+.sticky-toc a{color:var(--text-sec);cursor:pointer;transition:all .2s;text-decoration:none;white-space:nowrap;padding:5px 14px;border-radius:16px;border:1px solid var(--border);background:var(--bg-secondary)}
+.sticky-toc a:hover{border-color:var(--gold);color:var(--gold)}
+.sticky-toc a.active{background:var(--gold);color:#fff;border-color:var(--gold)}
 .char-switcher-wrap{border-bottom:1px solid var(--border)}
 .char-switcher{display:flex;gap:6px;padding:8px 0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .char-switcher::-webkit-scrollbar{height:4px}
@@ -1076,7 +1077,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">The Primordial Villain. Stats, progression milestones, classes, and abilities.</p>
     <div class="char-portrait"><div class="portrait-blur" onclick="revealQuinlan(this)"><img src="images-web/quinlan.jpg" alt="Quinlan Elysiar" loading="lazy"><div class="blur-overlay"><div class="blur-msg"><em>The author wishes you to imagine Quinlan for yourself.</em>However, due to popular demand, he chose an image.</div><button class="blur-cta" onclick="revealQuinlan(this.closest('.portrait-blur'))">Click to reveal</button></div></div></div>
     <hr class="sec-divider">
-    <div class="sticky-toc" id="quinlanToc"><a onclick="document.getElementById('q-relations').scrollIntoView({behavior:'smooth'})">Relations</a><a onclick="document.getElementById('q-lore').scrollIntoView({behavior:'smooth'})">Lore</a><a onclick="document.getElementById('q-classes').scrollIntoView({behavior:'smooth'})">Classes</a><a onclick="document.getElementById('q-stats').scrollIntoView({behavior:'smooth'})">Stats</a></div>
+    <div class="sticky-toc" id="quinlanToc"><a data-target="q-relations" class="active" onclick="document.getElementById('q-relations').scrollIntoView({behavior:'smooth'})">Relations</a><a data-target="q-lore" onclick="document.getElementById('q-lore').scrollIntoView({behavior:'smooth'})">Lore</a><a data-target="q-classes" onclick="document.getElementById('q-classes').scrollIntoView({behavior:'smooth'})">Classes</a><a data-target="q-stats" onclick="document.getElementById('q-stats').scrollIntoView({behavior:'smooth'})">Stats</a></div>
 
     <h3 class="vs-section-title" id="q-relations" style="margin-top:0">Relations</h3>
     <div class="fam-grid" style="margin-bottom:32px">
@@ -2183,16 +2184,8 @@ var girlList = [
 function updateSidebarSub(pageId){
   var sub = document.getElementById('sidebarSub');
   if(!sub) return;
-  var html = '';
-  if(pageId === 'quinlan'){
-    html = '<div class="sub-title">Quinlan</div>'
-      + '<a onclick="navigateTo(\'quinlan\',\'q-relations\')">Relations</a>'
-      + '<a onclick="navigateTo(\'quinlan\',\'q-lore\')">Lore</a>'
-      + '<a onclick="navigateTo(\'quinlan\',\'q-classes\')">Classes</a>'
-      + '<a onclick="navigateTo(\'quinlan\',\'q-stats\')">Stats &amp; Progression</a>';
-  }
-  sub.innerHTML = html;
-  sub.classList.toggle('visible', html !== '');
+  sub.innerHTML = '';
+  sub.classList.remove('visible');
   updateCharSwitcher(pageId);
 }
 function updateCharSwitcher(pageId){
@@ -3494,6 +3487,24 @@ function loadChartJs(){
 }
 
 if(location.hash) handleHash();
+
+// Quinlan sticky-toc scroll highlight
+var qSections = ['q-relations','q-lore','q-classes','q-stats'];
+var tocLinks = document.querySelectorAll('#quinlanToc a[data-target]');
+if(tocLinks.length){
+  var content = document.getElementById('mainContent');
+  (content || window).addEventListener('scroll', function(){
+    var scrollY = (content || document.documentElement).scrollTop || window.scrollY;
+    var current = qSections[0];
+    qSections.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el && el.offsetTop - 80 <= scrollY) current = id;
+    });
+    tocLinks.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('data-target') === current);
+    });
+  });
+}
 
 // Entry transition from landing page
 (function(){
