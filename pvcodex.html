@@ -436,6 +436,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   .delta-grid{grid-template-columns:repeat(auto-fill,minmax(90px,1fr))}
   .footer{padding-left:20px;padding-right:20px}
   .sticky-toc{margin:0 -20px;padding-left:60px;padding-right:20px}
+  .char-switcher{margin:0 -20px;padding-left:20px;padding-right:20px}
 }
 @media(max-width:480px){
   .home-hero h1{font-size:1.4rem}
@@ -606,6 +607,11 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .sticky-toc{position:sticky;top:0;z-index:50;background:var(--bg-primary);border-bottom:1px solid var(--border);padding:10px 48px;display:flex;gap:18px;font-size:.8rem;font-family:var(--font-h);margin:0 -48px}
 .sticky-toc a{color:var(--text-sec);cursor:pointer;transition:color .15s;text-decoration:none;white-space:nowrap}
 .sticky-toc a:hover,.sticky-toc a.active{color:var(--gold)}
+.char-switcher{display:flex;gap:6px;padding:12px 48px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;border-bottom:1px solid var(--border);margin:0 -48px}
+.char-switcher::-webkit-scrollbar{display:none}
+.char-switcher a{flex-shrink:0;padding:5px 12px;border-radius:16px;font-size:.75rem;font-family:var(--font-h);color:var(--text-sec);background:var(--bg-secondary);border:1px solid var(--border);cursor:pointer;transition:all .2s;text-decoration:none;white-space:nowrap}
+.char-switcher a:hover{border-color:var(--gold);color:var(--gold)}
+.char-switcher a.active{background:var(--gold);color:#fff;border-color:var(--gold)}
 .char-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-top:20px}
 .char-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:all .3s var(--ease);text-align:center;box-shadow:var(--shadow-card)}
 .char-card:hover{transform:translateY(-3px);border-color:var(--gold-dim);box-shadow:0 4px 24px rgba(139,92,246,.12)}
@@ -2158,15 +2164,30 @@ function updateSidebarSub(pageId){
       + '<a onclick="navigateTo(\'quinlan\',\'q-lore\')">Lore</a>'
       + '<a onclick="navigateTo(\'quinlan\',\'q-classes\')">Classes</a>'
       + '<a onclick="navigateTo(\'quinlan\',\'q-stats\')">Stats &amp; Progression</a>';
-  } else if(pageId === 'families' || pageId.indexOf('girl-') === 0){
-    html = '<div class="sub-title">Harem</div>';
-    girlList.forEach(function(g){
-      var cls = (g.id === pageId) ? ' class="active"' : '';
-      html += '<a onclick="navigateTo(\'' + g.id + '\')"' + cls + '>' + g.name + '</a>';
-    });
   }
   sub.innerHTML = html;
   sub.classList.toggle('visible', html !== '');
+  updateCharSwitcher(pageId);
+}
+function updateCharSwitcher(pageId){
+  document.querySelectorAll('.char-switcher').forEach(function(el){ el.remove(); });
+  if(pageId.indexOf('girl-') !== 0) return;
+  var target = document.getElementById('page-' + pageId);
+  if(!target) return;
+  var section = target.querySelector('section');
+  if(!section) return;
+  var bar = document.createElement('div');
+  bar.className = 'char-switcher';
+  girlList.forEach(function(g){
+    var a = document.createElement('a');
+    a.textContent = g.name;
+    a.onclick = function(){ navigateTo(g.id); };
+    if(g.id === pageId) a.className = 'active';
+    bar.appendChild(a);
+  });
+  section.insertBefore(bar, section.children[0]);
+  var active = bar.querySelector('.active');
+  if(active) active.scrollIntoView({block:'nearest',inline:'center',behavior:'instant'});
 }
 
 window.goContribute = function(category){
