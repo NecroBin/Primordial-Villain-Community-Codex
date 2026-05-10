@@ -83,13 +83,13 @@ a:hover{color:#a78bfa}
 .entry-quote{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-size:1.8rem;color:#fff;letter-spacing:.08em;opacity:0;text-shadow:0 0 30px rgba(139,92,246,.6);animation:quoteFade 1.2s ease .8s forwards}
 .entry-img{position:absolute;inset:0;background:url('images-web/bf-transition.jpg') center 15%/cover no-repeat;opacity:0;animation:imgReveal .6s ease 2s forwards}
 .entry-slashes{position:absolute;inset:0;overflow:hidden}
-.entry-slashes span{position:absolute;height:4px;width:160%;left:-30%;opacity:0;background:linear-gradient(90deg,transparent 0%,rgba(139,92,246,.4) 15%,rgba(200,180,255,.9) 40%,#fff 50%,rgba(200,180,255,.9) 60%,rgba(139,92,246,.4) 85%,transparent 100%);box-shadow:0 0 12px rgba(139,92,246,.6),0 0 4px #fff;filter:blur(.3px)}
+.entry-slashes span{position:absolute;width:0;height:3px;opacity:0;transform-origin:center center;background:linear-gradient(90deg,transparent,rgba(200,180,255,.6) 10%,#fff 50%,rgba(200,180,255,.6) 90%,transparent);box-shadow:0 0 8px rgba(139,92,246,.8),0 0 20px rgba(139,92,246,.4);border-radius:2px}
 .entry-out{position:absolute;inset:0;background:var(--bg-primary);opacity:0;animation:entryFadeIn .5s ease 3.4s forwards}
 @keyframes lineDraw{0%{opacity:0;transform:scaleX(0)}50%{opacity:.6}100%{opacity:0;transform:scaleX(1)}}
 @keyframes quoteFade{0%{opacity:0;transform:scale(.95)}40%{opacity:1;transform:scale(1)}85%{opacity:1}100%{opacity:0}}
 @keyframes imgReveal{0%{opacity:0;transform:scale(1.08)}60%{opacity:.8}100%{opacity:.6;transform:scale(1)}}
 @keyframes entryFadeIn{to{opacity:1}}
-@keyframes slashFlurry{0%{opacity:0;transform:translateX(-120%)}15%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translateX(120%)}}
+@keyframes slashStrike{0%{width:0;opacity:1}40%{width:120vw;opacity:1}100%{width:120vw;opacity:0}}
 
 /* ── Sidebar ── */
 .sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg-primary);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;transition:transform .3s var(--ease)}
@@ -3512,15 +3512,20 @@ if(tocLinks.length){
     var el = document.getElementById('entryTransition');
     var slashBox = document.getElementById('entrySlashes');
     if(el && slashBox){
-      var angles = [-30,-15,-8,12,25,-20,5,-28,18,-5,22,-12,8,-25,15,30,-18,10,-22,28];
-      var tops = [8,15,22,28,35,42,48,55,62,68,75,82,88,20,45,58,32,72,50,38];
-      for(var i = 0; i < 20; i++){
+      var count = 28;
+      for(var i = 0; i < count; i++){
         var s = document.createElement('span');
-        s.style.top = tops[i] + '%';
-        s.style.transform = 'rotate(' + angles[i] + 'deg)';
-        s.style.animationDelay = (2.3 + i * 0.05) + 's';
-        s.style.animation = 'slashFlurry ' + (0.2 + Math.random() * 0.15) + 's ease ' + (2.3 + i * 0.05) + 's forwards';
-        if(i % 3 === 0) s.style.height = '5px';
+        var angle = Math.random() * 360;
+        var cx = 35 + Math.random() * 30;
+        var cy = 30 + Math.random() * 40;
+        s.style.left = cx + '%';
+        s.style.top = cy + '%';
+        s.style.transform = 'rotate(' + angle + 'deg)';
+        s.style.transformOrigin = 'left center';
+        var delay = 2.3 + i * 0.035;
+        var dur = 0.15 + Math.random() * 0.12;
+        s.style.animation = 'slashStrike ' + dur + 's ease ' + delay + 's forwards';
+        s.style.height = (2 + Math.random() * 3) + 'px';
         slashBox.appendChild(s);
       }
       el.classList.add('playing');
