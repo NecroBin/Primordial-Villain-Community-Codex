@@ -583,7 +583,10 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .trivia-next-btn{margin-top:18px;padding:12px 28px;background:var(--gold);color:#fff;border:none;border-radius:8px;font-family:var(--font-h);font-size:.88rem;cursor:pointer;transition:all .2s;letter-spacing:.03em}
 .trivia-next-btn:hover{background:var(--gold-dim);box-shadow:0 4px 16px var(--gold-glow)}
 .trivia-results{text-align:center;padding:40px 24px}
-.trivia-sticker{width:160px;height:160px;border-radius:16px;object-fit:cover;margin:0 auto 16px;display:block;box-shadow:0 4px 20px rgba(0,0,0,.15);border:2px solid var(--border)}
+.trivia-sticker{width:160px;height:160px;border-radius:16px;object-fit:cover;margin:0 auto 12px;display:block;box-shadow:0 4px 20px rgba(0,0,0,.15);border:2px solid var(--border)}
+.trivia-sticker-quote{font-family:var(--font-h);font-size:.85rem;color:var(--text-sec);font-style:italic;margin-bottom:4px;line-height:1.5}
+.trivia-sticker-quote .tsq-name{color:var(--gold);font-style:normal;font-weight:600}
+.trivia-sticker-quote .tsq-sub{display:block;font-size:.75rem;color:var(--text-muted);margin-top:2px}
 .trivia-score-big{font-family:var(--font-h);font-size:3rem;color:var(--gold);margin-bottom:4px}
 .trivia-score-label{font-size:.88rem;color:var(--text-muted);margin-bottom:24px}
 .trivia-score-breakdown{display:flex;justify-content:center;gap:32px;margin-bottom:28px;font-size:.82rem;color:var(--text-sec)}
@@ -3371,18 +3374,20 @@ function showTriviaResults(){
   var circ = Math.PI * 2 * 52;
   var offset = circ - (pct / 100) * circ;
   var grade = pct === 100 ? 'Flawless' : pct >= 80 ? 'Excellent' : pct >= 60 ? 'Solid' : pct >= 40 ? 'Rough' : 'Yikes';
-  var sticker = '';
+  var sticker = '', stickerQuote = '';
   if(triviaModes[s.mode] && triviaModes[s.mode].ranked){
-    if(pct === 100) sticker = Math.random() < 0.5 ? 'ayame-smug' : 'sera-smug';
-    else if(wrong === 1) sticker = 'iris-glare';
-    else if(pct >= 80) sticker = 'serika-muscle';
-    else if(pct >= 40) sticker = 'blossom-headpat';
-    else if(s.correct === 0) sticker = 'blossom-cry';
-    else sticker = 'blossom-pout';
+    if(pct === 100){
+      if(Math.random() < 0.5){ sticker = 'ayame-smug'; stickerQuote = '<span class="tsq-name">Ayame:</span> “Hmm... As expected~”'; }
+      else { sticker = 'sera-smug'; stickerQuote = '<span class="tsq-name">Seraphiel:</span> “A flawless performance.”'; }
+    } else if(wrong === 1){ sticker = 'iris-glare'; stickerQuote = '<span class="tsq-name">Iris:</span> “Fuck this shitty ass game!”'; }
+    else if(pct >= 80){ sticker = 'serika-muscle'; stickerQuote = '<span class="tsq-name">Serika:</span> “Not bad! I’ll do better next time!”'; }
+    else if(pct >= 40){ sticker = 'blossom-headpat'; stickerQuote = '<span class="tsq-name">Blossom:</span> “Master!! Blossom guessed more than half correctly!”<span class="tsq-sub"><span class="tsq-name">Quinlan:</span> “Guessed?”</span>'; }
+    else if(s.correct === 0){ sticker = 'blossom-cry'; stickerQuote = '<span class="tsq-name">Blossom:</span> “M-Master... Blossom missed everything!!”'; }
+    else { sticker = 'blossom-pout'; stickerQuote = '<span class="tsq-name">Blossom:</span> “Master!! Blossom doesn’t like this game!”'; }
   } else {
-    if(pct >= 80) sticker = 'serika-muscle';
-    else if(pct >= 40) sticker = 'blossom-headpat';
-    else sticker = 'blossom-cry';
+    if(pct >= 80){ sticker = 'serika-muscle'; stickerQuote = '<span class="tsq-name">Serika:</span> “Not bad!”'; }
+    else if(pct >= 40){ sticker = 'blossom-headpat'; stickerQuote = '<span class="tsq-name">Blossom:</span> “Master!! Blossom guessed more than half correctly!”'; }
+    else { sticker = 'blossom-cry'; stickerQuote = '<span class="tsq-name">Blossom:</span> “M-Master... Blossom missed everything!!”'; }
   }
   var html = '<div class="trivia-results">' +
     '<div class="trivia-score-ring"><svg viewBox="0 0 120 120" width="120" height="120">' +
@@ -3391,6 +3396,7 @@ function showTriviaResults(){
       '<text class="ring-text" x="60" y="60" text-anchor="middle" dominant-baseline="central" transform="rotate(90 60 60)">' + pct + '%</text>' +
     '</svg></div>' +
     '<img class="trivia-sticker" src="images-web/stickers/' + sticker + '.jpg" alt="">' +
+    '<div class="trivia-sticker-quote">' + stickerQuote + '</div>' +
     '<div class="trivia-score-label" style="font-size:1.1rem;color:var(--gold);font-family:var(--font-h);margin-bottom:4px">' + grade + '</div>' +
     '<div class="trivia-score-label">' + s.correct + ' / ' + total + ' in ' + formatTime(elapsed) + '</div>' +
     '<div class="trivia-score-breakdown">' +
