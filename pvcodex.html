@@ -81,8 +81,8 @@ a:hover{color:#a78bfa}
 .entry-lines span:nth-child(2){top:70%;left:5%;width:90%;animation:lineDraw .8s ease .4s forwards}
 .entry-lines span:nth-child(3){top:50%;left:20%;width:60%;animation:lineDraw .6s ease .6s forwards}
 .entry-quote{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-size:1.8rem;color:#fff;letter-spacing:.08em;opacity:0;text-shadow:0 0 30px rgba(139,92,246,.6);animation:quoteFade 1.2s ease .8s forwards}
-.entry-img{position:absolute;inset:0;background:url('images-web/bf-transition.jpg') center 15%/contain no-repeat;opacity:0;animation:imgReveal .6s ease 2s forwards}
-@media(max-width:768px){.entry-img{background-size:cover}}
+.entry-img{position:absolute;inset:0;background-image:url('images-web/bf-transition.jpg');background-position:center center;background-size:contain;background-repeat:no-repeat;opacity:0;animation:imgReveal .6s ease 2s forwards}
+@media(max-width:768px){.entry-img{background-size:cover;background-position:center 15%}}
 .entry-slashes{position:absolute;inset:0;overflow:hidden}
 .entry-slashes span{position:absolute;width:80vmax;opacity:0;background:radial-gradient(ellipse 50% 50% at center,#fff,rgba(200,180,255,.7) 40%,transparent 70%);box-shadow:0 0 12px rgba(139,92,246,.7),0 0 30px rgba(139,92,246,.3);border-radius:50%}
 .entry-out{position:absolute;inset:0;background:var(--bg-primary);opacity:0;animation:entryFadeIn .4s ease 3.2s forwards}
