@@ -555,7 +555,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .trivia-score-breakdown strong{font-family:var(--font-h);font-size:1.2rem;color:var(--text)}
 .trivia-btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .trivia-boards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px;max-width:960px;margin-left:auto;margin-right:auto}
-@media(max-width:800px){.trivia-boards{grid-template-columns:1fr;max-width:360px}}
+@media(max-width:800px){.trivia-boards{grid-template-columns:1fr;max-width:360px}.trivia-modes{grid-template-columns:1fr!important;max-width:360px!important}}
 .trivia-board{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px 16px;box-shadow:var(--shadow-card)}
 .board-hdr{display:flex;align-items:center;justify-content:center;gap:6px;font-family:var(--font-h);font-size:.85rem;color:var(--gold);margin-bottom:4px}
 .board-sub{font-size:.66rem;color:var(--text-muted);text-align:center;margin-bottom:14px}
@@ -3170,18 +3170,19 @@ function initTriviaPage(){
   if(!container) return;
   var comp = triviaModes.challenge;
   var cas = triviaModes.casual;
-  container.style.maxWidth = '720px';
+  container.style.gridTemplateColumns = 'repeat(3, 1fr)';
+  container.style.maxWidth = '960px';
   container.style.margin = '24px auto';
   container.innerHTML =
     '<div class="trivia-mode-card" id="triviaStartCard" style="display:flex;flex-direction:column;justify-content:center">' +
       '<div class="trivia-mode-icon">' + comp.icon + '</div>' +
       '<div class="trivia-mode-name">' + comp.name + '</div>' +
-      '<div class="trivia-mode-desc">' + comp.desc + '<br><span style="color:var(--text-muted);font-size:.72rem">Discord login · leaderboards · 1 miss allowed for streaks</span></div>' +
+      '<div class="trivia-mode-desc">25 questions · easy to hard<br><span style="color:var(--text-muted);font-size:.72rem">Discord login required · leaderboards · streaks</span></div>' +
     '</div>' +
     '<div class="trivia-mode-card" id="triviaCasualCard" style="display:flex;flex-direction:column;justify-content:center">' +
       '<div class="trivia-mode-icon">' + cas.icon + '</div>' +
       '<div class="trivia-mode-name">' + cas.name + '</div>' +
-      '<div class="trivia-mode-desc">' + cas.desc + '<br><span style="color:var(--text-muted);font-size:.72rem">No login required · just for fun</span></div>' +
+      '<div class="trivia-mode-desc">10 questions · easy & medium<br><span style="color:var(--text-muted);font-size:.72rem">No login · no leaderboard · just for fun</span></div>' +
     '</div>' +
     '<div class="trivia-mode-card" id="triviaCtaCard" style="border-style:dashed;display:flex;flex-direction:column;justify-content:center">' +
       '<div class="trivia-mode-icon">&#9998;</div>' +
