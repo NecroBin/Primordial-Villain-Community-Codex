@@ -83,13 +83,13 @@ a:hover{color:#a78bfa}
 .entry-quote{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-size:1.8rem;color:#fff;letter-spacing:.08em;opacity:0;text-shadow:0 0 30px rgba(139,92,246,.6);animation:quoteFade 1.2s ease .8s forwards}
 .entry-img{position:absolute;inset:0;background:url('images-web/bf-transition.jpg') center 15%/cover no-repeat;opacity:0;animation:imgReveal .6s ease 2s forwards}
 .entry-slashes{position:absolute;inset:0;overflow:hidden}
-.entry-slashes span{position:absolute;width:0;height:3px;opacity:0;transform-origin:center center;background:linear-gradient(90deg,transparent,rgba(200,180,255,.6) 10%,#fff 50%,rgba(200,180,255,.6) 90%,transparent);box-shadow:0 0 8px rgba(139,92,246,.8),0 0 20px rgba(139,92,246,.4);border-radius:2px}
+.entry-slashes span{position:absolute;width:110vmax;height:3px;opacity:0;background:linear-gradient(90deg,transparent,rgba(200,180,255,.6) 10%,#fff 50%,rgba(200,180,255,.6) 90%,transparent);box-shadow:0 0 8px rgba(139,92,246,.8),0 0 20px rgba(139,92,246,.4);border-radius:2px}
 .entry-out{position:absolute;inset:0;background:var(--bg-primary);opacity:0;animation:entryFadeIn .5s ease 3.4s forwards}
 @keyframes lineDraw{0%{opacity:0;transform:scaleX(0)}50%{opacity:.6}100%{opacity:0;transform:scaleX(1)}}
 @keyframes quoteFade{0%{opacity:0;transform:scale(.95)}40%{opacity:1;transform:scale(1)}85%{opacity:1}100%{opacity:0}}
 @keyframes imgReveal{0%{opacity:0;transform:scale(1.08)}60%{opacity:.8}100%{opacity:.6;transform:scale(1)}}
 @keyframes entryFadeIn{to{opacity:1}}
-@keyframes slashStrike{0%{width:0;opacity:1}40%{width:120vw;opacity:1}100%{width:120vw;opacity:0}}
+@keyframes slashStrike{0%{clip-path:inset(0 100% 0 0);opacity:1}35%{clip-path:inset(0 0 0 0);opacity:1}100%{clip-path:inset(0 0 0 0);opacity:0}}
 
 /* ── Sidebar ── */
 .sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg-primary);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;transition:transform .3s var(--ease)}
@@ -3512,20 +3512,17 @@ if(tocLinks.length){
     var el = document.getElementById('entryTransition');
     var slashBox = document.getElementById('entrySlashes');
     if(el && slashBox){
-      var count = 28;
+      var count = 30;
       for(var i = 0; i < count; i++){
         var s = document.createElement('span');
         var angle = Math.random() * 360;
-        var cx = 35 + Math.random() * 30;
-        var cy = 30 + Math.random() * 40;
-        s.style.left = cx + '%';
-        s.style.top = cy + '%';
-        s.style.transform = 'rotate(' + angle + 'deg)';
-        s.style.transformOrigin = 'left center';
-        var delay = 2.3 + i * 0.035;
-        var dur = 0.15 + Math.random() * 0.12;
+        s.style.left = '50%';
+        s.style.top = '50%';
+        s.style.transform = 'translate(-50%,-50%) rotate(' + angle + 'deg)';
+        var delay = 2.3 + i * 0.03;
+        var dur = 0.18 + Math.random() * 0.1;
         s.style.animation = 'slashStrike ' + dur + 's ease ' + delay + 's forwards';
-        s.style.height = (2 + Math.random() * 3) + 'px';
+        s.style.height = (2 + Math.random() * 4) + 'px';
         slashBox.appendChild(s);
       }
       el.classList.add('playing');
