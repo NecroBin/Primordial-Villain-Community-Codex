@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://necrobin.github.io/Primordial-Villain-Community-Codex/sitemap.xml
-
-# Auto-deploy test
+Sitemap: https://necrobin.com/sitemap.xml

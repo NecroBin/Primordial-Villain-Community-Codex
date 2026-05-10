@@ -5,8 +5,8 @@ export default {
     const INVITE_CODE = 'XAwgpNKAHr';
     const PUBLIC_KEY = '8790c29416a46b783d669f9076803ce504509cfe2a77280222af59d31db9d89d';
     const CHANNEL_ID = '1502227252774047914';
-    const REDIRECT_URI = 'https://necrobin.github.io/Primordial-Villain-Community-Codex/';
-    const ALLOWED_ORIGIN = 'https://necrobin.github.io';
+    const REDIRECT_URI = 'https://necrobin.com/pvcodex.html';
+    const ALLOWED_ORIGIN = 'https://necrobin.com';
 
     // --- CORS: locked to your GitHub Pages origin ---
     const origin = request.headers.get('Origin') || '';
