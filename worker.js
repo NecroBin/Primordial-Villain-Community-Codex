@@ -437,7 +437,35 @@ export default {
         await env.SUBS.put(key, JSON.stringify(existing));
 
         ctx.waitUntil(edgeCache.delete(cacheBase + '/__c/trivia-lb:' + mode));
-        return new Response(JSON.stringify({ success:true }), { headers: CORS });
+
+        // Calculate user's rank positions
+        var ranks = { speed: null, streak: null, veteran: null };
+        try {
+          var allKeys = await env.SUBS.list({ prefix: 'trivia:' + mode + ':' });
+          var all = [];
+          for (var rk of allKeys.keys) {
+            var rv = await env.SUBS.get(rk.name, { type: 'json' });
+            if (rv) all.push(rv);
+          }
+          // Speed rank (flawless only)
+          if (existing.pct === 100 && existing.bestTime > 0) {
+            var speedList = all.filter(function(e){ return e.pct === 100 && e.bestTime > 0; })
+              .sort(function(a,b){ return a.bestTime - b.bestTime; });
+            for (var si = 0; si < speedList.length; si++) { if (speedList[si].id === user.id) { ranks.speed = si + 1; break; } }
+          }
+          // Streak rank
+          var myStreak = existing.bestStreak || existing.streak || 0;
+          if (myStreak > 0) {
+            var streakList = all.filter(function(e){ return (e.bestStreak||e.streak||0) > 0; })
+              .sort(function(a,b){ return (b.bestStreak||b.streak||0) - (a.bestStreak||a.streak||0); });
+            for (var sti = 0; sti < streakList.length; sti++) { if (streakList[sti].id === user.id) { ranks.streak = sti + 1; break; } }
+          }
+          // Veteran rank
+          var vetList = all.sort(function(a,b){ return (b.games||0) !== (a.games||0) ? (b.games||0) - (a.games||0) : (b.totalCorrect||0) - (a.totalCorrect||0); });
+          for (var vi = 0; vi < vetList.length; vi++) { if (vetList[vi].id === user.id) { ranks.veteran = vi + 1; break; } }
+        } catch(e) {}
+
+        return new Response(JSON.stringify({ success:true, ranks:ranks }), { headers: CORS });
       } catch (e) {
         return new Response('{"error":"Submit failed"}', { status: 500, headers: CORS });
       }
