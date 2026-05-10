@@ -2317,7 +2317,11 @@ window.navigateTo = function(pageId, scrollToId, skipPush){
   if(!skipPush) history.pushState({ page: pageId }, '', pageId === 'home' ? '#' : '#' + pageId);
 };
 
-window.addEventListener('popstate', function(){
+window.addEventListener('popstate', function(e){
+  if(triviaState && document.getElementById('triviaGameArea').style.display !== 'none'){
+    initTriviaPage();
+    return;
+  }
   var hash = location.hash.replace('#','');
   var target = hash && document.getElementById('page-' + hash) ? hash : 'home';
   navigateTo(target, null, true);
@@ -3318,6 +3322,7 @@ function startTrivia(modeKey){
   document.getElementById('triviaMenu').style.display = 'none';
   document.getElementById('triviaResultsArea').style.display = 'none';
   document.getElementById('triviaGameArea').style.display = '';
+  history.pushState({ page: 'trivia', inGame: true }, '', '#trivia');
   renderTriviaQuestion();
 }
 
