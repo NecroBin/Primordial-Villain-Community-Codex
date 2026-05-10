@@ -84,8 +84,8 @@ a:hover{color:#a78bfa}
 .entry-img{position:absolute;inset:0;background:url('images-web/bf-transition.jpg') center 15%/contain no-repeat;opacity:0;animation:imgReveal .6s ease 2s forwards}
 @media(max-width:768px){.entry-img{background-size:cover}}
 .entry-slashes{position:absolute;inset:0;overflow:hidden}
-.entry-slashes span{position:absolute;width:110vmax;height:3px;opacity:0;background:linear-gradient(90deg,transparent,rgba(200,180,255,.6) 10%,#fff 50%,rgba(200,180,255,.6) 90%,transparent);box-shadow:0 0 8px rgba(139,92,246,.8),0 0 20px rgba(139,92,246,.4);border-radius:2px}
-.entry-out{position:absolute;inset:0;background:var(--bg-primary);opacity:0;animation:entryFadeIn .5s ease 3.4s forwards}
+.entry-slashes span{position:absolute;width:80vmax;opacity:0;background:radial-gradient(ellipse 50% 50% at center,#fff,rgba(200,180,255,.7) 40%,transparent 70%);box-shadow:0 0 12px rgba(139,92,246,.7),0 0 30px rgba(139,92,246,.3);border-radius:50%}
+.entry-out{position:absolute;inset:0;background:var(--bg-primary);opacity:0;animation:entryFadeIn .4s ease 3.2s forwards}
 @keyframes lineDraw{0%{opacity:0;transform:scaleX(0)}50%{opacity:.6}100%{opacity:0;transform:scaleX(1)}}
 @keyframes quoteFade{0%{opacity:0;transform:scale(.95)}40%{opacity:1;transform:scale(1)}85%{opacity:1}100%{opacity:0}}
 @keyframes imgReveal{0%{opacity:0;transform:scale(1.08)}60%{opacity:.8}100%{opacity:.6;transform:scale(1)}}
@@ -3513,21 +3513,31 @@ if(tocLinks.length){
     var el = document.getElementById('entryTransition');
     var slashBox = document.getElementById('entrySlashes');
     if(el && slashBox){
-      var count = 30;
-      for(var i = 0; i < count; i++){
-        var s = document.createElement('span');
-        var angle = Math.random() * 360;
-        s.style.left = '50%';
-        s.style.top = '50%';
-        s.style.transform = 'translate(-50%,-50%) rotate(' + angle + 'deg)';
-        var delay = 2.3 + i * 0.03;
-        var dur = 0.18 + Math.random() * 0.1;
-        s.style.animation = 'slashStrike ' + dur + 's ease ' + delay + 's forwards';
-        s.style.height = (2 + Math.random() * 4) + 'px';
-        slashBox.appendChild(s);
-      }
+      var clusters = [
+        {x:30,y:35,angles:[35,140,-50,80],t:2.2},
+        {x:65,y:25,angles:[-40,55,160,-15],t:2.35},
+        {x:45,y:60,angles:[110,-30,65,-70],t:2.48},
+        {x:20,y:70,angles:[45,-55,130,20],t:2.58},
+        {x:70,y:55,angles:[-65,40,155,-25],t:2.65},
+        {x:50,y:40,angles:[75,-45,120,-80,30,165],t:2.72},
+        {x:35,y:20,angles:[-35,60,145],t:2.82},
+        {x:60,y:75,angles:[50,-60,25,135],t:2.88}
+      ];
+      clusters.forEach(function(c){
+        c.angles.forEach(function(angle, j){
+          var s = document.createElement('span');
+          s.style.left = (c.x + (Math.random()-0.5)*10) + '%';
+          s.style.top = (c.y + (Math.random()-0.5)*10) + '%';
+          s.style.transform = 'translate(-50%,-50%) rotate(' + angle + 'deg)';
+          s.style.height = (3 + Math.random() * 5) + 'px';
+          s.style.width = (50 + Math.random() * 40) + 'vmax';
+          var delay = c.t + j * 0.025;
+          s.style.animation = 'slashStrike .2s ease ' + delay + 's forwards';
+          slashBox.appendChild(s);
+        });
+      });
       el.classList.add('playing');
-      setTimeout(function(){ el.classList.remove('playing'); slashBox.innerHTML = ''; }, 4000);
+      setTimeout(function(){ el.classList.remove('playing'); slashBox.innerHTML = ''; }, 3800);
     }
   }
 })();
