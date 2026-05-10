@@ -122,11 +122,13 @@ body.search-mode .page.search-has-results .sec-title{display:block!important;fon
 .back-btn:hover{border-color:var(--gold);background:rgba(139,92,246,.06)}
 
 /* ── Home: Hero ── */
-.home-hero{padding:80px 48px 40px;max-width:900px;text-align:center;margin:0 auto}
+.home-hero{padding:80px 48px 24px;max-width:900px;text-align:center;margin:0 auto}
 .home-hero h1{font-family:var(--font-h);font-size:2.4rem;color:var(--gold);letter-spacing:.04em;line-height:1.2}
-.home-hero .subtitle{font-family:var(--font-h);font-size:.9rem;color:var(--text-sec);margin-top:6px;letter-spacing:.1em}
-.home-hero .tagline{color:var(--text-sec);margin:20px auto 0;font-size:.92rem;max-width:540px;line-height:1.7}
-.home-divider{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:36px auto;border:none}
+.home-hero .subtitle{font-size:.88rem;color:var(--text-sec);margin-top:6px;letter-spacing:.06em}
+.home-hero .tagline{color:var(--text-sec);margin:20px auto 0;font-size:.88rem;max-width:540px;line-height:1.7}
+.home-hero .author-link{display:inline-block;margin-top:16px;font-size:.82rem;color:var(--text-muted);letter-spacing:.03em}
+.home-hero .author-link a{color:var(--gold)}
+.home-divider{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:28px auto;border:none}
 .home-divider-sm{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:20px auto;border:none}
 
 /* ── Home: Nav Cards ── */
@@ -138,9 +140,9 @@ body.search-mode .page.search-has-results .sec-title{display:block!important;fon
 .nav-card .nav-card-icon{font-size:1.8rem;margin-bottom:10px;display:block}
 
 /* ── Hero Credits ── */
-.hero-credits{margin-top:14px;font-size:.76rem;color:var(--text-muted);letter-spacing:.04em;line-height:1.8}
-.hero-credits span{color:var(--gold);font-family:var(--font-h);font-size:.8rem;margin:0 4px}
-.hero-credits .lead-credit{font-size:.88rem;font-weight:700}
+.hero-credits{margin-top:16px;font-size:.78rem;color:var(--text-muted);letter-spacing:.02em;line-height:1.8}
+.hero-credits span{color:var(--gold);font-weight:600;margin:0 2px}
+.hero-credits .lead-credit{font-weight:700}
 
 /* ── Link Row (Discord / Patreon / Read) ── */
 .link-row{max-width:900px;margin:0 auto;padding:0 48px 48px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -707,7 +709,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <h1>Primordial Villain with a Slave Harem</h1>
     <div class="subtitle">Community Codex</div>
     <p class="tagline">A community-compiled information hub for the webnovel <em>Primordial Villain with a Slave Harem</em>, cataloguing characters, factions, stats, classes, and the harem across the world of Thalorind.</p>
-    <div class="hero-credits">Foundation compiled by <span class="lead-credit">Zaspho</span> with <span>Ahaan160</span> <span>BvBear</span> <span>SpecterxRetcepS</span><br>The rest is up to you — this codex grows with the community.<br><span style="font-size:.82rem;color:var(--text-muted)">Or, if you already know everything — <a onclick="navigateTo('trivia')" style="color:var(--gold);cursor:pointer" title="Play Trivia">test yourself in the trivia game &#9654;</a></span></div>
+    <div class="author-link">A novel by <a href="/">NecroBin</a></div>
+    <div class="hero-credits">Foundation compiled by <span class="lead-credit">Zaspho</span> with <span>Ahaan160</span> <span>BvBear</span> <span>SpecterxRetcepS</span><br>The rest is up to you — this codex grows with the community.<br>Or, if you already know everything — <a onclick="navigateTo('trivia')" style="cursor:pointer">test yourself in the trivia game &#9654;</a></div>
   </header>
   <hr class="home-divider">
   <div class="home-nav">
