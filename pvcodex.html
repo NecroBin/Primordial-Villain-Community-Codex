@@ -126,8 +126,14 @@ body.search-mode .page.search-has-results .sec-title{display:block!important;fon
 
 /* ── Home: Hero ── */
 .home-hero{padding:80px 48px 24px;max-width:900px;text-align:center;margin:0 auto}
-.home-hero h1{font-family:var(--font-h);font-size:2.4rem;color:var(--gold);letter-spacing:.04em;line-height:1.2}
-.home-hero .subtitle{font-size:.88rem;color:var(--text-sec);margin-top:6px;letter-spacing:.06em}
+.home-hero h1{font-family:var(--font-h);font-size:2.4rem;color:var(--gold);letter-spacing:.04em;line-height:1.2;margin-bottom:16px}
+.home-hero .hero-meta{font-size:.82rem;color:var(--text-muted);letter-spacing:.03em;line-height:1.7}
+.home-hero .hero-meta a{color:var(--gold)}
+.hero-info-card{max-width:540px;margin:20px auto 0;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px 24px;box-shadow:var(--shadow-card)}
+.hero-info-card p{font-size:.82rem;color:var(--text-sec);line-height:1.6;margin-bottom:8px}
+.hero-info-card p:last-child{margin-bottom:0}
+.hero-info-card .credits{font-size:.75rem;color:var(--text-muted);margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.hero-info-card .credits span{color:var(--text-sec);font-weight:500}
 .home-hero .tagline{color:var(--text-sec);margin:20px auto 0;font-size:.88rem;max-width:540px;line-height:1.7}
 .home-divider{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:28px auto;border:none}
 .home-divider-sm{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:20px auto;border:none}
@@ -707,11 +713,14 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 <!-- ═══════════════ HOME ═══════════════ -->
 <div class="page active" id="page-home">
   <header class="home-hero">
-    <div class="subtitle" style="margin-bottom:6px">The First Entry in the <a href="/">Necroverse</a></div>
+    <div class="hero-meta">The First Entry in the <a href="/">Necroverse</a></div>
     <h1>Primordial Villain with a Slave Harem</h1>
-    <div class="subtitle">Community Codex for the novel by <a href="/">NecroBin</a></div>
-    <p class="tagline">Characters, factions, stats, classes, and lore from the world of Thalorind — compiled by the community.</p>
-    <div class="hero-credits">Foundation compiled by <span class="lead-credit">Zaspho</span> with <span>Ahaan160</span> <span>BvBear</span> <span>SpecterxRetcepS</span><br>The rest is up to you — this codex grows with the community.<br>Or, if you already know everything — <a onclick="navigateTo('trivia')" style="cursor:pointer">test yourself in the trivia game &#9654;</a></div>
+    <div class="hero-info-card">
+      <p>Community Codex for the novel by <a href="/">NecroBin</a></p>
+      <p>Characters, factions, stats, classes, and lore from the world of Thalorind &mdash; compiled by the community.</p>
+      <p style="margin-top:4px">Think you know everything? <a onclick="navigateTo('trivia')" style="cursor:pointer">Try the trivia game &#9654;</a></p>
+      <div class="credits">Foundation by <span>Zaspho</span> &middot; <span>Ahaan160</span> &middot; <span>BvBear</span> &middot; <span>SpecterxRetcepS</span></div>
+    </div>
   </header>
   <hr class="home-divider">
   <div class="home-nav">
@@ -2017,7 +2026,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 </div>
 
 <div class="no-results" id="noResults">No matches found.</div>
-<footer class="footer"><p>Compiled by the community of <strong style="color:var(--gold)">Primordial Villain with a Slave Harem</strong></p><p style="margin-top:6px">Think you know PV? <a onclick="navigateTo('trivia')" style="cursor:pointer">Try the Trivia Game</a></p></footer>
+<footer class="footer"><p>Compiled by the community of <strong style="color:var(--gold)">Primordial Villain with a Slave Harem</strong></p><p style="margin-top:6px">Think you know PV? <a onclick="navigateTo('trivia')" style="cursor:pointer">Try the Trivia Game</a></p><p style="margin-top:10px"><a href="/" style="font-size:.78rem;color:var(--text-muted);letter-spacing:.03em">&larr; Back to necrobin.com</a></p></footer>
 </main>
 <div class="lightbox" id="lightbox" onclick="closeLightbox()"><button class="lb-arrow lb-prev" onclick="event.stopPropagation();lbNav(-1)">&#8249;</button><img id="lbImg" src="" alt="" onclick="event.stopPropagation()"><button class="lb-arrow lb-next" onclick="event.stopPropagation();lbNav(1)">&#8250;</button><div class="lb-name" id="lbName"></div></div>
 
