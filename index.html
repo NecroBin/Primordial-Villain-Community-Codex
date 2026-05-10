@@ -3115,7 +3115,8 @@ var triviaQuestions = [
 ];
 
 var triviaModes = {
-  challenge: {name:'Trivia Game', icon:'🎯', count:25, dist:{easy:10,medium:9,hard:6}, desc:'25 questions — easy to hard'}
+  challenge: {name:'Competitive', icon:'🏆', count:25, dist:{easy:10,medium:9,hard:6}, desc:'25 questions — easy to hard', ranked:true},
+  casual: {name:'Casual', icon:'🎲', count:10, dist:{easy:5,medium:5,hard:0}, desc:'10 questions — easy & medium'}
 };
 
 var triviaState = null;
@@ -3167,15 +3168,20 @@ window.answerTrivia = answerTrivia;
 function initTriviaPage(){
   var container = document.getElementById('triviaModes');
   if(!container) return;
-  var mode = triviaModes.challenge;
-  container.style.gridTemplateColumns = '1fr 1fr';
-  container.style.maxWidth = '560px';
+  var comp = triviaModes.challenge;
+  var cas = triviaModes.casual;
+  container.style.maxWidth = '720px';
   container.style.margin = '24px auto';
   container.innerHTML =
     '<div class="trivia-mode-card" id="triviaStartCard" style="display:flex;flex-direction:column;justify-content:center">' +
-      '<div class="trivia-mode-icon">' + mode.icon + '</div>' +
-      '<div class="trivia-mode-name">' + mode.name + '</div>' +
-      '<div class="trivia-mode-desc">' + mode.desc + '<br><span style="color:var(--text-muted);font-size:.72rem">1 wrong answer allowed for streaks</span></div>' +
+      '<div class="trivia-mode-icon">' + comp.icon + '</div>' +
+      '<div class="trivia-mode-name">' + comp.name + '</div>' +
+      '<div class="trivia-mode-desc">' + comp.desc + '<br><span style="color:var(--text-muted);font-size:.72rem">Discord login · leaderboards · 1 miss allowed for streaks</span></div>' +
+    '</div>' +
+    '<div class="trivia-mode-card" id="triviaCasualCard" style="display:flex;flex-direction:column;justify-content:center">' +
+      '<div class="trivia-mode-icon">' + cas.icon + '</div>' +
+      '<div class="trivia-mode-name">' + cas.name + '</div>' +
+      '<div class="trivia-mode-desc">' + cas.desc + '<br><span style="color:var(--text-muted);font-size:.72rem">No login required · just for fun</span></div>' +
     '</div>' +
     '<div class="trivia-mode-card" id="triviaCtaCard" style="border-style:dashed;display:flex;flex-direction:column;justify-content:center">' +
       '<div class="trivia-mode-icon">&#9998;</div>' +
@@ -3183,6 +3189,7 @@ function initTriviaPage(){
       '<div class="trivia-mode-desc">Help grow the trivia — submit your own questions!</div>' +
     '</div>';
   document.getElementById('triviaStartCard').onclick = function(){ startTrivia('challenge'); };
+  document.getElementById('triviaCasualCard').onclick = function(){ startTrivia('casual'); };
   document.getElementById('triviaCtaCard').onclick = function(){ goContribute('Trivia'); };
   document.getElementById('triviaMenu').style.display = '';
   document.getElementById('triviaGameArea').style.display = 'none';
@@ -3213,14 +3220,16 @@ function updateTriviaTimer(){
 }
 
 function startTrivia(modeKey){
-  var user = getDiscordUser();
-  if(!user || !user.access_token){
-    sessionStorage.setItem('pv_trivia_mode', modeKey);
-    currentPage = 'trivia';
-    discordLogin();
-    return;
-  }
   var mode = triviaModes[modeKey];
+  if(mode.ranked){
+    var user = getDiscordUser();
+    if(!user || !user.access_token){
+      sessionStorage.setItem('pv_trivia_mode', modeKey);
+      currentPage = 'trivia';
+      discordLogin();
+      return;
+    }
+  }
   var questions = buildTriviaQuestions(mode);
   if(triviaTimerInterval) clearInterval(triviaTimerInterval);
   triviaState = {mode:modeKey, questions:questions, current:0, correct:0, answered:false, picks:[], startTime:Date.now()};
@@ -3301,11 +3310,14 @@ function showTriviaResults(){
       '<button class="trivia-next-btn" onclick="startTrivia(\'' + s.mode + '\')">Play Again</button>' +
       '<button class="trivia-next-btn" onclick="initTriviaPage()" style="background:var(--bg-secondary);color:var(--text);border:1px solid var(--border)">Back</button>' +
     '</div>' +
-    '<div style="margin-top:28px"><h3 style="font-family:var(--font-h);font-size:.9rem;color:var(--text);text-align:center;margin-bottom:8px">Your Rankings</h3>' +
+  var isRanked = triviaModes[s.mode] && triviaModes[s.mode].ranked;
+  if(isRanked){
+    html += '<div style="margin-top:28px"><h3 style="font-family:var(--font-h);font-size:.9rem;color:var(--text);text-align:center;margin-bottom:8px">Your Rankings</h3>' +
     '<div class="trivia-your-ranks" id="triviaRankBadges"><div class="board-empty">Submitting score...</div></div></div>' +
     '<div style="margin-top:24px"><h3 style="font-family:var(--font-h);font-size:.95rem;color:var(--gold);text-align:center;margin-bottom:8px">Leaderboards <a onclick="refreshTriviaLb(\'triviaLbResultsInner\',\'' + s.mode + '\')" style="font-size:.6rem;color:var(--text-muted);cursor:pointer;font-weight:400">&#8635; refresh</a></h3>' +
-    '<div id="triviaLbResultsInner" class="trivia-boards"></div></div>' +
-    '<div class="trivia-review"><h3>Question Review</h3>';
+    '<div id="triviaLbResultsInner" class="trivia-boards"></div></div>';
+  }
+  html += '<div class="trivia-review"><h3>Question Review</h3>';
   s.questions.forEach(function(q, i){
     var pick = s.picks[i];
     var gotIt = pick === q.c;
@@ -3316,21 +3328,23 @@ function showTriviaResults(){
   });
   html += '</div></div>';
   area.innerHTML = html;
-  submitTriviaScore(s.mode, s.correct, total, elapsed).then(function(result){
-    var el = document.getElementById('triviaRankBadges');
-    if(!el) return;
-    function badge(icon, label, rank){
-      var pos = rank ? '#' + rank : '--';
-      return '<div class="rank-badge"><div class="rb-icon">' + icon + '</div><div class="rb-pos">' + pos + '</div><div class="rb-label">' + label + '</div></div>';
-    }
-    if(result && result.ranks){
-      var r = result.ranks;
-      el.innerHTML = badge('⚡', 'Speedrun', r.speed) + badge('🔥', 'Streak', r.streak) + badge('🎮', 'Veteran', r.veteran);
-    } else {
-      el.innerHTML = '<div class="board-empty">Log in to track rankings</div>';
-    }
-    loadTriviaLeaderboard('triviaLbResultsInner', s.mode);
-  });
+  if(isRanked){
+    submitTriviaScore(s.mode, s.correct, total, elapsed).then(function(result){
+      var el = document.getElementById('triviaRankBadges');
+      if(!el) return;
+      function badge(icon, label, rank){
+        var pos = rank ? '#' + rank : '--';
+        return '<div class="rank-badge"><div class="rb-icon">' + icon + '</div><div class="rb-pos">' + pos + '</div><div class="rb-label">' + label + '</div></div>';
+      }
+      if(result && result.ranks){
+        var r = result.ranks;
+        el.innerHTML = badge('⚡', 'Speedrun', r.speed) + badge('🔥', 'Streak', r.streak) + badge('🎮', 'Veteran', r.veteran);
+      } else {
+        el.innerHTML = '<div class="board-empty">Log in to track rankings</div>';
+      }
+      loadTriviaLeaderboard('triviaLbResultsInner', s.mode);
+    });
+  }
 }
 
 function submitTriviaScore(mode, correct, total, timeMs){
