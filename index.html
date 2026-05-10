@@ -111,7 +111,7 @@ a:hover{color:#a78bfa}
 
 /* ── Coming soon card ── */
 .book-card-soon{position:relative;border:1px solid transparent;background:var(--bg-card);display:flex;align-items:center;justify-content:center}
-.book-card-soon::before{content:'';position:absolute;inset:-1px;border-radius:16px;padding:1px;background:linear-gradient(135deg,var(--border),var(--gold),var(--border),var(--gold));background-size:300% 300%;animation:shimmer 4s ease infinite;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.book-card-soon::before{content:'';position:absolute;inset:-1px;border-radius:16px;padding:1px;background:linear-gradient(135deg,var(--border),var(--gold),var(--border),var(--gold));background-size:300% 300%;animation:shimmer 4s ease infinite;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
 .book-card-soon:hover{transform:none}
 .book-card-soon .soon-text{font-family:var(--font-h);font-size:.88rem;color:var(--text-muted);text-align:center;padding:24px;letter-spacing:.06em}
 
