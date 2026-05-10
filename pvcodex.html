@@ -3381,7 +3381,7 @@ function showTriviaResults(){
       else { sticker = 'sera-smug'; stickerQuote = '<span class="tsq-name">Seraphiel:</span> “A flawless performance.”'; }
     } else if(wrong === 1){ sticker = 'iris-glare'; stickerQuote = '<span class="tsq-name">Iris:</span> “Fuck this shitty ass game!”'; }
     else if(pct >= 80){ sticker = 'serika-muscle'; stickerQuote = '<span class="tsq-name">Serika:</span> “Not bad! I’ll do better next time!”'; }
-    else if(pct >= 40){ sticker = 'blossom-headpat'; stickerQuote = '<span class="tsq-name">Blossom:</span> “Master!! Blossom guessed more than half correctly!”<span class="tsq-sub"><span class="tsq-name">Quinlan:</span> “Guessed?”</span>'; }
+    else if(s.correct > total / 2){ sticker = 'blossom-headpat'; stickerQuote = '<span class=”tsq-name”>Blossom:</span> “Master!! Blossom guessed more than half correctly!”<span class=”tsq-sub”><span class=”tsq-name”>Quinlan:</span> “Guessed?”</span>'; }
     else if(s.correct === 0){ sticker = 'blossom-cry'; stickerQuote = '<span class="tsq-name">Blossom:</span> “M-Master... Blossom missed everything!!”'; }
     else { sticker = 'blossom-pout'; stickerQuote = '<span class="tsq-name">Blossom:</span> “Master!! Blossom doesn’t like this game!”'; }
   } else {
