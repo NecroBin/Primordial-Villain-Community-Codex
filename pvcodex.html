@@ -15,8 +15,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Primordial Villain Wiki — Characters, Lore & Stats">
 <meta name="twitter:description" content="The community wiki for Primordial Villain with a Slave Harem — characters, factions, classes, stats, and lore from the world of Thalorind.">
-<meta name="twitter:image" content="https://necrobin.com/og-image.png">
-<meta property="og:image" content="https://necrobin.com/og-image.png">
+<meta name="twitter:image" content="https://necrobin.com/og-codex.png">
+<meta property="og:image" content="https://necrobin.com/og-codex.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Primordial Villain Wiki">
@@ -86,6 +86,8 @@ a:hover{color:#a78bfa}
 .entry-slashes{position:absolute;inset:0;overflow:hidden}
 .entry-slashes span{position:absolute;width:80vmax;opacity:0;background:radial-gradient(ellipse 50% 50% at center,#fff,rgba(200,180,255,.7) 40%,transparent 70%);box-shadow:0 0 12px rgba(139,92,246,.7),0 0 30px rgba(139,92,246,.3);border-radius:50%}
 .entry-out{position:absolute;inset:0;background:var(--bg-primary);opacity:0;animation:entryFadeIn .4s ease 3.2s forwards}
+.entry-skip{position:absolute;bottom:24px;right:24px;z-index:10;background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.5);font-family:var(--font-h);font-size:.75rem;padding:5px 16px;border-radius:16px;cursor:pointer;letter-spacing:.1em;transition:all .3s}
+.entry-skip:hover{border-color:rgba(255,255,255,.6);color:rgba(255,255,255,.8)}
 @keyframes lineDraw{0%{opacity:0;transform:scaleX(0)}50%{opacity:.6}100%{opacity:0;transform:scaleX(1)}}
 @keyframes quoteFade{0%{opacity:0;transform:scale(.95)}40%{opacity:1;transform:scale(1)}85%{opacity:1}100%{opacity:0}}
 @keyframes imgReveal{0%{opacity:0;transform:scale(1.08)}60%{opacity:.8}100%{opacity:.6;transform:scale(1)}}
@@ -683,7 +685,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 </script>
 </head>
 <body>
-<div class="entry-transition" id="entryTransition"><div class="entry-bg"></div><div class="entry-lines"><span></span><span></span><span></span></div><div class="entry-quote">&ldquo; Show No Mercy &rdquo;</div><div class="entry-img"></div><div class="entry-slashes" id="entrySlashes"></div><div class="entry-out"></div></div>
+<div class="entry-transition" id="entryTransition"><div class="entry-bg"></div><div class="entry-lines"><span></span><span></span><span></span></div><div class="entry-quote">&ldquo; Show No Mercy &rdquo;</div><div class="entry-img"></div><div class="entry-slashes" id="entrySlashes"></div><div class="entry-out"></div><button class="entry-skip" id="entrySkip">Skip</button></div>
 <a href="#mainContent" class="skip-link">Skip to content</a>
 
 <!-- ════════════ Sidebar ════════════ -->
@@ -1566,7 +1568,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Allies, enemies, royals, primordials, and other notable figures of Thalorind.</p>
     <hr class="sec-divider">
     <div class="char-grid">
-      <div class="char-card searchable" onclick="navigateTo('char-blackfang')" data-keywords="black fang hanako fujimori venomborne terror vesper consortium poison assassin"><img src="images-web/black-fang.jpg" alt="Black Fang" loading="lazy"><div class="char-card-name">Black Fang<span class="char-card-role">Hanako Fujimori</span></div></div>
+      <div class="char-card searchable" onclick="navigateTo('char-blackfang')" data-keywords="black fang hanako fujimori venomborne terror vesper consortium poison assassin"><img src="images-web/bf-transition.jpg" alt="Black Fang" loading="lazy"><div class="char-card-name">Black Fang<span class="char-card-role">Hanako Fujimori</span></div></div>
       <div class="char-card searchable" onclick="navigateTo('char-kaede')" data-keywords="kaede fujimori duchess silverwind clan eastern"><img src="images-web/kaede.jpg" alt="Kaede" loading="lazy"><div class="char-card-name">Kaede Fujimori<span class="char-card-role">Duchess of Silverwind</span></div></div>
       <div class="char-card searchable" onclick="navigateTo('char-sylvaris')" data-keywords="sylvaris mooncaller elf seraphiel mother"><img src="images-web/sylvaris.jpg" alt="Sylvaris" loading="lazy"><div class="char-card-name">Sylvaris<span class="char-card-role">Mooncaller</span></div></div>
       <div class="char-card searchable" onclick="navigateTo('char-morgana')" data-keywords="morgana queen vraven kingdom royal"><img src="images-web/morgana.jpg" alt="Morgana" loading="lazy"><div class="char-card-name">Morgana<span class="char-card-role">Queen of Vraven</span></div></div>
@@ -1594,7 +1596,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <section>
     <h2 class="sec-title">Black Fang</h2>
     <p class="sec-desc">The Venomborne Terror. Ayame's half-sister and master of the Vesper Consortium's deadliest disciples.</p>
-    <div class="char-portrait"><img src="images-web/black-fang.jpg" alt="Black Fang" loading="lazy"></div>
+    <div class="char-portrait"><img src="images-web/bf-transition.jpg" alt="Black Fang" loading="lazy"></div>
     <hr class="sec-divider">
     <h3 class="vs-section-title" style="margin-top:24px">Lore</h3>
     <div class="card"><p>Born Hanako Fujimori, a name she discarded. She holds the title of Venomborne Terror and leads the drug division of the Vesper Consortium.</p></div>
@@ -1883,7 +1885,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <div class="gallery-item" data-cat="harem"><img src="images-web/kaelira.jpg" alt="Kaelira" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-kaelira')">Kaelira<span>Runeweaver Titan</span></div></div>
       <div class="gallery-item" data-cat="other primordial"><img src="images-web/nyxara.jpg" alt="Nyxara" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-nyxara')">Nyxara<span>Conquered Succubus Primordial</span></div></div>
       <div class="gallery-item" data-cat="other"><img src="images-web/rosie.jpg" alt="Rosie" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-rosie')">Rosie Elysiar<span>1st Daughter</span></div></div>
-      <div class="gallery-item" data-cat="other"><img src="images-web/black-fang.jpg" alt="Black Fang" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-blackfang')">Black Fang<span>Hanako Fujimori</span></div></div>
+      <div class="gallery-item" data-cat="other"><img src="images-web/bf-transition.jpg" alt="Black Fang" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-blackfang')">Black Fang<span>Hanako Fujimori</span></div></div>
       <div class="gallery-item" data-cat="primordial"><img src="images-web/luminara.jpg" alt="Luminara" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-luminara')">Luminara<span>Elf Primordial</span></div></div>
       <div class="gallery-item" data-cat="primordial"><img src="images-web/mearie.jpg" alt="Mearie" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('girl-mearie')">Mearie<span>Human Primordial</span></div></div>
       <div class="gallery-item" data-cat="primordial"><img src="images-web/hanae.jpg" alt="Hanae" loading="lazy" onclick="openLightbox(this.parentElement)"><div class="gallery-label" onclick="navigateTo('char-hanae')">Hanae<span>Fujimori Primordial</span></div></div>
@@ -3537,7 +3539,10 @@ if(tocLinks.length){
         });
       });
       el.classList.add('playing');
-      setTimeout(function(){ el.classList.remove('playing'); slashBox.innerHTML = ''; }, 3800);
+      var skipBtn = document.getElementById('entrySkip');
+      function endTransition(){ el.classList.remove('playing'); slashBox.innerHTML = ''; }
+      if(skipBtn) skipBtn.addEventListener('click', endTransition);
+      setTimeout(endTransition, 3800);
     }
   }
 })();
