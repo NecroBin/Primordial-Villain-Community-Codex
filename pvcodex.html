@@ -3377,17 +3377,17 @@ function showTriviaResults(){
   var sticker = '', stickerQuote = '';
   if(triviaModes[s.mode] && triviaModes[s.mode].ranked){
     if(pct === 100){
-      if(Math.random() < 0.5){ sticker = 'ayame-smug'; stickerQuote = '<span class="tsq-name">Ayame:</span> “Hmm... As expected~”'; }
-      else { sticker = 'sera-smug'; stickerQuote = '<span class="tsq-name">Seraphiel:</span> “A flawless performance.”'; }
-    } else if(wrong === 1){ sticker = 'iris-glare'; stickerQuote = '<span class="tsq-name">Iris:</span> “Fuck this shitty ass game!”'; }
-    else if(pct >= 80){ sticker = 'serika-muscle'; stickerQuote = '<span class="tsq-name">Serika:</span> “Not bad! I’ll do better next time!”'; }
-    else if(s.correct > total / 2){ sticker = 'blossom-headpat'; stickerQuote = '<span class=”tsq-name”>Blossom:</span> “Master!! Blossom guessed more than half correctly!”<span class=”tsq-sub”><span class=”tsq-name”>Quinlan:</span> “Guessed?”</span>'; }
-    else if(s.correct === 0){ sticker = 'blossom-cry'; stickerQuote = '<span class="tsq-name">Blossom:</span> “M-Master... Blossom missed everything!!”'; }
-    else { sticker = 'blossom-pout'; stickerQuote = '<span class="tsq-name">Blossom:</span> “Master!! Blossom doesn’t like this game!”'; }
+      if(Math.random() < 0.5){ sticker = ‘ayame-smug’; stickerQuote = ‘”Hmm... As expected~”’; }
+      else { sticker = ‘sera-smug’; stickerQuote = ‘”A flawless performance.”’; }
+    } else if(wrong === 1){ sticker = ‘iris-glare’; stickerQuote = ‘”Fuck this shitty ass game!”’; }
+    else if(pct >= 80){ sticker = ‘serika-muscle’; stickerQuote = ‘”Not bad! I\’ll do better next time!”’; }
+    else if(s.correct > total / 2){ sticker = ‘blossom-headpat’; stickerQuote = ‘”Master!! Blossom guessed more than half correctly!”<span class=”tsq-sub”>”Guessed?”</span>’; }
+    else if(s.correct === 0){ sticker = ‘blossom-cry’; stickerQuote = ‘”M-Master... Blossom missed everything!!”’; }
+    else { sticker = ‘blossom-pout’; stickerQuote = ‘”Master!! Blossom doesn\’t like this game!”’; }
   } else {
-    if(pct >= 80){ sticker = 'serika-muscle'; stickerQuote = '<span class="tsq-name">Serika:</span> “Not bad!”'; }
-    else if(pct >= 40){ sticker = 'blossom-headpat'; stickerQuote = '<span class="tsq-name">Blossom:</span> “Master!! Blossom guessed more than half correctly!”'; }
-    else { sticker = 'blossom-cry'; stickerQuote = '<span class="tsq-name">Blossom:</span> “M-Master... Blossom missed everything!!”'; }
+    if(pct >= 80){ sticker = ‘serika-muscle’; stickerQuote = ‘”Not bad!”’; }
+    else if(pct >= 40){ sticker = ‘blossom-headpat’; stickerQuote = ‘”Master!! Blossom guessed more than half correctly!”’; }
+    else { sticker = ‘blossom-cry’; stickerQuote = ‘”M-Master... Blossom missed everything!!”’; }
   }
   var html = '<div class="trivia-results">' +
     '<div class="trivia-score-ring"><svg viewBox="0 0 120 120" width="120" height="120">' +
