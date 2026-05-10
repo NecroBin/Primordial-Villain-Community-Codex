@@ -62,7 +62,6 @@ a:hover{color:#a78bfa}
 .hero{text-align:center;padding:20px 24px 0;max-width:900px;width:100%}
 .hero h1{font-family:var(--font-h);font-size:2.6rem;color:var(--gold);letter-spacing:.06em}
 .hero .tagline{font-size:1rem;color:var(--text-sec);margin-top:12px;line-height:1.6}
-.hero .subtitle{font-size:.82rem;color:var(--text-muted);margin-top:4px;font-style:italic;letter-spacing:.03em}
 .divider{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:32px auto;border:none}
 .books{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;max-width:960px;width:100%;padding:0 24px;margin:0 auto}
 .book-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-card);transition:all .3s var(--ease);display:flex;flex-direction:column}
@@ -70,7 +69,7 @@ a:hover{color:#a78bfa}
 .book-cover{width:100%;aspect-ratio:3/4;overflow:hidden}
 .book-cover img{width:100%;height:100%;object-fit:cover;display:block}
 .book-buttons{padding:16px;display:flex;gap:8px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 16px;border-radius:8px;font-family:var(--font-h);font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none;border:none;letter-spacing:.02em;flex:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 16px;border-radius:8px;font-family:var(--font-h);font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none;border:none;letter-spacing:.02em;flex:1;min-height:42px;white-space:nowrap}
 .btn-primary{background:var(--gold);color:#fff}
 .btn-primary:hover{background:var(--gold-dim);box-shadow:0 4px 16px var(--gold-glow);color:#fff}
 .btn-secondary{background:var(--bg-secondary);color:var(--text);border:1px solid var(--border)}
@@ -107,9 +106,8 @@ a:hover{color:#a78bfa}
 <button class="theme-btn" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme"><span id="themeIcon">&#9728;</span></button>
 
 <header class="hero">
-  <h1>NecroBin</h1>
-  <p class="tagline">Welcome to the Necroverse</p>
-  <p class="subtitle">Cultured creator of literary masterpieces</p>
+  <h1>Welcome to the Necroverse!</h1>
+  <p class="tagline">The Grand Literary Universe of Author NecroBin</p>
 </header>
 
 <hr class="divider">
