@@ -73,8 +73,10 @@ a:hover{color:#a78bfa}
 
 /* ── Sidebar ── */
 .sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg-primary);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;transition:transform .3s var(--ease)}
-.sidebar-home-link{display:block;padding:10px 20px 0;font-size:.72rem;color:var(--text-muted);text-decoration:none;letter-spacing:.03em;transition:color .2s}
-.sidebar-home-link:hover{color:var(--gold)}
+.sidebar-home-link{display:flex;align-items:center;gap:8px;margin:12px 12px 0;padding:10px 14px;font-family:var(--font-h);font-size:.72rem;color:var(--text-sec);text-decoration:none;letter-spacing:.04em;border:1px solid var(--border);border-radius:10px;transition:all .25s var(--ease);background:var(--bg-secondary)}
+.sidebar-home-link:hover{color:var(--gold);border-color:var(--gold);background:var(--bg-card-hover);transform:translateY(-1px)}
+.sidebar-home-link svg{flex-shrink:0;opacity:.6;transition:opacity .2s}
+.sidebar-home-link:hover svg{opacity:1}
 .sidebar-brand{padding:10px 20px 14px;border-bottom:1px solid var(--border);cursor:pointer}
 .sidebar-brand h1{font-family:var(--font-h);font-size:1.05rem;color:var(--gold);letter-spacing:.05em;line-height:1.3}
 .sidebar-brand p{font-size:.7rem;color:var(--text-sec);margin-top:2px;letter-spacing:.08em;text-transform:uppercase}
@@ -647,7 +649,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 
 <!-- ════════════ Sidebar ════════════ -->
 <aside class="sidebar" id="sidebar">
-  <a href="/" class="sidebar-home-link">&larr; necrobin.com</a>
+  <a href="/" class="sidebar-home-link"><svg width="14" height="14" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2L28 16L16 30L4 16Z"/></svg>necrobin.com</a>
   <div class="sidebar-brand" onclick="navigateTo('home')">
     <h1>PV Codex</h1>
     <p>Primordial Villain with a Slave Harem</p>
