@@ -2384,7 +2384,7 @@ function generateState(){
   crypto.getRandomValues(arr);
   return Array.prototype.map.call(arr, function(b){ return ('0' + b.toString(16)).slice(-2); }).join('');
 }
-var OAUTH_BASE = 'https://discord.com/api/oauth2/authorize?client_id=1502223149876645888&redirect_uri=' + encodeURIComponent('https://necrobin.com/pvcodex.html') + '&response_type=code&scope=identify%20guilds';
+var OAUTH_BASE = 'https://discord.com/api/oauth2/authorize?client_id=1502223149876645888&redirect_uri=' + encodeURIComponent('https://necrobin.com/') + '&response_type=code&scope=identify%20guilds';
 
 function getDiscordUser(){
   try {
