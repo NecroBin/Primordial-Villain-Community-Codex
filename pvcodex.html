@@ -71,6 +71,21 @@ a:hover{color:#a78bfa}
 .skip-link:focus{top:0}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
+/* ── Entry Transition ── */
+.entry-transition{position:fixed;inset:0;z-index:9999;pointer-events:none;display:none}
+.entry-transition.playing{display:block;pointer-events:all}
+.entry-bg{position:absolute;inset:0;background:#0a0a0f;opacity:0;animation:entryFadeIn .3s ease forwards}
+.entry-img{position:absolute;inset:0;background:url('images-web/bf-transition.jpg') center 20%/cover no-repeat;opacity:0;animation:entryImgFlash .8s ease .3s forwards}
+.entry-slash{position:absolute;inset:0;overflow:hidden}
+.entry-slash span{position:absolute;background:linear-gradient(90deg,transparent,rgba(139,92,246,.8),transparent);height:2px;width:140%;left:-20%;opacity:0}
+.entry-slash span:nth-child(1){top:30%;transform:rotate(-25deg);animation:slashCut .4s ease .6s forwards}
+.entry-slash span:nth-child(2){top:55%;transform:rotate(15deg);animation:slashCut .4s ease .7s forwards}
+.entry-slash span:nth-child(3){top:75%;transform:rotate(-10deg);animation:slashCut .35s ease .8s forwards}
+.entry-out{position:absolute;inset:0;background:var(--bg-primary);opacity:0;animation:entryFadeIn .4s ease 1.1s forwards}
+@keyframes entryFadeIn{to{opacity:1}}
+@keyframes entryImgFlash{0%{opacity:0;transform:scale(1.05)}30%{opacity:.7}100%{opacity:.4;transform:scale(1)}}
+@keyframes slashCut{0%{opacity:0;transform:translateX(-100%) rotate(inherit)}50%{opacity:1}100%{opacity:0;transform:translateX(100%) rotate(inherit)}}
+
 /* ── Sidebar ── */
 .sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg-primary);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;transition:transform .3s var(--ease)}
 .sidebar-home-link{display:flex;align-items:center;gap:8px;margin:12px 12px 0;padding:10px 14px;font-family:var(--font-h);font-size:.72rem;color:#fff;text-decoration:none;letter-spacing:.04em;border:none;border-radius:10px;transition:all .25s var(--ease);background:linear-gradient(135deg,#7c3aed,#8B5CF6)}
@@ -125,7 +140,11 @@ body.search-mode .page.search-has-results .sec-title{display:block!important;fon
 .back-btn:hover{border-color:var(--gold);background:rgba(139,92,246,.06)}
 
 /* ── Home: Hero ── */
-.home-hero{padding:80px 48px 24px;max-width:900px;text-align:center;margin:0 auto}
+.home-hero-wrap{position:relative;overflow:hidden}
+.home-hero-wrap::before{content:'';position:absolute;inset:0;background:url('images-web/bf-hero.jpg') center/cover no-repeat;opacity:.12;z-index:0}
+.home-hero-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,var(--bg-primary) 100%);z-index:1}
+[data-theme="light"] .home-hero-wrap::before{opacity:.08}
+.home-hero{position:relative;z-index:2;padding:80px 48px 24px;max-width:900px;text-align:center;margin:0 auto}
 .home-hero h1{font-family:var(--font-h);font-size:2.4rem;color:var(--gold);letter-spacing:.04em;line-height:1.2;margin-bottom:16px;margin-top:12px}
 .home-hero .hero-meta{font-size:.82rem;color:var(--text-muted);letter-spacing:.03em;line-height:1.7}
 .home-hero .hero-meta a{color:var(--gold)}
@@ -661,6 +680,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 </script>
 </head>
 <body>
+<div class="entry-transition" id="entryTransition"><div class="entry-bg"></div><div class="entry-img"></div><div class="entry-slash"><span></span><span></span><span></span></div><div class="entry-out"></div></div>
 <a href="#mainContent" class="skip-link">Skip to content</a>
 
 <!-- ════════════ Sidebar ════════════ -->
@@ -722,6 +742,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 
 <!-- ═══════════════ HOME ═══════════════ -->
 <div class="page active" id="page-home">
+  <div class="home-hero-wrap">
   <header class="home-hero">
     <div class="hero-meta">The First Entry in the <a href="/">Necroverse</a></div>
     <h1>Primordial Villain with a Slave Harem</h1>
@@ -732,6 +753,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <div class="credits">Foundation compiled by <span>Zaspho</span> &middot; <span>Ahaan160</span> &middot; <span>BvBear</span> &middot; <span>SpecterxRetcepS</span><br>The rest is up to you &mdash; <a onclick="goContribute()" style="cursor:pointer">contribute to the codex</a></div>
     </div>
   </header>
+  </div>
   <hr class="home-divider">
   <div class="home-nav">
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('quinlan')" onkeydown="if(event.key==='Enter')this.click()">
@@ -3472,6 +3494,18 @@ function loadChartJs(){
 }
 
 if(location.hash) handleHash();
+
+// Entry transition from landing page
+(function(){
+  if(sessionStorage.getItem('pv-entry')){
+    sessionStorage.removeItem('pv-entry');
+    var el = document.getElementById('entryTransition');
+    if(el){
+      el.classList.add('playing');
+      setTimeout(function(){ el.classList.remove('playing'); }, 1600);
+    }
+  }
+})();
 
 })();
 </script>
