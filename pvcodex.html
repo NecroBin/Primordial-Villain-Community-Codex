@@ -487,7 +487,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .qcard{display:flex;flex-direction:column;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-card);cursor:pointer;transition:all .25s}
 .qcard:hover{border-color:var(--gold-dim);transform:translateY(-3px);box-shadow:0 10px 32px rgba(0,0,0,.3)}
 .qcard-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
-.qcard-noimg{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,var(--bg-sec),var(--border));display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:var(--text-muted)}
+.qcard-noimg{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,var(--bg-sec),var(--border));display:flex;align-items:center;justify-content:center}
 .qcard-body{padding:16px 18px 18px}
 .qcard-text{font-family:var(--font-h);font-size:.84rem;color:var(--text);font-style:italic;line-height:1.65;margin-bottom:8px}
 .qcard-attr{font-size:.74rem;color:var(--gold);font-family:var(--font-h);letter-spacing:.04em}
@@ -501,7 +501,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .ss-slide{display:flex;align-items:center;gap:36px;max-width:800px;width:90%;padding:40px;animation:ssFadeIn .35s ease}
 @keyframes ssFadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .ss-img{width:240px;height:320px;border-radius:14px;object-fit:cover;flex-shrink:0;border:2px solid var(--gold-dim);box-shadow:0 0 40px rgba(139,92,246,.25)}
-.ss-noimg{width:240px;height:320px;border-radius:14px;flex-shrink:0;background:linear-gradient(135deg,#1a1a2e,#2a2a3e);display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.1)}
+.ss-noimg{width:240px;height:320px;border-radius:14px;flex-shrink:0;background:linear-gradient(135deg,#1a1a2e,#2a2a3e);display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,.1)}
 .ss-body{flex:1;min-width:0}
 .ss-text{font-family:var(--font-h);font-size:1.3rem;color:#fff;font-style:italic;line-height:1.7;margin-bottom:16px;letter-spacing:.01em}
 .ss-attr{font-size:.9rem;color:var(--gold);font-family:var(--font-h);letter-spacing:.06em}
@@ -2868,7 +2868,23 @@ var pvQuotes = [
   { text: "Q-Quinlan… are you… Are you going to help me feel pure again?", char: "Kitsara", img: "images-web/kitsara.jpg" },
   { text: "From a mother-daughter pair of sex slaves sold for pleasure, to invaders of the human capital…", char: "Sylvaris", img: "images-web/sylvaris.jpg" },
   { text: "You know, I've been thinking far too much these past few months. I'm done with that. I'm going to kill everyone standing in front of me, one after the next. You're first.", char: "Alexios Valorian", img: null },
-  { text: "Wait. Ragnar, have you been a woman this entire time?", char: "Alexios Valorian", img: null }
+  { text: "Wait. Ragnar, have you been a woman this entire time?", char: "Alexios Valorian", img: null },
+  {text:"Did you just insult the race of two of your lovers, Master?",char:"Scar",img:"images-web/scar.jpg"},
+  {text:"I do not know... It seems I might be in my rebellious 'soul girl' phase, Master.",char:"Scar",img:"images-web/scar.jpg"},
+  {text:"It stays between the two of us. A tightly guarded secret.",char:"Quinlan",img:"images-web/quinlan.jpg"},
+  {text:"The true mark of a great strategist is knowing which battles to fight and which to skip. Arguing with your girl is a recipe for cold shoulders and aching balls. — Sun Tzu.",char:"Quinlan",img:"images-web/quinlan.jpg"},
+  {text:"Graceful and tender elf? You? I can't believe I allowed myself to think such nonsense was true. You carry more bite than your cheeky daughter; you're just too good at hiding it, boiled dumpling mother-in-law of mine.",char:"Quinlan",img:"images-web/quinlan.jpg"},
+  {text:"Y-yes, it's just that there's a mosquito in my room who is doing its best to suck me dry.",char:"Quinlan",img:"images-web/quinlan.jpg"},
+  {text:"I promised I would help you get your revenge. The day we became strong enough to begin making good on my promises has come.",char:"Quinlan",img:"images-web/quinlan.jpg"},
+  {text:"Yay! New sister for Rosie! Big Sis Felicity is obligated to pamper her little sister at least ten times a day!!!",char:"Rosie",img:"images-web/rosie.jpg"},
+  {text:"The reason you perceive me as hostile is simple; when insects buzz incessantly, I grow an urge to kill them.",char:"Black Fang",img:"images-web/bf-transition.jpg"},
+  {text:"Don't die on me. I can't become the hag of the harem.",char:"Vex",img:"images-web/vex.jpg"},
+  {text:"Lesson number one from Professor Nyxara: Never question the logic of a woman.",char:"Nyxara",img:"images-web/nyxara.jpg"},
+  {text:"I've already told you that you made a giant blunder becoming a criminal, Devil. With that creative mind of yours, you could've become a renowned fantasy author.",char:"Alexios Valorian",img:null},
+  {text:"You already have a helmet. Shouldn't you prioritize a strap-on?",char:"Alexios Valorian",img:null},
+  {text:"You are not him.",char:"Soul Records",img:null},
+  {text:"[Your class has been changed! Necromancer → Corpse Animator.] [Reason: You are not him.]",char:"Soul Records",img:null},
+  {text:"[Trial Objective: Conquer the Primordial Succubus, Nyxara.] [Success Condition: Elicit the Shriek of Ruin: break the Succubus's resolve through carnal dominance.]",char:"Soul Records",img:null}
 ];
 var ssIdx=0,ssTimer=null,ssProgTimer=null,ssProgVal=0,ssSpeed=3500,ssOrder=[];
 function shuffleArray(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
@@ -2880,7 +2896,7 @@ function buildQuoteGrid(){
     var card=document.createElement('div');
     card.className='qcard';
     card.onclick=(function(idx){return function(){openSlideshow(idx);};})(i);
-    var imgH=q.img?'<img class="qcard-img" src="'+q.img+'" alt="'+q.char+'" loading="lazy">':'<div class="qcard-noimg">&#10023;</div>';
+    var imgH=q.img?'<img class="qcard-img" src="'+q.img+'" alt="'+q.char+'" loading="lazy">':'<div class="qcard-noimg"><svg viewBox="0 0 80 100" width="48" height="60" fill="none" stroke="currentColor" stroke-width="2" style="opacity:.25"><circle cx="40" cy="30" r="18"/><path d="M10 95c0-20 13-32 30-32s30 12 30 32"/><text x="40" y="62" text-anchor="middle" font-size="20" font-family="serif" fill="currentColor" stroke="none">?</text></svg></div>';
     card.innerHTML=imgH+'<div class="qcard-body"><div class="qcard-text">"'+q.text+'"</div><div class="qcard-attr">— '+q.char+'</div></div>';
     grid.appendChild(card);
   });
@@ -2889,7 +2905,7 @@ function renderSsSlide(i){
   ssIdx=((i%ssOrder.length)+ssOrder.length)%ssOrder.length;
   var q=ssOrder[ssIdx];
   var slide=document.getElementById('ssSlide');
-  var imgH=q.img?'<img class="ss-img" src="'+q.img+'" alt="'+q.char+'">':'<div class="ss-noimg">&#10023;</div>';
+  var imgH=q.img?'<img class="ss-img" src="'+q.img+'" alt="'+q.char+'">':'<div class="ss-noimg"><svg viewBox="0 0 80 100" width="64" height="80" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="2"><circle cx="40" cy="30" r="18"/><path d="M10 95c0-20 13-32 30-32s30 12 30 32"/><text x="40" y="62" text-anchor="middle" font-size="20" font-family="serif" fill="rgba(255,255,255,.2)" stroke="none">?</text></svg></div>';
   slide.innerHTML=imgH+'<div class="ss-body"><div class="ss-text">"'+q.text+'"</div><div class="ss-attr">— '+q.char+'</div></div>';
   document.getElementById('ssCounter').textContent=(ssIdx+1)+' / '+ssOrder.length;
   document.querySelectorAll('.ss-dot').forEach(function(d,j){d.classList.toggle('active',j===ssIdx);});
