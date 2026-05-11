@@ -2177,10 +2177,10 @@
     "difficulty": "medium",
     "category": "adult",
     "question": "What did Aurora suggest using to fertilize the baby Geim plant?",
-    "correct": "Quinlan's semen",
+    "correct": "Quinlan's piss",
     "wrong": [
       "Holy water",
-      "Dragon blood",
+      "Quinlan's semen",
       "Moonlight essence"
     ]
   },
@@ -2393,11 +2393,11 @@
     "difficulty": "hard",
     "category": "character",
     "question": "What was Jasmine's Consortium rank?",
-    "correct": "Twilight Apprentice",
+    "correct": "Twilight Initiate",
     "wrong": [
       "Lunar Adept",
       "Shadow Vanguard",
-      "Veil Walker"
+      "Twilight Apprentice"
     ]
   },
   {
