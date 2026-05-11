@@ -516,6 +516,13 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .ss-speed button:hover{border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.6)}
 .ss-speed button.active{border-color:var(--gold);color:var(--gold)}
 @media(max-width:600px){.ss-slide{flex-direction:column;text-align:center;gap:16px;padding:16px 20px}.ss-img{max-height:45vh;max-width:85vw;width:auto}.ss-noimg{width:200px;height:260px}.ss-text{font-size:.95rem}.ss-arrow{width:40px;height:40px;font-size:1.1rem}.ss-prev{left:8px}.ss-next{right:8px}.ss-speed{bottom:14px;right:12px}}
+.ss-overlay:fullscreen,.ss-overlay:-webkit-full-screen{background:#000}
+.ss-overlay:fullscreen .ss-slide,.ss-overlay:-webkit-full-screen .ss-slide{max-width:1300px}
+.ss-overlay:fullscreen .ss-img,.ss-overlay:-webkit-full-screen .ss-img{max-height:85vh;max-width:500px}
+.ss-sound-toggle{position:absolute;bottom:20px;left:24px;background:none;border:1px solid rgba(255,255,255,.15);border-radius:6px;color:rgba(255,255,255,.3);font-size:1.1rem;padding:6px 12px;cursor:pointer;transition:all .2s}
+.ss-sound-toggle.active{border-color:var(--gold-dim);color:var(--gold)}
+.ss-sound-toggle:hover{border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.6)}
+@media(max-width:600px){.ss-sound-toggle{bottom:14px;left:12px;font-size:.9rem;padding:4px 10px}}
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:24px}
 .gallery-item{position:relative;border-radius:12px;overflow:hidden;border:2px solid var(--border);background:var(--bg-card);transition:transform .2s,box-shadow .2s}
 .gallery-item:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.4)}
@@ -746,9 +753,9 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <li><a tabindex="0" role="link" onclick="navigateTo('world')" data-page="world">World &amp; Factions</a></li>
       <li class="nav-group-title">Extras</li>
       <li><a tabindex="0" role="link" onclick="navigateTo('quotes')" data-page="quotes">Quotes</a></li>
+      <li><a tabindex="0" role="link" onclick="navigateTo('trivia')" data-page="trivia">Trivia Game</a></li>
       <li><a tabindex="0" role="link" onclick="navigateTo('gallery')" data-page="gallery">Gallery</a></li>
       <li class="nav-group-title">Community</li>
-      <li><a tabindex="0" role="link" onclick="navigateTo('trivia')" data-page="trivia">Trivia Game</a></li>
       <li><a tabindex="0" role="link" onclick="navigateTo('votes')" data-page="votes">Votes</a></li>
       <li><a tabindex="0" role="link" onclick="navigateTo('submit')" data-page="submit">Contribute</a></li>
     </ul>
@@ -772,6 +779,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div class="hero-info-card">
       <p>Community Codex for the novel by <a href="/">NecroBin</a></p>
       <p>Characters, factions, stats, classes, and lore from the world of Thalorind &mdash; compiled by the community.</p>
+      <p style="margin-top:4px">Want to relive the best moments? <a onclick="navigateTo('quotes')" style="cursor:pointer">Explore the quotes &#9654;</a></p>
       <p style="margin-top:4px">Think you know everything? <a onclick="navigateTo('trivia')" style="cursor:pointer">Try the trivia game &#9654;</a></p>
       <div class="credits">Foundation compiled by <span>Zaspho</span> &middot; <span>Ahaan160</span> &middot; <span>BvBear</span> &middot; <span>SpecterxRetcepS</span><br>The rest is up to you &mdash; <a onclick="goContribute()" style="cursor:pointer">contribute to the codex</a></div>
     </div>
@@ -803,15 +811,15 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <h3>Quotes</h3>
       <p>Relive the most memorable moments of the story.</p>
     </a>
-    <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('gallery')" onkeydown="if(event.key==='Enter')this.click()">
-      <span class="nav-card-icon">&#10063;</span>
-      <h3>Gallery</h3>
-      <p>Character portraits and artwork.</p>
-    </a>
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('trivia')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#10050;</span>
       <h3>Trivia Game</h3>
       <p>Test your PV knowledge with community-made trivia questions.</p>
+    </a>
+    <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('gallery')" onkeydown="if(event.key==='Enter')this.click()">
+      <span class="nav-card-icon">&#10063;</span>
+      <h3>Gallery</h3>
+      <p>Character portraits and artwork.</p>
     </a>
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('votes')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#9745;</span>
@@ -1891,6 +1899,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <hr class="sec-divider">
     <div class="quotes-launch"><button onclick="openSlideshow(0)">&#10024; Take me on a journey!</button></div>
     <div class="qgrid" id="quotesGrid"></div>
+    <div class="quotes-launch" style="margin-top:32px"><button onclick="goContribute('Quotes')" style="background:var(--bg-card);border:1px solid var(--border);color:var(--text)">&#128172; Have a favorite quote? Add it!</button></div>
   </section>
 </div>
 
@@ -1903,6 +1912,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <div class="ss-slide" id="ssSlide"></div>
   <div class="ss-progress" id="ssProgress"></div>
   <div class="ss-speed"><span class="ss-speed-label">Speed</span><button onclick="setSsSpeed(0.6)">Fast</button><button class="active" onclick="setSsSpeed(1)">Normal</button><button onclick="setSsSpeed(1.6)">Slow</button><button onclick="setSsSpeed(0)">Manual</button></div>
+  <button class="ss-sound-toggle active" onclick="toggleSsSound(this)" title="Toggle sound">&#9835;</button>
 </div>
 
 <!-- ═══════════════ GALLERY ═══════════════ -->
@@ -1960,11 +1970,11 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
   <section>
     <h2 class="sec-title">Contribute to the Codex</h2>
-    <p class="sec-desc">This codex is built by readers, for readers. If you know a character's abilities, backstory, stats, or lore that isn't here yet, write it up and submit it. You're not requesting content&mdash;you're adding it. Submissions are reviewed before going live.</p>
+    <p class="sec-desc">This codex is built by readers, for readers. Submit character lore, world details, trivia questions, memorable quotes, or corrections. Submissions are reviewed before going live.</p>
     <hr class="sec-divider">
     <div class="submit-wrap">
       <div id="submitLogin">
-        <p style="color:var(--text-sec);margin-bottom:20px;font-size:.88rem">Log in with Discord to contribute. Write up character info, lore, corrections, or anything the codex is missing.</p>
+        <p style="color:var(--text-sec);margin-bottom:20px;font-size:.88rem">Log in with Discord to contribute. Add lore, quotes, trivia questions, corrections, or anything the codex is missing.</p>
         <button class="discord-login-btn" onclick="discordLogin()">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
           Login with Discord
@@ -1991,6 +2001,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
               <option value="Correction">Correction / Fix</option>
               <option value="Poll">Poll Suggestion</option>
               <option value="Trivia">Trivia Question</option>
+              <option value="Quotes">Quote Submission</option>
               <option value="Suggestion">Suggestion / Website Improvement</option>
             </select>
           </div>
@@ -2033,6 +2044,16 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
                 <option value="hard">Hard — dedicated readers territory</option>
               </select>
               <p style="font-size:.75rem;color:var(--text-muted);margin-top:8px;line-height:1.5">This is a 2-year-long novel — trivia should be fun, not punishment. Even hard questions should be answerable by someone who reads carefully, not based on one throwaway line mentioned once. Think memorable moments, not obscure footnotes.</p>
+            </div>
+          </div>
+          <div id="quoteFields" style="display:none">
+            <div class="form-group">
+              <label class="form-label" for="quoteText">Quote</label>
+              <textarea class="form-textarea" id="quoteText" placeholder="Paste the quote exactly as it appears in the story." maxlength="2000"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="quoteChar">Character</label>
+              <input class="form-input" type="text" id="quoteChar" placeholder="Who said it? e.g. Quinlan, Seraphiel, Soul Records" maxlength="100">
             </div>
           </div>
           <button type="submit" class="form-submit" id="submitBtn">&#10148; Submit Entry</button>
@@ -2274,6 +2295,7 @@ window.goContribute = function(category){
     else if(currentPage.indexOf('char-') === 0 || currentPage === 'characters') category = 'Characters';
     else if(currentPage === 'world' || currentPage === 'kingdom' || currentPage === 'primordials' || currentPage === 'organizations') category = 'World';
     else if(currentPage === 'trivia') category = 'Trivia';
+    else if(currentPage === 'quotes') category = 'Quotes';
   }
   navigateTo('submit');
   if(category){
@@ -2674,9 +2696,12 @@ function loadLeaderboard(skipCache){
 var submitFormLoaded = Date.now();
 var subCategoryEl = document.getElementById('subCategory');
 if(subCategoryEl) subCategoryEl.addEventListener('change', function(){
-  var isTrivia = this.value === 'Trivia';
-  document.getElementById('genericFields').style.display = isTrivia ? 'none' : '';
-  document.getElementById('triviaFields').style.display = isTrivia ? '' : 'none';
+  var v=this.value,isTrivia=v==='Trivia',isQuote=v==='Quotes';
+  document.getElementById('genericFields').style.display=(isTrivia||isQuote)?'none':'';
+  document.getElementById('triviaFields').style.display=isTrivia?'':'none';
+  document.getElementById('quoteFields').style.display=isQuote?'':'none';
+  var ph={Quinlan:['e.g. Necromancer class progression','Write up Quinlan\x27s abilities, stats, backstory, classes, or story arc details.'],Harem:['e.g. Seraphiel\x27s backstory','Write up the character\x27s abilities, stats, backstory, or story arcs.'],Characters:['e.g. Black Fang\x27s faction role','Write up the character\x27s abilities, stats, backstory, or story arcs.'],World:['e.g. Vraven Kingdom political structure','Describe world lore, faction details, locations, magic systems, or historical events.'],Correction:['e.g. Wrong stat on Quinlan\x27s page','Describe what\x27s wrong and what the correct information should be.'],Poll:['e.g. Who would win in a 1v1?','Describe your poll idea \u2014 the question and the answer options.'],Suggestion:['e.g. Add a timeline feature','Describe your suggestion \u2014 new features, improvements, or design ideas.']};
+  var p=ph[v];if(p){document.getElementById('subTitle').placeholder=p[0];document.getElementById('subContent').placeholder=p[1];}
 });
 var submitForm = document.getElementById('submitForm');
 if(submitForm) submitForm.addEventListener('submit', function(e){
@@ -2705,6 +2730,17 @@ if(submitForm) submitForm.addEventListener('submit', function(e){
     }
     title = 'Trivia [' + td + ']: ' + tq;
     content = 'Correct: ' + tc + '\nWrong 1: ' + tw1 + '\nWrong 2: ' + tw2 + '\nWrong 3: ' + tw3 + '\nDifficulty: ' + td;
+  } else if(cat==='Quotes'){
+    var qt=document.getElementById('quoteText').value.trim();
+    var qc=document.getElementById('quoteChar').value.trim();
+    if(!qt||!qc){
+      msg.className='form-msg error';
+      msg.textContent='Please enter both the quote and who said it.';
+      msg.style.display='block';
+      return;
+    }
+    title='Quote by '+qc;
+    content=qt+'\n\nCharacter: '+qc;
   } else {
     title = document.getElementById('subTitle').value.trim();
     content = document.getElementById('subContent').value.trim();
@@ -2882,8 +2918,11 @@ var pvQuotes = [
   {text:"[Your class has been changed! Necromancer → Corpse Animator.] [Reason: You are not him.]",char:"Soul Records",img:null},
   {text:"[Trial Objective: Conquer the Primordial Succubus, Nyxara.] [Success Condition: Elicit the Shriek of Ruin: break the Succubus's resolve through carnal dominance.]",char:"Soul Records",img:null}
 ];
-var ssIdx=0,ssTimer=null,ssProgTimer=null,ssProgVal=0,ssMult=1,ssOrder=[];
+var ssIdx=0,ssTimer=null,ssProgTimer=null,ssProgVal=0,ssMult=1,ssOrder=[],ssAudioCtx=null,ssMuted=false;
 function shuffleArray(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function playSsSound(){if(ssMuted)return;try{if(!ssAudioCtx)ssAudioCtx=new(window.AudioContext||window.webkitAudioContext)();if(ssAudioCtx.state==='suspended')ssAudioCtx.resume();var ctx=ssAudioCtx,t=ctx.currentTime;var g=ctx.createGain();g.connect(ctx.destination);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(0.07,t+0.015);g.gain.exponentialRampToValueAtTime(0.001,t+0.35);var o=ctx.createOscillator();o.type='sine';o.frequency.setValueAtTime(740,t);o.frequency.exponentialRampToValueAtTime(880,t+0.08);o.connect(g);o.start(t);o.stop(t+0.35);var g2=ctx.createGain();g2.connect(ctx.destination);g2.gain.setValueAtTime(0,t+0.03);g2.gain.linearRampToValueAtTime(0.035,t+0.05);g2.gain.exponentialRampToValueAtTime(0.001,t+0.4);var o2=ctx.createOscillator();o2.type='sine';o2.frequency.setValueAtTime(1108.7,t+0.03);o2.connect(g2);o2.start(t+0.03);o2.stop(t+0.4);}catch(e){}}
+window.toggleSsSound=function(btn){ssMuted=!ssMuted;btn.classList.toggle('active',!ssMuted);};
+document.addEventListener('fullscreenchange',function(){if(!document.fullscreenElement&&document.getElementById('ssOverlay').classList.contains('open'))closeSlideshow();});
 function buildQuoteGrid(){
   var grid=document.getElementById('quotesGrid');
   if(!grid)return;
@@ -2904,6 +2943,7 @@ function renderSsSlide(i){
   var imgH=q.img?'<img class="ss-img" src="'+q.img+'" alt="'+q.char+'">':'<div class="ss-noimg"><svg viewBox="0 0 80 100" width="64" height="80" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="2"><circle cx="40" cy="30" r="18"/><path d="M10 95c0-20 13-32 30-32s30 12 30 32"/><text x="40" y="62" text-anchor="middle" font-size="20" font-family="serif" fill="rgba(255,255,255,.2)" stroke="none">?</text></svg></div>';
   slide.innerHTML=imgH+'<div class="ss-body"><div class="ss-text">"'+q.text+'"</div><div class="ss-attr">— '+q.char+'</div></div>';
   document.getElementById('ssCounter').textContent=(ssIdx+1)+' / '+ssOrder.length;
+  playSsSound();
   
 }
 window.openSlideshow=function(startIdx){
@@ -2917,13 +2957,17 @@ window.openSlideshow=function(startIdx){
   var overlay=document.getElementById('ssOverlay');
   renderSsSlide(0);
   overlay.classList.add('open');
+  try{overlay.requestFullscreen().catch(function(){});}catch(e){}
   document.body.style.overflow='hidden';
   resetSsTimer();
   updateSpeedBtns();
 };
 window.closeSlideshow=function(){
-  document.getElementById('ssOverlay').classList.remove('open');
+  var ov=document.getElementById('ssOverlay');
+  if(!ov.classList.contains('open'))return;
+  ov.classList.remove('open');
   document.body.style.overflow='';
+  try{if(document.fullscreenElement)document.exitFullscreen();}catch(e){}
   clearInterval(ssTimer);clearInterval(ssProgTimer);
   document.getElementById('ssProgress').style.width='0';
 };
