@@ -1906,7 +1906,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <div class="ss-slide" id="ssSlide"></div>
   <div class="ss-dots" id="ssDots"></div>
   <div class="ss-progress" id="ssProgress"></div>
-  <div class="ss-speed"><span class="ss-speed-label">Speed</span><button onclick="setSsSpeed(2000)">Fast</button><button class="active" onclick="setSsSpeed(3500)">Normal</button><button onclick="setSsSpeed(6000)">Slow</button><button onclick="setSsSpeed(0)">Manual</button></div>
+  <div class="ss-speed"><span class="ss-speed-label">Speed</span><button onclick="setSsSpeed(0.6)">Fast</button><button class="active" onclick="setSsSpeed(1)">Normal</button><button onclick="setSsSpeed(1.6)">Slow</button><button onclick="setSsSpeed(0)">Manual</button></div>
 </div>
 
 <!-- ═══════════════ GALLERY ═══════════════ -->
@@ -2886,7 +2886,7 @@ var pvQuotes = [
   {text:"[Your class has been changed! Necromancer → Corpse Animator.] [Reason: You are not him.]",char:"Soul Records",img:null},
   {text:"[Trial Objective: Conquer the Primordial Succubus, Nyxara.] [Success Condition: Elicit the Shriek of Ruin: break the Succubus's resolve through carnal dominance.]",char:"Soul Records",img:null}
 ];
-var ssIdx=0,ssTimer=null,ssProgTimer=null,ssProgVal=0,ssSpeed=3500,ssOrder=[];
+var ssIdx=0,ssTimer=null,ssProgTimer=null,ssProgVal=0,ssMult=1,ssOrder=[];
 function shuffleArray(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function buildQuoteGrid(){
   var grid=document.getElementById('quotesGrid');
@@ -2940,14 +2940,15 @@ window.closeSlideshow=function(){
   document.getElementById('ssProgress').style.width='0';
 };
 window.ssNav=function(dir){renderSsSlide(ssIdx+dir);resetSsTimer();};
-window.setSsSpeed=function(ms){ssSpeed=ms;resetSsTimer();updateSpeedBtns();};
-function updateSpeedBtns(){document.querySelectorAll('.ss-speed button').forEach(function(b){var m=b.getAttribute('onclick').match(/\d+/);var v=m?parseInt(m[0]):0;b.classList.toggle('active',v===ssSpeed);});}
+window.setSsSpeed=function(m){ssMult=m;resetSsTimer();updateSpeedBtns();};
+function updateSpeedBtns(){document.querySelectorAll('.ss-speed button').forEach(function(b){var m=b.getAttribute('onclick').match(/[\d.]+/);var v=m?parseFloat(m[0]):0;b.classList.toggle('active',v===ssMult);});}
+function calcDuration(){if(ssMult===0)return 0;var q=ssOrder[ssIdx];if(!q)return 5000;var w=q.text.split(/\s+/).length;return Math.round(Math.max(3500,Math.min(11000,2500+w*250))*ssMult);}
 function resetSsTimer(){
   clearInterval(ssTimer);clearInterval(ssProgTimer);ssProgVal=0;
   var bar=document.getElementById('ssProgress');bar.style.width='0';
-  if(ssSpeed===0)return;
-  ssProgTimer=setInterval(function(){ssProgVal+=50;bar.style.width=(ssProgVal/ssSpeed*100)+'%';},50);
-  ssTimer=setInterval(function(){renderSsSlide(ssIdx+1);resetSsTimer();},ssSpeed);
+  var dur=calcDuration();if(dur===0)return;
+  ssProgTimer=setInterval(function(){ssProgVal+=50;bar.style.width=(ssProgVal/dur*100)+'%';},50);
+  ssTimer=setInterval(function(){renderSsSlide(ssIdx+1);resetSsTimer();},dur);
 }
 document.addEventListener('keydown',function(e){
   if(!document.getElementById('ssOverlay').classList.contains('open'))return;
