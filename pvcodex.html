@@ -527,7 +527,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .ss-sound-toggle{position:absolute;bottom:20px;left:24px;background:none;border:1px solid rgba(255,255,255,.15);border-radius:6px;color:rgba(255,255,255,.3);font-size:1.1rem;padding:6px 12px;cursor:pointer;transition:all .2s}
 .ss-sound-toggle.active{border-color:var(--gold-dim);color:var(--gold)}
 .ss-sound-toggle:hover{border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.6)}
-@media(max-width:600px){.ss-sound-toggle{top:10px;left:auto;right:60px;bottom:auto;font-size:.9rem;padding:4px 10px}}
+@media(max-width:600px){.ss-sound-toggle{position:fixed;bottom:52px;left:50%;transform:translateX(-50%);top:auto;right:auto;font-size:.9rem;padding:4px 10px}}
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:24px}
 .gallery-item{position:relative;border-radius:12px;overflow:hidden;border:2px solid var(--border);background:var(--bg-card);transition:transform .2s,box-shadow .2s}
 .gallery-item:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.4)}
@@ -3167,7 +3167,7 @@ document.addEventListener('keydown',function(e){
   if(e.key==='ArrowLeft')ssNav(-1);
   if(e.key==='ArrowRight')ssNav(1);
 });
-(function(){var sx=0,sy=0,ov=document.getElementById('ssOverlay');ov.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});ov.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){if(dx<0)ssNav(1);else ssNav(-1);}},{passive:true});})();
+(function(){var sx=0,sy=0,ov=document.getElementById('ssOverlay');ov.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});ov.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dy)>80&&dy>0&&Math.abs(dy)>Math.abs(dx)){closeSlideshow();}else if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){if(dx<0)ssNav(1);else ssNav(-1);}},{passive:true});})();
 buildQuoteGrid();
 
 // ── Auto-add keyboard accessibility to onclick elements ──
