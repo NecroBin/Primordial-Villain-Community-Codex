@@ -2942,7 +2942,7 @@ window.closeSlideshow=function(){
 window.ssNav=function(dir){renderSsSlide(ssIdx+dir);resetSsTimer();};
 window.setSsSpeed=function(m){ssMult=m;resetSsTimer();updateSpeedBtns();};
 function updateSpeedBtns(){document.querySelectorAll('.ss-speed button').forEach(function(b){var m=b.getAttribute('onclick').match(/[\d.]+/);var v=m?parseFloat(m[0]):0;b.classList.toggle('active',v===ssMult);});}
-function calcDuration(){if(ssMult===0)return 0;var q=ssOrder[ssIdx];if(!q)return 5000;var w=q.text.split(/\s+/).length;var base=Math.max(3500,Math.min(11000,2500+w*250));return Math.max(3000,Math.round(base*ssMult));}
+function calcDuration(){if(ssMult===0)return 0;var q=ssOrder[ssIdx];if(!q)return 5000;var w=q.text.split(/\s+/).length;var base=Math.max(3500,Math.min(11000,2500+w*250));return Math.max(2100,Math.round(base*ssMult));}
 function resetSsTimer(){
   clearInterval(ssTimer);clearInterval(ssProgTimer);ssProgVal=0;
   var bar=document.getElementById('ssProgress');bar.style.width='0';
