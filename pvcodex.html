@@ -479,7 +479,41 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .char-portrait{text-align:center;margin-bottom:28px}
 .char-portrait img{width:100%;max-width:420px;border-radius:12px;border:2px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,.35)}
 .char-portrait .portrait-name{margin-top:10px;font-size:.78rem;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase}
-/* ── Gallery ── */
+/* ── Quotes Grid ── */
+.quotes-launch{display:flex;justify-content:center;margin-bottom:28px}
+.quotes-launch button{background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:#fff;border:none;border-radius:10px;padding:12px 32px;font-family:var(--font-h);font-size:.88rem;letter-spacing:.06em;cursor:pointer;transition:all .25s;box-shadow:0 4px 16px rgba(139,92,246,.25)}
+.quotes-launch button:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(139,92,246,.4)}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:40px}
+.qcard{display:flex;gap:16px;align-items:center;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--shadow-card);cursor:pointer;transition:all .25s}
+.qcard:hover{border-color:var(--gold-dim);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.25)}
+.qcard-img{width:64px;height:64px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--gold-dim)}
+.qcard-noimg{width:64px;height:64px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--bg-sec),var(--border));display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--text-muted);border:2px solid var(--border)}
+.qcard-body{flex:1;min-width:0}
+.qcard-text{font-family:var(--font-h);font-size:.82rem;color:var(--text);font-style:italic;line-height:1.6;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.qcard-attr{font-size:.72rem;color:var(--gold);font-family:var(--font-h);letter-spacing:.04em}
+@media(max-width:600px){.qgrid{grid-template-columns:1fr}.qcard{padding:16px;gap:12px}.qcard-img,.qcard-noimg{width:52px;height:52px}}
+/* ── Slideshow Overlay ── */
+.ss-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;flex-direction:column}
+.ss-overlay.open{display:flex}
+.ss-close{position:absolute;top:20px;right:24px;background:none;border:1px solid rgba(255,255,255,.2);border-radius:50%;width:44px;height:44px;color:#fff;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:2}
+.ss-close:hover{border-color:var(--gold);color:var(--gold)}
+.ss-counter{position:absolute;top:26px;left:24px;color:rgba(255,255,255,.4);font-size:.8rem;font-family:var(--font-h);letter-spacing:.08em}
+.ss-slide{display:flex;align-items:center;gap:36px;max-width:720px;width:90%;padding:40px;animation:ssFadeIn .35s ease}
+@keyframes ssFadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.ss-img{width:160px;height:160px;border-radius:50%;object-fit:cover;flex-shrink:0;border:3px solid var(--gold-dim);box-shadow:0 0 40px rgba(139,92,246,.3)}
+.ss-noimg{width:160px;height:160px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#1a1a2e,#2a2a3e);display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,.15);border:3px solid rgba(255,255,255,.1)}
+.ss-body{flex:1;min-width:0}
+.ss-text{font-family:var(--font-h);font-size:1.3rem;color:#fff;font-style:italic;line-height:1.7;margin-bottom:16px;letter-spacing:.01em}
+.ss-attr{font-size:.9rem;color:var(--gold);font-family:var(--font-h);letter-spacing:.06em}
+.ss-arrow{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(255,255,255,.15);border-radius:50%;width:48px;height:48px;color:rgba(255,255,255,.5);font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.ss-arrow:hover{border-color:var(--gold);color:var(--gold)}
+.ss-prev{left:24px}
+.ss-next{right:24px}
+.ss-progress{position:absolute;bottom:0;left:0;height:3px;background:var(--gold);transition:width .1s linear;border-radius:0 2px 0 0}
+.ss-dots{display:flex;gap:8px;margin-top:24px}
+.ss-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);transition:all .2s;cursor:pointer}
+.ss-dot.active{background:var(--gold);transform:scale(1.3)}
+@media(max-width:600px){.ss-slide{flex-direction:column;text-align:center;gap:20px;padding:24px}.ss-img,.ss-noimg{width:100px;height:100px}.ss-text{font-size:1rem}.ss-arrow{width:40px;height:40px;font-size:1.1rem}.ss-prev{left:8px}.ss-next{right:8px}}
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:24px}
 .gallery-item{position:relative;border-radius:12px;overflow:hidden;border:2px solid var(--border);background:var(--bg-card);transition:transform .2s,box-shadow .2s}
 .gallery-item:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.4)}
@@ -708,8 +742,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <li><a tabindex="0" role="link" onclick="navigateTo('characters')" data-page="characters">Other Characters</a></li>
       <li class="nav-group-title">World</li>
       <li><a tabindex="0" role="link" onclick="navigateTo('world')" data-page="world">World &amp; Factions</a></li>
-      <li class="nav-group-title">Media</li>
-      <li><a tabindex="0" role="link" onclick="navigateTo('gallery')" data-page="gallery">Gallery</a></li>
+      <li class="nav-group-title">Extras</li>
+      <li><a tabindex="0" role="link" onclick="navigateTo('gallery')" data-page="gallery">Extras</a></li>
       <li class="nav-group-title">Community</li>
       <li><a tabindex="0" role="link" onclick="navigateTo('trivia')" data-page="trivia">Trivia Game</a></li>
       <li><a tabindex="0" role="link" onclick="navigateTo('votes')" data-page="votes">Votes</a></li>
@@ -763,8 +797,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     </a>
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('gallery')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#10063;</span>
-      <h3>Gallery</h3>
-      <p>Character portraits and artwork from the world of Thalorind.</p>
+      <h3>Extras</h3>
+      <p>Memorable quotes, character portraits and artwork.</p>
     </a>
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('trivia')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#10050;</span>
@@ -1840,13 +1874,31 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   </section>
 </div>
 
-<!-- ═══════════════ GALLERY ═══════════════ -->
+<!-- ═══════════════ EXTRAS ═══════════════ -->
 <div class="page content-page" id="page-gallery">
   <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
   <section>
-    <h2 class="sec-title">Gallery</h2>
-    <p class="sec-desc">Character portraits from the world of Thalorind. Click any image to enlarge.</p>
+    <h2 class="sec-title">Extras</h2>
+    <p class="sec-desc">Memorable quotes and character portraits from the world of Thalorind.</p>
     <hr class="sec-divider">
+
+    <h3 class="vs-section-title" style="margin-top:24px">Memorable Quotes</h3>
+    <div class="quotes-launch"><button onclick="openSlideshow(0)">&#9654; Start Slideshow</button></div>
+    <div class="qgrid" id="quotesGrid"></div>
+
+<!-- Slideshow overlay (rendered outside page flow) -->
+<div class="ss-overlay" id="ssOverlay">
+  <span class="ss-counter" id="ssCounter"></span>
+  <button class="ss-close" onclick="closeSlideshow()">&#10005;</button>
+  <button class="ss-arrow ss-prev" onclick="ssNav(-1)">&#8249;</button>
+  <button class="ss-arrow ss-next" onclick="ssNav(1)">&#8250;</button>
+  <div class="ss-slide" id="ssSlide"></div>
+  <div class="ss-dots" id="ssDots"></div>
+  <div class="ss-progress" id="ssProgress"></div>
+</div>
+
+    <h3 class="vs-section-title" style="margin-top:48px">Gallery</h3>
+    <p class="sec-desc" style="margin-bottom:16px">Character portraits. Click any image to enlarge.</p>
     <div class="gallery-filter">
       <button class="active" onclick="filterGallery('all',this)">All</button>
       <button onclick="filterGallery('harem',this)">Harem</button>
@@ -2061,8 +2113,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 <p>The original beings of each race: Human (Malakar, Thyra, Dragnar, Mearie, Hanae, Zen), Dwarf (Bj&ouml;rn, Sivra), Elf (Luminara), Drow (Kiryssa, Vaelor), Demon (Nyxara, Syrion), Titan (Hagnar, Hyrmara), Shapeshifter (Karl, Lysaria), Gnome (Thindlebrim, Granny Thistle).</p>
 <h2>Criminal Organizations</h2>
 <p>The Vesper Consortium (active, led by the Obsidian Circle), Covenant of Eternity (undead faction), and the Phantom League (captured and executed by the Fujimori Clan).</p>
-<h2>Gallery</h2>
-<p>Character portraits: Quinlan, Ayame, Seraphiel, Blossom, Vex, Serika, Kitsara, Aurora, Jasmine, Lucille, Kaelira, Nyxara, Black Fang, Luminara, Mearie, Hanae, Kiryssa, Kaede, Sylvaris, Morgana, Felicity, Iris, Lyra, Orianna, Raika, Scar, Feng, Yoruha, Lilith, Myrasyn, and Lilyanna.</p>
+<h2>Extras</h2>
+<p>Memorable quotes and character portraits from the world of Thalorind.</p>
 <p>This codex requires JavaScript for full interactivity. <a href="https://www.webnovel.com/book/primordial-villain-with-a-slave-harem_30056099600577905">Read the novel on Webnovel</a> &middot; <a href="https://discord.gg/XAwgpNKAHr">Join the Discord</a> &middot; <a href="https://www.patreon.com/NecroBin">Support on Patreon</a></p>
 </div>
 </noscript>
@@ -2113,7 +2165,7 @@ var pageTitles = {
   'girl-jasmine': 'Jasmine — Tyrant of Commerce | PV Codex',
   'girl-lucille': 'Lucille — Bloodmonger | PV Codex',
   'girl-kaelira': 'Kaelira — Runeweaver Titan | PV Codex',
-  'gallery': 'Gallery — Character Portraits | PV Codex',
+  'gallery': 'Extras — Quotes & Gallery | PV Codex',
   'characters': 'Other Characters | PV Codex',
   'char-blackfang': 'Black Fang — Hanako Fujimori | PV Codex',
   'char-kaede': 'Kaede Fujimori — Duchess of Silverwind | PV Codex',
@@ -2780,6 +2832,92 @@ window.closeLightbox = function(){
 window.revealQuinlan = function(el){
   el.classList.add('revealed');
 };
+
+// ── Quotes Grid + Slideshow ──
+var pvQuotes = [
+  { text: “Right. I still struggle to accept that you came into existence from such a loser’s pair of balls.”, char: “Quinlan”, img: “images-web/quinlan.jpg” },
+  { text: “Heavy? Me? If anything’s crushing you right now, it’s those melons you insist on flaunting!”, char: “Ayame”, img: “images-web/ayame.jpg” },
+  { text: “Are you a racist?”, char: “Seraphiel”, img: “images-web/seraphiel.jpg” },
+  { text: “Mom, let’s assault the human capital together!”, char: “Seraphiel”, img: “images-web/seraphiel.jpg” },
+  { text: “What an unpleasant woman you are, Ayame… I’m starting to understand why your sister sold you into slavery.”, char: “Vex”, img: “images-web/vex.jpg” },
+  { text: “Stop treating me like I’m an untrained dog. I behave properly all the time.”, char: “Iris”, img: “images-web/iris.jpg” },
+  { text: “This is emotional terrorism.”, char: “Yoruha”, img: “images-web/yoruha.jpg” },
+  { text: “…I will not cause problems.”, char: “Black Fang”, img: “images-web/bf-transition.jpg” },
+  { text: “I feel I’ll only be pure again… if you take me… while we torture this vile creature together…”, char: “Kitsara”, img: “images-web/kitsara.jpg” },
+  { text: “Q-Quinlan… are you… Are you going to help me feel pure again?”, char: “Kitsara”, img: “images-web/kitsara.jpg” },
+  { text: “From a mother-daughter pair of sex slaves sold for pleasure, to invaders of the human capital…”, char: “Sylvaris”, img: “images-web/sylvaris.jpg” },
+  { text: “You know, I’ve been thinking far too much these past few months. I’m done with that. I’m going to kill everyone standing in front of me, one after the next. You’re first.”, char: “Alexios Valorian”, img: null },
+  { text: “Wait. Ragnar, have you been a woman this entire time?”, char: “Alexios Valorian”, img: null }
+];
+var ssIdx = 0, ssTimer = null, ssProgTimer = null, ssProgVal = 0;
+function buildQuoteGrid(){
+  var grid = document.getElementById('quotesGrid');
+  if(!grid) return;
+  grid.innerHTML = '';
+  pvQuotes.forEach(function(q, i){
+    var card = document.createElement('div');
+    card.className = 'qcard';
+    card.onclick = (function(idx){ return function(){ openSlideshow(idx); }; })(i);
+    var imgHtml = q.img
+      ? '<img class=”qcard-img” src=”' + q.img + '” alt=”' + q.char + '” loading=”lazy”>'
+      : '<div class=”qcard-noimg”>✧</div>';
+    card.innerHTML = imgHtml + '<div class=”qcard-body”><div class=”qcard-text”>“' + q.text + '”</div><div class=”qcard-attr”>— ' + q.char + '</div></div>';
+    grid.appendChild(card);
+  });
+}
+function renderSsSlide(i){
+  ssIdx = ((i % pvQuotes.length) + pvQuotes.length) % pvQuotes.length;
+  var q = pvQuotes[ssIdx];
+  var slide = document.getElementById('ssSlide');
+  var imgHtml = q.img
+    ? '<img class=”ss-img” src=”' + q.img + '” alt=”' + q.char + '”>'
+    : '<div class=”ss-noimg”>✧</div>';
+  slide.innerHTML = imgHtml + '<div class=”ss-body”><div class=”ss-text”>“' + q.text + '”</div><div class=”ss-attr”>— ' + q.char + '</div></div>';
+  document.getElementById('ssCounter').textContent = (ssIdx + 1) + ' / ' + pvQuotes.length;
+  document.querySelectorAll('.ss-dot').forEach(function(d, j){ d.classList.toggle('active', j === ssIdx); });
+}
+window.openSlideshow = function(i){
+  var overlay = document.getElementById('ssOverlay');
+  var dotsEl = document.getElementById('ssDots');
+  dotsEl.innerHTML = '';
+  for(var j = 0; j < pvQuotes.length; j++){
+    var d = document.createElement('span');
+    d.className = 'ss-dot';
+    d.onclick = (function(idx){ return function(){ renderSsSlide(idx); resetSsTimer(); }; })(j);
+    dotsEl.appendChild(d);
+  }
+  renderSsSlide(i);
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  resetSsTimer();
+};
+window.closeSlideshow = function(){
+  document.getElementById('ssOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  clearInterval(ssTimer);
+  clearInterval(ssProgTimer);
+  document.getElementById('ssProgress').style.width = '0';
+};
+window.ssNav = function(dir){ renderSsSlide(ssIdx + dir); resetSsTimer(); };
+function resetSsTimer(){
+  clearInterval(ssTimer);
+  clearInterval(ssProgTimer);
+  ssProgVal = 0;
+  var bar = document.getElementById('ssProgress');
+  bar.style.width = '0';
+  ssProgTimer = setInterval(function(){
+    ssProgVal += 50;
+    bar.style.width = (ssProgVal / 3500 * 100) + '%';
+  }, 50);
+  ssTimer = setInterval(function(){ renderSsSlide(ssIdx + 1); resetSsTimer(); }, 3500);
+}
+document.addEventListener('keydown', function(e){
+  if(!document.getElementById('ssOverlay').classList.contains('open')) return;
+  if(e.key === 'Escape') closeSlideshow();
+  if(e.key === 'ArrowLeft') { ssNav(-1); }
+  if(e.key === 'ArrowRight') { ssNav(1); }
+});
+buildQuoteGrid();
 
 // ── Auto-add keyboard accessibility to onclick elements ──
 document.querySelectorAll('.fam-card[onclick],.char-card[onclick],.nav-card:not([tabindex]),.gallery-label[onclick],.sidebar-brand[onclick]').forEach(function(el){
