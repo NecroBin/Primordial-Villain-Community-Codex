@@ -3498,7 +3498,8 @@ function adminConnect(){
     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
     body: JSON.stringify({ mode: 'challenge' })
   }).then(function(r){
-    if(!r.ok){ adminMsg('Invalid token', false); sessionStorage.removeItem('adminToken'); return; }
+    if(r.status === 401){ adminMsg('Invalid token', false); sessionStorage.removeItem('adminToken'); return; }
+    if(!r.ok){ adminMsg('Server error (' + r.status + ')', false); return; }
     document.getElementById('adminAuth').style.display = 'none';
     document.getElementById('adminPanel').style.display = 'block';
     adminLoadEntries();
