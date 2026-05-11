@@ -483,25 +483,25 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .quotes-launch{display:flex;justify-content:center;margin-bottom:28px}
 .quotes-launch button{background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:#fff;border:none;border-radius:10px;padding:12px 32px;font-family:var(--font-h);font-size:.88rem;letter-spacing:.06em;cursor:pointer;transition:all .25s;box-shadow:0 4px 16px rgba(139,92,246,.25)}
 .quotes-launch button:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(139,92,246,.4)}
-.qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:40px}
-.qcard{display:flex;gap:16px;align-items:center;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--shadow-card);cursor:pointer;transition:all .25s}
-.qcard:hover{border-color:var(--gold-dim);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.25)}
-.qcard-img{width:64px;height:64px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--gold-dim)}
-.qcard-noimg{width:64px;height:64px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--bg-sec),var(--border));display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--text-muted);border:2px solid var(--border)}
-.qcard-body{flex:1;min-width:0}
-.qcard-text{font-family:var(--font-h);font-size:.82rem;color:var(--text);font-style:italic;line-height:1.6;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.qcard-attr{font-size:.72rem;color:var(--gold);font-family:var(--font-h);letter-spacing:.04em}
-@media(max-width:600px){.qgrid{grid-template-columns:1fr}.qcard{padding:16px;gap:12px}.qcard-img,.qcard-noimg{width:52px;height:52px}}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;margin-bottom:40px}
+.qcard{display:flex;flex-direction:column;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-card);cursor:pointer;transition:all .25s}
+.qcard:hover{border-color:var(--gold-dim);transform:translateY(-3px);box-shadow:0 10px 32px rgba(0,0,0,.3)}
+.qcard-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.qcard-noimg{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,var(--bg-sec),var(--border));display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:var(--text-muted)}
+.qcard-body{padding:16px 18px 18px}
+.qcard-text{font-family:var(--font-h);font-size:.84rem;color:var(--text);font-style:italic;line-height:1.65;margin-bottom:8px}
+.qcard-attr{font-size:.74rem;color:var(--gold);font-family:var(--font-h);letter-spacing:.04em}
+@media(max-width:600px){.qgrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}.qcard-body{padding:12px 14px 14px}.qcard-text{font-size:.78rem}}
 /* ── Slideshow Overlay ── */
 .ss-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;flex-direction:column}
 .ss-overlay.open{display:flex}
 .ss-close{position:absolute;top:20px;right:24px;background:none;border:1px solid rgba(255,255,255,.2);border-radius:50%;width:44px;height:44px;color:#fff;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:2}
 .ss-close:hover{border-color:var(--gold);color:var(--gold)}
 .ss-counter{position:absolute;top:26px;left:24px;color:rgba(255,255,255,.4);font-size:.8rem;font-family:var(--font-h);letter-spacing:.08em}
-.ss-slide{display:flex;align-items:center;gap:36px;max-width:720px;width:90%;padding:40px;animation:ssFadeIn .35s ease}
+.ss-slide{display:flex;align-items:center;gap:36px;max-width:800px;width:90%;padding:40px;animation:ssFadeIn .35s ease}
 @keyframes ssFadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.ss-img{width:160px;height:160px;border-radius:50%;object-fit:cover;flex-shrink:0;border:3px solid var(--gold-dim);box-shadow:0 0 40px rgba(139,92,246,.3)}
-.ss-noimg{width:160px;height:160px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#1a1a2e,#2a2a3e);display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,.15);border:3px solid rgba(255,255,255,.1)}
+.ss-img{width:240px;height:320px;border-radius:14px;object-fit:cover;flex-shrink:0;border:2px solid var(--gold-dim);box-shadow:0 0 40px rgba(139,92,246,.25)}
+.ss-noimg{width:240px;height:320px;border-radius:14px;flex-shrink:0;background:linear-gradient(135deg,#1a1a2e,#2a2a3e);display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.1)}
 .ss-body{flex:1;min-width:0}
 .ss-text{font-family:var(--font-h);font-size:1.3rem;color:#fff;font-style:italic;line-height:1.7;margin-bottom:16px;letter-spacing:.01em}
 .ss-attr{font-size:.9rem;color:var(--gold);font-family:var(--font-h);letter-spacing:.06em}
@@ -509,11 +509,16 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .ss-arrow:hover{border-color:var(--gold);color:var(--gold)}
 .ss-prev{left:24px}
 .ss-next{right:24px}
-.ss-progress{position:absolute;bottom:0;left:0;height:3px;background:var(--gold);transition:width .1s linear;border-radius:0 2px 0 0}
+.ss-progress{position:absolute;bottom:0;left:0;height:2px;background:rgba(139,92,246,.35);transition:width .1s linear}
 .ss-dots{display:flex;gap:8px;margin-top:24px}
 .ss-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);transition:all .2s;cursor:pointer}
 .ss-dot.active{background:var(--gold);transform:scale(1.3)}
-@media(max-width:600px){.ss-slide{flex-direction:column;text-align:center;gap:20px;padding:24px}.ss-img,.ss-noimg{width:100px;height:100px}.ss-text{font-size:1rem}.ss-arrow{width:40px;height:40px;font-size:1.1rem}.ss-prev{left:8px}.ss-next{right:8px}}
+.ss-speed{position:absolute;bottom:20px;right:24px;display:flex;align-items:center;gap:8px}
+.ss-speed-label{color:rgba(255,255,255,.3);font-size:.7rem;font-family:var(--font-h);letter-spacing:.06em}
+.ss-speed button{background:none;border:1px solid rgba(255,255,255,.15);border-radius:6px;color:rgba(255,255,255,.4);font-size:.7rem;padding:4px 10px;cursor:pointer;font-family:var(--font-h);transition:all .2s}
+.ss-speed button:hover{border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.6)}
+.ss-speed button.active{border-color:var(--gold);color:var(--gold)}
+@media(max-width:600px){.ss-slide{flex-direction:column;text-align:center;gap:20px;padding:24px}.ss-img,.ss-noimg{width:160px;height:213px}.ss-text{font-size:1rem}.ss-arrow{width:40px;height:40px;font-size:1.1rem}.ss-prev{left:8px}.ss-next{right:8px}.ss-speed{bottom:14px;right:12px}}
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:24px}
 .gallery-item{position:relative;border-radius:12px;overflow:hidden;border:2px solid var(--border);background:var(--bg-card);transition:transform .2s,box-shadow .2s}
 .gallery-item:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.4)}
@@ -743,8 +748,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <li class="nav-group-title">World</li>
       <li><a tabindex="0" role="link" onclick="navigateTo('world')" data-page="world">World &amp; Factions</a></li>
       <li class="nav-group-title">Extras</li>
-      <li><a tabindex="0" role="link" onclick="navigateTo('gallery','sec-quotes')" data-page="gallery">Quotes</a></li>
-      <li><a tabindex="0" role="link" onclick="navigateTo('gallery','sec-gallery')" data-page="gallery">Gallery</a></li>
+      <li><a tabindex="0" role="link" onclick="navigateTo('quotes')" data-page="quotes">Quotes</a></li>
+      <li><a tabindex="0" role="link" onclick="navigateTo('gallery')" data-page="gallery">Gallery</a></li>
       <li class="nav-group-title">Community</li>
       <li><a tabindex="0" role="link" onclick="navigateTo('trivia')" data-page="trivia">Trivia Game</a></li>
       <li><a tabindex="0" role="link" onclick="navigateTo('votes')" data-page="votes">Votes</a></li>
@@ -796,12 +801,12 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <h3>World &amp; Factions</h3>
       <p>The Vraven Kingdom, the Primordials, criminal syndicates, and the lore of Thalorind.</p>
     </a>
-    <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('gallery','sec-quotes')" onkeydown="if(event.key==='Enter')this.click()">
+    <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('quotes')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#10078;</span>
       <h3>Quotes</h3>
       <p>Memorable lines from the world of Thalorind.</p>
     </a>
-    <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('gallery','sec-gallery')" onkeydown="if(event.key==='Enter')this.click()">
+    <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('gallery')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#10063;</span>
       <h3>Gallery</h3>
       <p>Character portraits and artwork.</p>
@@ -1880,19 +1885,19 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   </section>
 </div>
 
-<!-- ═══════════════ EXTRAS ═══════════════ -->
-<div class="page content-page" id="page-gallery">
+<!-- ═══════════════ QUOTES ═══════════════ -->
+<div class="page content-page" id="page-quotes">
   <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
   <section>
-    <h2 class="sec-title">Extras</h2>
-    <p class="sec-desc">Memorable quotes and character portraits from the world of Thalorind.</p>
+    <h2 class="sec-title">Memorable Quotes</h2>
+    <p class="sec-desc">Iconic lines from the world of Thalorind.</p>
     <hr class="sec-divider">
-
-    <h3 class="vs-section-title" id="sec-quotes" style="margin-top:24px">Memorable Quotes</h3>
     <div class="quotes-launch"><button onclick="openSlideshow(0)">&#9654; Start Slideshow</button></div>
     <div class="qgrid" id="quotesGrid"></div>
+  </section>
+</div>
 
-<!-- Slideshow overlay (rendered outside page flow) -->
+<!-- Slideshow overlay -->
 <div class="ss-overlay" id="ssOverlay">
   <span class="ss-counter" id="ssCounter"></span>
   <button class="ss-close" onclick="closeSlideshow()">&#10005;</button>
@@ -1901,10 +1906,16 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <div class="ss-slide" id="ssSlide"></div>
   <div class="ss-dots" id="ssDots"></div>
   <div class="ss-progress" id="ssProgress"></div>
+  <div class="ss-speed"><span class="ss-speed-label">Speed</span><button onclick="setSsSpeed(2000)">Fast</button><button class="active" onclick="setSsSpeed(3500)">Normal</button><button onclick="setSsSpeed(6000)">Slow</button></div>
 </div>
 
-    <h3 class="vs-section-title" id="sec-gallery" style="margin-top:48px">Gallery</h3>
-    <p class="sec-desc" style="margin-bottom:16px">Character portraits. Click any image to enlarge.</p>
+<!-- ═══════════════ GALLERY ═══════════════ -->
+<div class="page content-page" id="page-gallery">
+  <div class="page-bar"><button class="back-btn" onclick="navigateTo('home')">&#8592; Home</button></div>
+  <section>
+    <h2 class="sec-title">Gallery</h2>
+    <p class="sec-desc">Character portraits from the world of Thalorind. Click any image to enlarge.</p>
+    <hr class="sec-divider">
     <div class="gallery-filter">
       <button class="active" onclick="filterGallery('all',this)">All</button>
       <button onclick="filterGallery('harem',this)">Harem</button>
@@ -2119,8 +2130,10 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 <p>The original beings of each race: Human (Malakar, Thyra, Dragnar, Mearie, Hanae, Zen), Dwarf (Bj&ouml;rn, Sivra), Elf (Luminara), Drow (Kiryssa, Vaelor), Demon (Nyxara, Syrion), Titan (Hagnar, Hyrmara), Shapeshifter (Karl, Lysaria), Gnome (Thindlebrim, Granny Thistle).</p>
 <h2>Criminal Organizations</h2>
 <p>The Vesper Consortium (active, led by the Obsidian Circle), Covenant of Eternity (undead faction), and the Phantom League (captured and executed by the Fujimori Clan).</p>
-<h2>Extras</h2>
-<p>Memorable quotes and character portraits from the world of Thalorind.</p>
+<h2>Quotes</h2>
+<p>Iconic and memorable quotes from the characters of Primordial Villain.</p>
+<h2>Gallery</h2>
+<p>Character portraits and artwork from the world of Thalorind.</p>
 <p>This codex requires JavaScript for full interactivity. <a href="https://www.webnovel.com/book/primordial-villain-with-a-slave-harem_30056099600577905">Read the novel on Webnovel</a> &middot; <a href="https://discord.gg/XAwgpNKAHr">Join the Discord</a> &middot; <a href="https://www.patreon.com/NecroBin">Support on Patreon</a></p>
 </div>
 </noscript>
@@ -2171,7 +2184,8 @@ var pageTitles = {
   'girl-jasmine': 'Jasmine — Tyrant of Commerce | PV Codex',
   'girl-lucille': 'Lucille — Bloodmonger | PV Codex',
   'girl-kaelira': 'Kaelira — Runeweaver Titan | PV Codex',
-  'gallery': 'Extras — Quotes & Gallery | PV Codex',
+  'quotes': 'Memorable Quotes | PV Codex',
+  'gallery': 'Gallery — Character Portraits | PV Codex',
   'characters': 'Other Characters | PV Codex',
   'char-blackfang': 'Black Fang — Hanako Fujimori | PV Codex',
   'char-kaede': 'Kaede Fujimori — Duchess of Silverwind | PV Codex',
@@ -2204,6 +2218,7 @@ var pageDescs = {
   'kingdom': 'The six duchies of the Vraven Kingdom, their rulers, and the alliances that hold the kingdom together.',
   'primordials': 'The original beings of each race — Human, Dwarf, Elf, Drow, Demon, Titan, Shapeshifter, and Gnome primordials.',
   'organizations': 'Criminal syndicates of Thalorind — the Vesper Consortium, Covenant of Eternity, and the fallen Phantom League.',
+  'quotes': 'Iconic and memorable quotes from the characters of Primordial Villain.',
   'gallery': 'Character portraits and artwork from the world of Thalorind — Quinlan, the harem, primordials, and more.',
   'characters': 'Allies, enemies, royals, primordials, and other notable figures from Primordial Villain with a Slave Harem.',
   'girl-rosie': 'Rosie Elysiar, Quinlan\'s first daughter.',
@@ -2855,73 +2870,75 @@ var pvQuotes = [
   { text: "You know, I've been thinking far too much these past few months. I'm done with that. I'm going to kill everyone standing in front of me, one after the next. You're first.", char: "Alexios Valorian", img: null },
   { text: "Wait. Ragnar, have you been a woman this entire time?", char: "Alexios Valorian", img: null }
 ];
-var ssIdx = 0, ssTimer = null, ssProgTimer = null, ssProgVal = 0;
+var ssIdx=0,ssTimer=null,ssProgTimer=null,ssProgVal=0,ssSpeed=3500,ssOrder=[];
+function shuffleArray(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function buildQuoteGrid(){
-  var grid = document.getElementById('quotesGrid');
-  if(!grid) return;
-  grid.innerHTML = '';
-  pvQuotes.forEach(function(q, i){
-    var card = document.createElement('div');
-    card.className = 'qcard';
-    card.onclick = (function(idx){ return function(){ openSlideshow(idx); }; })(i);
-    var imgHtml = q.img
-      ? '<img class="qcard-img" src="' + q.img + '" alt="' + q.char + '" loading="lazy">'
-      : '<div class="qcard-noimg">✧</div>';
-    card.innerHTML = imgHtml + '<div class="qcard-body"><div class="qcard-text">"' + q.text + '"</div><div class="qcard-attr">— ' + q.char + '</div></div>';
+  var grid=document.getElementById('quotesGrid');
+  if(!grid)return;
+  grid.innerHTML='';
+  pvQuotes.forEach(function(q,i){
+    var card=document.createElement('div');
+    card.className='qcard';
+    card.onclick=(function(idx){return function(){openSlideshow(idx);};})(i);
+    var imgH=q.img?'<img class="qcard-img" src="'+q.img+'" alt="'+q.char+'" loading="lazy">':'<div class="qcard-noimg">&#10023;</div>';
+    card.innerHTML=imgH+'<div class="qcard-body"><div class="qcard-text">"'+q.text+'"</div><div class="qcard-attr">— '+q.char+'</div></div>';
     grid.appendChild(card);
   });
 }
 function renderSsSlide(i){
-  ssIdx = ((i % pvQuotes.length) + pvQuotes.length) % pvQuotes.length;
-  var q = pvQuotes[ssIdx];
-  var slide = document.getElementById('ssSlide');
-  var imgHtml = q.img
-    ? '<img class="ss-img" src="' + q.img + '" alt="' + q.char + '">'
-    : '<div class="ss-noimg">✧</div>';
-  slide.innerHTML = imgHtml + '<div class="ss-body"><div class="ss-text">"' + q.text + '"</div><div class="ss-attr">— ' + q.char + '</div></div>';
-  document.getElementById('ssCounter').textContent = (ssIdx + 1) + ' / ' + pvQuotes.length;
-  document.querySelectorAll('.ss-dot').forEach(function(d, j){ d.classList.toggle('active', j === ssIdx); });
+  ssIdx=((i%ssOrder.length)+ssOrder.length)%ssOrder.length;
+  var q=ssOrder[ssIdx];
+  var slide=document.getElementById('ssSlide');
+  var imgH=q.img?'<img class="ss-img" src="'+q.img+'" alt="'+q.char+'">':'<div class="ss-noimg">&#10023;</div>';
+  slide.innerHTML=imgH+'<div class="ss-body"><div class="ss-text">"'+q.text+'"</div><div class="ss-attr">— '+q.char+'</div></div>';
+  document.getElementById('ssCounter').textContent=(ssIdx+1)+' / '+ssOrder.length;
+  document.querySelectorAll('.ss-dot').forEach(function(d,j){d.classList.toggle('active',j===ssIdx);});
 }
-window.openSlideshow = function(i){
-  var overlay = document.getElementById('ssOverlay');
-  var dotsEl = document.getElementById('ssDots');
-  dotsEl.innerHTML = '';
-  for(var j = 0; j < pvQuotes.length; j++){
-    var d = document.createElement('span');
-    d.className = 'ss-dot';
-    d.onclick = (function(idx){ return function(){ renderSsSlide(idx); resetSsTimer(); }; })(j);
+window.openSlideshow=function(startIdx){
+  ssOrder=pvQuotes.slice();
+  shuffleArray(ssOrder);
+  if(typeof startIdx==='number'&&pvQuotes[startIdx]){
+    var picked=pvQuotes[startIdx];
+    var pos=ssOrder.indexOf(picked);
+    if(pos>0){ssOrder.splice(pos,1);ssOrder.unshift(picked);}
+  }
+  var overlay=document.getElementById('ssOverlay');
+  var dotsEl=document.getElementById('ssDots');
+  dotsEl.innerHTML='';
+  for(var j=0;j<ssOrder.length;j++){
+    var d=document.createElement('span');
+    d.className='ss-dot';
+    d.onclick=(function(idx){return function(){renderSsSlide(idx);resetSsTimer();};})(j);
     dotsEl.appendChild(d);
   }
-  renderSsSlide(i);
+  renderSsSlide(0);
   overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
   resetSsTimer();
+  updateSpeedBtns();
 };
-window.closeSlideshow = function(){
+window.closeSlideshow=function(){
   document.getElementById('ssOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-  clearInterval(ssTimer);
-  clearInterval(ssProgTimer);
-  document.getElementById('ssProgress').style.width = '0';
+  document.body.style.overflow='';
+  clearInterval(ssTimer);clearInterval(ssProgTimer);
+  document.getElementById('ssProgress').style.width='0';
 };
-window.ssNav = function(dir){ renderSsSlide(ssIdx + dir); resetSsTimer(); };
+window.ssNav=function(dir){renderSsSlide(ssIdx+dir);resetSsTimer();};
+window.setSsSpeed=function(ms){ssSpeed=ms;resetSsTimer();updateSpeedBtns();};
+function updateSpeedBtns(){document.querySelectorAll('.ss-speed button').forEach(function(b){var v=parseInt(b.getAttribute('onclick').match(/\d+/)[0]);b.classList.toggle('active',v===ssSpeed);});}
 function resetSsTimer(){
-  clearInterval(ssTimer);
-  clearInterval(ssProgTimer);
-  ssProgVal = 0;
-  var bar = document.getElementById('ssProgress');
-  bar.style.width = '0';
-  ssProgTimer = setInterval(function(){
-    ssProgVal += 50;
-    bar.style.width = (ssProgVal / 3500 * 100) + '%';
-  }, 50);
-  ssTimer = setInterval(function(){ renderSsSlide(ssIdx + 1); resetSsTimer(); }, 3500);
+  clearInterval(ssTimer);clearInterval(ssProgTimer);
+  ssProgVal=0;
+  var bar=document.getElementById('ssProgress');
+  bar.style.width='0';
+  ssProgTimer=setInterval(function(){ssProgVal+=50;bar.style.width=(ssProgVal/ssSpeed*100)+'%';},50);
+  ssTimer=setInterval(function(){renderSsSlide(ssIdx+1);resetSsTimer();},ssSpeed);
 }
-document.addEventListener('keydown', function(e){
-  if(!document.getElementById('ssOverlay').classList.contains('open')) return;
-  if(e.key === 'Escape') closeSlideshow();
-  if(e.key === 'ArrowLeft') { ssNav(-1); }
-  if(e.key === 'ArrowRight') { ssNav(1); }
+document.addEventListener('keydown',function(e){
+  if(!document.getElementById('ssOverlay').classList.contains('open'))return;
+  if(e.key==='Escape')closeSlideshow();
+  if(e.key==='ArrowLeft')ssNav(-1);
+  if(e.key==='ArrowRight')ssNav(1);
 });
 buildQuoteGrid();
 
