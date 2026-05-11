@@ -513,7 +513,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .ss-speed button{background:none;border:1px solid rgba(255,255,255,.15);border-radius:6px;color:rgba(255,255,255,.4);font-size:.7rem;padding:4px 10px;cursor:pointer;font-family:var(--font-h);transition:all .2s}
 .ss-speed button:hover{border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.6)}
 .ss-speed button.active{border-color:var(--gold);color:var(--gold)}
-@media(max-width:600px){.ss-slide{flex-direction:column;text-align:center;gap:0;padding:0 0 56px;width:100%;max-width:100%}.ss-img{width:100%;max-width:100%;height:auto;max-height:55vh;object-fit:cover;object-position:top;border-radius:0;border:none;aspect-ratio:3/4;flex-shrink:0}.ss-noimg{width:100%;height:45vh;border-radius:0;flex-shrink:0}.ss-body{padding:16px 20px 0}.ss-text{font-size:.92rem;max-height:18vh;overflow:hidden;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical}.ss-attr{margin-top:6px}.ss-arrow{display:none}.ss-close{top:10px;right:10px;width:38px;height:38px;font-size:1.2rem}.ss-counter{top:14px;left:12px}.ss-speed{bottom:10px;left:50%;transform:translateX(-50%);right:auto;white-space:nowrap}}
+@media(max-width:600px){.ss-overlay.open{flex-direction:column;align-items:stretch;justify-content:flex-start}.ss-slide{flex-direction:column;text-align:center;gap:0;padding:0;width:100%;max-width:100%;flex:none}.ss-img{width:100%;height:50vh;object-fit:cover;object-position:top;border-radius:0;border:none;flex-shrink:0;max-height:none;max-width:none}.ss-noimg{width:100%;height:50vh;border-radius:0;flex-shrink:0}.ss-body{padding:12px 20px 0;height:calc(50vh - 56px);overflow-y:auto;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.ss-text{font-size:.92rem}.ss-attr{margin-top:6px}.ss-arrow{display:none}.ss-close{top:10px;right:10px;width:38px;height:38px;font-size:1.2rem}.ss-counter{top:14px;left:12px}.ss-speed{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);right:auto;white-space:nowrap}}
 .ss-overlay:fullscreen,.ss-overlay:-webkit-full-screen{background:#000}
 .ss-overlay:fullscreen .ss-slide,.ss-overlay:-webkit-full-screen .ss-slide{max-width:1300px}
 .ss-overlay:fullscreen .ss-img,.ss-overlay:-webkit-full-screen .ss-img{max-height:85vh;max-width:500px}
@@ -2894,11 +2894,11 @@ window.revealQuinlan = function(el){
 // ── Quotes Grid + Slideshow ──
 var pvQuotes = [
   {text:"I don't care about legality, about right or wrong, about just or evil. I'm here to become the ruler. The ruler of not this county, not this duchy, not this country, not this continent, but this entire world.",char:"Quinlan",img:"images-web/quinlan.jpg",cat:"cool"},
-  {text:"Listen well, succubus. I have conquered every primordial trial set before me. I have faced literal gods and came out victorious. I did not claw my way to where I am in life to lose to a sex demon. I am the master of my own fate, and soon, I'll become the master of you as well.",char:"Quinlan",img:"images-web/quinlan.jpg",cat:"cool"},
+  {text:"Listen well, succubus. I have conquered every primordial trial set before me. I have faced literal gods and came out victorious. I did not claw my way to where I am in life to lose to a sex demon. I am the master of my own fate, and soon, I'll become the master of you as well.",char:"Quinlan",img:"images-web/quinlan.jpg",cat:"cool",mob:0},
   {text:"Forget those precious women? To worship you? That will never happen.",char:"Quinlan",img:"images-web/quinlan.jpg",cat:"cool"},
   {text:"I'm going to make you regret playing with your food, succubus.",char:"Quinlan",img:"images-web/quinlan.jpg",cat:"cool"},
-  {text:"Drop your weapons. Kneel. And I will take every man, woman, and child in this city to a place where you will live as free people under my protection. You will keep your trades, your families, your dignity. You will build again, on land that no foreign army will touch.<br>Or you can fight me. And I will do what conquerors do.",char:"Quinlan",img:"images-web/quinlan.jpg",cat:"cool"},
-  {text:"I am building a new order. A nation that will stretch beyond this city, beyond this duchy, beyond borders drawn by men who are already dead or soon will be. Every person who kneels today becomes a part of that nation. Your skills, your labor, your courage on the battlefield today... none of it is forgotten. None of it is wasted. And in this new order, not even death itself is the end.",char:"Quinlan",img:"images-web/quinlan.jpg",cat:"cool"},
+  {text:"Drop your weapons. Kneel. And I will take every man, woman, and child in this city to a place where you will live as free people under my protection. You will keep your trades, your families, your dignity. You will build again, on land that no foreign army will touch.<br>Or you can fight me. And I will do what conquerors do.",char:"Quinlan",img:"images-web/quinlan.jpg",cat:"cool",mob:0},
+  {text:"I am building a new order. A nation that will stretch beyond this city, beyond this duchy, beyond borders drawn by men who are already dead or soon will be. Every person who kneels today becomes a part of that nation. Your skills, your labor, your courage on the battlefield today... none of it is forgotten. None of it is wasted. And in this new order, not even death itself is the end.",char:"Quinlan",img:"images-web/quinlan.jpg",cat:"cool",mob:0},
   {text:"I am the man you might know as the Primordial Villain.",char:"Quinlan",img:"images-web/quinlan.jpg",cat:"cool"},
   {text:"I am the son of the First Elf, Luminara. And I am here to ask for your help.",char:"Quinlan",img:"images-web/quinlan.jpg",cat:"cool"},
   {text:"What else am I if not the ultimate?",char:"Quinlan",img:"images-web/quinlan.jpg",cat:"cool"},
@@ -3039,13 +3039,13 @@ var pvQuotes = [
   {text:"I'm going to enjoy devouring every dream you've ever had...",char:"Nyxara",img:"images-web/nyxara.jpg",cat:"18+"},
   {text:"Is this all just baseless bravado... or can you actually back it up, my adorable little Ruin~",char:"Nyxara",img:"images-web/nyxara.jpg",cat:"18+"},
   {text:"I will now begin eating you, Little Ruin~",char:"Nyxara",img:"images-web/nyxara.jpg",cat:"18+"},
-  {text:"I was born to consume strong and brave men just like you. You shine on the field of battle... You dominate your enemies into submission, you create empires and leave behind legacies that will be remembered for eons. That is who you are, Little Ruin. But I am the end of such legends. I am the silence that follows the roar.",char:"Nyxara",img:"images-web/nyxara.jpg",cat:"cool"},
-  {text:"Regret...? I am the Demon of Lust... I am the 'Want' that has no end. I am incapable of regret. Whether you are consumed by me, becoming broken and battered, or I am consumed by you, getting conquered... I accept the outcome with no regret. So do your worst... break me... rewrite me... DESTROY ME!",char:"Nyxara",img:"images-web/nyxara.jpg",cat:"18+"},
+  {text:"I was born to consume strong and brave men just like you. You shine on the field of battle... You dominate your enemies into submission, you create empires and leave behind legacies that will be remembered for eons. That is who you are, Little Ruin. But I am the end of such legends. I am the silence that follows the roar.",char:"Nyxara",img:"images-web/nyxara.jpg",cat:"cool",mob:0},
+  {text:"Regret...? I am the Demon of Lust... I am the 'Want' that has no end. I am incapable of regret. Whether you are consumed by me, becoming broken and battered, or I am consumed by you, getting conquered... I accept the outcome with no regret. So do your worst... break me... rewrite me... DESTROY ME!",char:"Nyxara",img:"images-web/nyxara.jpg",cat:"18+",mob:0},
   {text:"I was counting your deaths. Someone has to keep accurate records so I can return them in equal measure to Dragnar once I am able to.",char:"Nyxara",img:"images-web/nyxara.jpg",cat:"cool"},
   {text:"Lesson number one from Professor Nyxara: Never question the logic of a woman.",char:"Nyxara",img:"images-web/nyxara.jpg",cat:"funny"},
   {text:"I might be a hopelessly perverted, raunchy woman, but I won't defile such an adorable little girl. I have my own creed!",char:"Nyxara",img:"images-web/nyxara.jpg",cat:"funny"},
   {text:"From a mother-daughter pair of sex slaves sold for pleasure, to invaders of the human capital...",char:"Sylvaris",img:"images-web/sylvaris.jpg",cat:"cool"},
-  {text:"It's getting worse... Only Jasmine seemed to be the perfectly normal girl of his. Ayame... Seraphiel... Aurora... Blossom... Lucille... They each had their problems, but none were this (Kitsara) bad... It's like Quinnie is going down a slippery slope, and he's loving every second of it!",char:"Luminara",img:"images-web/luminara.jpg",cat:"funny"},
+  {text:"It's getting worse... Only Jasmine seemed to be the perfectly normal girl of his. Ayame... Seraphiel... Aurora... Blossom... Lucille... They each had their problems, but none were this (Kitsara) bad... It's like Quinnie is going down a slippery slope, and he's loving every second of it!",char:"Luminara",img:"images-web/luminara.jpg",cat:"funny",mob:0},
   {text:"Boys will be boys... Our Quinnie tries his best, and that's all that matters.",char:"Luminara",img:"images-web/luminara.jpg",cat:"funny"},
   {text:"Give me my son back, or I swear I'll kill you!",char:"Luminara",img:"images-web/luminara.jpg",cat:"cool"},
   {text:"Hey, bitch.",char:"Mearie",img:"images-web/mearie.jpg",cat:"funny"},
@@ -3081,8 +3081,8 @@ var pvQuotes = [
   {text:"The Soul Record does not joke. This is an edict. A divine correction.",char:"Gorthrax",img:null,cat:"cool"},
   {text:"It's time for death to rule the world!",char:"Vozen",img:null,cat:"cool"},
   {text:"You will stop this disrespect, Primordial. Or I will end you.",char:"Vasilen Sangomar",img:null,cat:"cool"},
-  {text:"That you would seek my alliance is no insult. I am Archduke Vasilen Sangomar of the Sangomar line, and the strength I possess has been the prize of a thousand ambitions. To covet me is the natural conclusion of any clever man who lays eyes upon what I am. That much, I forgive.",char:"Vasilen Sangomar",img:null,cat:"cool"},
-  {text:"Those bark-fetishists. I told Grennik. I told him five centuries ago. 'You don't ally with people who live high in the trees, that's psychopathic behavior,' I said. 'They've got sap where their loyalty should be. How can we trust women who refuse to wear boots?' Did he listen?",char:"Thordak Ironfold",img:null,cat:"funny"},
+  {text:"That you would seek my alliance is no insult. I am Archduke Vasilen Sangomar of the Sangomar line, and the strength I possess has been the prize of a thousand ambitions. To covet me is the natural conclusion of any clever man who lays eyes upon what I am. That much, I forgive.",char:"Vasilen Sangomar",img:null,cat:"cool",mob:0},
+  {text:"Those bark-fetishists. I told Grennik. I told him five centuries ago. 'You don't ally with people who live high in the trees, that's psychopathic behavior,' I said. 'They've got sap where their loyalty should be. How can we trust women who refuse to wear boots?' Did he listen?",char:"Thordak Ironfold",img:null,cat:"funny",mob:0},
   {text:"I swear undying loyalty to you, Quinlan Elysiar. Avatar. Primordial Villain. Harbinger of Ruin. God Slayer. I kneel before you, not as a defeated sovereign... but as your vassal, if you're willing to accept me.",char:"Rongtai",img:null,cat:"cool"},
   {text:"Put me down?! Zehaha! I love the sound of that! Come on, brother! Kill me if you can!",char:"Blackjack",img:null,cat:"cool"},
   {text:"Holy Goddess's miniskirt.",char:"Ronan",img:null,cat:"funny"},
@@ -3102,7 +3102,7 @@ function buildQuoteGrid(){
   var grid=document.getElementById("quotesGrid");
   if(!grid)return;
   grid.innerHTML="";
-  var list=currentQuoteFilter==="all"?pvQuotes:pvQuotes.filter(function(q){return q.cat===currentQuoteFilter;});
+  var isMob=window.innerWidth<=600;var base=isMob?pvQuotes.filter(function(q){return q.mob!==0;}):pvQuotes;var list=currentQuoteFilter==="all"?base:base.filter(function(q){return q.cat===currentQuoteFilter;});
   list.forEach(function(q){
     var origIdx=pvQuotes.indexOf(q);
     var card=document.createElement("div");
@@ -3125,7 +3125,7 @@ function renderSsSlide(i){
 }
 window.startJourney=function(){var fl=currentQuoteFilter==="all"?null:pvQuotes.filter(function(q){return q.cat===currentQuoteFilter;});openSlideshow(0,true,fl);};
 window.openSlideshow=function(startIdx,shuffle,filteredList){
-  var source=filteredList||pvQuotes;
+  var source=filteredList||pvQuotes;var isMob=window.innerWidth<=600;if(isMob)source=source.filter(function(q){return q.mob!==0;});
   if(shuffle){ssOrder=source.slice();shuffleArray(ssOrder);}
   else{ssOrder=typeof startIdx==="number"&&startIdx>0?source.slice(startIdx).concat(source.slice(0,startIdx)):source.slice();}
   var overlay=document.getElementById("ssOverlay");
