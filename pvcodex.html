@@ -72,6 +72,26 @@ a:hover{color:#a78bfa}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
 
+/* ── Entry Transition ── */
+.entry-transition{position:fixed;inset:0;z-index:9999;pointer-events:none;display:none;overflow:hidden}
+.entry-transition.playing{display:block;pointer-events:all}
+.entry-bg{position:absolute;inset:0;background:#050508}
+.entry-lines{position:absolute;inset:0}
+.entry-lines span{position:absolute;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0}
+.entry-lines span:nth-child(1){top:30%;left:10%;width:80%;animation:lineDraw .8s ease .2s forwards}
+.entry-lines span:nth-child(2){top:70%;left:5%;width:90%;animation:lineDraw .8s ease .4s forwards}
+.entry-lines span:nth-child(3){top:50%;left:20%;width:60%;animation:lineDraw .6s ease .6s forwards}
+.entry-quote{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-size:1.8rem;color:#fff;letter-spacing:.08em;opacity:0;text-shadow:0 0 30px rgba(139,92,246,.6);animation:quoteFade 1.2s ease .8s forwards}
+.entry-img{position:absolute;inset:0;background:url('images-web/bf-transition.jpg') center 15%/cover no-repeat;opacity:0;animation:imgReveal .6s ease 2s forwards}
+.entry-slashes{position:absolute;inset:0;overflow:hidden}
+.entry-slashes span{position:absolute;height:4px;width:160%;left:-30%;opacity:0;background:linear-gradient(90deg,transparent 0%,rgba(139,92,246,.4) 15%,rgba(200,180,255,.9) 40%,#fff 50%,rgba(200,180,255,.9) 60%,rgba(139,92,246,.4) 85%,transparent 100%);box-shadow:0 0 12px rgba(139,92,246,.6),0 0 4px #fff;filter:blur(.3px)}
+.entry-out{position:absolute;inset:0;background:var(--bg-primary);opacity:0;animation:entryFadeIn .5s ease 3.4s forwards}
+@keyframes lineDraw{0%{opacity:0;transform:scaleX(0)}50%{opacity:.6}100%{opacity:0;transform:scaleX(1)}}
+@keyframes quoteFade{0%{opacity:0;transform:scale(.95)}40%{opacity:1;transform:scale(1)}85%{opacity:1}100%{opacity:0}}
+@keyframes imgReveal{0%{opacity:0;transform:scale(1.08)}60%{opacity:.8}100%{opacity:.6;transform:scale(1)}}
+@keyframes entryFadeIn{to{opacity:1}}
+@keyframes slashFlurry{0%{opacity:0;transform:translateX(-120%)}15%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translateX(120%)}}
+
 /* ── Sidebar ── */
 .sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg-primary);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;transition:transform .3s var(--ease)}
 .sidebar-home-link{display:flex;align-items:center;gap:8px;margin:12px 12px 0;padding:10px 14px;font-family:var(--font-h);font-size:.72rem;color:#fff;text-decoration:none;letter-spacing:.04em;border:none;border-radius:10px;transition:all .25s var(--ease);background:linear-gradient(135deg,#7c3aed,#8B5CF6)}
@@ -715,6 +735,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 </script>
 </head>
 <body>
+<div class="entry-transition" id="entryTransition"><div class="entry-bg"></div><div class="entry-lines"><span></span><span></span><span></span></div><div class="entry-quote">&ldquo; Show No Mercy &rdquo;</div><div class="entry-img"></div><div class="entry-slashes" id="entrySlashes"></div><div class="entry-out"></div></div>
 
 <a href="#mainContent" class="skip-link">Skip to content</a>
 
@@ -3168,6 +3189,30 @@ document.addEventListener('keydown',function(e){
 });
 (function(){var sx=0,sy=0,ov=document.getElementById('ssOverlay');ov.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});ov.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){if(dx<0)ssNav(1);else ssNav(-1);}},{passive:true});})();
 buildQuoteGrid();
+
+// ── Entry transition from landing page ──
+(function(){
+  if(sessionStorage.getItem('pv-entry')){
+    sessionStorage.removeItem('pv-entry');
+    var el = document.getElementById('entryTransition');
+    var slashBox = document.getElementById('entrySlashes');
+    if(el && slashBox){
+      var angles = [-30,-15,-8,12,25,-20,5,-28,18,-5,22,-12,8,-25,15,30,-18,10,-22,28];
+      var tops = [8,15,22,28,35,42,48,55,62,68,75,82,88,20,45,58,32,72,50,38];
+      for(var i = 0; i < 20; i++){
+        var s = document.createElement('span');
+        s.style.top = tops[i] + '%';
+        s.style.transform = 'rotate(' + angles[i] + 'deg)';
+        s.style.animationDelay = (2.3 + i * 0.05) + 's';
+        s.style.animation = 'slashFlurry ' + (0.2 + Math.random() * 0.15) + 's ease ' + (2.3 + i * 0.05) + 's forwards';
+        if(i % 3 === 0) s.style.height = '5px';
+        slashBox.appendChild(s);
+      }
+      el.classList.add('playing');
+      setTimeout(function(){ el.classList.remove('playing'); slashBox.innerHTML = ''; }, 4000);
+    }
+  }
+})();
 
 // ── Auto-add keyboard accessibility to onclick elements ──
 document.querySelectorAll('.fam-card[onclick],.char-card[onclick],.nav-card:not([tabindex]),.gallery-label[onclick],.sidebar-brand[onclick]').forEach(function(el){
