@@ -3,9 +3,9 @@
     "_meta": true,
     "_description": "Curated character quotes from Primordial Villain for the Codex website. Each quote has a category tag for filtering/display.",
     "categories": [
-      "epic",
+      "cool",
       "funny",
-      "sexy"
+      "18+"
     ],
     "total_quotes": 197
   },
@@ -14,7 +14,7 @@
     "character": "Alexios",
     "text": "After all these months, I finally feel alive. If this is what being senile means, I embrace it with all my heart!",
     "context": "The Warrior King is done thinking. What remains is the man who earned the title.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1580"
   },
   {
@@ -22,7 +22,7 @@
     "character": "Alexios",
     "text": "You know, I've been thinking far too much these past few months. I'm done with that. I'm going to kill everyone standing in front of me, one after the next. You're first.",
     "context": "The Warrior King stops thinking and starts fighting. Said to Ragnar with a mad grin.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1580"
   },
   {
@@ -86,7 +86,7 @@
     "character": "Ayame",
     "text": "I'm completely fine with being a woman. I love my body and wish nothing to be changed.",
     "context": "Ayame's confident declaration of self-acceptance.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0010"
   },
   {
@@ -134,7 +134,7 @@
     "character": "Black Fang",
     "text": "This can't be the end, right? I've finally found someone interesting on this boring plane of existence...",
     "context": "A 400-year-old immortal realizing she cares about someone for the first time in centuries.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0030"
   },
   {
@@ -142,7 +142,7 @@
     "character": "Black Fang",
     "text": "I want him... I want him. I want him!!!",
     "context": "An age-old entity experiencing genuine obsessive desire for the first time.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0030"
   },
   {
@@ -150,7 +150,7 @@
     "character": "Black Fang",
     "text": "... I will not cause problems.",
     "context": "An ancient assassin's awkward attempt at asking permission to stay. A request delivered like a demand by a killer who doesn't know how to ask.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1105"
   },
   {
@@ -158,7 +158,7 @@
     "character": "Black Fang",
     "text": "As long as my heart beats, your Goddess is a distant concept. She judges the dead, and the dead are people who failed to keep breathing. I will not be among them.",
     "context": "An Arch Priestess threatens eternal damnation. Black Fang rejects religion through sheer refusal to die.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1507"
   },
   {
@@ -166,7 +166,7 @@
     "character": "Black Fang",
     "text": "All you need to understand is that I'm taking your head today.",
     "context": "Cutting through banter with lethal simplicity.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1505"
   },
   {
@@ -174,7 +174,7 @@
     "character": "Black Fang",
     "text": "The reason you perceive me as hostile is simple; when insects buzz in my ears incessantly, I grow an urge to kill them.",
     "context": "Black Fang's elegant way of telling someone they're annoying her.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1139"
   },
   {
@@ -190,7 +190,7 @@
     "character": "Blackjack",
     "text": "Put me down?! Zehaha! I love the sound of that! Come on, brother! Kill me if you can!",
     "context": "A battle-mad warlord courting death with pure joy.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0089"
   },
   {
@@ -198,7 +198,7 @@
     "character": "Blossom",
     "text": "Nothing is impossible for Master! If Master thinks he can conquer Lady Black Fang's ice cold heart, then he can! Blossom knows!",
     "context": "Everyone is skeptical about an impossible romantic challenge. Blossom is not.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1399"
   },
   {
@@ -238,7 +238,7 @@
     "character": "Drowned King",
     "text": "The Covenant is willing to proceed for now. But don't think for a moment that this ends here.",
     "context": "An undead lord's cold warning.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1329"
   },
   {
@@ -246,7 +246,7 @@
     "character": "Felicity",
     "text": "Mom, you really don't understand what you're dealing with.",
     "context": "The princess who chose the Primordial Villain over her own kingdom.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1597"
   },
   {
@@ -254,7 +254,7 @@
     "character": "Felicity",
     "text": "Mother is a raving lunatic, a mad bitch who cares more about her elements than her own children. The kingdom is rotten from the inside out.",
     "context": "Her older sister demands to know why Felicity defected. Felicity counts on her fingers.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1569"
   },
   {
@@ -286,7 +286,7 @@
     "character": "Feng",
     "text": "It's time to rob my family blind.",
     "context": "Said with a devil's grin, looking less like a teenage girl and more like a partner in crime.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0298"
   },
   {
@@ -294,7 +294,7 @@
     "character": "Feng",
     "text": "Then he faced a god! And killed the fucker.",
     "context": "Feng hyping up Quinlan's resume to Felicity, as if describing the weather.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1189"
   },
   {
@@ -302,7 +302,7 @@
     "character": "Feng",
     "text": "...You're my only family.",
     "context": "Quietly said about Quinlan, right after declaring she'll rob her birth family blind.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0299"
   },
   {
@@ -318,7 +318,7 @@
     "character": "Gorthrax",
     "text": "So bright... It burns. I will extinguish this flame.",
     "context": "His first words in centuries. A voice like a coffin lid dragged across stone.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1534"
   },
   {
@@ -326,7 +326,7 @@
     "character": "Gorthrax",
     "text": "Little priestess. I'm far too old for this. Let's just kill each other.",
     "context": "Said to Dawn Breaker the way the living say goodnight. A small courtesy before the inevitable.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1534"
   },
   {
@@ -334,7 +334,7 @@
     "character": "Gorthrax",
     "text": "The Soul Record does not joke. This is an edict. A divine correction.",
     "context": "First words after three centuries of silence, spoken in the Covenant of Eternity.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0256"
   },
   {
@@ -342,7 +342,7 @@
     "character": "Iris",
     "text": "The only thing falling will be your heads if you don't shut up!",
     "context": "Iris silencing a crowd with characteristic aggression.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0138"
   },
   {
@@ -390,7 +390,7 @@
     "character": "Iselda",
     "text": "A higher existence like you simply can't be expected to move according to the wishes of a puny human king and his book of laws.",
     "context": "The justification for serving the Primordial Villain.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0004"
   },
   {
@@ -398,7 +398,7 @@
     "character": "Jasmine",
     "text": "My husband is not a freak like you and your sister. Don't assume that he's bidding for this girl to make her his toy. His noble heart bleeds at the mere thought of letting you take her home.",
     "context": "Jasmine's fierce defense of Quinlan at a slave auction.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0132"
   },
   {
@@ -414,7 +414,7 @@
     "character": "Kaelira",
     "text": "That depends. Are you going to arrest me, or can I say what I came here to say?",
     "context": "The shy crafter elf standing alone before a dwarven army, shrugging off their hostility.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1499"
   },
   {
@@ -494,7 +494,7 @@
     "character": "Kitsara",
     "text": "What's wrong with me then?! Just take a look!",
     "context": "Ripping open her robes in sexual frustration.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "0202"
   },
   {
@@ -502,7 +502,7 @@
     "character": "Kitsara",
     "text": "I'm a magnanimous lady who'll settle for your penis instead of your head. Repent for your sins by giving it to me!",
     "context": "Kitsara's first real interaction with Quinlan. Royal princess meets shameless horniness.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "0203"
   },
   {
@@ -510,7 +510,7 @@
     "character": "Kitsara",
     "text": "He's not kind in bed.",
     "context": "Terrifying a repressed nun with tales of her sex life. Three-word bomb drop.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "1473"
   },
   {
@@ -518,7 +518,7 @@
     "character": "Kitsara",
     "text": "Q-Quinlan... are you... are you going to help me feel pure again?",
     "context": "Kitsara's trembling question before a very impure evening.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "1098"
   },
   {
@@ -526,7 +526,7 @@
     "character": "Kitsara",
     "text": "I feel I'll only be pure again... if you take me... while we torture this vile creature together...",
     "context": "Kitsara's idea of purification involves Quinlan and a captive enemy. At the same time.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "1098"
   },
   {
@@ -534,7 +534,7 @@
     "character": "Lilith",
     "text": "I will kill your master.",
     "context": "Three flat words to Scar. Four hundred years of friendship, weapons raised.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1551"
   },
   {
@@ -542,7 +542,7 @@
     "character": "Liliyanna",
     "text": "He called it a battle scar. He said it made me look strong.",
     "context": "Alone on her throne, touching the corruption mark on her cheek. Her notebook drifts forgotten.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1529"
   },
   {
@@ -566,7 +566,7 @@
     "character": "Lucille",
     "text": "Your incompetence as a parent and a husband might have ruined my life, but I built it back up.",
     "context": "Confronting her father, the Duke, after overthrowing him.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1658"
   },
   {
@@ -574,7 +574,7 @@
     "character": "Lucille",
     "text": "My dream is to become the strongest being in existence, alongside my husband.",
     "context": "Telling her estranged father her dream, having just conquered his duchy.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1658"
   },
   {
@@ -598,7 +598,7 @@
     "character": "Lucille",
     "text": "I don't think, I *know* that I want to be your woman, Quinlan. Will you accept me?",
     "context": "Lucille's passionate confession after letting go of all inhibitions.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "0013"
   },
   {
@@ -606,7 +606,7 @@
     "character": "Lucille",
     "text": "You'll be lying down soon enough, don't worry.",
     "context": "Quinlan says he needs to sit down. Lucille has other plans.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "0353"
   },
   {
@@ -614,7 +614,7 @@
     "character": "Luminara",
     "text": "Give me my son back, or I swear I'll kill you!",
     "context": "The Goddess kidnapped Quinlan. The First Elf is done being diplomatic.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1408"
   },
   {
@@ -638,7 +638,7 @@
     "character": "Malakar",
     "text": "Don't ever lose if you want to remain free.",
     "context": "Ancient primordial wisdom from the First Human Male.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0010"
   },
   {
@@ -678,7 +678,7 @@
     "character": "Morgana",
     "text": "I want to dissect his soul. I want to pick apart his brain...",
     "context": "Whispered like a lover's confession. A smile that did not belong to a sane person.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1036"
   },
   {
@@ -702,7 +702,7 @@
     "character": "Nyxara",
     "text": "I was born to consume strong and brave men just like you. You shine on the field of battle... You dominate your enemies into submission, you create empires and leave behind legacies that will be remembered for eons. That is who you are, Little Ruin. But I am the end of such legends. I am the silence that follows the roar.",
     "context": "Nyxara revealing her true nature as the bane of the invincible.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1431"
   },
   {
@@ -710,7 +710,7 @@
     "character": "Nyxara",
     "text": "I was counting your deaths. Someone has to keep accurate records so I can return them in equal measure to Dragnar once I am able to.",
     "context": "Nyxara's quiet, vengeful loyalty after being conquered.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1457"
   },
   {
@@ -734,7 +734,7 @@
     "character": "Nyxara",
     "text": "Just so we're clear, Little Ruin. I have no intention of going easy on you. No man — or woman — has ever made me Shriek... I will break you before I let you hear it.",
     "context": "The Primordial Succubus's challenge before their battle of lust.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "1427"
   },
   {
@@ -742,7 +742,7 @@
     "character": "Nyxara",
     "text": "I'm going to enjoy devouring every dream you've ever had...",
     "context": "A trace of genuine wonder breaking through her sultry mask.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "1427"
   },
   {
@@ -750,7 +750,7 @@
     "character": "Nyxara",
     "text": "Is this all just baseless bravado... or can you actually back it up, my adorable little Ruin~",
     "context": "Sizing up Quinlan inches from his face.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "1427"
   },
   {
@@ -758,7 +758,7 @@
     "character": "Nyxara",
     "text": "I will now begin eating you, Little Ruin~",
     "context": "The predator's final whisper before the conquest begins.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "1427"
   },
   {
@@ -766,7 +766,7 @@
     "character": "Nyxara",
     "text": "Regret...? I am the Demon of Lust... I am the 'Want' that has no end. I am incapable of regret. Whether you are consumed by me, becoming broken and battered, or I am consumed by you, getting conquered... I accept the outcome with no regret. So do your worst... break me... rewrite me... DESTROY ME!",
     "context": "Nyxara's manic declaration as Quinlan turns the tables on her.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "1434"
   },
   {
@@ -774,7 +774,7 @@
     "character": "Quinlan",
     "text": "I don't care about legality, about right or wrong, about just or evil. I'm here to become *the* ruler. The ruler of not this county, not this duchy, not this country, not this continent, but this entire world.",
     "context": "Revealing his true identity and ambitions to his inner circle for the first time.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0004"
   },
   {
@@ -782,7 +782,7 @@
     "character": "Quinlan",
     "text": "Listen well, succubus. I have conquered every primordial trial set before me. I have faced literal gods and came out victorious. I did not claw my way to where I am in life to lose to a sex demon. I am the master of my own fate, and soon, I'll become the master of you as well.",
     "context": "Resisting the Primordial Succubus Nyxara's conquest attempt.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1431"
   },
   {
@@ -790,7 +790,7 @@
     "character": "Quinlan",
     "text": "Forget those precious women? To worship you? That will never happen.",
     "context": "His fierce refusal after Nyxara threatens to erase his memories of his lovers.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1431"
   },
   {
@@ -798,7 +798,7 @@
     "character": "Quinlan",
     "text": "I'm going to make you regret playing with your food, succubus.",
     "context": "Turning the tables on Nyxara mid-conquest.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1434"
   },
   {
@@ -806,7 +806,7 @@
     "character": "Quinlan",
     "text": "Drop your weapons. Kneel. And I will take every man, woman, and child in this city to a place where you will live as free people under my protection. You will keep your trades, your families, your dignity. You will build again, on land that no foreign army will touch.\nOr you can fight me. And I will do what conquerors do.",
     "context": "Offering terms to the defenders of Whisperfield before his conquest.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1497"
   },
   {
@@ -814,7 +814,7 @@
     "character": "Quinlan",
     "text": "I am building a new order. A nation that will stretch beyond this city, beyond this duchy, beyond borders drawn by men who are already dead or soon will be. Every person who kneels today becomes a part of that nation. Your skills, your labor, your courage on the battlefield today... none of it is forgotten. None of it is wasted. And in this new order, not even death itself is the end.",
     "context": "Addressing the conquered soldiers of Whisperfield.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1516"
   },
   {
@@ -822,7 +822,7 @@
     "character": "Quinlan",
     "text": "I am the man you might know as the Primordial Villain.",
     "context": "Revealing himself to thousands of kneeling elven women in the heart-tree city.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1618"
   },
   {
@@ -830,7 +830,7 @@
     "character": "Quinlan",
     "text": "I am the son of the First Elf, Luminara. And I am here to ask for your help.",
     "context": "The Primordial Villain asking for help. Nobody expected that.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1618"
   },
   {
@@ -838,7 +838,7 @@
     "character": "Quinlan",
     "text": "What else am I if not the ultimate?",
     "context": "Pure, unbothered confidence.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0356"
   },
   {
@@ -846,7 +846,7 @@
     "character": "Quinlan",
     "text": "You're my slaves, you work for me, and that's a cruel but true fact. Never forget that I hold your life and death in the palm of my hand.",
     "context": "His cold introduction to his slaves about the reality of their situation.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0026"
   },
   {
@@ -854,7 +854,7 @@
     "character": "Quinlan",
     "text": "If I find out, which I will, that you spat, shat, pissed or anything along these lines into our meals as a form of petty revenge I will burn this inn down with your family still in it. Understood?",
     "context": "Threatening an innkeeper with terrifying specificity.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0000"
   },
   {
@@ -862,7 +862,7 @@
     "character": "Quinlan",
     "text": "The world that comes after this war has no room for your old grudges. You will either learn to behave, or you will be destroyed.",
     "context": "A flat, final ultimatum delivered without emotion.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1669"
   },
   {
@@ -870,7 +870,7 @@
     "character": "Quinlan",
     "text": "I only kiss my lovers.",
     "context": "Coldly rejecting the Primordial Succubus's advance.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1431"
   },
   {
@@ -878,7 +878,7 @@
     "character": "Quinlan",
     "text": "Good, bad, it doesn't really matter. All that I care about is growing strong so that I can protect all those I care about, and to provide them with a life of luxury and fulfillment.",
     "context": "His core philosophy, stated early and never abandoned.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0004"
   },
   {
@@ -886,7 +886,7 @@
     "character": "Quinlan",
     "text": "Divorce is not the end of your life, simply the start of a new chapter. I know that right now it feels like your world will end if you sign the papers, but I bet that you will be happier in a year from now than you've been for the past decade.",
     "context": "Unexpectedly wise counsel from the villain.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0016"
   },
   {
@@ -894,7 +894,7 @@
     "character": "Quinlan",
     "text": "I appreciate the female form no matter its shape. As long as it's properly taken care of and belongs to an awesome soul. Firm or tender, petite or curvaceous, none of that matters to me.",
     "context": "A surprisingly wholesome declaration about his appreciation for women.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1223"
   },
   {
@@ -902,7 +902,7 @@
     "character": "Quinlan",
     "text": "The problem isn't your husband, but you, Lucille. You are a foolish coward who wants others to solve her own issues. You're a useless damsel in distress.",
     "context": "Brutally honest words that changed Lucille's life forever.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0000"
   },
   {
@@ -910,7 +910,7 @@
     "character": "Quinlan",
     "text": "Let's just hold each other. Shall we?",
     "context": "A tender, quiet moment showing his softer side.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1467"
   },
   {
@@ -918,7 +918,7 @@
     "character": "Quinlan",
     "text": "You might've been dealt a bad hand in life, but what truly matters is that you're still alive. As long as you do your best, who knows what the future has in store for you?",
     "context": "Addressing his people at a feast, offering hope alongside authority.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0026"
   },
   {
@@ -926,7 +926,7 @@
     "character": "Quinlan",
     "text": "My girls are waiting for me.",
     "context": "Refusing to waste time training when he doesn't know how long his family has been alone.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0286"
   },
   {
@@ -934,7 +934,7 @@
     "character": "Quinlan",
     "text": "I promised I would help you get your revenge. The day we became strong enough to begin making good on my promises has come.",
     "context": "To Feng, finally delivering on a promise he made when she had nothing.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1097"
   },
   {
@@ -1150,7 +1150,7 @@
     "character": "Quinlan",
     "text": "If you're worried about me being done in a few minutes... don't. I will ravage both of you until the morning sun shines on your beautiful, utterly exhausted naked forms. This is not me arrogantly boasting, but a mere fact.",
     "context": "A bold promise before his first threesome.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "0014"
   },
   {
@@ -1158,7 +1158,7 @@
     "character": "Quinlan",
     "text": "I love you, body and soul. I not only want to spend the rest of my time with you, but also ravage you senseless. I want to grope you, to eat you out, to kiss you, to taste your breasts, to lick every single crevice of your body.",
     "context": "A declaration of love that escalates exactly how you'd expect from the Primordial Villain.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "0000"
   },
   {
@@ -1166,7 +1166,7 @@
     "character": "Quinlan",
     "text": "At the risk of sounding very corny, one of us is surely going to be singing very soon, and it won't be me.",
     "context": "Playful innuendo about what's coming next.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "0015"
   },
   {
@@ -1174,7 +1174,7 @@
     "character": "Quinlan",
     "text": "I wonder what Vargis would think... If he knew his daughter *willingly* accepted being Subjugated... without asking for a *single* clause to protect her rights...",
     "context": "Dark teasing of Kitsara during an intimate moment.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "0216"
   },
   {
@@ -1182,7 +1182,7 @@
     "character": "Quinlan",
     "text": "No one is dethroning my first woman from her rightful throne.",
     "context": "Defending Blossom's position against Vex's jealousy, in front of the whole harem.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "1640"
   },
   {
@@ -1190,7 +1190,7 @@
     "character": "Quinlan",
     "text": "Your lips taste absolutely amazing. I don't think I would ever get enough of you, even if we were to do this every single day for the next million years.",
     "context": "A tender declaration to Ayame after a heartfelt kiss.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "0001"
   },
   {
@@ -1206,7 +1206,7 @@
     "character": "Rongtai",
     "text": "I swear undying loyalty to you, Quinlan Elysiar. Avatar. Primordial Villain. Harbinger of Ruin. God Slayer. I kneel before you, not as a defeated sovereign... but as your vassal, if you're willing to accept me.",
     "context": "A sage king kneeling despite severe wounds after Quinlan slays a god.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0327"
   },
   {
@@ -1270,7 +1270,7 @@
     "character": "Scar",
     "text": "They call him the worst parasite this world has ever seen but to me... He is the greatest blessing the mortal races have ever received.",
     "context": "Scar's passionate declaration mid-duel with her oldest friend, Lilith.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1551"
   },
   {
@@ -1278,7 +1278,7 @@
     "character": "Scar",
     "text": "He is called the Primordial Villain because he refuses to accept the way this world works, and he will burn every broken system to the ground and build something worth living in on the ashes. I will be beside him when he does it.",
     "context": "Scar's unshakable conviction, spoken to the one person who knew her for four centuries.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1551"
   },
   {
@@ -1286,7 +1286,7 @@
     "character": "Scar",
     "text": "Is that your evil villain? A man who burdens himself with orphans while everyone else treats him like the plague?",
     "context": "Scar's voice cracks while describing Quinlan rescuing tens of thousands of children.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1551"
   },
   {
@@ -1294,7 +1294,7 @@
     "character": "Scar",
     "text": "Your soldiers are brave and competent. But my soldiers are far better. We will never allow our Master to be harmed.",
     "context": "Scar addressing an enemy general as her soul army obliterates his formation.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1536"
   },
   {
@@ -1302,7 +1302,7 @@
     "character": "Scar",
     "text": "I knew that already. My favorite orc in existence.",
     "context": "Four centuries of friendship with Lilith, distilled into five words and a grin behind the mask.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1551"
   },
   {
@@ -1342,7 +1342,7 @@
     "character": "Seraphiel",
     "text": "This nasty elf bitch does!",
     "context": "Riding on a garrison commander's shoulders mid-combat, thighs locked around his head. He screams 'What kind of nasty bitch elf fights like this?!' She grins and answers.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1543"
   },
   {
@@ -1406,7 +1406,7 @@
     "character": "Seraphiel",
     "text": "Elven males are weak, and honestly, after getting to know what being embraced by such firm muscles feels like, I can't imagine giving a moment of my life to those effeminate degenerates...",
     "context": "Seraphiel comparing elven men unfavorably to Quinlan while groping his biceps.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "0143"
   },
   {
@@ -1414,7 +1414,7 @@
     "character": "Serika",
     "text": "Quinlan is the Avatar. The man who'll end your miserable existence.",
     "context": "Standing before the god Venthros, body cracked and armor melting, shielding Quinlan.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0319"
   },
   {
@@ -1438,7 +1438,7 @@
     "character": "Soul Records",
     "text": "[Your class has been changed from Necromancer → Corpse Animator.]\n[Reason: You are not him.]",
     "context": "Every Necromancer in the world receives this notification after Quinlan reclaims the class.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0256"
   },
   {
@@ -1446,7 +1446,7 @@
     "character": "Soul Records",
     "text": "[Trial Objective: Conquer the Primordial Succubus, Nyxara.]\n[Success Condition: Elicit the Shriek of Ruin; break the Succubus's resolve through carnal dominance.]",
     "context": "The system's idea of a trial objective.",
-    "category": "sexy",
+    "category": "18+",
     "chapter": "1424"
   },
   {
@@ -1454,7 +1454,7 @@
     "character": "Sylvaris",
     "text": "From a mother-daughter pair of sex slaves sold for pleasure, to invaders of the human capital...",
     "context": "Sylvaris reflecting on how far she and Seraphiel have come as they launch their assault.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1086"
   },
   {
@@ -1470,7 +1470,7 @@
     "character": "Vasilen Sangomar",
     "text": "You will stop this disrespect, Primordial. Or I will end you.",
     "context": "The ancient Vampire Archduke's bloodlust erupting like a pressure wave.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1616"
   },
   {
@@ -1478,7 +1478,7 @@
     "character": "Vasilen Sangomar",
     "text": "That you would seek my alliance is no insult. I am Archduke Vasilen Sangomar of the Sangomar line, and the strength I possess has been the prize of a thousand ambitions. To covet me is the natural conclusion of any clever man who lays eyes upon what I am. That much, I forgive.",
     "context": "The Archduke's regal composure after putting Quinlan in his place.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1616"
   },
   {
@@ -1486,7 +1486,7 @@
     "character": "Vex",
     "text": "Aren't I such a perfect, caring future wife? While my man-to-be was away rolling in bedsheets, I took it upon myself to clean house.",
     "context": "Holding two freshly severed heads by the hair with a sadistic smile.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0230"
   },
   {
@@ -1494,7 +1494,7 @@
     "character": "Vex",
     "text": "You will betray your comrades because that'll stop the pain. Don't think me to be your everyday torturer, kitten.",
     "context": "Vex beginning an interrogation with her Hex of Amplified Suffering.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "0166"
   },
   {
@@ -1502,7 +1502,7 @@
     "character": "Vex",
     "text": "What an unpleasant woman you are, Ayame... No wonder your sister sold you into slavery.",
     "context": "Vex's nuclear option in a verbal sparring match with Ayame.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1082"
   },
   {
@@ -1558,7 +1558,7 @@
     "character": "Vozen",
     "text": "It's time for death to rule the world!",
     "context": "The Archlich's answer to the Drowned King's battle cry.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1534"
   },
   {
@@ -1566,7 +1566,7 @@
     "character": "Yoruha",
     "text": "That man is mine. I suggest you find another hobby. Perhaps killing each other with Black Fang? Now *that* would be a very productive usage of your lives.",
     "context": "Declaring ownership of Quinlan to Lilith and Morgana, dismissing two legendary fighters like children.",
-    "category": "epic",
+    "category": "cool",
     "chapter": "1060"
   },
   {
