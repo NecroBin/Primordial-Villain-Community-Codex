@@ -71,28 +71,6 @@ a:hover{color:#a78bfa}
 .skip-link:focus{top:0}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
-/* ── Entry Transition ── */
-.entry-transition{position:fixed;inset:0;z-index:9999;pointer-events:none;display:none;overflow:hidden}
-.entry-transition.playing{display:block;pointer-events:all}
-.entry-bg{position:absolute;inset:0;background:#050508}
-.entry-lines{position:absolute;inset:0}
-.entry-lines span{position:absolute;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0}
-.entry-lines span:nth-child(1){top:30%;left:10%;width:80%;animation:lineDraw .8s ease .2s forwards}
-.entry-lines span:nth-child(2){top:70%;left:5%;width:90%;animation:lineDraw .8s ease .4s forwards}
-.entry-lines span:nth-child(3){top:50%;left:20%;width:60%;animation:lineDraw .6s ease .6s forwards}
-.entry-quote{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-size:1.8rem;color:#fff;letter-spacing:.08em;opacity:0;text-shadow:0 0 30px rgba(139,92,246,.6);animation:quoteFade 1.2s ease .8s forwards}
-.entry-img{position:absolute;inset:0;background-image:url('images-web/bf-transition.jpg');background-position:center center;background-size:contain;background-repeat:no-repeat;opacity:0;animation:imgReveal .6s ease 2s forwards}
-@media(max-width:768px){.entry-img{background-size:cover;background-position:center 15%}}
-.entry-slashes{position:absolute;inset:0;overflow:hidden}
-.entry-slashes span{position:absolute;width:80vmax;opacity:0;background:radial-gradient(ellipse 50% 50% at center,#fff,rgba(200,180,255,.7) 40%,transparent 70%);box-shadow:0 0 12px rgba(139,92,246,.7),0 0 30px rgba(139,92,246,.3);border-radius:50%}
-.entry-out{position:absolute;inset:0;background:var(--bg-primary);opacity:0;animation:entryFadeIn .4s ease 3.2s forwards}
-.entry-skip{position:absolute;bottom:24px;right:24px;z-index:10;background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.5);font-family:var(--font-h);font-size:.75rem;padding:5px 16px;border-radius:16px;cursor:pointer;letter-spacing:.1em;transition:all .3s}
-.entry-skip:hover{border-color:rgba(255,255,255,.6);color:rgba(255,255,255,.8)}
-@keyframes lineDraw{0%{opacity:0;transform:scaleX(0)}50%{opacity:.6}100%{opacity:0;transform:scaleX(1)}}
-@keyframes quoteFade{0%{opacity:0;transform:scale(.95)}40%{opacity:1;transform:scale(1)}85%{opacity:1}100%{opacity:0}}
-@keyframes imgReveal{0%{opacity:0;transform:scale(1.08)}60%{opacity:.8}100%{opacity:.6;transform:scale(1)}}
-@keyframes entryFadeIn{to{opacity:1}}
-@keyframes slashStrike{0%{clip-path:inset(0 100% 0 0);opacity:1}35%{clip-path:inset(0 0 0 0);opacity:1}100%{clip-path:inset(0 0 0 0);opacity:0}}
 
 /* ── Sidebar ── */
 .sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg-primary);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;transition:transform .3s var(--ease)}
@@ -149,8 +127,6 @@ body.search-mode .page.search-has-results .sec-title{display:block!important;fon
 
 /* ── Home: Hero ── */
 .home-hero{padding:40px 48px 24px;max-width:900px;text-align:center;margin:0 auto;position:relative}
-.home-hero-deco{pointer-events:none;opacity:1;margin-bottom:8px}
-.home-hero-deco svg{display:block;margin:0 auto}
 .home-hero h1{font-family:var(--font-h);font-size:2.4rem;color:var(--gold);letter-spacing:.04em;line-height:1.2;margin-bottom:16px;margin-top:12px}
 .home-hero .hero-meta{font-size:.82rem;color:var(--text-muted);letter-spacing:.03em;line-height:1.7}
 .home-hero .hero-meta a{color:var(--gold)}
@@ -691,7 +667,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 </script>
 </head>
 <body>
-<div class="entry-transition" id="entryTransition"><div class="entry-bg"></div><div class="entry-lines"><span></span><span></span><span></span></div><div class="entry-quote">&ldquo; Show No Mercy &rdquo;</div><div class="entry-img"></div><div class="entry-slashes" id="entrySlashes"></div><div class="entry-out"></div><button class="entry-skip" id="entrySkip">Skip</button></div>
+
 <a href="#mainContent" class="skip-link">Skip to content</a>
 
 <!-- ════════════ Sidebar ════════════ -->
@@ -754,15 +730,6 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 <!-- ═══════════════ HOME ═══════════════ -->
 <div class="page active" id="page-home">
   <header class="home-hero">
-    <div class="home-hero-deco"><svg width="250" height="30" viewBox="0 0 250 30">
-<g transform="translate(14,15)"><circle r="10" fill="#b91c1c" opacity=".9"/><path d="M-5 5L-2-1L0 0L2-1L5 5Z" fill="#fff" opacity=".85"/><circle cx="0" cy="-3" r="1.8" fill="#fff" opacity=".7"/></g>
-<g transform="translate(51,15)"><circle r="10" fill="#92703a" opacity=".85"/><path d="M-6 4L-2-3L0 0L3-4L6 4Z" fill="#fff" opacity=".85"/><line x1="-6.5" y1="4.5" x2="6.5" y2="4.5" stroke="#fff" stroke-width="1" opacity=".6"/></g>
-<g transform="translate(88,15)"><circle r="10" fill="#f59e0b" opacity=".85"/><path d="M-2-5L2-1H-2L2 5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
-<g transform="translate(125,15)"><circle r="10" fill="#e67e22" opacity=".9"/><path d="M0-6C2-4 5-1 4.5 2C4 5 2 6.5 0 6.5C-2 6.5-4 5-4.5 2C-5-1-2-4 0-6Z" fill="#fff" opacity=".85"/><path d="M0 0C1.2 1.5 2 3 1.5 5C1 6.5-.8 6.5-1.2 5C-1.8 3-.8 1.5 0 0Z" fill="#e67e22" opacity=".5"/></g>
-<g transform="translate(162,15)"><circle r="10" fill="#10b981" opacity=".85"/><path d="M-5-2C-2-5 2 1 5-2" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path d="M-4 2C-1-1 1 5 4 2" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></g>
-<g transform="translate(199,15)"><circle r="10" fill="#3b82f6" opacity=".85"/><path d="M0-5c0 0 4.5 5 4.5 7.5c0 2.5-2 4-4.5 4s-4.5-1.5-4.5-4c0-2.5 4.5-7.5 4.5-7.5z" fill="#fff" opacity=".85"/><ellipse cx="1.5" cy="1.5" rx=".8" ry="2" fill="#3b82f6" opacity=".25" transform="rotate(-15 1.5 1.5)"/></g>
-<g transform="translate(236,15)"><circle r="10" fill="#60a5fa" opacity=".85"/><line x1="0" y1="-5" x2="0" y2="5" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><line x1="-4.3" y1="-2.5" x2="4.3" y2="2.5" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><line x1="-4.3" y1="2.5" x2="4.3" y2="-2.5" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><line x1="-1.5" y1="-4" x2="1.5" y2="-4" stroke="#fff" stroke-width=".9" stroke-linecap="round"/><line x1="-1.5" y1="4" x2="1.5" y2="4" stroke="#fff" stroke-width=".9" stroke-linecap="round"/></g>
-</svg></div>
     <div class="hero-meta">The First Entry in the <a href="/">Necroverse</a></div>
     <h1>Primordial Villain with a Slave Harem</h1>
     <div class="hero-info-card">
@@ -3550,46 +3517,6 @@ if(tocLinks.length){
   });
 }
 
-// Entry transition: first visit OR navigating from landing page
-(function(){
-  var fromLanding = sessionStorage.getItem('pv-entry');
-  if(fromLanding) sessionStorage.removeItem('pv-entry');
-  if(fromLanding || !sessionStorage.getItem('pv-visited')){
-    sessionStorage.setItem('pv-visited','1');
-    var el = document.getElementById('entryTransition');
-    var slashBox = document.getElementById('entrySlashes');
-    if(el && slashBox){
-      var clusters = [
-        {x:30,y:35,angles:[35,140,-50,80],t:2.2},
-        {x:65,y:25,angles:[-40,55,160,-15],t:2.35},
-        {x:45,y:60,angles:[110,-30,65,-70],t:2.48},
-        {x:20,y:70,angles:[45,-55,130,20],t:2.58},
-        {x:70,y:55,angles:[-65,40,155,-25],t:2.65},
-        {x:50,y:40,angles:[75,-45,120,-80,30,165],t:2.72},
-        {x:35,y:20,angles:[-35,60,145],t:2.82},
-        {x:60,y:75,angles:[50,-60,25,135],t:2.88}
-      ];
-      clusters.forEach(function(c){
-        c.angles.forEach(function(angle, j){
-          var s = document.createElement('span');
-          s.style.left = (c.x + (Math.random()-0.5)*10) + '%';
-          s.style.top = (c.y + (Math.random()-0.5)*10) + '%';
-          s.style.transform = 'translate(-50%,-50%) rotate(' + angle + 'deg)';
-          s.style.height = (3 + Math.random() * 5) + 'px';
-          s.style.width = (50 + Math.random() * 40) + 'vmax';
-          var delay = c.t + j * 0.025;
-          s.style.animation = 'slashStrike .2s ease ' + delay + 's forwards';
-          slashBox.appendChild(s);
-        });
-      });
-      el.classList.add('playing');
-      var skipBtn = document.getElementById('entrySkip');
-      function endTransition(){ el.classList.remove('playing'); slashBox.innerHTML = ''; }
-      if(skipBtn) skipBtn.addEventListener('click', endTransition);
-      setTimeout(endTransition, 3800);
-    }
-  }
-})();
 
 })();
 </script>
