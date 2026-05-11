@@ -796,10 +796,15 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <h3>World &amp; Factions</h3>
       <p>The Vraven Kingdom, the Primordials, criminal syndicates, and the lore of Thalorind.</p>
     </a>
-    <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('gallery')" onkeydown="if(event.key==='Enter')this.click()">
+    <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('gallery','sec-quotes')" onkeydown="if(event.key==='Enter')this.click()">
+      <span class="nav-card-icon">&#10078;</span>
+      <h3>Quotes</h3>
+      <p>Memorable lines from the world of Thalorind.</p>
+    </a>
+    <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('gallery','sec-gallery')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#10063;</span>
-      <h3>Extras</h3>
-      <p>Memorable quotes, character portraits and artwork.</p>
+      <h3>Gallery</h3>
+      <p>Character portraits and artwork.</p>
     </a>
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('trivia')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#10050;</span>
@@ -2860,9 +2865,9 @@ function buildQuoteGrid(){
     card.className = 'qcard';
     card.onclick = (function(idx){ return function(){ openSlideshow(idx); }; })(i);
     var imgHtml = q.img
-      ? '<img class=”qcard-img” src=”' + q.img + '” alt=”' + q.char + '” loading=”lazy”>'
-      : '<div class=”qcard-noimg”>✧</div>';
-    card.innerHTML = imgHtml + '<div class=”qcard-body”><div class=”qcard-text”>“' + q.text + '”</div><div class=”qcard-attr”>— ' + q.char + '</div></div>';
+      ? '<img class="qcard-img" src="' + q.img + '" alt="' + q.char + '" loading="lazy">'
+      : '<div class="qcard-noimg">✧</div>';
+    card.innerHTML = imgHtml + '<div class="qcard-body"><div class="qcard-text">"' + q.text + '"</div><div class="qcard-attr">— ' + q.char + '</div></div>';
     grid.appendChild(card);
   });
 }
@@ -2871,9 +2876,9 @@ function renderSsSlide(i){
   var q = pvQuotes[ssIdx];
   var slide = document.getElementById('ssSlide');
   var imgHtml = q.img
-    ? '<img class=”ss-img” src=”' + q.img + '” alt=”' + q.char + '”>'
-    : '<div class=”ss-noimg”>✧</div>';
-  slide.innerHTML = imgHtml + '<div class=”ss-body”><div class=”ss-text”>“' + q.text + '”</div><div class=”ss-attr”>— ' + q.char + '</div></div>';
+    ? '<img class="ss-img" src="' + q.img + '" alt="' + q.char + '">'
+    : '<div class="ss-noimg">✧</div>';
+  slide.innerHTML = imgHtml + '<div class="ss-body"><div class="ss-text">"' + q.text + '"</div><div class="ss-attr">— ' + q.char + '</div></div>';
   document.getElementById('ssCounter').textContent = (ssIdx + 1) + ' / ' + pvQuotes.length;
   document.querySelectorAll('.ss-dot').forEach(function(d, j){ d.classList.toggle('active', j === ssIdx); });
 }
