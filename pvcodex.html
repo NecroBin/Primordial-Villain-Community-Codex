@@ -510,9 +510,6 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .ss-prev{left:24px}
 .ss-next{right:24px}
 .ss-progress{position:absolute;bottom:0;left:0;height:2px;background:rgba(139,92,246,.35);transition:width .1s linear}
-.ss-dots{display:flex;gap:8px;margin-top:24px}
-.ss-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);transition:all .2s;cursor:pointer}
-.ss-dot.active{background:var(--gold);transform:scale(1.3)}
 .ss-speed{position:absolute;bottom:20px;right:24px;display:flex;align-items:center;gap:8px}
 .ss-speed-label{color:rgba(255,255,255,.3);font-size:.7rem;font-family:var(--font-h);letter-spacing:.06em}
 .ss-speed button{background:none;border:1px solid rgba(255,255,255,.15);border-radius:6px;color:rgba(255,255,255,.4);font-size:.7rem;padding:4px 10px;cursor:pointer;font-family:var(--font-h);transition:all .2s}
@@ -1904,7 +1901,6 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <button class="ss-arrow ss-prev" onclick="ssNav(-1)">&#8249;</button>
   <button class="ss-arrow ss-next" onclick="ssNav(1)">&#8250;</button>
   <div class="ss-slide" id="ssSlide"></div>
-  <div class="ss-dots" id="ssDots"></div>
   <div class="ss-progress" id="ssProgress"></div>
   <div class="ss-speed"><span class="ss-speed-label">Speed</span><button onclick="setSsSpeed(0.6)">Fast</button><button class="active" onclick="setSsSpeed(1)">Normal</button><button onclick="setSsSpeed(1.6)">Slow</button><button onclick="setSsSpeed(0)">Manual</button></div>
 </div>
@@ -2908,7 +2904,7 @@ function renderSsSlide(i){
   var imgH=q.img?'<img class="ss-img" src="'+q.img+'" alt="'+q.char+'">':'<div class="ss-noimg"><svg viewBox="0 0 80 100" width="64" height="80" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="2"><circle cx="40" cy="30" r="18"/><path d="M10 95c0-20 13-32 30-32s30 12 30 32"/><text x="40" y="62" text-anchor="middle" font-size="20" font-family="serif" fill="rgba(255,255,255,.2)" stroke="none">?</text></svg></div>';
   slide.innerHTML=imgH+'<div class="ss-body"><div class="ss-text">"'+q.text+'"</div><div class="ss-attr">— '+q.char+'</div></div>';
   document.getElementById('ssCounter').textContent=(ssIdx+1)+' / '+ssOrder.length;
-  document.querySelectorAll('.ss-dot').forEach(function(d,j){d.classList.toggle('active',j===ssIdx);});
+  
 }
 window.openSlideshow=function(startIdx){
   ssOrder=pvQuotes.slice();
@@ -2919,14 +2915,6 @@ window.openSlideshow=function(startIdx){
     if(pos>0){ssOrder.splice(pos,1);ssOrder.unshift(picked);}
   }
   var overlay=document.getElementById('ssOverlay');
-  var dotsEl=document.getElementById('ssDots');
-  dotsEl.innerHTML='';
-  for(var j=0;j<ssOrder.length;j++){
-    var d=document.createElement('span');
-    d.className='ss-dot';
-    d.onclick=(function(idx){return function(){renderSsSlide(idx);resetSsTimer();};})(j);
-    dotsEl.appendChild(d);
-  }
   renderSsSlide(0);
   overlay.classList.add('open');
   document.body.style.overflow='hidden';
