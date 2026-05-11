@@ -3480,6 +3480,11 @@ function loadChartJs(){
 }
 
 // ── Admin panel ──
+window.adminConnect = adminConnect;
+window.adminReset = adminReset;
+window.adminDeleteUser = adminDeleteUser;
+window.adminLoadEntries = adminLoadEntries;
+
 function adminToken(){ return sessionStorage.getItem('adminToken') || ''; }
 
 function adminMsg(text, ok){
