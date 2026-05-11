@@ -5,8 +5,8 @@ export default {
     const INVITE_CODE = 'XAwgpNKAHr';
     const PUBLIC_KEY = '8790c29416a46b783d669f9076803ce504509cfe2a77280222af59d31db9d89d';
     const CHANNEL_ID = '1502227252774047914';
-    const REDIRECT_URI = 'https://necrobin.github.io/Primordial-Villain-Community-Codex/';
-    const ALLOWED_ORIGIN = 'https://necrobin.github.io';
+    const REDIRECT_URI = 'https://necrobin.com/';
+    const ALLOWED_ORIGIN = 'https://necrobin.com';
 
     // --- CORS: locked to your GitHub Pages origin ---
     const origin = request.headers.get('Origin') || '';
@@ -21,23 +21,7 @@ export default {
     var edgeCache = caches.default;
     var cacheBase = new URL(request.url).origin;
 
-    // --- Rate limiter (KV-based, for /token and /submit) ---
-    async function checkRateLimit(key, maxRequests, windowSeconds) {
-      var rlKey = 'rl:' + key;
-      try {
-        var entry = await env.SUBS.get(rlKey, { type: 'json' });
-        var now = Date.now();
-        if (!entry || now - entry.ts > windowSeconds * 1000) {
-          await env.SUBS.put(rlKey, JSON.stringify({ ts: now, count: 1 }), { expirationTtl: Math.max(windowSeconds, 60) });
-          return false;
-        }
-        if (entry.count >= maxRequests) return true;
-        entry.count++;
-        var ttl = Math.max(windowSeconds - Math.floor((now - entry.ts) / 1000), 60);
-        await env.SUBS.put(rlKey, JSON.stringify(entry), { expirationTtl: ttl });
-      } catch(e) { return true; }
-      return false;
-    }
+    // --- Rate limiter (disabled to save KV ops — Discord auth is the gatekeeper) ---
 
     // --- Helpers ---
     async function verifyGuildMember(authHeader) {
@@ -81,17 +65,34 @@ export default {
           : 'Moderator';
 
         if (action === 'approve') {
+          var countMsg = '';
           try {
             const key = 'sub:' + userId;
-            const existing = await env.SUBS.get(key, { type: 'json' });
-            if (existing) {
-              existing.count = (existing.count || 0) + 1;
-              await env.SUBS.put(key, JSON.stringify(existing));
+            var existing = await env.SUBS.get(key, { type: 'json' });
+            if (!existing) {
+              var submitter = embed.fields.find(function(f){ return f.name === 'Submitted by'; });
+              var username = submitter ? submitter.value.split(' (')[0] : 'Unknown';
+              existing = { id: userId, username: username, global_name: username, avatar: null, words: 0, trivia_count: 0 };
             }
-          } catch (e) {}
+            // Detect trivia vs content submission
+            var catField = embed.fields.find(function(f){ return f.name === 'Category'; });
+            var isTrivia = catField && catField.value === 'Trivia';
+            if (isTrivia) {
+              existing.trivia_count = (existing.trivia_count || 0) + 1;
+              countMsg = ' (trivia: ' + existing.trivia_count + ')';
+            } else {
+              var contentField = embed.fields.find(function(f){ return f.name === 'Content'; });
+              var wordCount = contentField ? contentField.value.trim().split(/\s+/).length : 0;
+              existing.words = (existing.words || 0) + wordCount;
+              countMsg = ' (words: ' + existing.words + ')';
+            }
+            await env.SUBS.put(key, JSON.stringify(existing));
+          } catch (e) {
+            countMsg = ' (KV error: ' + (e.message || e) + ')';
+          }
 
           embed.color = 0x2ecc71;
-          embed.fields.push({ name: 'Status', value: '✅ Approved by ' + modName });
+          embed.fields.push({ name: 'Status', value: '✅ Approved by ' + modName + countMsg });
 
           return new Response(JSON.stringify({
             type: 7,
@@ -115,11 +116,8 @@ export default {
       });
     }
 
-    // --- /members (edge-cached 5 min, rate limited) ---
+    // --- /members (edge-cached 5 min) ---
     if (path === '/members' && request.method === 'GET') {
-      var ip = request.headers.get('CF-Connecting-IP') || 'unknown';
-      if (await checkRateLimit('get:' + ip, 30, 60))
-        return new Response('{"error":"Too many requests."}', { status: 429, headers: CORS });
       try {
         var ck = cacheBase + '/__c/members';
         var cr = await edgeCache.match(ck);
@@ -135,38 +133,38 @@ export default {
       }
     }
 
-    // --- /leaderboard (edge-cached 5 min, rate limited) ---
+    // --- /leaderboard (edge-cached 30s) ---
     if (path === '/leaderboard' && request.method === 'GET') {
-      var ip = request.headers.get('CF-Connecting-IP') || 'unknown';
-      if (await checkRateLimit('get:' + ip, 30, 60))
-        return new Response('{"error":"Too many requests."}', { status: 429, headers: CORS });
       try {
-        var ck = cacheBase + '/__c/contrib-lb';
+        var url = new URL(request.url);
+        var lbType = url.searchParams.get('type') || 'words';
+        var ck = cacheBase + '/__c/contrib-lb-' + lbType;
         var cr = await edgeCache.match(ck);
         if (cr) return new Response(await cr.text(), { headers: CORS });
         const list = await env.SUBS.list({ prefix: 'sub:' });
         const entries = [];
         for (const key of list.keys) {
           const val = await env.SUBS.get(key.name, { type: 'json' });
-          if (val && val.count > 0) entries.push({ username: val.username, global_name: val.global_name, avatar: val.avatar, count: val.count });
+          if (!val) continue;
+          if (lbType === 'trivia') {
+            if ((val.trivia_count || 0) > 0) entries.push({ id: val.id, username: val.username, global_name: val.global_name, avatar: val.avatar, count: val.trivia_count });
+          } else {
+            if ((val.words || 0) > 0) entries.push({ id: val.id, username: val.username, global_name: val.global_name, avatar: val.avatar, count: val.words });
+          }
         }
         entries.sort(function(a, b) { return b.count - a.count; });
         var body = JSON.stringify(entries.slice(0, 10));
-        ctx.waitUntil(edgeCache.put(ck, new Response(body, { headers: { 'Content-Type': 'application/json', 'Cache-Control': 'max-age=300' } })));
+        ctx.waitUntil(edgeCache.put(ck, new Response(body, { headers: { 'Content-Type': 'application/json', 'Cache-Control': 'max-age=30' } })));
         return new Response(body, { headers: CORS });
       } catch (e) {
         return new Response('{"error":"Failed to load leaderboard"}', { status: 500, headers: CORS });
       }
     }
 
-    // --- /token (rate limited: 5 per minute per IP) ---
+    // --- /token ---
     if (path === '/token' && request.method === 'POST') {
       if (checkBodySize(request, 2048))
         return new Response('{"error":"Request too large"}', { status: 413, headers: CORS });
-      const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
-      if (await checkRateLimit('token:' + ip, 5, 60)) {
-        return new Response('{"error":"Too many requests. Try again in a minute."}', { status: 429, headers: CORS });
-      }
       try {
         const { code } = await request.json();
         if (!code) return new Response('{"error":"No code"}', { status: 400, headers: CORS });
@@ -225,14 +223,10 @@ export default {
       }
     }
 
-    // --- /submit (rate limited: 10 per hour per IP) ---
+    // --- /submit ---
     if (path === '/submit' && request.method === 'POST') {
       if (checkBodySize(request, 10240))
         return new Response('{"error":"Request too large"}', { status: 413, headers: CORS });
-      const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
-      if (await checkRateLimit('submit:' + ip, 10, 3600)) {
-        return new Response('{"error":"Too many submissions. Try again later."}', { status: 429, headers: CORS });
-      }
       try {
         const auth = request.headers.get('Authorization');
         if (!auth || !auth.startsWith('Bearer '))
@@ -328,13 +322,10 @@ export default {
       }
     }
 
-    // --- /vote (cast a vote, rate limited: 30 per hour per IP) ---
+    // --- /vote ---
     if (path === '/vote' && request.method === 'POST') {
       if (checkBodySize(request, 1024))
         return new Response('{"error":"Request too large"}', { status: 413, headers: CORS });
-      var ip = request.headers.get('CF-Connecting-IP') || 'unknown';
-      if (await checkRateLimit('vote:' + ip, 30, 3600))
-        return new Response('{"error":"Too many requests. Try again later."}', { status: 429, headers: CORS });
       try {
         var auth = request.headers.get('Authorization');
         if (!auth || !auth.startsWith('Bearer '))
@@ -387,13 +378,10 @@ export default {
       }
     }
 
-    // --- /trivia/submit (rate limited: 20 per hour per IP) ---
+    // --- /trivia/submit ---
     if (path === '/trivia/submit' && request.method === 'POST') {
       if (checkBodySize(request, 1024))
         return new Response('{"error":"Request too large"}', { status: 413, headers: CORS });
-      var ip = request.headers.get('CF-Connecting-IP') || 'unknown';
-      if (await checkRateLimit('trivia:' + ip, 20, 3600))
-        return new Response('{"error":"Too many requests."}', { status: 429, headers: CORS });
       try {
         var auth = request.headers.get('Authorization');
         if (!auth || !auth.startsWith('Bearer '))
@@ -428,8 +416,14 @@ export default {
         existing.avatar = user.avatar;
         existing.games = (existing.games || 0) + 1;
         existing.totalCorrect = (existing.totalCorrect || 0) + correct;
-        if (pct === 100) {
+        if ((existing.streak || 0) > (existing.bestStreak || 0)) {
+          existing.bestStreak = existing.streak;
+        }
+        if (correct >= total - 1) {
           existing.streak = (existing.streak || 0) + 1;
+          if (existing.streak > (existing.bestStreak || 0)) {
+            existing.bestStreak = existing.streak;
+          }
         } else {
           existing.streak = 0;
         }
@@ -442,40 +436,43 @@ export default {
         existing.ts = Date.now();
         await env.SUBS.put(key, JSON.stringify(existing));
 
-        var allKeys = await env.SUBS.list({ prefix: 'trivia:' + mode + ':' });
-        var all = [];
-        for (var rk of allKeys.keys) {
-          var rv = await env.SUBS.get(rk.name, { type: 'json' });
-          if (rv) all.push(rv);
-        }
-        var speedRank = null;
-        if (existing.pct === 100 && existing.bestTime > 0) {
-          var sp = all.filter(function(e){ return e.pct === 100 && e.bestTime > 0; })
-            .sort(function(a,b){ return a.bestTime - b.bestTime; });
-          for (var si = 0; si < sp.length; si++) { if (sp[si].id === user.id) { speedRank = si + 1; break; } }
-        }
-        var streakRank = null;
-        if ((existing.streak || 0) > 0) {
-          var st = all.filter(function(e){ return (e.streak || 0) > 0; })
-            .sort(function(a,b){ return (b.streak||0) - (a.streak||0); });
-          for (var sti = 0; sti < st.length; sti++) { if (st[sti].id === user.id) { streakRank = sti + 1; break; } }
-        }
-        var vetRank = null;
-        var vt = all.slice().sort(function(a,b){ return (b.games||0) - (a.games||0); });
-        for (var vi = 0; vi < vt.length; vi++) { if (vt[vi].id === user.id) { vetRank = vi + 1; break; } }
-
         ctx.waitUntil(edgeCache.delete(cacheBase + '/__c/trivia-lb:' + mode));
-        return new Response(JSON.stringify({ success:true, ranks:{ speed:speedRank, streak:streakRank, veteran:vetRank } }), { headers: CORS });
+
+        // Calculate user's rank positions
+        var ranks = { speed: null, streak: null, veteran: null };
+        try {
+          var allKeys = await env.SUBS.list({ prefix: 'trivia:' + mode + ':' });
+          var all = [];
+          for (var rk of allKeys.keys) {
+            var rv = await env.SUBS.get(rk.name, { type: 'json' });
+            if (rv) all.push(rv);
+          }
+          // Speed rank (flawless only)
+          if (existing.pct === 100 && existing.bestTime > 0) {
+            var speedList = all.filter(function(e){ return e.pct === 100 && e.bestTime > 0; })
+              .sort(function(a,b){ return a.bestTime - b.bestTime; });
+            for (var si = 0; si < speedList.length; si++) { if (speedList[si].id === user.id) { ranks.speed = si + 1; break; } }
+          }
+          // Streak rank
+          var myStreak = existing.bestStreak || existing.streak || 0;
+          if (myStreak > 0) {
+            var streakList = all.filter(function(e){ return (e.bestStreak||e.streak||0) > 0; })
+              .sort(function(a,b){ return (b.bestStreak||b.streak||0) - (a.bestStreak||a.streak||0); });
+            for (var sti = 0; sti < streakList.length; sti++) { if (streakList[sti].id === user.id) { ranks.streak = sti + 1; break; } }
+          }
+          // Veteran rank
+          var vetList = all.sort(function(a,b){ return (b.games||0) !== (a.games||0) ? (b.games||0) - (a.games||0) : (b.totalCorrect||0) - (a.totalCorrect||0); });
+          for (var vi = 0; vi < vetList.length; vi++) { if (vetList[vi].id === user.id) { ranks.veteran = vi + 1; break; } }
+        } catch(e) {}
+
+        return new Response(JSON.stringify({ success:true, ranks:ranks }), { headers: CORS });
       } catch (e) {
         return new Response('{"error":"Submit failed"}', { status: 500, headers: CORS });
       }
     }
 
-    // --- /trivia/leaderboard (edge-cached 60s, rate limited) ---
+    // --- /trivia/leaderboard (edge-cached 60s) ---
     if (path === '/trivia/leaderboard' && request.method === 'GET') {
-      var ip = request.headers.get('CF-Connecting-IP') || 'unknown';
-      if (await checkRateLimit('get:' + ip, 30, 60))
-        return new Response('{"error":"Too many requests."}', { status: 429, headers: CORS });
       try {
         var url = new URL(request.url);
         var mode = url.searchParams.get('mode') || 'challenge';
@@ -492,12 +489,12 @@ export default {
           var val = await env.SUBS.get(k.name, { type: 'json' });
           if (val) entries.push(val);
         }
-        function stripId(e){ return { username:e.username, global_name:e.global_name, avatar:e.avatar, pct:e.pct, bestTime:e.bestTime, games:e.games, streak:e.streak, totalCorrect:e.totalCorrect }; }
+        function stripId(e){ return { id:e.id, username:e.username, global_name:e.global_name, avatar:e.avatar, pct:e.pct, bestTime:e.bestTime, games:e.games, streak:e.streak, bestStreak:e.bestStreak||e.streak||0, totalCorrect:e.totalCorrect }; }
         var speed = entries.filter(function(e){ return e.pct === 100 && e.bestTime > 0; })
           .sort(function(a,b){ return a.bestTime - b.bestTime; }).slice(0,10).map(stripId);
-        var streak = entries.filter(function(e){ return (e.streak||0) > 0; })
+        var streak = entries.filter(function(e){ return (e.bestStreak||e.streak||0) > 0; })
           .sort(function(a,b){
-            if((b.streak||0) !== (a.streak||0)) return (b.streak||0) - (a.streak||0);
+            if((b.bestStreak||b.streak||0) !== (a.bestStreak||a.streak||0)) return (b.bestStreak||b.streak||0) - (a.bestStreak||a.streak||0);
             return (a.bestTime||999999999) - (b.bestTime||999999999);
           }).slice(0,10).map(stripId);
         var veteran = entries.slice()
