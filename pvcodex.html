@@ -408,7 +408,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .no-results.visible{display:block}
 
 /* ── Back to Top ── */
-.back-to-top{position:fixed;bottom:24px;right:24px;z-index:80;width:42px;height:42px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;color:var(--gold);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:all .3s var(--ease);box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.back-to-top{position:fixed;bottom:24px;right:24px;z-index:150;width:42px;height:42px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;color:var(--gold);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:all .3s var(--ease);box-shadow:0 4px 12px rgba(0,0,0,.3)}
 .back-to-top.visible{opacity:1;pointer-events:auto}
 .back-to-top:hover{border-color:var(--gold);background:var(--bg-card-hover);transform:translateY(-2px)}
 
@@ -535,7 +535,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .gallery-item .gallery-label{padding:10px 14px;font-size:.85rem;font-weight:600;color:var(--text);text-align:center;cursor:pointer;transition:color .15s}
 .gallery-item .gallery-label:hover{color:var(--purple)}
 .gallery-item .gallery-label span{display:block;font-size:.72rem;font-weight:400;color:var(--text-muted);margin-top:2px}
-.gallery-filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.gallery-filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;justify-content:center}
 .gallery-filter button{padding:6px 14px;border-radius:999px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-sec);font-size:.78rem;cursor:pointer;transition:all .15s}
 .gallery-filter button.active,.gallery-filter button:hover{background:var(--purple);color:#fff;border-color:var(--purple)}
 /* gallery lightbox */
@@ -2427,7 +2427,7 @@ overlay.addEventListener('click', closeSidebar);
 
 // ── Back to top ──
 var backToTop = document.getElementById('backToTop');
-window.addEventListener('scroll', function(){ backToTop.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
+window.addEventListener('scroll', function(){ backToTop.classList.toggle('visible', (window.scrollY || document.documentElement.scrollTop) > 400); }, { passive: true });
 backToTop.addEventListener('click', function(){ window.scrollTo({ top:0, behavior:'smooth' }); });
 
 // ── Search (cross-page) ──
