@@ -1902,11 +1902,11 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <h2 class="sec-title">Memorable Quotes</h2>
     <p class="sec-desc">Relive the most memorable moments of the story.</p>
     <hr class="sec-divider">
-    <div class="quotes-launch" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:24px"><button onclick="startJourney()" class="quotes-btn-primary"><span style="display:flex;flex-direction:column;align-items:center"><span>Take me on a journey!</span><span style="font-size:.7rem;opacity:.55;font-weight:400;margin-top:2px">Randomized slideshow</span></span></button><button onclick="goContribute('Quotes')" class="quotes-btn-secondary">Have a favorite quote? Add it!</button></div>
+    <div class="quotes-launch" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:24px"><button onclick="startJourney()" class="quotes-btn-primary"><span style="display:flex;flex-direction:column;align-items:center"><span>Take me on a journey!</span><span style="font-size:.7rem;opacity:.55;font-weight:400;margin-top:2px">Randomized slideshow</span></span></button><button onclick="goContribute('Quotes')" class="quotes-btn-secondary">Don't see your favorite quote? Add it!</button></div>
     <div class="gallery-filter" id="quotesFilter" style="margin-bottom:0"><button class="active" onclick="filterQuotes('all',this)">All</button><button onclick="filterQuotes('cool',this)">Cool</button><button onclick="filterQuotes('funny',this)">Funny</button><button onclick="filterQuotes('18+',this)">18+</button></div>
     <div class="qchar-nav" id="quotesCharNav"></div>
     <div class="qgrid" id="quotesGrid"></div>
-    <div class="quotes-launch" style="margin-top:32px;text-align:center"><button onclick="goContribute('Quotes')" class="quotes-btn-secondary">&#128172; Have a favorite quote? Add it!</button></div>
+    <div class="quotes-launch" style="margin-top:32px;text-align:center"><button onclick="goContribute('Quotes')" class="quotes-btn-secondary">&#128172; Don't see your favorite quote? Add it!</button></div>
   </section>
 </div>
 
@@ -2106,7 +2106,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <div id="triviaMenu">
       <div class="trivia-modes" id="triviaModes"></div>
       <div id="triviaLeaderboardMenu" style="display:none;margin-top:32px">
-        <h3 style="font-family:var(--font-h);font-size:1rem;color:var(--gold);text-align:center;margin-bottom:16px">Leaderboards <a onclick="this.style.opacity='.3';var s=this;refreshTriviaLb('triviaLbMenu','challenge');setTimeout(function(){s.style.opacity=''},400)" style="font-size:.65rem;color:var(--text-muted);cursor:pointer;font-weight:400">&#8635; refresh</a></h3>
+        <h3 style="font-family:var(--font-h);font-size:1rem;color:var(--gold);text-align:center;margin-bottom:4px">Leaderboards <a onclick="this.style.opacity='.3';var s=this;refreshTriviaLb('triviaLbMenu','challenge');setTimeout(function(){s.style.opacity=''},400)" style="font-size:.65rem;color:var(--text-muted);cursor:pointer;font-weight:400">&#8635; refresh</a></h3>
+        <p style="font-size:.75rem;color:var(--text-muted);text-align:center;margin-bottom:16px">Competitive mode only</p>
         <div id="triviaLbMenu" class="trivia-boards"></div>
       </div>
     </div>
