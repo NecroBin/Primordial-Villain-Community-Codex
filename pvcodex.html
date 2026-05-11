@@ -743,7 +743,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <li class="nav-group-title">World</li>
       <li><a tabindex="0" role="link" onclick="navigateTo('world')" data-page="world">World &amp; Factions</a></li>
       <li class="nav-group-title">Extras</li>
-      <li><a tabindex="0" role="link" onclick="navigateTo('gallery')" data-page="gallery">Extras</a></li>
+      <li><a tabindex="0" role="link" onclick="navigateTo('gallery','sec-quotes')" data-page="gallery">Quotes</a></li>
+      <li><a tabindex="0" role="link" onclick="navigateTo('gallery','sec-gallery')" data-page="gallery">Gallery</a></li>
       <li class="nav-group-title">Community</li>
       <li><a tabindex="0" role="link" onclick="navigateTo('trivia')" data-page="trivia">Trivia Game</a></li>
       <li><a tabindex="0" role="link" onclick="navigateTo('votes')" data-page="votes">Votes</a></li>
@@ -1882,7 +1883,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
     <p class="sec-desc">Memorable quotes and character portraits from the world of Thalorind.</p>
     <hr class="sec-divider">
 
-    <h3 class="vs-section-title" style="margin-top:24px">Memorable Quotes</h3>
+    <h3 class="vs-section-title" id="sec-quotes" style="margin-top:24px">Memorable Quotes</h3>
     <div class="quotes-launch"><button onclick="openSlideshow(0)">&#9654; Start Slideshow</button></div>
     <div class="qgrid" id="quotesGrid"></div>
 
@@ -1897,7 +1898,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <div class="ss-progress" id="ssProgress"></div>
 </div>
 
-    <h3 class="vs-section-title" style="margin-top:48px">Gallery</h3>
+    <h3 class="vs-section-title" id="sec-gallery" style="margin-top:48px">Gallery</h3>
     <p class="sec-desc" style="margin-bottom:16px">Character portraits. Click any image to enlarge.</p>
     <div class="gallery-filter">
       <button class="active" onclick="filterGallery('all',this)">All</button>
