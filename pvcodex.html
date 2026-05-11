@@ -498,7 +498,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .ss-counter{position:absolute;top:26px;left:24px;color:rgba(255,255,255,.4);font-size:.8rem;font-family:var(--font-h);letter-spacing:.08em}
 .ss-slide{display:flex;align-items:center;gap:48px;max-width:1100px;width:92%;padding:40px;animation:ssFadeIn .35s ease}
 @keyframes ssFadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.ss-img{max-height:75vh;width:auto;max-width:420px;border-radius:14px;object-fit:contain;flex-shrink:0;border:2px solid var(--gold-dim);box-shadow:0 0 40px rgba(139,92,246,.25)}
+.ss-img{max-height:75vh;width:auto;max-width:420px;border-radius:14px;object-fit:contain;flex-shrink:0;border:2px solid var(--gold-dim)}
 .ss-noimg{width:320px;height:420px;border-radius:14px;flex-shrink:0;background:linear-gradient(135deg,#1a1a2e,#2a2a3e);display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,.1)}
 .ss-body{flex:1;min-width:0}
 .ss-text{font-family:var(--font-h);font-size:1.3rem;color:#fff;font-style:italic;line-height:1.7;margin-bottom:16px;letter-spacing:.01em}
@@ -513,7 +513,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .ss-speed button{background:none;border:1px solid rgba(255,255,255,.15);border-radius:6px;color:rgba(255,255,255,.4);font-size:.7rem;padding:4px 10px;cursor:pointer;font-family:var(--font-h);transition:all .2s}
 .ss-speed button:hover{border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.6)}
 .ss-speed button.active{border-color:var(--gold);color:var(--gold)}
-@media(max-width:600px){.ss-slide{flex-direction:column;text-align:center;gap:16px;padding:16px 20px}.ss-img{max-height:45vh;max-width:85vw;width:auto}.ss-noimg{width:200px;height:260px}.ss-text{font-size:.95rem}.ss-arrow{width:40px;height:40px;font-size:1.1rem}.ss-prev{left:8px}.ss-next{right:8px}.ss-speed{bottom:14px;right:12px}}
+@media(max-width:600px){.ss-overlay.open{align-items:stretch;justify-content:flex-start}.ss-slide{flex-direction:column;text-align:center;gap:12px;padding:52px 20px 80px;height:100%;box-sizing:border-box;overflow-y:auto;justify-content:flex-start;align-items:center}.ss-img{height:38vh;max-height:38vh;width:auto;max-width:85vw;object-fit:contain;aspect-ratio:3/4;flex-shrink:0}.ss-noimg{width:180px;height:180px;flex-shrink:0}.ss-text{font-size:.92rem;max-height:24vh;overflow-y:auto}.ss-arrow{width:40px;height:40px;font-size:1.1rem}.ss-prev{left:8px}.ss-next{right:8px}.ss-speed{bottom:14px;right:12px}}
 .ss-overlay:fullscreen,.ss-overlay:-webkit-full-screen{background:#000}
 .ss-overlay:fullscreen .ss-slide,.ss-overlay:-webkit-full-screen .ss-slide{max-width:1300px}
 .ss-overlay:fullscreen .ss-img,.ss-overlay:-webkit-full-screen .ss-img{max-height:85vh;max-width:500px}
@@ -1917,7 +1917,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <div class="ss-slide" id="ssSlide"></div>
   <div class="ss-progress" id="ssProgress"></div>
   <div class="ss-speed"><span class="ss-speed-label">Speed</span><button onclick="setSsSpeed(0.6)">Fast</button><button class="active" onclick="setSsSpeed(1)">Normal</button><button onclick="setSsSpeed(1.6)">Slow</button><button onclick="setSsSpeed(0)">Manual</button></div>
-  <button class="ss-sound-toggle active" onclick="toggleSsSound(this)" title="Toggle sound">&#9835;</button>
+  <button class="ss-sound-toggle active" onclick="toggleSsSound(this)" title="Toggle sound">🔊</button>
 </div>
 
 <!-- ═══════════════ GALLERY ═══════════════ -->
@@ -3094,7 +3094,7 @@ var pvQuotes = [
 var ssIdx=0,ssTimer=null,ssProgTimer=null,ssProgVal=0,ssMult=1,ssOrder=[],ssAudioCtx=null,ssMuted=false;
 function shuffleArray(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function playSsSound(){if(ssMuted)return;try{if(!ssAudioCtx)ssAudioCtx=new(window.AudioContext||window.webkitAudioContext)();if(ssAudioCtx.state==='suspended')ssAudioCtx.resume();var ctx=ssAudioCtx,t=ctx.currentTime;var buf=ctx.createBuffer(1,Math.floor(ctx.sampleRate*0.012),ctx.sampleRate);var d=buf.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.exp(-i/(d.length*0.15));var src=ctx.createBufferSource();src.buffer=buf;var filt=ctx.createBiquadFilter();filt.type='lowpass';filt.frequency.value=1800;var g=ctx.createGain();g.gain.setValueAtTime(0.12,t);g.gain.exponentialRampToValueAtTime(0.001,t+0.04);src.connect(filt);filt.connect(g);g.connect(ctx.destination);src.start(t);src.stop(t+0.05);}catch(e){}}
-window.toggleSsSound=function(btn){ssMuted=!ssMuted;btn.classList.toggle('active',!ssMuted);};
+window.toggleSsSound=function(btn){ssMuted=!ssMuted;btn.classList.toggle('active',!ssMuted);btn.textContent=ssMuted?'🔇':'🔊';};
 document.addEventListener('fullscreenchange',function(){if(!document.fullscreenElement&&document.getElementById('ssOverlay').classList.contains('open'))closeSlideshow();});
 var currentQuoteFilter="all";
 window.filterQuotes=function(cat,btn){currentQuoteFilter=cat;document.querySelectorAll("#quotesFilter button").forEach(function(b){b.classList.remove("active");});btn.classList.add("active");buildQuoteGrid();};
