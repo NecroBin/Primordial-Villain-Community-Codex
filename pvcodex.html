@@ -1906,7 +1906,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <div class="ss-slide" id="ssSlide"></div>
   <div class="ss-dots" id="ssDots"></div>
   <div class="ss-progress" id="ssProgress"></div>
-  <div class="ss-speed"><span class="ss-speed-label">Speed</span><button onclick="setSsSpeed(2000)">Fast</button><button class="active" onclick="setSsSpeed(3500)">Normal</button><button onclick="setSsSpeed(6000)">Slow</button></div>
+  <div class="ss-speed"><span class="ss-speed-label">Speed</span><button onclick="setSsSpeed(2000)">Fast</button><button class="active" onclick="setSsSpeed(3500)">Normal</button><button onclick="setSsSpeed(6000)">Slow</button><button onclick="setSsSpeed(0)">Manual</button></div>
 </div>
 
 <!-- ═══════════════ GALLERY ═══════════════ -->
@@ -2941,12 +2941,11 @@ window.closeSlideshow=function(){
 };
 window.ssNav=function(dir){renderSsSlide(ssIdx+dir);resetSsTimer();};
 window.setSsSpeed=function(ms){ssSpeed=ms;resetSsTimer();updateSpeedBtns();};
-function updateSpeedBtns(){document.querySelectorAll('.ss-speed button').forEach(function(b){var v=parseInt(b.getAttribute('onclick').match(/\d+/)[0]);b.classList.toggle('active',v===ssSpeed);});}
+function updateSpeedBtns(){document.querySelectorAll('.ss-speed button').forEach(function(b){var m=b.getAttribute('onclick').match(/\d+/);var v=m?parseInt(m[0]):0;b.classList.toggle('active',v===ssSpeed);});}
 function resetSsTimer(){
-  clearInterval(ssTimer);clearInterval(ssProgTimer);
-  ssProgVal=0;
-  var bar=document.getElementById('ssProgress');
-  bar.style.width='0';
+  clearInterval(ssTimer);clearInterval(ssProgTimer);ssProgVal=0;
+  var bar=document.getElementById('ssProgress');bar.style.width='0';
+  if(ssSpeed===0)return;
   ssProgTimer=setInterval(function(){ssProgVal+=50;bar.style.width=(ssProgVal/ssSpeed*100)+'%';},50);
   ssTimer=setInterval(function(){renderSsSlide(ssIdx+1);resetSsTimer();},ssSpeed);
 }
@@ -2956,6 +2955,7 @@ document.addEventListener('keydown',function(e){
   if(e.key==='ArrowLeft')ssNav(-1);
   if(e.key==='ArrowRight')ssNav(1);
 });
+(function(){var sx=0,sy=0,ov=document.getElementById('ssOverlay');ov.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});ov.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){if(dx<0)ssNav(1);else ssNav(-1);}},{passive:true});})();
 buildQuoteGrid();
 
 // ── Auto-add keyboard accessibility to onclick elements ──
