@@ -26,7 +26,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Primordial Villain Wiki","alternateName":["PV Wiki","PV Codex","Primordial Villain Codex","Primordial Villain website","Necroverse","PV Necroverse","Necroverse website","NecroBin website"],"url":"https://necrobin.com/pvcodex.html","description":"The community wiki for the webnovel Primordial Villain with a Slave Harem — characters, factions, stats, classes, and lore from the world of Thalorind.","publisher":{"@type":"Person","name":"NecroBin"},"about":{"@type":"Book","name":"Primordial Villain with a Slave Harem","author":{"@type":"Person","name":"NecroBin"},"genre":["LitRPG","Progression Fantasy","Webnovel"],"url":"https://www.webnovel.com/book/primordial-villain-with-a-slave-harem_30056099600577905"}}</script>
 <title>Primordial Villain Wiki — Characters, Lore & Stats | NecroBin</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2L28 16L16 30L4 16Z' fill='%238B5CF6'/%3E%3C/svg%3E">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src https://pv-codex-proxy.necrobin1.workers.dev https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' https://cdn.discordapp.com data: blob:; frame-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src https://pv-codex-proxy.necrobin1.workers.dev https://fonts.googleapis.com https://fonts.gstatic.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; img-src 'self' https://cdn.discordapp.com https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com data: blob:; frame-src 'none'; base-uri 'self'; form-action 'none'">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -59,8 +59,8 @@
   --scrollbar-track:#eeedf3;--scrollbar-thumb:#ccc8d8;
   --chart-grid:rgba(0,0,0,.08);--chart-grid-fine:rgba(0,0,0,.05);
 }
-html{scroll-behavior:smooth;scrollbar-color:var(--scrollbar-thumb) var(--scrollbar-track);overflow-x:clip}
-body{font-family:var(--font-b);background:var(--bg-deep);color:var(--text);line-height:1.6;overflow-x:clip;transition:background .3s,color .3s}
+html{scroll-behavior:smooth;scrollbar-color:var(--scrollbar-thumb) var(--scrollbar-track);overflow-x:hidden;overflow-x:clip}
+body{font-family:var(--font-b);background:var(--bg-deep);color:var(--text);line-height:1.6;overflow-x:hidden;overflow-x:clip;transition:background .3s,color .3s}
 ::-webkit-scrollbar{width:8px}
 ::-webkit-scrollbar-track{background:var(--scrollbar-track)}
 ::-webkit-scrollbar-thumb{background:var(--scrollbar-thumb);border-radius:4px}
@@ -79,7 +79,7 @@ a:hover{color:#a78bfa}
 .sidebar-home-link svg{flex-shrink:0;stroke:#fff;opacity:.8}
 .sidebar-home-link:hover svg{opacity:1}
 .sidebar-brand{padding:10px 20px 14px;border-bottom:1px solid var(--border);cursor:pointer}
-.sidebar-brand h1{font-family:var(--font-h);font-size:1.05rem;color:var(--gold);letter-spacing:.05em;line-height:1.3}
+.sidebar-brand .sidebar-title{font-family:var(--font-h);font-size:1.05rem;color:var(--gold);letter-spacing:.05em;line-height:1.3}
 .sidebar-brand p{font-size:.7rem;color:var(--text-sec);margin-top:2px;letter-spacing:.08em;text-transform:uppercase}
 .sidebar-search{padding:14px 16px 10px}
 .sidebar-search input{width:100%;padding:8px 12px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.84rem;font-family:var(--font-b);outline:none;transition:border-color .2s}
@@ -100,7 +100,7 @@ a:hover{color:#a78bfa}
 .nav-group-title:first-child{padding-top:8px}
 
 /* ── Overlay & Mobile Toggle ── */
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:90;backdrop-filter:blur(2px)}
+.overlay{display:none;position:fixed;top:0;right:0;bottom:0;left:0;inset:0;background:rgba(0,0,0,.6);z-index:90;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
 .menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:110;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;color:var(--gold);font-size:1.2rem;width:40px;height:40px;cursor:pointer;transition:background .2s}
 .menu-toggle:hover{background:var(--bg-card-hover)}
 
@@ -492,7 +492,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .qcard-attr{font-size:.74rem;color:var(--gold);font-family:var(--font-h);letter-spacing:.04em}
 @media(max-width:600px){.qgrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}.qcard-body{padding:12px 14px 14px}.qcard-text{font-size:.78rem}}
 /* ── Slideshow Overlay ── */
-.ss-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;flex-direction:column}
+.ss-overlay{position:fixed;top:0;right:0;bottom:0;left:0;inset:0;z-index:9999;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;flex-direction:column}
 .ss-overlay.open{display:flex}
 .ss-close{position:absolute;top:20px;right:24px;background:none;border:1px solid rgba(255,255,255,.2);border-radius:50%;width:44px;height:44px;color:#fff;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:2}
 .ss-close:hover{border-color:var(--gold);color:var(--gold)}
@@ -539,7 +539,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .gallery-filter button{padding:6px 14px;border-radius:999px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-sec);font-size:.78rem;cursor:pointer;transition:all .15s}
 .gallery-filter button.active,.gallery-filter button:hover{background:var(--purple);color:#fff;border-color:var(--purple)}
 /* gallery lightbox */
-.lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.88);align-items:center;justify-content:center;cursor:pointer}
+.lightbox{display:none;position:fixed;top:0;right:0;bottom:0;left:0;inset:0;z-index:9999;background:rgba(0,0,0,.88);align-items:center;justify-content:center;cursor:pointer}
 .lightbox.open{display:flex}
 .lightbox img{max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 0 60px rgba(0,0,0,.6)}
 .lightbox .lb-name{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);color:#fff;font-size:1.1rem;font-weight:600;letter-spacing:.04em;text-shadow:0 2px 8px rgba(0,0,0,.7)}
@@ -680,7 +680,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .portrait-blur{position:relative;cursor:pointer;max-width:420px;margin:0 auto}
 .portrait-blur img{filter:blur(18px) saturate(.6);transition:filter .6s ease}
 .portrait-blur.revealed img{filter:none}
-.portrait-blur .blur-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:rgba(0,0,0,.3);border-radius:12px;transition:opacity .4s ease;pointer-events:none}
+.portrait-blur .blur-overlay{position:absolute;top:0;right:0;bottom:0;left:0;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:rgba(0,0,0,.3);border-radius:12px;transition:opacity .4s ease;pointer-events:none}
 .portrait-blur.revealed .blur-overlay{opacity:0}
 .portrait-blur .blur-msg{font-size:.88rem;color:#fff;line-height:1.5;max-width:280px;text-shadow:0 2px 8px rgba(0,0,0,.6)}
 .portrait-blur .blur-msg em{display:block;font-style:italic;margin-bottom:12px;font-size:.82rem;color:#ccc}
@@ -722,7 +722,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 <aside class="sidebar" id="sidebar">
   <a href="/" class="sidebar-home-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>necrobin.com</a>
   <div class="sidebar-brand" onclick="navigateTo('home')">
-    <h1>PV Codex</h1>
+    <div class="sidebar-title" role="heading" aria-level="2">PV Codex</div>
     <p>Primordial Villain with a Slave Harem</p>
   </div>
   <div class="sidebar-search">
@@ -3090,8 +3090,8 @@ var pvQuotes = [
   {text:"Put me down?! Zehaha! I love the sound of that! Come on, brother! Kill me if you can!",char:"Blackjack",img:null,cat:"cool"},
   {text:"Holy Goddess's miniskirt.",char:"Ronan",img:null,cat:"funny"},
   {text:"The Covenant is willing to proceed for now. But don't think for a moment that this ends here.",char:"Drowned King",img:null,cat:"cool"},
-  {text:"[Your class has been changed from Necromancer → Corpse Animator.]<br>[Reason: You are not him.]",char:"Soul Records",img:"images-web/soul-records.png",cat:"cool"},
-  {text:"[Trial Objective: Conquer the Primordial Succubus, Nyxara.]<br>[Success Condition: Elicit the Shriek of Ruin; break the Succubus's resolve through carnal dominance.]",char:"Soul Records",img:"images-web/soul-records.png",cat:"18+"},
+  {text:"[Your class has been changed from Necromancer → Corpse Animator.]<br>[Reason: You are not him.]",char:"Soul Records",img:"images-web/soul-records.jpg",cat:"cool"},
+  {text:"[Trial Objective: Conquer the Primordial Succubus, Nyxara.]<br>[Success Condition: Elicit the Shriek of Ruin; break the Succubus's resolve through carnal dominance.]",char:"Soul Records",img:"images-web/soul-records.jpg",cat:"18+"},
   {text:"A higher existence like you simply can't be expected to move according to the wishes of a puny human king and his book of laws.",char:"Iselda",img:null,cat:"cool"}
 ];
 var ssIdx=0,ssTimer=null,ssProgTimer=null,ssProgVal=0,ssMult=1,ssOrder=[],ssAudioCtx=null,ssMuted=false;
