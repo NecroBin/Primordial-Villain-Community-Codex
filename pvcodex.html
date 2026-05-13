@@ -586,6 +586,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .lb-arrow:hover{background:rgba(255,255,255,.25)}
 .lb-prev{left:20px}
 .lb-next{right:20px}
+.lb-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:1.6rem;width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:10001;line-height:1}
+.lb-close:hover{background:rgba(255,255,255,.3)}
 .page-bar:has(.breadcrumb) .back-btn{display:none}
 .breadcrumb{display:flex;align-items:center;gap:6px;padding:0;margin:0;font-size:.78rem;color:var(--text-muted)}
 .breadcrumb a{color:var(--text-sec);cursor:pointer;transition:color .15s;text-decoration:none}
@@ -2240,7 +2242,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 <div class="no-results" id="noResults">No matches found.</div>
 <footer class="footer"><p>Compiled by the community of <strong style="color:var(--gold)">Primordial Villain with a Slave Harem</strong></p><p style="margin-top:6px">Think you know PV? <a onclick="navigateTo('trivia')" style="cursor:pointer">Try the Trivia Game</a></p><p style="margin-top:14px"><a href="/" class="sidebar-home-link" style="display:inline-flex;margin:0;max-width:200px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>necrobin.com</a></p></footer>
 </main>
-<div class="lightbox" id="lightbox" onclick="closeLightbox()"><button class="lb-arrow lb-prev" onclick="event.stopPropagation();lbNav(-1)">&#8249;</button><img id="lbImg" src="" alt="" onclick="event.stopPropagation()"><button class="lb-arrow lb-next" onclick="event.stopPropagation();lbNav(1)">&#8250;</button><div class="lb-name" id="lbName"></div></div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()"><button class="lb-close" onclick="event.stopPropagation();closeLightbox()">&#10005;</button><button class="lb-arrow lb-prev" onclick="event.stopPropagation();lbNav(-1)">&#8249;</button><img id="lbImg" src="" alt="" onclick="closeLightbox()"><button class="lb-arrow lb-next" onclick="event.stopPropagation();lbNav(1)">&#8250;</button><div class="lb-name" id="lbName"></div></div>
 
 <noscript>
 <div style="padding:40px;max-width:800px;margin:0 auto;font-family:Georgia,serif;color:#222">
