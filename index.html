@@ -178,7 +178,7 @@ a:hover{color:#a78bfa}
     <p>I&rsquo;m from the small country of Hungary (no, I&rsquo;m not hungry) and I suppose I sport an overly vivid imagination.</p>
     <p>While reading other stories, I kept getting more and more irritated, imagining how I&rsquo;d have done things differently. This, paired with my general boredom, led to the decision of taking matters into my own hands.</p>
     <p>The rest is history.</p>
-    <p style="margin-top:8px;font-size:.85rem">Join the <a href="https://discord.gg/XAwgpNKAHr" target="_blank" rel="noopener">Discord</a> and <a href="https://www.patreon.com/NecroBin" target="_blank" rel="noopener">Patreon</a> to follow what happens in the Necroverse!</p>
+    <p style="margin-top:8px;font-size:.85rem">Join the <a href="https://discord.gg/XAwgpNKAHr" target="_blank" rel="noopener">Discord</a>, support me on <a href="https://www.patreon.com/NecroBin" target="_blank" rel="noopener">Patreon</a>, or sign up to the <a onclick="scrollToNewsletter()" style="cursor:pointer">newsletter</a> to follow what happens in the Necroverse!</p>
   </div>
 </div>
 
@@ -193,9 +193,8 @@ a:hover{color:#a78bfa}
       <div class="book-desc">Quinlan, a dejected office worker, arrives in the deadly fantasy world of Thalorind as a level 1 Commoner. Severe trust issues make joining a team impossible, but he soon notices that a lot of people have collars around their necks in this world.</div>
       <div class="book-buttons">
         <a href="pvcodex.html" class="btn btn-primary">Codex</a>
-        <a href="https://www.webnovel.com/book/primordial-villain-with-a-slave-harem_30056099600577905" target="_blank" rel="noopener" class="btn btn-secondary">Read Online</a>
-        <a href="https://www.amazon.com/dp/B0DTJ2SG1X" target="_blank" rel="noopener" class="btn btn-secondary">Amazon &mdash; Book 1</a>
-        <a href="https://www.amazon.com/dp/B0DXL8WTKW" target="_blank" rel="noopener" class="btn btn-secondary">Amazon &mdash; Book 2</a>
+        <a href="https://www.webnovel.com/book/primordial-villain-with-a-slave-harem_30056099600577905" target="_blank" rel="noopener" class="btn btn-secondary">Read on Webnovel</a>
+        <a href="https://www.amazon.com/dp/B0DTJ2SG1X" target="_blank" rel="noopener" class="btn btn-secondary" style="grid-column:1/-1">Read on Amazon</a>
       </div>
       <div class="book-extra">Also on <a href="https://www.goodreads.com/book/show/223801908-primordial-villain-with-a-slave-harem" target="_blank" rel="noopener">Goodreads</a></div>
     </div>
@@ -208,14 +207,14 @@ a:hover{color:#a78bfa}
       <div class="book-desc">When the mana apocalypse struck, 85% of humanity was left powerless. Kaiden was one of them, until a banana peel sent him tumbling into a very unconventional system. His path to power isn&rsquo;t through combat alone, but through conquering the world of adult content.</div>
       <div class="book-buttons">
         <span class="btn btn-disabled">Codex</span>
-        <a href="https://www.webnovel.com/book/demonic-pornstar-system_32444714800937905" target="_blank" rel="noopener" class="btn btn-secondary">Read Online</a>
-        <a href="https://www.amazon.com/dp/B0FKM1PW5W" target="_blank" rel="noopener" class="btn btn-secondary" style="grid-column:1/-1">Amazon &mdash; Book 1</a>
+        <a href="https://www.webnovel.com/book/demonic-pornstar-system_32444714800937905" target="_blank" rel="noopener" class="btn btn-secondary">Read on Webnovel</a>
+        <a href="https://www.amazon.com/dp/B0FKM1PW5W" target="_blank" rel="noopener" class="btn btn-secondary" style="grid-column:1/-1">Read on Amazon</a>
       </div>
     </div>
 
     <div class="book-card book-card-soon">
       <div class="soon-text">More coming soon&hellip;</div>
-      <div style="font-size:.74rem;color:var(--text-muted);text-align:center;padding:0 16px 20px;font-family:var(--font-h);letter-spacing:.04em">Join <a href="https://discord.gg/XAwgpNKAHr" target="_blank" rel="noopener">Discord</a> and <a href="https://www.patreon.com/NecroBin" target="_blank" rel="noopener">Patreon</a> to be notified!</div>
+      <div style="font-size:.74rem;color:var(--text-muted);text-align:center;padding:0 16px 20px;font-family:var(--font-h);letter-spacing:.04em">Sign up to the <a onclick="scrollToNewsletter()" style="cursor:pointer">newsletter</a> or join the <a href="https://discord.gg/XAwgpNKAHr" target="_blank" rel="noopener">Discord</a> to be notified!</div>
     </div>
   </div>
 </div>
@@ -223,7 +222,7 @@ a:hover{color:#a78bfa}
 <div class="section">
   <div class="section-title">Newsletter</div>
   <div class="newsletter-box">
-    <p>Be first to hear about new books, Amazon releases, and big Necroverse milestones.</p>
+    <p>Be the first to hear about my new releases and big Necroverse milestones.</p>
     <form class="newsletter-form" id="newsletterForm">
       <div style="position:absolute;left:-9999px" aria-hidden="true"><input type="text" id="nlWebsite" tabindex="-1" autocomplete="off"></div>
       <input type="email" id="nlEmail" placeholder="your@email.com" required aria-label="Email address">
@@ -253,6 +252,10 @@ a:hover{color:#a78bfa}
 </div>
 
 <script>
+function scrollToNewsletter(){
+  var el = document.querySelector('.newsletter-box');
+  if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
+}
 function updateThemeUI(){
   var theme = document.documentElement.getAttribute('data-theme') || 'light';
   var icon = document.getElementById('themeIcon');
