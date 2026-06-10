@@ -2193,6 +2193,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
         <button class="admin-tab active" onclick="adminSwitchTab('trivia')">Trivia</button>
         <button class="admin-tab" onclick="adminSwitchTab('contrib')">Contributions</button>
         <button class="admin-tab" onclick="adminSwitchTab('polls')">Polls</button>
+        <button class="admin-tab" onclick="adminSwitchTab('newsletter')">Newsletter</button>
       </div>
       <div class="admin-tab-pane active" id="adminTabTrivia">
         <div class="admin-controls">
@@ -2229,6 +2230,16 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
         <div class="admin-section">
           <h3>Polls <span id="adminPollCount" style="font-weight:400;color:var(--text-muted);font-size:.78rem"></span></h3>
           <div id="adminPollEntries"></div>
+        </div>
+      </div>
+      <div class="admin-tab-pane" id="adminTabNewsletter">
+        <div class="admin-controls">
+          <button class="admin-btn" onclick="adminLoadNewsletter()" style="font-size:.76rem;padding:8px 14px">Refresh</button>
+          <button class="admin-btn" onclick="adminCopyNewsletter()" style="font-size:.76rem;padding:8px 14px">Copy all emails</button>
+        </div>
+        <div class="admin-section">
+          <h3>Subscribers <span id="adminNlCount" style="font-weight:400;color:var(--text-muted);font-size:.78rem"></span></h3>
+          <div id="adminNlEntries"></div>
         </div>
       </div>
     </div>
@@ -3448,6 +3459,16 @@ document.querySelectorAll('.fam-card[onclick],.char-card[onclick],.nav-card:not(
 // ── Poll System ──
 var pollCache = {};
 
+// Own votes are remembered locally; the server no longer discloses votes by user
+function getLocalVotes(){
+  try { return JSON.parse(localStorage.getItem('pv_poll_votes')) || {}; } catch(e){ return {}; }
+}
+function setLocalVote(pollId, vote){
+  var v = getLocalVotes();
+  if(vote) v[pollId] = vote; else delete v[pollId];
+  try { localStorage.setItem('pv_poll_votes', JSON.stringify(v)); } catch(e){}
+}
+
 function renderPollWidget(el){
   var pollId = el.dataset.poll;
   var question = el.dataset.question;
@@ -3483,10 +3504,9 @@ function renderAllInstances(pollId){
 }
 
 function loadPollResults(pollId){
-  var user = getDiscordUser();
   var url = WORKER + '/votes/' + encodeURIComponent(pollId);
-  if(user && user.id) url += '?userId=' + encodeURIComponent(user.id);
   return fetch(url).then(function(r){ if(!r.ok) throw new Error('Failed'); return r.json(); }).then(function(data){
+    data.userVote = getLocalVotes()[pollId] || null;
     pollCache[pollId] = data;
     renderAllInstances(pollId);
   }).catch(function(){
@@ -3507,6 +3527,7 @@ function castVote(pollId, value){
   else if(!oldVote){ prev.total += 1; }
   if(newValue) prev.options[newValue] = (prev.options[newValue] || 0) + 1;
   prev.userVote = newValue;
+  setLocalVote(pollId, newValue);
   pollCache[pollId] = prev;
   renderAllInstances(pollId);
   fetch(WORKER + '/vote', {
@@ -3518,9 +3539,12 @@ function castVote(pollId, value){
     if(!res.ok) throw new Error('Vote failed');
     return res.json();
   }).then(function(data){
+    data.userVote = data.userVote || null;
+    setLocalVote(pollId, data.userVote);
     pollCache[pollId] = data;
     renderAllInstances(pollId);
   }).catch(function(err){
+    setLocalVote(pollId, oldVote);
     loadPollResults(pollId);
     document.querySelectorAll('.poll-status[data-poll]').forEach(function(s){ if(s.dataset.poll !== pollId) return;
       s.className = 'poll-status error';
@@ -4166,6 +4190,53 @@ window.adminSetCount = adminSetCount;
 window.adminLoadPolls = adminLoadPolls;
 window.adminResetPoll = adminResetPoll;
 
+// ── Admin: Newsletter ──
+var adminNlCache = [];
+function adminLoadNewsletter(){
+  var el = document.getElementById('adminNlEntries');
+  if(!el) return;
+  el.innerHTML = '<div class="lb-empty">Loading...</div>';
+  fetch(WORKER + '/admin/newsletter/list', { method:'POST', headers:{'Authorization':'Bearer ' + adminToken()} })
+  .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(function(data){
+    adminNlCache = data || [];
+    var count = document.getElementById('adminNlCount');
+    if(count) count.textContent = '(' + adminNlCache.length + ')';
+    if(!adminNlCache.length){ el.innerHTML = '<div class="lb-empty">No subscribers yet.</div>'; return; }
+    var html = '';
+    adminNlCache.forEach(function(s){
+      html += '<div class="lb-row" style="justify-content:space-between"><span style="font-size:.84rem">' + escHtml(s.email) + '</span>'
+        + '<span style="font-size:.7rem;color:var(--text-muted)">' + escHtml(s.source || '?') + ' &middot; ' + (s.ts ? new Date(s.ts).toLocaleDateString() : '?')
+        + ' <a class="admin-nl-del" data-email="' + escHtml(s.email) + '" style="color:#e74c3c;cursor:pointer;margin-left:10px">remove</a></span></div>';
+    });
+    el.innerHTML = html;
+    el.querySelectorAll('.admin-nl-del').forEach(function(a){
+      a.addEventListener('click', function(){ adminDeleteNl(this.dataset.email); });
+    });
+  }).catch(function(e){ el.innerHTML = '<div class="lb-empty">Failed to load: ' + escHtml(e.message) + '</div>'; });
+}
+function adminDeleteNl(email){
+  if(!confirm('Remove ' + email + ' from the newsletter?')) return;
+  fetch(WORKER + '/admin/newsletter/delete', {
+    method:'POST',
+    headers:{'Authorization':'Bearer ' + adminToken(),'Content-Type':'application/json'},
+    body:JSON.stringify({email:email})
+  }).then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(function(){ adminMsg('Removed ' + email, true); adminLoadNewsletter(); })
+  .catch(function(){ adminMsg('Delete failed', false); });
+}
+function adminCopyNewsletter(){
+  if(!adminNlCache.length){ adminMsg('Nothing to copy — refresh first', false); return; }
+  var text = adminNlCache.map(function(s){ return s.email; }).join('\n');
+  navigator.clipboard.writeText(text).then(
+    function(){ adminMsg('Copied ' + adminNlCache.length + ' emails to clipboard', true); },
+    function(){ adminMsg('Clipboard blocked by browser', false); }
+  );
+}
+window.adminLoadNewsletter = adminLoadNewsletter;
+window.adminDeleteNl = adminDeleteNl;
+window.adminCopyNewsletter = adminCopyNewsletter;
+
 function adminToken(){ return sessionStorage.getItem('adminToken') || ''; }
 
 function adminMsg(text, ok){
@@ -4273,6 +4344,7 @@ function adminSwitchTab(tab){
   if(tab === 'trivia') adminLoadEntries();
   if(tab === 'contrib') adminLoadContrib();
   if(tab === 'polls') adminLoadPolls();
+  if(tab === 'newsletter') adminLoadNewsletter();
 }
 
 function adminLoadContrib(){
