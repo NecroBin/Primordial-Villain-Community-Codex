@@ -94,7 +94,8 @@ a:hover{color:#a78bfa}
 .book-card:hover .book-cover img{transform:scale(1.04)}
 .book-buttons{padding:14px 16px;display:grid;grid-template-columns:1fr 1fr;gap:8px;border-top:1px solid var(--border)}
 .btn{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:9px 16px;border-radius:8px;font-family:var(--font-h);font-size:.78rem;font-weight:600;cursor:pointer;transition:all .25s var(--ease);text-decoration:none;border:none;letter-spacing:.02em;min-height:40px;text-align:center;line-height:1.3}
-.btn-sub{font-family:var(--font-b);font-size:.6rem;font-weight:400;letter-spacing:.04em;opacity:.72;text-transform:none}
+.btn-sub{font-family:var(--font-b);font-size:.6rem;font-weight:400;letter-spacing:.04em;opacity:.72;text-transform:none;white-space:nowrap}
+.book-buttons .btn{height:50px;padding:6px 14px}
 .btn-primary{background:var(--gold);color:#fff}
 .btn-primary:hover{background:var(--gold-dim);box-shadow:0 4px 20px var(--gold-glow);color:#fff;transform:translateY(-1px)}
 .btn-secondary{background:var(--bg-secondary);color:var(--text);border:1px solid var(--border)}
@@ -154,7 +155,7 @@ a:hover{color:#a78bfa}
   .hero{padding:40px 24px 18px}
   .hero h1{font-size:2.2rem}
   .books{grid-template-columns:1fr 1fr;max-width:520px}
-  .book-card-soon{min-height:140px}
+  .book-card-soon{grid-column:1/-1;min-height:120px}
 }
 @media(max-width:520px){
   .hero h1{font-size:1.8rem}
@@ -197,7 +198,7 @@ a:hover{color:#a78bfa}
       <div class="book-buttons">
         <a href="pvcodex.html" class="btn btn-primary">Codex<span class="btn-sub">characters &middot; lore &middot; trivia</span></a>
         <a href="https://www.webnovel.com/book/primordial-villain-with-a-slave-harem_30056099600577905" target="_blank" rel="noopener" class="btn btn-secondary">Read on Webnovel<span class="btn-sub">1,700+ chapters &middot; ongoing</span></a>
-        <a href="https://www.amazon.com/dp/B0DTJ2SG1X" target="_blank" rel="noopener" class="btn btn-secondary" style="grid-column:1/-1">Read on Amazon<span class="btn-sub">Books 1 &amp; 2</span></a>
+        <a href="https://www.amazon.com/dp/B0DTJ2SG1X" target="_blank" rel="noopener" class="btn btn-secondary" style="grid-column:1/-1">Read on Amazon<span class="btn-sub">Books 1 &amp; 2 &middot; ch. 1&ndash;139</span></a>
       </div>
     </div>
 
