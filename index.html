@@ -80,8 +80,8 @@ a:hover{color:#a78bfa}
 .theme-btn:hover{border-color:var(--gold)}
 
 /* ── Hero ── */
-.hero{position:relative;text-align:center;padding:74px 24px 56px;background:var(--hero-glow)}
-.hero .diamond{display:inline-block;margin-bottom:18px;animation:fadeUp .8s var(--ease) both}
+.hero{position:relative;text-align:center;padding:44px 24px 32px;background:var(--hero-glow)}
+.hero .diamond{display:inline-block;margin-bottom:12px;animation:fadeUp .8s var(--ease) both}
 .hero .diamond svg{filter:drop-shadow(0 0 12px rgba(139,92,246,.5))}
 .hero h1{font-family:var(--font-h);font-size:clamp(2.4rem,6vw,3.4rem);color:var(--text);letter-spacing:.07em;animation:fadeUp .8s var(--ease) .05s both}
 .hero .tagline{font-size:1.02rem;color:var(--text-sec);margin-top:12px;animation:fadeUp .8s var(--ease) .15s both}
@@ -94,14 +94,14 @@ a:hover{color:#a78bfa}
 .section-title{font-family:var(--font-h);font-size:.78rem;color:var(--gold);text-transform:uppercase;letter-spacing:.28em;text-align:center;margin-bottom:20px}
 
 /* ── Works grid ── */
-.works{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.works{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:660px;margin:0 auto}
 .work{text-align:center;animation:fadeUp .7s var(--ease) both}
 .work:nth-child(2){animation-delay:.1s}
 .work:nth-child(3){animation-delay:.2s}
 .work-cover{display:block;aspect-ratio:3/4;border-radius:10px;overflow:hidden;box-shadow:var(--shadow-cover);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
 .work-cover img{width:100%;height:100%;object-fit:cover;display:block}
 .work-cover:hover{transform:translateY(-6px);box-shadow:0 18px 44px var(--gold-glow)}
-.work-kicker{font-family:var(--font-h);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:14px 0 2px;min-height:2em}
+.work-kicker{font-family:var(--font-h);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:14px 0 2px}
 .work-title{font-family:var(--font-h);font-size:.92rem;font-weight:700;color:var(--text);margin:2px 0 5px;line-height:1.35;min-height:2.7em;display:flex;align-items:center;justify-content:center}
 .work-title a{color:var(--text)}
 .work-title a:hover{color:var(--gold)}
@@ -114,7 +114,7 @@ a:hover{color:#a78bfa}
 .work-links .wl-out:hover{border-color:var(--gold);color:var(--gold)}
 .work-links .wl-dead{border:1px dashed var(--border);color:var(--text-muted);cursor:default}
 .work-note{font-size:.7rem;color:var(--text-muted);margin-top:9px;font-style:italic}
-.work-soon{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border:1px dashed var(--border);border-radius:10px;min-height:260px;padding:24px}
+.work-soon{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1px dashed var(--border);border-radius:10px;grid-column:1/-1;padding:20px}
 .work-soon .ws-title{font-family:var(--font-h);font-size:.86rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted)}
 .work-soon p{font-size:.82rem;color:var(--text-sec);line-height:1.6}
 .work-soon a{cursor:pointer}
@@ -193,11 +193,11 @@ footer .f-fine{font-size:.78rem;color:var(--text-muted)}
 </header>
 
 <section class="section" id="works">
-  <h2 class="section-title">The Works</h2>
+  <h2 class="section-title">The Necroverse</h2>
   <div class="works">
     <div class="work">
       <a class="work-cover" href="pvcodex.html"><img src="images-web/cover-pv.jpg" alt="Primordial Villain with a Slave Harem cover"></a>
-      <div class="work-kicker">First Entry in the Necroverse</div>
+      <div class="work-kicker">First Entry</div>
       <h3 class="work-title"><a href="pvcodex.html">Primordial Villain with a Slave Harem</a></h3>
       <div class="work-meta">1,700+ chapters &middot; ongoing</div>
       <div class="work-links">
@@ -209,7 +209,7 @@ footer .f-fine{font-size:.78rem;color:var(--text-muted)}
     </div>
     <div class="work">
       <a class="work-cover" href="https://www.webnovel.com/book/demonic-pornstar-system_32444714800937905" target="_blank" rel="noopener"><img src="images-web/cover-dps.jpg" alt="Demonic Pornstar System cover"></a>
-      <div class="work-kicker">Second Entry in the Necroverse</div>
+      <div class="work-kicker">Second Entry</div>
       <h3 class="work-title"><a href="https://www.webnovel.com/book/demonic-pornstar-system_32444714800937905" target="_blank" rel="noopener">Demonic Pornstar System</a></h3>
       <div class="work-meta">800+ chapters &middot; ongoing</div>
       <div class="work-links">
@@ -220,7 +220,7 @@ footer .f-fine{font-size:.78rem;color:var(--text-muted)}
       <div class="work-note">Amazon: Books 1&ndash;3 &middot; ch. 1&ndash;103</div>
     </div>
     <div class="work work-soon">
-      <div class="work-kicker" style="margin:0">Third Entry in the Necroverse</div>
+      <div class="work-kicker" style="margin:0;min-height:0">Third Entry</div>
       <div class="ws-title">Coming soon&hellip;</div>
       <p>Sign up to the <a onclick="scrollToNewsletter()">newsletter</a> or join the <a href="https://discord.gg/XAwgpNKAHr" target="_blank" rel="noopener">Discord</a> to be notified!</p>
     </div>
@@ -230,7 +230,7 @@ footer .f-fine{font-size:.78rem;color:var(--text-muted)}
 <section class="section" id="newsletter">
   <h2 class="section-title">Newsletter</h2>
   <div class="newsletter-box">
-    <p class="lead">Be the first to hear about my new releases and big Necroverse milestones.</p>
+    <p class="lead">Be the first to hear about my new releases and other important updates.</p>
     <form class="newsletter-form" id="newsletterForm">
       <div style="position:absolute;left:-9999px" aria-hidden="true"><input type="text" id="nlWebsite" tabindex="-1" autocomplete="off"></div>
       <input type="email" id="nlEmail" placeholder="your@email.com" required aria-label="Email address">
