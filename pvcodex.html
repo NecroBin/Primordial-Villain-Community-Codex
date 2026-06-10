@@ -2938,7 +2938,7 @@ function renderLeaderboard(lb, data, unit){
     var label = unit === 'trivia' ? (safeCount + ' entr' + (safeCount !== 1 ? 'ies' : 'y')) : safeCount.toLocaleString() + ' words';
     html += '<div class="lb-row">'
       + '<div class="lb-rank' + rankClass + '">#' + (i+1) + '</div>'
-      + '<img class="lb-avatar" src="' + escHtml(avatarUrl) + '" alt="">'
+      + '<img class="lb-avatar" src="' + escHtml(avatarUrl) + '" alt="" onerror="this.onerror=null;this.src=\'https://cdn.discordapp.com/embed/avatars/' + (i % 5) + '.png\'">'
       + '<div class="lb-name">' + escHtml(e.global_name || e.username || 'Unknown') + '</div>'
       + '<div class="lb-count">' + label + '</div>'
       + '</div>';
@@ -4144,7 +4144,7 @@ function loadTriviaLeaderboard(containerId, mode){
       var avUrl = e.avatar ? 'https://cdn.discordapp.com/avatars/' + sid + '/' + sav + '.png?size=64' : '';
       return '<div class="' + rowCls + '">' +
         '<span class="board-rank' + rankCls + '">#' + rank + '</span>' +
-        (avUrl ? '<img class="board-avatar" src="' + avUrl + '" alt="">' : '<span class="board-avatar"></span>') +
+        (avUrl ? '<img class="board-avatar" src="' + avUrl + '" alt="" onerror="this.onerror=null;this.src=\'https://cdn.discordapp.com/embed/avatars/' + (rank % 5) + '.png\'">' : '<span class="board-avatar"></span>') +
         '<span class="board-name">' + escHtml(e.global_name || e.username || 'Unknown') + '</span>' +
         '<span class="board-stat">' + statHtml + '</span></div>';
     }
@@ -4289,7 +4289,7 @@ function adminLoadEntries(){
     var h = '';
     entries.forEach(function(e){
       var av = e.avatar ? 'https://cdn.discordapp.com/avatars/' + e.id + '/' + e.avatar + '.png?size=64' : '';
-      var img = av ? '<img class="admin-entry-avatar" src="' + av + '">' : '<div class="admin-entry-avatar" style="background:var(--bg-secondary)"></div>';
+      var img = av ? '<img class="admin-entry-avatar" src="' + av + '" onerror="this.onerror=null;this.src=\'https://cdn.discordapp.com/embed/avatars/0.png\'">' : '<div class="admin-entry-avatar" style="background:var(--bg-secondary)"></div>';
       h += '<div class="admin-entry">' + img +
         '<span class="admin-entry-name">' + escHtml(e.global_name || e.username || '?') + '</span>' +
         '<span class="admin-entry-stats">' +
@@ -4361,7 +4361,7 @@ function adminLoadContrib(){
     var h = '';
     entries.forEach(function(e){
       var av = e.avatar ? 'https://cdn.discordapp.com/avatars/' + e.id + '/' + e.avatar + '.png?size=64' : '';
-      var img = av ? '<img class="admin-entry-avatar" src="' + av + '">' : '<div class="admin-entry-avatar" style="background:var(--bg-secondary)"></div>';
+      var img = av ? '<img class="admin-entry-avatar" src="' + av + '" onerror="this.onerror=null;this.src=\'https://cdn.discordapp.com/embed/avatars/0.png\'">' : '<div class="admin-entry-avatar" style="background:var(--bg-secondary)"></div>';
       h += '<div class="admin-entry">' + img +
         '<span class="admin-entry-name">' + escHtml(e.global_name || e.username || '?') + '</span>' +
         '<span class="admin-entry-stats">' +
