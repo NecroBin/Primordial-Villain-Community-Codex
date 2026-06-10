@@ -32,7 +32,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <script>
 document.documentElement.setAttribute('data-theme',localStorage.getItem('pv-theme')||'light');
-(function(){var p=new URLSearchParams(window.location.search);if(p.get('code')){window.location.replace('pvcodex.html'+window.location.search);return;}if(window.location.hash&&window.location.hash.length>1){window.location.replace('pvcodex.html'+window.location.hash);}})();
+(function(){var p=new URLSearchParams(window.location.search);if(p.get('code')){if(sessionStorage.getItem('pv_oauth_return')!=='landing'){window.location.replace('pvcodex.html'+window.location.search);}return;}if(window.location.hash&&window.location.hash.length>1){window.location.replace('pvcodex.html'+window.location.hash);}})();
 </script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -323,10 +323,54 @@ function subscribeDiscordLanding(){
   crypto.getRandomValues(arr);
   for(var i = 0; i < arr.length; i++){ state += ('0' + arr[i].toString(16)).slice(-2); }
   sessionStorage.setItem('pv_oauth_state', state);
-  sessionStorage.setItem('pv_oauth_return', 'home');
-  sessionStorage.setItem('pv_nl_pending', '1');
+  sessionStorage.setItem('pv_oauth_return', 'landing');
   window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=1502223149876645888&redirect_uri=' + encodeURIComponent('https://necrobin.com/') + '&response_type=code&scope=identify%20guilds%20email&state=' + state;
 }
+
+(function handleLandingOAuth(){
+  var params = new URLSearchParams(window.location.search);
+  var code = params.get('code');
+  if(!code || sessionStorage.getItem('pv_oauth_return') !== 'landing') return;
+  sessionStorage.removeItem('pv_oauth_return');
+  var returnedState = params.get('state');
+  var savedState = sessionStorage.getItem('pv_oauth_state');
+  sessionStorage.removeItem('pv_oauth_state');
+  history.replaceState(null, '', window.location.pathname);
+  var msg = document.getElementById('nlMsg');
+  function show(ok, text){
+    if(msg){ msg.className = 'newsletter-msg ' + (ok ? 'success' : 'error'); msg.textContent = text; }
+    var box = document.querySelector('.newsletter-box');
+    if(box) box.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+  if(!returnedState || returnedState !== savedState){ show(false, 'Login failed: invalid session state. Please try again.'); return; }
+  fetch('https://pv-codex-proxy.necrobin1.workers.dev/token', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({code:code})
+  }).then(function(r){ return r.json(); }).then(function(data){
+    if(data.access_token){
+      try {
+        localStorage.setItem('pv_discord_user', JSON.stringify({id:data.id, username:data.username, global_name:data.global_name, avatar:data.avatar}));
+        localStorage.setItem('pv_discord_token', data.access_token);
+      } catch(e){}
+      return fetch('https://pv-codex-proxy.necrobin1.workers.dev/subscribe/discord', {
+        method:'POST',
+        headers:{'Authorization':'Bearer ' + data.access_token}
+      }).then(function(r){ return r.json().then(function(d){ return {ok:r.ok, d:d}; }); }).then(function(res){
+        if(res.ok && res.d && res.d.ok){
+          show(true, 'Subscribed as ' + res.d.email + '. Welcome to the Necroverse!');
+          if(typeof gtag === 'function') gtag('event','newsletter_subscribe',{source:'discord'});
+        } else {
+          show(false, (res.d && res.d.error) || 'Could not subscribe. Try again.');
+        }
+      });
+    } else if(data.error === 'not_member'){
+      show(false, 'You must be a member of the Necroverse Discord server — join at discord.gg/XAwgpNKAHr and try again.');
+    } else {
+      show(false, 'Login failed: ' + (data.error || 'unknown error') + '. Try again.');
+    }
+  }).catch(function(){ show(false, 'Network error. Try again later.'); });
+})();
 function onGoogleCred(resp){
   if(!resp || !resp.credential) return;
   var msg = document.getElementById('nlMsg');
