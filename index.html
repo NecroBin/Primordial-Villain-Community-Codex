@@ -24,7 +24,7 @@
 <meta name="twitter:image" content="https://necrobin.com/og-landing.png">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://necrobin.com/">
-<title>NecroBin — The Necroverse</title>
+<title>NecroBin — Author of Primordial Villain with a Slave Harem</title>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"NecroBin","alternateName":["Necroverse","The Necroverse","Necroverse website","NecroBin website","NecroBin webnovel","NecroBin author","PV","DPS"],"url":"https://necrobin.com/","description":"NecroBin, creator of Primordial Villain with a Slave Harem and Demonic Pornstar System.","publisher":{"@type":"Person","name":"NecroBin"}}</script>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -116,6 +116,20 @@ a:hover{color:#a78bfa}
 .book-card-soon:hover{transform:none}
 .book-card-soon .soon-text{font-family:var(--font-h);font-size:.88rem;color:var(--text-muted);text-align:center;padding:24px;letter-spacing:.06em}
 
+/* ── Book extra links ── */
+.book-extra{padding:0 16px 14px;text-align:center;font-size:.74rem;color:var(--text-muted)}
+
+/* ── Newsletter ── */
+.newsletter-box{max-width:560px;width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:22px 24px;text-align:center;box-shadow:var(--shadow-card);animation:fadeUp .7s var(--ease) .7s both}
+.newsletter-box p{font-size:.85rem;color:var(--text-sec);margin-bottom:14px}
+.newsletter-form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.newsletter-form input[type=email]{flex:1;min-width:190px;max-width:300px;padding:10px 14px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.86rem;font-family:var(--font-b)}
+.newsletter-form input[type=email]:focus{outline:none;border-color:var(--gold)}
+.newsletter-msg{display:none;margin-top:12px;font-size:.82rem;padding:10px 14px;border-radius:8px}
+.newsletter-msg.success{display:block;background:rgba(46,204,113,.12);color:#2ecc71;border:1px solid rgba(46,204,113,.3)}
+.newsletter-msg.error{display:block;background:rgba(231,76,60,.12);color:#e74c3c;border:1px solid rgba(231,76,60,.3)}
+.newsletter-note{font-size:.7rem;color:var(--text-muted);margin-top:10px}
+
 /* ── Footer links ── */
 .footer-links{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:680px;width:100%;margin-bottom:40px;animation:fadeUp .7s var(--ease) .8s both}
 .link-card{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;padding:28px 20px;border-radius:14px;text-decoration:none;transition:all .3s var(--ease);border:1px solid transparent;box-shadow:var(--shadow-card);min-height:180px}
@@ -180,7 +194,10 @@ a:hover{color:#a78bfa}
       <div class="book-buttons">
         <a href="pvcodex.html" class="btn btn-primary">Codex</a>
         <a href="https://www.webnovel.com/book/primordial-villain-with-a-slave-harem_30056099600577905" target="_blank" rel="noopener" class="btn btn-secondary">Read Online</a>
+        <a href="https://www.amazon.com/dp/B0DTJ2SG1X" target="_blank" rel="noopener" class="btn btn-secondary">Amazon &mdash; Book 1</a>
+        <a href="https://www.amazon.com/dp/B0DXL8WTKW" target="_blank" rel="noopener" class="btn btn-secondary">Amazon &mdash; Book 2</a>
       </div>
+      <div class="book-extra">Also on <a href="https://www.goodreads.com/book/show/223801908-primordial-villain-with-a-slave-harem" target="_blank" rel="noopener">Goodreads</a></div>
     </div>
 
     <div class="book-card">
@@ -192,6 +209,7 @@ a:hover{color:#a78bfa}
       <div class="book-buttons">
         <span class="btn btn-disabled">Codex</span>
         <a href="https://www.webnovel.com/book/demonic-pornstar-system_32444714800937905" target="_blank" rel="noopener" class="btn btn-secondary">Read Online</a>
+        <a href="https://www.amazon.com/dp/B0FKM1PW5W" target="_blank" rel="noopener" class="btn btn-secondary" style="grid-column:1/-1">Amazon &mdash; Book 1</a>
       </div>
     </div>
 
@@ -199,6 +217,20 @@ a:hover{color:#a78bfa}
       <div class="soon-text">More coming soon&hellip;</div>
       <div style="font-size:.74rem;color:var(--text-muted);text-align:center;padding:0 16px 20px;font-family:var(--font-h);letter-spacing:.04em">Join <a href="https://discord.gg/XAwgpNKAHr" target="_blank" rel="noopener">Discord</a> and <a href="https://www.patreon.com/NecroBin" target="_blank" rel="noopener">Patreon</a> to be notified!</div>
     </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Newsletter</div>
+  <div class="newsletter-box">
+    <p>Be first to hear about new books, Amazon releases, and big Necroverse milestones.</p>
+    <form class="newsletter-form" id="newsletterForm">
+      <div style="position:absolute;left:-9999px" aria-hidden="true"><input type="text" id="nlWebsite" tabindex="-1" autocomplete="off"></div>
+      <input type="email" id="nlEmail" placeholder="your@email.com" required aria-label="Email address">
+      <button type="submit" class="btn btn-primary">Subscribe</button>
+    </form>
+    <div class="newsletter-msg" id="nlMsg"></div>
+    <div class="newsletter-note">Only for big updates. No spam, unsubscribe anytime.</div>
   </div>
 </div>
 
@@ -242,6 +274,39 @@ fetch('https://pv-codex-proxy.necrobin1.workers.dev/members')
       if(el) el.textContent = data.members.toLocaleString() + ' members' + (data.online ? ' • ' + data.online.toLocaleString() + ' online' : '');
     }
   }).catch(function(){});
+
+document.getElementById('newsletterForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var form = this;
+  var email = (document.getElementById('nlEmail').value || '').trim();
+  var hp = document.getElementById('nlWebsite').value || '';
+  var msg = document.getElementById('nlMsg');
+  var btn = form.querySelector('button[type="submit"]');
+  if(!email) return;
+  if(btn) btn.disabled = true;
+  fetch('https://pv-codex-proxy.necrobin1.workers.dev/subscribe', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({email:email, hp:hp, source:'landing'})
+  }).then(function(r){ return r.json().then(function(d){ return {ok:r.ok, d:d}; }); })
+  .then(function(res){
+    if(res.ok && res.d && res.d.ok){
+      msg.className = 'newsletter-msg success'; msg.textContent = 'You\'re on the list! Welcome to the Necroverse.';
+      form.reset();
+      if(typeof gtag === 'function') gtag('event','newsletter_subscribe',{source:'landing'});
+    } else {
+      msg.className = 'newsletter-msg error'; msg.textContent = (res.d && res.d.error) || 'Could not subscribe. Try again.';
+    }
+  }).catch(function(){
+    msg.className = 'newsletter-msg error'; msg.textContent = 'Network error. Try again later.';
+  }).then(function(){ if(btn) btn.disabled = false; });
+});
+
+document.addEventListener('click', function(e){
+  var a = e.target && e.target.closest ? e.target.closest('a[href^="http"]') : null;
+  if(!a || a.hostname === location.hostname) return;
+  if(typeof gtag === 'function') gtag('event','outbound_click',{link_domain:a.hostname, link_url:a.href, transport_type:'beacon'});
+}, true);
 
 </script>
 </body>

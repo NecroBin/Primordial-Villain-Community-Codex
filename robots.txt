@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /worker.js
 
 Sitemap: https://necrobin.com/sitemap.xml
