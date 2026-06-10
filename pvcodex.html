@@ -201,9 +201,10 @@ body.search-mode .page.search-has-results .sec-title{display:block!important;fon
 .newsletter-form input[type=email]{flex:1;min-width:190px;max-width:300px;padding:10px 14px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.86rem;font-family:var(--font-b)}
 .newsletter-form input[type=email]:focus{outline:none;border-color:var(--gold)}
 .newsletter-note{font-size:.7rem;color:var(--text-muted);margin-top:10px}
-.nl-oneclick{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;flex-wrap:wrap}
-.nl-oneclick-label{font-size:.74rem;color:var(--text-muted)}
-.nl-discord-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#5865F2;color:#fff;border:none;border-radius:20px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:var(--font-b);transition:background .2s}
+.nl-divider{display:flex;align-items:center;gap:12px;margin:14px auto 12px;max-width:340px;color:var(--text-muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+.nl-divider::before,.nl-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.nl-oneclick{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.nl-discord-btn{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 20px;background:#5865F2;color:#fff;border:none;border-radius:20px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:var(--font-b);transition:background .2s}
 .nl-discord-btn:hover{background:#4752c4}
 #authNotice{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(16px);background:rgba(231,76,60,.12);backdrop-filter:blur(8px);color:#e74c3c;border:1px solid rgba(231,76,60,.4);padding:12px 20px;border-radius:10px;font-size:.84rem;z-index:300;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;max-width:90vw;text-align:center}
 #authNotice.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
@@ -890,8 +891,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <input type="email" id="nlEmail" placeholder="your@email.com" required aria-label="Email address">
       <button type="submit" class="form-submit" style="padding:10px 22px;font-size:.84rem">Subscribe</button>
     </form>
+    <div class="nl-divider">or</div>
     <div class="nl-oneclick">
-      <span class="nl-oneclick-label">or one-click:</span>
       <button type="button" class="nl-discord-btn" onclick="subscribeDiscord()">Subscribe with Discord</button>
       <div id="nlGoogleBtn"></div>
     </div>
@@ -2866,7 +2867,7 @@ function onGoogleCred(resp){
     if(!(window.google && google.accounts && google.accounts.id)) return;
     google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, callback: onGoogleCred });
     var el = document.getElementById('nlGoogleBtn');
-    if(el) google.accounts.id.renderButton(el, { theme:'outline', size:'medium', text:'signup_with', shape:'pill', locale:'en' });
+    if(el) google.accounts.id.renderButton(el, { theme:'outline', size:'large', text:'signup_with', shape:'pill', locale:'en' });
   };
   document.head.appendChild(s);
 })();
