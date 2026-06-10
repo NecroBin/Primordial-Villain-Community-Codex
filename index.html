@@ -126,6 +126,10 @@ a:hover{color:#a78bfa}
 .newsletter-msg.success{display:block;background:rgba(46,204,113,.12);color:#2ecc71;border:1px solid rgba(46,204,113,.3)}
 .newsletter-msg.error{display:block;background:rgba(231,76,60,.12);color:#e74c3c;border:1px solid rgba(231,76,60,.3)}
 .newsletter-note{font-size:.7rem;color:var(--text-muted);margin-top:10px}
+.nl-oneclick{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+.nl-oneclick-label{font-size:.74rem;color:var(--text-muted)}
+.nl-discord-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#5865F2;color:#fff;border:none;border-radius:20px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:var(--font-b);transition:background .2s}
+.nl-discord-btn:hover{background:#4752c4}
 
 /* ── Footer links ── */
 .footer-links{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:680px;width:100%;margin-bottom:40px;animation:fadeUp .7s var(--ease) .8s both}
@@ -224,7 +228,11 @@ a:hover{color:#a78bfa}
       <input type="email" id="nlEmail" placeholder="your@email.com" required aria-label="Email address">
       <button type="submit" class="btn btn-primary">Subscribe</button>
     </form>
-    <div id="nlGoogleBtn" style="display:flex;justify-content:center;margin-top:10px"></div>
+    <div class="nl-oneclick">
+      <span class="nl-oneclick-label">or one-click:</span>
+      <button type="button" class="nl-discord-btn" onclick="subscribeDiscordLanding()">Subscribe with Discord</button>
+      <div id="nlGoogleBtn"></div>
+    </div>
     <div class="newsletter-msg" id="nlMsg"></div>
     <div class="newsletter-note">Only for big updates. No spam, unsubscribe anytime.</div>
   </div>
@@ -309,6 +317,16 @@ document.addEventListener('click', function(e){
 }, true);
 
 var GOOGLE_CLIENT_ID = '73047903913-ke865d9sgimps7aetb0k3ntlk9fsv3ec.apps.googleusercontent.com';
+function subscribeDiscordLanding(){
+  var state = '';
+  var arr = new Uint8Array(16);
+  crypto.getRandomValues(arr);
+  for(var i = 0; i < arr.length; i++){ state += ('0' + arr[i].toString(16)).slice(-2); }
+  sessionStorage.setItem('pv_oauth_state', state);
+  sessionStorage.setItem('pv_oauth_return', 'home');
+  sessionStorage.setItem('pv_nl_pending', '1');
+  window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=1502223149876645888&redirect_uri=' + encodeURIComponent('https://necrobin.com/') + '&response_type=code&scope=identify%20guilds%20email&state=' + state;
+}
 function onGoogleCred(resp){
   if(!resp || !resp.credential) return;
   var msg = document.getElementById('nlMsg');
@@ -337,7 +355,7 @@ function onGoogleCred(resp){
     if(!(window.google && google.accounts && google.accounts.id)) return;
     google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, callback: onGoogleCred });
     var el = document.getElementById('nlGoogleBtn');
-    if(el) google.accounts.id.renderButton(el, { theme:'outline', size:'medium', text:'signup_with', shape:'pill' });
+    if(el) google.accounts.id.renderButton(el, { theme:'outline', size:'medium', text:'signup_with', shape:'pill', locale:'en' });
   };
   document.head.appendChild(s);
 })();

@@ -2866,7 +2866,7 @@ function onGoogleCred(resp){
     if(!(window.google && google.accounts && google.accounts.id)) return;
     google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, callback: onGoogleCred });
     var el = document.getElementById('nlGoogleBtn');
-    if(el) google.accounts.id.renderButton(el, { theme:'outline', size:'medium', text:'signup_with', shape:'pill' });
+    if(el) google.accounts.id.renderButton(el, { theme:'outline', size:'medium', text:'signup_with', shape:'pill', locale:'en' });
   };
   document.head.appendChild(s);
 })();
