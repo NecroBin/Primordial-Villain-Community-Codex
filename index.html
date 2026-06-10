@@ -29,7 +29,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <script>
 document.documentElement.setAttribute('data-theme',localStorage.getItem('pv-theme')||'light');
 (function(){var p=new URLSearchParams(window.location.search);if(p.get('code')){if(sessionStorage.getItem('pv_oauth_return')!=='landing'){window.location.replace('pvcodex.html'+window.location.search);}return;}if(window.location.hash&&window.location.hash.length>1){window.location.replace('pvcodex.html'+window.location.hash);}})();
@@ -37,150 +37,138 @@ document.documentElement.setAttribute('data-theme',localStorage.getItem('pv-them
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --font-display:'Cinzel',Georgia,serif;
-  --font-body:'EB Garamond',Georgia,serif;
+  --font-h:'Cinzel',Georgia,'Times New Roman',serif;
+  --font-b:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --ease:cubic-bezier(.4,0,.2,1);
+  --gold:#8B5CF6;--gold-dim:#6D3FD4;--gold-glow:rgba(139,92,246,.25);
 }
 [data-theme="dark"]{
-  --bg:#0b0a11;--bg-raise:#13111c;--card:#161320;--card-edge:#241f33;
-  --ink:#e9e5f2;--ink-soft:#a89fc0;--ink-mute:#6d6584;
-  --accent:#8B5CF6;--accent-soft:#b79df8;--accent-deep:#6D3FD4;
-  --line:rgba(139,92,246,.28);--line-faint:rgba(139,92,246,.13);
-  --glow:rgba(139,92,246,.32);
-  --halo:radial-gradient(ellipse 70% 45% at 50% 0%,rgba(139,92,246,.16) 0%,transparent 65%),radial-gradient(ellipse 40% 30% at 85% 80%,rgba(109,63,212,.08) 0%,transparent 70%);
-  --cover-shadow:0 10px 40px rgba(0,0,0,.55),0 0 24px rgba(139,92,246,.18);
+  --bg-deep:#0e0e12;--bg-primary:#1e1e22;--bg-secondary:#252528;
+  --bg-card:#1c1c22;--bg-card-hover:#252530;
+  --border:#2a2a35;
+  --text:#dddde6;--text-sec:#9999ad;--text-muted:#5a5a70;
+  --shadow-card:0 4px 20px rgba(0,0,0,.4);
+  --hero-glow:radial-gradient(ellipse 60% 50% at 50% 40%, rgba(139,92,246,.12) 0%, transparent 70%);
 }
 [data-theme="light"]{
-  --bg:#f3eee3;--bg-raise:#ece5d6;--card:#fcfaf4;--card-edge:#e3dac6;
-  --ink:#241f31;--ink-soft:#5b5370;--ink-mute:#8e8699;
-  --accent:#6D3FD4;--accent-soft:#8B5CF6;--accent-deep:#5b32b4;
-  --line:rgba(109,63,212,.3);--line-faint:rgba(109,63,212,.14);
-  --glow:rgba(109,63,212,.2);
-  --halo:radial-gradient(ellipse 70% 45% at 50% 0%,rgba(139,92,246,.10) 0%,transparent 65%);
-  --cover-shadow:0 10px 30px rgba(60,40,110,.22);
+  --bg-deep:#f4f2f8;--bg-primary:#faf9fc;--bg-secondary:#eeedf3;
+  --bg-card:#ffffff;--bg-card-hover:#f6f4fa;
+  --border:#d8d4e0;
+  --text:#1a1a2e;--text-sec:#4a4a5a;--text-muted:#8a8a9a;
+  --shadow-card:0 4px 20px rgba(0,0,0,.06);
+  --hero-glow:radial-gradient(ellipse 60% 50% at 50% 40%, rgba(139,92,246,.06) 0%, transparent 70%);
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--font-body);background:var(--bg);color:var(--ink);line-height:1.6;min-height:100vh;overflow-x:hidden;transition:background .3s,color .3s;font-size:1.05rem}
-body::before{content:'';position:fixed;inset:0;background:var(--halo);pointer-events:none;z-index:0}
-body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.03;pointer-events:none;z-index:0}
-main{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 22px 60px}
-a{color:var(--accent);text-decoration:none}
-a:hover{color:var(--accent-soft)}
-p a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--font-b);background:var(--bg-deep);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background .3s,color .3s;padding:0;overflow-x:hidden}
+a{color:var(--gold);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;transition:color .2s}
+a:hover{color:#a78bfa}
 
 /* ── Theme toggle ── */
-.theme-btn{position:fixed;top:16px;right:16px;z-index:110;width:42px;height:42px;background:var(--card);border:1px solid var(--card-edge);border-radius:50%;color:var(--accent);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s var(--ease);box-shadow:0 4px 16px rgba(0,0,0,.18)}
-.theme-btn:hover{border-color:var(--accent);transform:rotate(20deg)}
+.theme-btn{position:fixed;top:14px;right:14px;z-index:110;width:40px;height:40px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;color:var(--gold);font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s var(--ease);box-shadow:var(--shadow-card)}
+.theme-btn:hover{border-color:var(--gold);background:var(--bg-card-hover);transform:translateY(-2px)}
 
 /* ── Hero ── */
-.hero{text-align:center;padding:72px 12px 44px;animation:rise .8s var(--ease) both}
-.hero .sigil{display:inline-block;margin-bottom:18px;filter:drop-shadow(0 0 14px var(--glow))}
-.hero-kicker{font-family:var(--font-display);font-size:.72rem;letter-spacing:.45em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:10px}
-.hero h1{font-family:var(--font-display);font-weight:900;font-size:clamp(2.6rem,8vw,4.2rem);letter-spacing:.04em;line-height:1.05;background:linear-gradient(160deg,var(--ink) 30%,var(--accent-soft) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero-tag{font-style:italic;font-size:1.12rem;color:var(--ink-soft);margin-top:14px}
-.hero-rule{width:200px;height:1px;margin:34px auto 0;background:linear-gradient(90deg,transparent,var(--accent),transparent);position:relative}
-.hero-rule::after{content:'◆';position:absolute;top:-9px;left:50%;transform:translateX(-50%);color:var(--accent);font-size:.6rem;background:transparent}
+.hero{position:relative;text-align:center;padding:40px 24px 18px;width:100%;background:var(--hero-glow);overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.3}
+.hero h1{font-family:var(--font-h);font-size:3rem;color:var(--gold);letter-spacing:.06em;text-shadow:0 0 40px rgba(139,92,246,.3);animation:fadeUp .8s var(--ease) both}
+.hero .tagline{font-size:1rem;color:var(--text-sec);margin-top:14px;line-height:1.6;letter-spacing:.04em;animation:fadeUp .8s var(--ease) .15s both}
+.hero .diamond{display:inline-block;margin-bottom:20px;animation:fadeUp .8s var(--ease) both;opacity:0;animation-fill-mode:forwards}
+.hero .diamond svg{filter:drop-shadow(0 0 12px rgba(139,92,246,.5))}
 
-/* ── Section headings ── */
-.sec-kicker{font-family:var(--font-display);font-size:.74rem;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);text-align:center;margin:54px 0 26px;display:flex;align-items:center;gap:16px;justify-content:center}
-.sec-kicker::before,.sec-kicker::after{content:'';height:1px;width:48px;background:var(--line)}
+/* ── Sections ── */
+.section{width:100%;padding:10px 24px;display:flex;flex-direction:column;align-items:center}
+.section-title{font-family:var(--font-h);font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.2em;margin-bottom:16px;animation:fadeUp .6s var(--ease) .3s both}
 
-/* ── Tome rows ── */
-.tome{position:relative;display:grid;grid-template-columns:148px 1fr;gap:22px;padding:22px;margin-bottom:20px;background:var(--card);border:1px solid var(--card-edge);border-radius:4px;animation:rise .7s var(--ease) both}
-.tome:nth-of-type(2){animation-delay:.12s}
-.tome::before,.tome::after{content:'';position:absolute;width:14px;height:14px;border-color:var(--accent);border-style:solid;opacity:.55;transition:opacity .3s}
-.tome::before{top:-1px;left:-1px;border-width:1px 0 0 1px}
-.tome::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0}
-.tome:hover::before,.tome:hover::after{opacity:1}
-.tome-cover{display:block;width:148px;aspect-ratio:3/4;border-radius:3px;overflow:hidden;box-shadow:var(--cover-shadow);transition:transform .4s var(--ease)}
-.tome-cover img{width:100%;height:100%;object-fit:cover;display:block}
-.tome-cover:hover{transform:translateY(-4px) rotate(-.6deg)}
-.tome-title{font-family:var(--font-display);font-weight:700;font-size:1.18rem;line-height:1.3;letter-spacing:.02em;margin-bottom:8px}
-.tome-title a{color:var(--ink)}
-.tome-title a:hover{color:var(--accent-soft)}
-.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px}
-.chip{font-family:var(--font-display);font-size:.58rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:4px 11px;white-space:nowrap}
-.chip-hot{color:var(--accent);border-color:var(--accent)}
-.tome-hook{font-size:1rem;font-style:italic;color:var(--ink-soft);margin-bottom:16px;max-width:52ch}
-.tome-actions{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
-.pill{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-display);font-size:.72rem;font-weight:600;letter-spacing:.07em;padding:0 18px;height:38px;border-radius:999px;transition:all .25s var(--ease);white-space:nowrap}
-.pill-primary{background:var(--accent);color:#fff;box-shadow:0 4px 18px var(--glow)}
-.pill-primary:hover{background:var(--accent-deep);color:#fff;transform:translateY(-1px)}
-.pill-ghost{border:1px solid var(--line);color:var(--ink-soft)}
-.pill-ghost:hover{border-color:var(--accent);color:var(--accent)}
-.pill-dead{border:1px dashed var(--line-faint);color:var(--ink-mute);cursor:default}
-.tome-note{font-size:.78rem;color:var(--ink-mute);margin-top:11px;font-style:italic}
+/* ── Book cards ── */
+.books{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;max-width:960px;width:100%}
+.book-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-card);transition:all .4s var(--ease);display:flex;flex-direction:column;animation:fadeUp .7s var(--ease) both}
+.book-card .book-desc{flex:1}
+.book-card:nth-child(1){animation-delay:.35s}
+.book-card:nth-child(2){animation-delay:.5s}
+.book-card:nth-child(3){animation-delay:.65s}
+.book-card:hover{transform:translateY(-6px)}
+.book-card:nth-child(1):hover{box-shadow:0 12px 40px rgba(30,80,220,.25),0 0 0 1px rgba(139,92,246,.2)}
+.book-card:nth-child(2):hover{box-shadow:0 12px 40px rgba(194,59,59,.2),0 0 0 1px rgba(194,59,59,.15)}
+.book-cover{width:100%;aspect-ratio:3/4;overflow:hidden;position:relative}
+.book-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
+.book-card:hover .book-cover img{transform:scale(1.04)}
+.book-buttons{padding:14px 16px;display:grid;grid-template-columns:1fr;gap:8px;border-top:1px solid var(--border)}
+.btn{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:9px 16px;border-radius:8px;font-family:var(--font-h);font-size:.78rem;font-weight:600;cursor:pointer;transition:all .25s var(--ease);text-decoration:none;border:none;letter-spacing:.02em;min-height:40px;text-align:center;line-height:1.3}
+.btn-sub{font-family:var(--font-b);font-size:.6rem;font-weight:400;letter-spacing:.04em;opacity:.72;text-transform:none;white-space:nowrap}
+.book-buttons .btn{height:50px;padding:6px 14px}
+.btn-primary{background:var(--gold);color:#fff}
+.btn-primary:hover{background:var(--gold-dim);box-shadow:0 4px 20px var(--gold-glow);color:#fff;transform:translateY(-1px)}
+.btn-secondary{background:var(--bg-secondary);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-1px)}
+.btn-disabled{background:var(--bg-secondary);color:var(--text-muted);border:1px solid var(--border);cursor:default;opacity:.45}
 
-/* ── Coming soon strip ── */
-.soon{position:relative;text-align:center;padding:26px 20px;margin-bottom:20px;border:1px dashed var(--line);border-radius:4px;animation:rise .7s var(--ease) .24s both}
-.soon-title{font-family:var(--font-display);font-size:.86rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px}
-.soon p{font-size:.92rem;color:var(--ink-soft)}
-.soon a{cursor:pointer}
+/* ── Book description ── */
+.book-desc{padding:12px 16px 4px;font-size:.82rem;color:var(--text-sec);line-height:1.55;text-align:center}
+.book-title{font-family:var(--font-h);font-size:.88rem;font-weight:700;color:var(--gold);padding:14px 16px 0;text-align:center;letter-spacing:.02em;min-height:calc(3.2em + 14px);display:flex;align-items:center;justify-content:center}
+
+/* ── About section ── */
+.about{max-width:680px;width:100%;text-align:center;animation:fadeUp .7s var(--ease) .6s both}
+.about p{font-size:.9rem;color:var(--text-sec);line-height:1.7;margin-bottom:12px}
+.about p:last-child{margin-bottom:0}
+.about .about-origin{font-family:var(--font-h);font-size:.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.15em;margin-top:4px}
+
+/* ── Coming soon card ── */
+.book-card-soon{position:relative;border:1px solid transparent;background:var(--bg-card);display:flex;align-items:center;justify-content:center}
+.book-card-soon::before{content:'';position:absolute;inset:-1px;border-radius:16px;padding:1px;background:linear-gradient(135deg,var(--border),var(--gold),var(--border),var(--gold));background-size:300% 300%;animation:shimmer 4s ease infinite;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.book-card-soon:hover{transform:none}
+.book-card-soon .soon-text{font-family:var(--font-h);font-size:.88rem;color:var(--text-muted);text-align:center;padding:24px;letter-spacing:.06em}
 
 /* ── Newsletter ── */
-.newsletter-box{position:relative;text-align:center;padding:34px 26px 28px;background:var(--card);border:1px solid var(--card-edge);border-radius:4px;overflow:hidden}
-.newsletter-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 90% at 50% -20%,var(--glow) 0%,transparent 60%);opacity:.45;pointer-events:none}
-.newsletter-box>*{position:relative}
-.newsletter-box p.lead{font-size:1.05rem;color:var(--ink-soft);margin-bottom:18px}
-.newsletter-form{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
-.newsletter-form input[type=email]{flex:1;min-width:200px;max-width:300px;padding:11px 16px;background:var(--bg-raise);border:1px solid var(--card-edge);border-radius:999px;color:var(--ink);font-size:.95rem;font-family:var(--font-body)}
-.newsletter-form input[type=email]:focus{outline:none;border-color:var(--accent)}
-.newsletter-form button{font-family:var(--font-display);font-size:.74rem;font-weight:600;letter-spacing:.08em;padding:0 24px;height:42px;border-radius:999px;background:var(--accent);color:#fff;border:none;cursor:pointer;box-shadow:0 4px 18px var(--glow);transition:all .25s var(--ease)}
-.newsletter-form button:hover{background:var(--accent-deep)}
-.nl-divider{display:flex;align-items:center;gap:12px;margin:16px auto 12px;max-width:300px;color:var(--ink-mute);font-family:var(--font-display);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase}
-.nl-divider::before,.nl-divider::after{content:'';flex:1;height:1px;background:var(--line-faint)}
-.nl-oneclick{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
-.nl-discord-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 20px;background:#5865F2;color:#fff;border:none;border-radius:999px;font-family:var(--font-display);font-size:.7rem;font-weight:600;letter-spacing:.05em;cursor:pointer;transition:background .2s}
-.nl-discord-btn:hover{background:#4752c4}
-.newsletter-msg{display:none;margin:14px auto 0;max-width:420px;font-size:.92rem;padding:10px 16px;border-radius:8px}
+.newsletter-box{max-width:560px;width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:22px 24px;text-align:center;box-shadow:var(--shadow-card);animation:fadeUp .7s var(--ease) .7s both}
+.newsletter-box p{font-size:.85rem;color:var(--text-sec);margin-bottom:14px}
+.newsletter-form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.newsletter-form input[type=email]{flex:1;min-width:190px;max-width:300px;padding:10px 14px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.86rem;font-family:var(--font-b)}
+.newsletter-form input[type=email]:focus{outline:none;border-color:var(--gold)}
+.newsletter-msg{display:none;margin-top:12px;font-size:.82rem;padding:10px 14px;border-radius:8px}
 .newsletter-msg.success{display:block;background:rgba(46,204,113,.12);color:#2ecc71;border:1px solid rgba(46,204,113,.3)}
 .newsletter-msg.error{display:block;background:rgba(231,76,60,.12);color:#e74c3c;border:1px solid rgba(231,76,60,.3)}
-.newsletter-note{font-size:.8rem;color:var(--ink-mute);margin-top:12px;font-style:italic}
+.newsletter-note{font-size:.7rem;color:var(--text-muted);margin-top:10px}
+.nl-divider{display:flex;align-items:center;gap:12px;margin:14px auto 12px;max-width:340px;color:var(--text-muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+.nl-divider::before,.nl-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.nl-oneclick{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.nl-discord-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 20px;background:#5865F2;color:#fff;border:none;border-radius:20px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:var(--font-b);transition:background .2s}
+.nl-discord-btn:hover{background:#4752c4}
 
-/* ── Community ── */
-.community{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.com-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:26px 18px;border-radius:4px;border:1px solid var(--card-edge);background:var(--card);transition:all .3s var(--ease);position:relative;overflow:hidden}
-.com-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s}
-.com-card:hover{transform:translateY(-3px);border-color:var(--accent)}
-.com-card svg{position:relative}
-.com-card strong{position:relative;font-family:var(--font-display);font-size:.86rem;letter-spacing:.06em;color:var(--ink)}
-.com-card span{position:relative;font-size:.88rem;color:var(--ink-soft);line-height:1.45}
-.com-discord svg{color:#5865F2}
-.com-discord::before{background:radial-gradient(ellipse at 50% 0%,rgba(88,101,242,.16),transparent 70%)}
-.com-patreon svg{color:#f96854}
-.com-patreon::before{background:radial-gradient(ellipse at 50% 0%,rgba(249,104,84,.14),transparent 70%)}
-.com-card:hover::before{opacity:1}
-.member-count{font-size:.78rem;color:var(--accent);font-style:italic}
+/* ── Footer links ── */
+.footer-links{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:680px;width:100%;margin-bottom:40px;animation:fadeUp .7s var(--ease) .8s both}
+.link-card{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;padding:28px 20px;border-radius:14px;text-decoration:none;transition:all .3s var(--ease);border:1px solid transparent;box-shadow:var(--shadow-card);min-height:180px}
+.link-card:hover{transform:translateY(-4px)}
+.link-card strong{font-family:var(--font-h);font-size:.92rem;display:block}
+.link-card span{font-size:.82rem;opacity:.85;line-height:1.5}
+.link-discord{background:linear-gradient(135deg,#5865F2,#7c6bf6);color:#fff}
+.link-discord:hover{box-shadow:0 12px 36px rgba(88,101,242,.4);color:#fff}
+.link-patreon{background:linear-gradient(135deg,#f96854,#ff7b6b);color:#fff}
+.link-patreon:hover{box-shadow:0 12px 36px rgba(249,104,84,.4);color:#fff}
+.member-count{font-size:.72rem;opacity:.7;margin-top:2px}
 
-/* ── About ── */
-.about{max-width:600px;margin:0 auto;text-align:center}
-.about p{font-size:1.05rem;color:var(--ink-soft);margin-bottom:14px}
-.about .signoff{font-style:italic;color:var(--ink-mute)}
-
-/* ── Footer ── */
-footer{position:relative;z-index:1;text-align:center;padding:30px 20px 40px;border-top:1px solid var(--line-faint);margin-top:60px}
-footer .f-links{display:flex;gap:22px;justify-content:center;margin-bottom:12px;font-family:var(--font-display);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase}
-footer .f-fine{font-size:.8rem;color:var(--ink-mute);font-style:italic}
-
-@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+/* ── Animations ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
 /* ── Responsive ── */
-@media(max-width:620px){
-  .hero{padding:56px 8px 34px}
-  .tome{grid-template-columns:96px 1fr;gap:16px;padding:16px}
-  .tome-cover{width:96px}
-  .tome-title{font-size:1.02rem}
-  .tome-hook{font-size:.94rem;margin-bottom:13px}
-  .tome-actions{gap:7px}
-  .pill{height:36px;padding:0 14px;font-size:.66rem}
-  .tome-actions,.tome-note{grid-column:1/-1}
-  .tome-actions{margin-top:2px}
-  .tome-note{margin-top:8px}
-  .community{grid-template-columns:1fr}
+@media(max-width:768px){
+  .hero{padding:40px 24px 18px}
+  .hero h1{font-size:2.2rem}
+  .books{grid-template-columns:1fr 1fr;max-width:520px}
+  .book-card-soon{grid-column:1/-1;min-height:120px}
 }
-@media(max-width:380px){
-  .tome{grid-template-columns:84px 1fr}
-  .tome-cover{width:84px}
+@media(max-width:520px){
+  .hero h1{font-size:1.8rem}
+  .books{grid-template-columns:1fr;max-width:400px}
+  .footer-links{grid-template-columns:1fr;max-width:320px}
+  .section{padding:12px 24px}
+  /* Compact horizontal book cards: cover as thumbnail, buttons below */
+  .book-card:not(.book-card-soon){display:grid;grid-template-columns:120px 1fr;column-gap:14px;align-items:start}
+  .book-card:not(.book-card-soon) .book-cover{grid-column:1;grid-row:1/3;width:120px;aspect-ratio:3/4;margin:16px 0 16px 16px;border-radius:10px}
+  .book-card:not(.book-card-soon) .book-title{grid-column:2;min-height:0;padding:16px 16px 6px 0;justify-content:flex-start;text-align:left;font-size:.92rem;line-height:1.35}
+  .book-card:not(.book-card-soon) .book-desc{grid-column:2;flex:none;text-align:left;padding:0 16px 0 0;margin-bottom:14px;font-size:.78rem;line-height:1.5;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+  .book-card:not(.book-card-soon) .book-buttons{grid-column:1/-1}
+  .book-buttons .btn{height:44px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important}}
 </style>
@@ -189,104 +177,93 @@ footer .f-fine{font-size:.8rem;color:var(--ink-mute);font-style:italic}
 
 <button class="theme-btn" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme"><span id="themeIcon">&#9728;</span></button>
 
-<main>
-  <header class="hero">
-    <div class="sigil"><svg width="30" height="30" viewBox="0 0 32 32"><path d="M16 2L28 16L16 30L4 16Z" fill="none" stroke="#8B5CF6" stroke-width="1.6"/><path d="M16 9L22 16L16 23L10 16Z" fill="#8B5CF6"/></svg></div>
-    <p class="hero-kicker">The Necroverse</p>
-    <h1>NecroBin</h1>
-    <p class="hero-tag">Adult LitRPG &amp; progression fantasy &mdash; where the villain wins.</p>
-    <div class="hero-rule"></div>
-  </header>
+<header class="hero">
+  <div class="diamond"><svg width="28" height="28" viewBox="0 0 32 32"><path d="M16 2L28 16L16 30L4 16Z" fill="#8B5CF6"/></svg></div>
+  <h1>Welcome to the Necroverse!</h1>
+  <p class="tagline">The Grand Literary Universe of Author NecroBin</p>
+</header>
 
-  <h2 class="sec-kicker">The Works</h2>
-
-  <article class="tome">
-    <a class="tome-cover" href="pvcodex.html"><img src="images-web/cover-pv.jpg" alt="Primordial Villain with a Slave Harem cover"></a>
-    <div class="tome-body">
-      <h3 class="tome-title"><a href="pvcodex.html">Primordial Villain with a Slave Harem</a></h3>
-      <div class="chips"><span class="chip chip-hot">1,700+ chapters</span><span class="chip">ongoing</span><span class="chip">18+</span></div>
-      <p class="tome-hook">Quinlan arrives in deadly Thalorind as a level&nbsp;1 Commoner with severe trust issues &mdash; then he notices how many people here wear collars.</p>
-      <div class="tome-actions">
-        <a href="pvcodex.html" class="pill pill-primary">&#9670; Codex</a>
-        <a href="https://www.webnovel.com/book/primordial-villain-with-a-slave-harem_30056099600577905" target="_blank" rel="noopener" class="pill pill-ghost">Read on Webnovel</a>
-        <a href="https://www.amazon.com/dp/B0DTJ2SG1X" target="_blank" rel="noopener" class="pill pill-ghost">Amazon</a>
-      </div>
-      <p class="tome-note">Amazon editions: Books 1 &amp; 2 &mdash; chapters 1&ndash;139</p>
-    </div>
-  </article>
-
-  <article class="tome">
-    <a class="tome-cover" href="https://www.webnovel.com/book/demonic-pornstar-system_32444714800937905" target="_blank" rel="noopener"><img src="images-web/cover-dps.jpg" alt="Demonic Pornstar System cover"></a>
-    <div class="tome-body">
-      <h3 class="tome-title"><a href="https://www.webnovel.com/book/demonic-pornstar-system_32444714800937905" target="_blank" rel="noopener">Demonic Pornstar System</a></h3>
-      <div class="chips"><span class="chip chip-hot">800+ chapters</span><span class="chip">ongoing</span><span class="chip">18+</span></div>
-      <p class="tome-hook">The mana apocalypse left Kaiden powerless &mdash; until a banana peel sent him tumbling into a very unconventional system.</p>
-      <div class="tome-actions">
-        <span class="pill pill-dead">&#9670; Codex &mdash; soon</span>
-        <a href="https://www.webnovel.com/book/demonic-pornstar-system_32444714800937905" target="_blank" rel="noopener" class="pill pill-ghost">Read on Webnovel</a>
-        <a href="https://www.amazon.com/dp/B0FKM1PW5W" target="_blank" rel="noopener" class="pill pill-ghost">Amazon</a>
-      </div>
-      <p class="tome-note">Amazon editions: Books 1&ndash;3 &mdash; chapters 1&ndash;103</p>
-    </div>
-  </article>
-
-  <div class="soon">
-    <div class="soon-title">More coming soon&hellip;</div>
-    <p>Sign up to the <a onclick="scrollToNewsletter()">newsletter</a> or join the <a href="https://discord.gg/XAwgpNKAHr" target="_blank" rel="noopener">Discord</a> to be notified!</p>
+<div class="section">
+  <div class="section-title">About the Author</div>
+  <div class="about">
+    <p>I&rsquo;m from the small country of Hungary (no, I&rsquo;m not hungry) and I suppose I sport an overly vivid imagination.</p>
+    <p>While reading other stories, I kept getting more and more irritated, imagining how I&rsquo;d have done things differently. This, paired with my general boredom, led to the decision of taking matters into my own hands.</p>
+    <p>And, well&hellip; here we are.</p>
+    <p style="margin-top:8px;font-size:.85rem">Join the <a href="https://discord.gg/XAwgpNKAHr" target="_blank" rel="noopener">Discord</a>, support me on <a href="https://www.patreon.com/NecroBin" target="_blank" rel="noopener">Patreon</a>, or sign up to the <a onclick="scrollToNewsletter()" style="cursor:pointer">newsletter</a> to follow what happens in the Necroverse!</p>
   </div>
+</div>
 
-  <h2 class="sec-kicker">Newsletter</h2>
+<div class="section">
+  <div class="section-title">My Works</div>
+  <div class="books">
+    <div class="book-card">
+      <a href="pvcodex.html" class="book-cover">
+        <img src="images-web/cover-pv.jpg" alt="Primordial Villain with a Slave Harem">
+      </a>
+      <div class="book-title">Primordial Villain with a Slave Harem</div>
+      <div class="book-desc">Quinlan, a dejected office worker, arrives in the deadly fantasy world of Thalorind as a level 1 Commoner. Severe trust issues make joining a team impossible, but he soon notices that a lot of people have collars around their necks in this world.</div>
+      <div class="book-buttons">
+        <a href="pvcodex.html" class="btn btn-primary">Codex<span class="btn-sub">characters &middot; lore &middot; trivia</span></a>
+        <a href="https://www.webnovel.com/book/primordial-villain-with-a-slave-harem_30056099600577905" target="_blank" rel="noopener" class="btn btn-secondary">Read on Webnovel<span class="btn-sub">1,700+ chapters &middot; ongoing</span></a>
+        <a href="https://www.amazon.com/dp/B0DTJ2SG1X" target="_blank" rel="noopener" class="btn btn-secondary">Read on Amazon<span class="btn-sub">Books 1 &amp; 2 &middot; ch. 1&ndash;139</span></a>
+      </div>
+    </div>
 
-  <section class="newsletter-box">
-    <p class="lead">Be the first to hear about my new releases and big Necroverse milestones.</p>
+    <div class="book-card">
+      <a href="https://www.webnovel.com/book/demonic-pornstar-system_32444714800937905" target="_blank" rel="noopener" class="book-cover">
+        <img src="images-web/cover-dps.jpg" alt="Demonic Pornstar System">
+      </a>
+      <div class="book-title">Demonic Pornstar System</div>
+      <div class="book-desc">When the mana apocalypse struck, 85% of humanity was left powerless. Kaiden was one of them, until a banana peel sent him tumbling into a very unconventional system. His path to power isn&rsquo;t through combat alone, but through conquering the world of adult content.</div>
+      <div class="book-buttons">
+        <span class="btn btn-disabled">Codex<span class="btn-sub">coming soon</span></span>
+        <a href="https://www.webnovel.com/book/demonic-pornstar-system_32444714800937905" target="_blank" rel="noopener" class="btn btn-secondary">Read on Webnovel<span class="btn-sub">800+ chapters &middot; ongoing</span></a>
+        <a href="https://www.amazon.com/dp/B0FKM1PW5W" target="_blank" rel="noopener" class="btn btn-secondary">Read on Amazon<span class="btn-sub">Books 1&ndash;3 &middot; ch. 1&ndash;103</span></a>
+      </div>
+    </div>
+
+    <div class="book-card book-card-soon">
+      <div class="soon-text">More coming soon&hellip;</div>
+      <div style="font-size:.74rem;color:var(--text-muted);text-align:center;padding:0 16px 20px;font-family:var(--font-h);letter-spacing:.04em">Sign up to the <a onclick="scrollToNewsletter()" style="cursor:pointer">newsletter</a> or join the <a href="https://discord.gg/XAwgpNKAHr" target="_blank" rel="noopener">Discord</a> to be notified!</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Newsletter</div>
+  <div class="newsletter-box">
+    <p>Be the first to hear about my new releases and big Necroverse milestones.</p>
     <form class="newsletter-form" id="newsletterForm">
       <div style="position:absolute;left:-9999px" aria-hidden="true"><input type="text" id="nlWebsite" tabindex="-1" autocomplete="off"></div>
       <input type="email" id="nlEmail" placeholder="your@email.com" required aria-label="Email address">
-      <button type="submit">Subscribe</button>
+      <button type="submit" class="btn btn-primary">Subscribe</button>
     </form>
     <div class="nl-divider">or</div>
     <div class="nl-oneclick">
-      <button type="button" class="nl-discord-btn" onclick="subscribeDiscordLanding()"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>Subscribe with Discord</button>
+      <button type="button" class="nl-discord-btn" onclick="subscribeDiscordLanding()"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>Subscribe with Discord</button>
       <div id="nlGoogleBtn"></div>
     </div>
     <div class="newsletter-msg" id="nlMsg"></div>
     <div class="newsletter-note">Only for big updates. No spam, unsubscribe anytime.</div>
-  </section>
+  </div>
+</div>
 
-  <h2 class="sec-kicker">The Community</h2>
-
-  <section class="community">
-    <a href="https://discord.gg/XAwgpNKAHr" target="_blank" rel="noopener" class="com-card com-discord">
-      <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+<div class="section">
+  <div class="section-title">Join the Community</div>
+  <div class="footer-links">
+    <a href="https://discord.gg/XAwgpNKAHr" target="_blank" rel="noopener" class="link-card link-discord">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
       <strong>Join the Discord</strong>
       <span>Discuss chapters, theories, and see amazing art of the girls</span>
-      <span class="member-count" id="discordCount"></span>
+      <div class="member-count" id="discordCount"></div>
     </a>
-    <a href="https://www.patreon.com/NecroBin" target="_blank" rel="noopener" class="com-card com-patreon">
-      <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M14.82 2.41c3.96 0 7.18 3.24 7.18 7.21 0 3.96-3.22 7.18-7.18 7.18-3.97 0-7.21-3.22-7.21-7.18 0-3.97 3.24-7.21 7.21-7.21M2 21.6h3.5V2.41H2V21.6z"/></svg>
+    <a href="https://www.patreon.com/NecroBin" target="_blank" rel="noopener" class="link-card link-patreon">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M14.82 2.41c3.96 0 7.18 3.24 7.18 7.21 0 3.96-3.22 7.18-7.18 7.18-3.97 0-7.21-3.22-7.21-7.18 0-3.97 3.24-7.21 7.21-7.21M2 21.6h3.5V2.41H2V21.6z"/></svg>
       <strong>Support on Patreon</strong>
       <span>Exclusive pictures of the girls &amp; the best way to support me</span>
     </a>
-  </section>
-
-  <h2 class="sec-kicker">About the Author</h2>
-
-  <section class="about">
-    <p>I&rsquo;m from the small country of Hungary (no, I&rsquo;m not hungry) and I suppose I sport an overly vivid imagination.</p>
-    <p>While reading other stories, I kept getting more and more irritated, imagining how I&rsquo;d have done things differently. This, paired with my general boredom, led to the decision of taking matters into my own hands.</p>
-    <p class="signoff">And, well&hellip; here we are.</p>
-    <p style="margin-top:18px;font-size:.95rem">Join the <a href="https://discord.gg/XAwgpNKAHr" target="_blank" rel="noopener">Discord</a>, support me on <a href="https://www.patreon.com/NecroBin" target="_blank" rel="noopener">Patreon</a>, or sign up to the <a onclick="scrollToNewsletter()" style="cursor:pointer">newsletter</a> to follow what happens in the Necroverse!</p>
-  </section>
-</main>
-
-<footer>
-  <div class="f-links">
-    <a href="pvcodex.html">Codex</a>
-    <a href="https://discord.gg/XAwgpNKAHr" target="_blank" rel="noopener">Discord</a>
-    <a href="https://www.patreon.com/NecroBin" target="_blank" rel="noopener">Patreon</a>
   </div>
-  <div class="f-fine">The Necroverse &mdash; written by NecroBin</div>
-</footer>
+</div>
 
 <script>
 function scrollToNewsletter(){
@@ -404,7 +381,6 @@ function subscribeDiscordLanding(){
     }
   }).catch(function(){ show(false, 'Network error. Try again later.'); });
 })();
-
 function onGoogleCred(resp){
   if(!resp || !resp.credential) return;
   var msg = document.getElementById('nlMsg');
@@ -437,6 +413,7 @@ function onGoogleCred(resp){
   };
   document.head.appendChild(s);
 })();
+
 </script>
 </body>
 </html>
