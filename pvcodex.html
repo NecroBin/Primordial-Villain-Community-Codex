@@ -2840,7 +2840,7 @@ window.subscribeDiscord = function(){
   }
   doDiscordSubscribe();
 };
-var GOOGLE_CLIENT_ID = ''; // paste Google OAuth client ID (public) to enable the Google button
+var GOOGLE_CLIENT_ID = '73047903913-ke865d9sgimps7aetb0k3ntlk9fsv3ec.apps.googleusercontent.com';
 function onGoogleCred(resp){
   if(!resp || !resp.credential) return;
   fetch(WORKER + '/subscribe/google', {
