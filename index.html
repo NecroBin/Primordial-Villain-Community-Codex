@@ -80,7 +80,7 @@ a:hover{color:#a78bfa}
 .theme-btn:hover{border-color:var(--gold)}
 
 /* ── Hero ── */
-.hero{position:relative;text-align:center;padding:44px 24px 32px;background:var(--hero-glow)}
+.hero{position:relative;text-align:center;padding:36px 24px 10px;background:var(--hero-glow)}
 .hero .diamond{display:inline-block;margin-bottom:12px;animation:fadeUp .8s var(--ease) both}
 .hero .diamond svg{filter:drop-shadow(0 0 12px rgba(139,92,246,.5))}
 .hero h1{font-family:var(--font-h);font-size:clamp(2.4rem,6vw,3.4rem);color:var(--text);letter-spacing:.07em;animation:fadeUp .8s var(--ease) .05s both}
@@ -169,6 +169,23 @@ footer .f-fine{font-size:.78rem;color:var(--text-muted)}
   .newsletter-form{flex-direction:column;align-items:stretch}
   .newsletter-form input[type=email]{max-width:none;min-width:0}
   .newsletter-form button{width:100%;height:44px}
+}
+@media(min-width:1700px){
+  .hero{padding:52px 24px 16px}
+  .hero h1{font-size:3.9rem}
+  .hero .tagline{font-size:1.15rem}
+  .section{max-width:1160px}
+  .section-title{font-size:.88rem;margin-bottom:26px}
+  .works{max-width:900px;gap:46px}
+  .work-kicker{font-size:.68rem}
+  .work-title{font-size:1.08rem}
+  .work-meta{font-size:.8rem}
+  .work-links{max-width:330px;font-size:.86rem}
+  .work-note{font-size:.78rem}
+  .newsletter-box{max-width:780px;padding:40px 32px}
+  .newsletter-box p.lead{font-size:1.05rem}
+  .community{max-width:900px}
+  .com-card{padding:32px 22px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important}}
 </style>
