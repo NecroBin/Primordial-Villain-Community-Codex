@@ -26,7 +26,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Primordial Villain Wiki","alternateName":["Primordial Villain with a Slave Harem Wiki","PV Wiki","PV Codex","Primordial Villain Codex","Primordial Villain website","Necroverse","PV Necroverse","Necroverse website","NecroBin website"],"url":"https://necrobin.com/pvcodex.html","description":"The community wiki for the webnovel Primordial Villain with a Slave Harem — characters, factions, stats, classes, and lore from the world of Thalorind.","publisher":{"@type":"Person","name":"NecroBin"},"about":{"@type":"Book","name":"Primordial Villain with a Slave Harem","author":{"@type":"Person","name":"NecroBin","url":"https://www.patreon.com/NecroBin"},"genre":["LitRPG","Progression Fantasy","Webnovel"],"url":"https://www.webnovel.com/book/primordial-villain-with-a-slave-harem_30056099600577905"}}</script>
 <title>Primordial Villain with a Slave Harem — Wiki & Codex | NecroBin</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src https://pv-codex-proxy.necrobin1.workers.dev https://fonts.googleapis.com https://fonts.gstatic.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; img-src 'self' https://cdn.discordapp.com https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com data: blob:; frame-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com https://accounts.google.com; style-src 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com; font-src https://fonts.gstatic.com; connect-src https://pv-codex-proxy.necrobin1.workers.dev https://fonts.googleapis.com https://fonts.gstatic.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://accounts.google.com; img-src 'self' https://cdn.discordapp.com https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com data: blob:; frame-src https://accounts.google.com; base-uri 'self'; form-action 'none'">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -201,6 +201,10 @@ body.search-mode .page.search-has-results .sec-title{display:block!important;fon
 .newsletter-form input[type=email]{flex:1;min-width:190px;max-width:300px;padding:10px 14px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.86rem;font-family:var(--font-b)}
 .newsletter-form input[type=email]:focus{outline:none;border-color:var(--gold)}
 .newsletter-note{font-size:.7rem;color:var(--text-muted);margin-top:10px}
+.nl-oneclick{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+.nl-oneclick-label{font-size:.74rem;color:var(--text-muted)}
+.nl-discord-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#5865F2;color:#fff;border:none;border-radius:20px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:var(--font-b);transition:background .2s}
+.nl-discord-btn:hover{background:#4752c4}
 #authNotice{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(16px);background:rgba(231,76,60,.12);backdrop-filter:blur(8px);color:#e74c3c;border:1px solid rgba(231,76,60,.4);padding:12px 20px;border-radius:10px;font-size:.84rem;z-index:300;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;max-width:90vw;text-align:center}
 #authNotice.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
 .discord-login-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;background:#5865F2;color:#fff;border:none;border-radius:8px;font-family:var(--font-h);font-size:.95rem;cursor:pointer;transition:all .2s;letter-spacing:.03em}
@@ -886,6 +890,11 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
       <input type="email" id="nlEmail" placeholder="your@email.com" required aria-label="Email address">
       <button type="submit" class="form-submit" style="padding:10px 22px;font-size:.84rem">Subscribe</button>
     </form>
+    <div class="nl-oneclick">
+      <span class="nl-oneclick-label">or one-click:</span>
+      <button type="button" class="nl-discord-btn" onclick="subscribeDiscord()">Subscribe with Discord</button>
+      <div id="nlGoogleBtn"></div>
+    </div>
     <div class="form-msg" id="nlMsg" style="margin-top:12px"></div>
     <div class="newsletter-note">Only for big updates. No spam, unsubscribe anytime.</div>
   </div>
@@ -2663,7 +2672,7 @@ function generateState(){
   crypto.getRandomValues(arr);
   return Array.prototype.map.call(arr, function(b){ return ('0' + b.toString(16)).slice(-2); }).join('');
 }
-var OAUTH_BASE = 'https://discord.com/api/oauth2/authorize?client_id=1502223149876645888&redirect_uri=' + encodeURIComponent('https://necrobin.com/') + '&response_type=code&scope=identify%20guilds';
+var OAUTH_BASE = 'https://discord.com/api/oauth2/authorize?client_id=1502223149876645888&redirect_uri=' + encodeURIComponent('https://necrobin.com/') + '&response_type=code&scope=identify%20guilds%20email';
 
 function getDiscordUser(){
   try {
@@ -2748,6 +2757,7 @@ function showAuthError(text){
       setDiscordUser(data);
       navigateTo(returnPage);
       updateSubmitUI();
+      if(sessionStorage.getItem('pv_nl_pending')){ sessionStorage.removeItem('pv_nl_pending'); doDiscordSubscribe(); }
     } else if(data.error === 'not_member'){
       navigateTo(returnPage);
       showAuthError('You must be a member of the Necroverse Discord server. Join at discord.gg/XAwgpNKAHr');
@@ -2792,6 +2802,73 @@ updateSubmitUI();
       msg.className = 'form-msg error'; msg.textContent = 'Network error. Try again later.'; msg.style.display = 'block';
     }).then(function(){ if(btn) btn.disabled = false; });
   });
+})();
+
+// ── One-click newsletter: Discord + Google ──
+function showNlMsg(ok, text){
+  var msg = document.getElementById('nlMsg');
+  if(!msg) return;
+  msg.className = 'form-msg ' + (ok ? 'success' : 'error');
+  msg.textContent = text;
+  msg.style.display = 'block';
+}
+function doDiscordSubscribe(){
+  var user = getDiscordUser();
+  if(!user || !user.access_token) return;
+  fetch(WORKER + '/subscribe/discord', {
+    method:'POST',
+    headers:{'Authorization':'Bearer ' + user.access_token}
+  }).then(function(r){ return r.json().then(function(d){ return {ok:r.ok, d:d}; }); })
+  .then(function(res){
+    if(res.ok && res.d && res.d.ok){
+      showNlMsg(true, 'Subscribed as ' + res.d.email + '. Welcome to the Necroverse!');
+      if(typeof gtag === 'function') gtag('event','newsletter_subscribe',{source:'discord'});
+    } else if(res.d && res.d.error === 'reauth'){
+      sessionStorage.setItem('pv_nl_pending','1');
+      discordLogin();
+    } else {
+      showNlMsg(false, (res.d && res.d.error) || 'Could not subscribe. Try again.');
+    }
+  }).catch(function(){ showNlMsg(false, 'Network error. Try again later.'); });
+}
+window.subscribeDiscord = function(){
+  var user = getDiscordUser();
+  if(!user || !user.access_token){
+    sessionStorage.setItem('pv_nl_pending','1');
+    discordLogin();
+    return;
+  }
+  doDiscordSubscribe();
+};
+var GOOGLE_CLIENT_ID = ''; // paste Google OAuth client ID (public) to enable the Google button
+function onGoogleCred(resp){
+  if(!resp || !resp.credential) return;
+  fetch(WORKER + '/subscribe/google', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({credential: resp.credential})
+  }).then(function(r){ return r.json().then(function(d){ return {ok:r.ok, d:d}; }); })
+  .then(function(res){
+    if(res.ok && res.d && res.d.ok){
+      showNlMsg(true, 'Subscribed as ' + res.d.email + '. Welcome to the Necroverse!');
+      if(typeof gtag === 'function') gtag('event','newsletter_subscribe',{source:'google'});
+    } else {
+      showNlMsg(false, (res.d && res.d.error) || 'Could not subscribe. Try again.');
+    }
+  }).catch(function(){ showNlMsg(false, 'Network error. Try again later.'); });
+}
+(function initGoogleSignup(){
+  if(!GOOGLE_CLIENT_ID) return;
+  var s = document.createElement('script');
+  s.src = 'https://accounts.google.com/gsi/client';
+  s.async = true; s.defer = true;
+  s.onload = function(){
+    if(!(window.google && google.accounts && google.accounts.id)) return;
+    google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, callback: onGoogleCred });
+    var el = document.getElementById('nlGoogleBtn');
+    if(el) google.accounts.id.renderButton(el, { theme:'outline', size:'medium', text:'signup_with', shape:'pill' });
+  };
+  document.head.appendChild(s);
 })();
 
 // ── Outbound link analytics ──
