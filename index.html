@@ -32,7 +32,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <script>
 document.documentElement.setAttribute('data-theme',localStorage.getItem('pv-theme')||'dark');
-(function(){var p=new URLSearchParams(window.location.search);if(p.get('code')){if(sessionStorage.getItem('pv_oauth_return')!=='landing'){window.location.replace('pvcodex.html'+window.location.search);}return;}var h=window.location.hash;if(h&&h.length>1&&['#works','#codex','#newsletter','#community'].indexOf(h)===-1){window.location.replace('pvcodex.html'+h);}})();
+function pvForwardHash(){var h=window.location.hash;if(h&&h.length>1&&['#works','#codex','#newsletter','#community'].indexOf(h)===-1){window.location.replace('pvcodex.html'+h);}}
+(function(){var p=new URLSearchParams(window.location.search);if(p.get('code')){if(sessionStorage.getItem('pv_oauth_return')!=='landing'){window.location.replace('pvcodex.html'+window.location.search);}return;}pvForwardHash();window.addEventListener('hashchange',pvForwardHash);})();
 </script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
