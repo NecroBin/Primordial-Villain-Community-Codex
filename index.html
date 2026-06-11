@@ -382,6 +382,19 @@ document.addEventListener('click', function(e){
   if(typeof gtag === 'function') gtag('event','outbound_click',{link_domain:a.hostname, link_url:a.href, transport_type:'beacon'});
 }, true);
 
+(function(){
+  var buf = '';
+  document.addEventListener('keydown', function(e){
+    var t = e.target;
+    if(e.ctrlKey || e.metaKey || e.altKey) return;
+    if(t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+    if(e.key && e.key.length === 1){
+      buf = (buf + e.key.toLowerCase()).slice(-5);
+      if(buf === 'admin') window.location.href = 'pvcodex.html#admin';
+    }
+  });
+})();
+
 var GOOGLE_CLIENT_ID = '73047903913-ke865d9sgimps7aetb0k3ntlk9fsv3ec.apps.googleusercontent.com';
 function subscribeDiscordLanding(){
   var state = '';

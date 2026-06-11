@@ -2563,6 +2563,19 @@ function handleHash(){
   }
 }
 
+(function(){
+  var buf = '';
+  document.addEventListener('keydown', function(e){
+    var t = e.target;
+    if(e.ctrlKey || e.metaKey || e.altKey) return;
+    if(t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+    if(e.key && e.key.length === 1){
+      buf = (buf + e.key.toLowerCase()).slice(-5);
+      if(buf === 'admin'){ buf = ''; navigateTo('admin'); }
+    }
+  });
+})();
+
 document.querySelector('.sidebar-nav').addEventListener('keydown', function(e){
   if(e.key === 'Enter' && e.target.matches('a[tabindex]')) e.target.click();
 });
