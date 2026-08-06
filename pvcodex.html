@@ -40,6 +40,7 @@
   --font-b:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --sidebar-w:260px;--ease:cubic-bezier(.4,0,.2,1);
   --gold:#8B5CF6;--gold-dim:#6D3FD4;--gold-glow:rgba(139,92,246,.25);
+  --accent-bg:#7C3AED;--accent-bg-hover:#6D3FD4;
   --crimson:#a03050;--crimson-dim:#6b2040;
   --purple:#7b5ea7;--teal:#2a9d8f;
 }
@@ -47,7 +48,8 @@
   --bg-deep:#1a1a1e;--bg-primary:#1e1e22;--bg-secondary:#252528;
   --bg-card:#2a2a2e;--bg-card-hover:#323236;
   --border:#3a3a42;--border-hover:#8B5CF6;
-  --text:#dddde6;--text-sec:#9999ad;--text-muted:#5a5a70;
+  --text:#dddde6;--text-sec:#9999ad;--text-muted:#8F8FA4;
+  --link:#A78BFA;--link-hover:#C4B5FD;
   --shadow-card:0 2px 12px rgba(0,0,0,.3);
   --scrollbar-track:var(--bg-primary);--scrollbar-thumb:var(--border);
   --chart-grid:rgba(255,255,255,.06);--chart-grid-fine:rgba(255,255,255,.04);
@@ -56,7 +58,8 @@
   --bg-deep:#f4f2f8;--bg-primary:#faf9fc;--bg-secondary:#eeedf3;
   --bg-card:#ffffff;--bg-card-hover:#f6f4fa;
   --border:#d8d4e0;--border-hover:#8B5CF6;
-  --text:#1a1a2e;--text-sec:#4a4a5a;--text-muted:#8a8a9a;
+  --text:#1a1a2e;--text-sec:#4a4a5a;--text-muted:#686879;
+  --link:#7C3AED;--link-hover:#5B21B6;
   --shadow-card:0 2px 12px rgba(0,0,0,.06);
   --scrollbar-track:#eeedf3;--scrollbar-thumb:#ccc8d8;
   --chart-grid:rgba(0,0,0,.08);--chart-grid-fine:rgba(0,0,0,.05);
@@ -67,9 +70,9 @@ body{font-family:var(--font-b);background:var(--bg-deep);color:var(--text);line-
 ::-webkit-scrollbar-track{background:var(--scrollbar-track)}
 ::-webkit-scrollbar-thumb{background:var(--scrollbar-thumb);border-radius:4px}
 ::-webkit-scrollbar-thumb:hover{background:var(--gold-dim)}
-a{color:var(--gold);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;transition:color .2s}
-a:hover{color:#a78bfa}
-.skip-link{position:absolute;top:-100%;left:16px;background:var(--gold);color:#fff;padding:8px 18px;border-radius:0 0 8px 8px;z-index:200;font-size:.88rem;font-weight:600;transition:top .2s}
+a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;transition:color .2s}
+a:hover{color:var(--link-hover)}
+.skip-link{position:absolute;top:-100%;left:16px;background:var(--accent-bg);color:#fff;padding:8px 18px;border-radius:0 0 8px 8px;z-index:200;font-size:.88rem;font-weight:600;transition:top .2s}
 .skip-link:focus{top:0}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
@@ -131,7 +134,7 @@ body.search-mode .page.search-has-results .sec-title{display:block!important;fon
 .home-hero{padding:40px 48px 24px;max-width:900px;text-align:center;margin:0 auto;position:relative}
 .home-hero h1{font-family:var(--font-h);font-size:2.4rem;color:var(--gold);letter-spacing:.04em;line-height:1.2;margin-bottom:16px;margin-top:12px}
 .home-hero .hero-meta{font-size:.82rem;color:var(--text-muted);letter-spacing:.03em;line-height:1.7}
-.home-hero .hero-meta a{color:var(--gold)}
+.home-hero .hero-meta a{color:var(--link)}
 .hero-info-card{max-width:540px;margin:20px auto 0;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px 24px;box-shadow:var(--shadow-card)}
 .hero-info-card p{font-size:.82rem;color:var(--text-sec);line-height:1.6;margin-bottom:8px}
 .hero-info-card p:last-child{margin-bottom:0}
@@ -145,7 +148,7 @@ body.search-mode .page.search-has-results .sec-title{display:block!important;fon
 .home-nav{max-width:900px;margin:0 auto;padding:0 48px 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;justify-content:center}
 .nav-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;cursor:pointer;transition:all .3s var(--ease);text-decoration:none;display:block;border-left:3px solid var(--border);box-shadow:var(--shadow-card);text-align:center}
 .nav-card:hover{border-color:var(--gold-dim);box-shadow:0 4px 24px rgba(139,92,246,.12);transform:translateY(-3px);border-left-color:var(--gold)}
-.nav-card h3{font-family:var(--font-h);font-size:.95rem;color:var(--gold);margin-bottom:6px}
+.nav-card h2,.nav-card h3{font-family:var(--font-h);font-size:.95rem;color:var(--link);margin-bottom:6px}
 .nav-card p{font-size:.82rem;color:var(--text-sec);line-height:1.5}
 .nav-card .nav-card-icon{font-size:1.8rem;margin-bottom:10px;display:block}
 
@@ -164,7 +167,8 @@ body.search-mode .page.search-has-results .sec-title{display:block!important;fon
 .link-discord:hover{box-shadow:0 8px 28px rgba(88,101,242,.35);color:#fff}
 .link-patreon{background:linear-gradient(135deg,#f96854,#ff7b6b);color:#fff;border-color:transparent}
 .link-patreon:hover{box-shadow:0 8px 28px rgba(249,104,84,.35);color:#fff}
-.link-read{background:var(--bg-card);color:var(--gold)}
+.link-read{background:var(--bg-card);color:var(--link)}
+.link-read span{opacity:1}
 .link-read:hover{border-color:var(--gold);box-shadow:0 8px 28px rgba(139,92,246,.2)}
 
 /* ── Sidebar External Links ── */
@@ -190,14 +194,14 @@ body.search-mode .page.search-has-results .sec-title{display:block!important;fon
 .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold)}
 .form-select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239999ad' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
 .form-textarea{min-height:140px;resize:vertical;line-height:1.6}
-.form-submit{display:inline-flex;align-items:center;gap:8px;padding:12px 32px;background:var(--gold);color:#fff;border:none;border-radius:8px;font-family:var(--font-h);font-size:.92rem;cursor:pointer;transition:all .2s;letter-spacing:.03em}
-.form-submit:hover{background:var(--gold-dim);box-shadow:0 4px 16px var(--gold-glow)}
+.form-submit{display:inline-flex;align-items:center;gap:8px;padding:12px 32px;background:var(--accent-bg);color:#fff;border:none;border-radius:8px;font-family:var(--font-h);font-size:.92rem;cursor:pointer;transition:all .2s;letter-spacing:.03em}
+.form-submit:hover{background:var(--accent-bg-hover);box-shadow:0 4px 16px var(--gold-glow)}
 .form-submit:disabled{opacity:.5;cursor:not-allowed}
 .form-msg{margin-top:16px;padding:14px 18px;border-radius:8px;font-size:.84rem;display:none}
 .form-msg.success{display:block;background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.3);color:#2ecc71}
 .form-msg.error{display:block;background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.3);color:#e74c3c}
 .newsletter-box{max-width:560px;margin:28px auto 8px;padding:22px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;text-align:center;box-shadow:var(--shadow-card)}
-.newsletter-box h3{font-family:var(--font-h);color:var(--gold);font-size:1rem;margin-bottom:6px}
+.newsletter-box h3{font-family:var(--font-h);color:var(--link);font-size:1rem;margin-bottom:6px}
 .newsletter-box>p{font-size:.82rem;color:var(--text-sec);margin-bottom:14px}
 .newsletter-form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
 .newsletter-form input[type=email]{flex:1;min-width:190px;max-width:300px;padding:10px 14px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.86rem;font-family:var(--font-b)}
@@ -220,8 +224,8 @@ body.search-mode .page.search-has-results .sec-title{display:block!important;fon
 .admin-auth{max-width:360px;margin:40px auto;text-align:center}
 .admin-auth input{width:100%;padding:12px 16px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:var(--font-b);font-size:.88rem;margin-bottom:12px;box-sizing:border-box}
 .admin-auth input:focus{outline:none;border-color:var(--gold-dim)}
-.admin-btn{padding:10px 22px;background:var(--gold);color:#fff;border:none;border-radius:8px;font-family:var(--font-h);font-size:.84rem;cursor:pointer;transition:all .2s;letter-spacing:.03em}
-.admin-btn:hover{background:var(--gold-dim);box-shadow:0 4px 16px var(--gold-glow)}
+.admin-btn{padding:10px 22px;background:var(--accent-bg);color:#fff;border:none;border-radius:8px;font-family:var(--font-h);font-size:.84rem;cursor:pointer;transition:all .2s;letter-spacing:.03em}
+.admin-btn:hover{background:var(--accent-bg-hover);box-shadow:0 4px 16px var(--gold-glow)}
 .admin-btn.danger{background:var(--crimson)}
 .admin-btn.danger:hover{background:#c0392b}
 .admin-btn:disabled{opacity:.4;cursor:default}
@@ -469,6 +473,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 
 /* ── Footer ── */
 .footer{padding:32px 48px;text-align:center;color:var(--text-muted);font-size:.76rem;border-top:1px solid var(--border);max-width:1000px;margin:0 auto}
+.footer strong{color:var(--link)!important}
 
 /* ── Responsive ── */
 @media(max-width:860px){
@@ -612,8 +617,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .breadcrumb .bc-current{color:var(--gold)}
 .entry-cta{margin-top:28px;padding:20px 24px;border:1px dashed var(--border);border-radius:10px;text-align:center;background:rgba(139,92,246,.03)}
 .entry-cta p{font-size:.85rem;color:var(--text-sec);margin-bottom:12px}
-.entry-cta a{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:var(--gold);color:#fff;border-radius:8px;font-family:var(--font-h);font-size:.85rem;cursor:pointer;text-decoration:none;transition:all .2s;letter-spacing:.03em}
-.entry-cta a:hover{background:var(--gold-dim);box-shadow:0 4px 16px var(--gold-glow)}
+.entry-cta a{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:var(--accent-bg);color:#fff;border-radius:8px;font-family:var(--font-h);font-size:.85rem;cursor:pointer;text-decoration:none;transition:all .2s;letter-spacing:.03em}
+.entry-cta a:hover{background:var(--accent-bg-hover);box-shadow:0 4px 16px var(--gold-glow)}
 /* ── Poll Widget ── */
 .poll-widget{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:22px;margin:20px 0;box-shadow:var(--shadow-card)}
 .poll-question{font-family:var(--font-h);font-size:.95rem;color:var(--gold);margin-bottom:16px}
@@ -663,8 +668,8 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .trivia-answer.correct{border-color:#2ecc71;background:rgba(46,204,113,.12);color:#2ecc71;font-weight:600}
 .trivia-answer.wrong{border-color:#e74c3c;background:rgba(231,76,60,.1);color:#e74c3c}
 .trivia-answer.reveal-correct{border-color:#2ecc71;background:rgba(46,204,113,.08)}
-.trivia-next-btn{margin-top:18px;padding:12px 28px;background:var(--gold);color:#fff;border:none;border-radius:8px;font-family:var(--font-h);font-size:.88rem;cursor:pointer;transition:all .2s;letter-spacing:.03em}
-.trivia-next-btn:hover{background:var(--gold-dim);box-shadow:0 4px 16px var(--gold-glow)}
+.trivia-next-btn{margin-top:18px;padding:12px 28px;background:var(--accent-bg);color:#fff;border:none;border-radius:8px;font-family:var(--font-h);font-size:.88rem;cursor:pointer;transition:all .2s;letter-spacing:.03em}
+.trivia-next-btn:hover{background:var(--accent-bg-hover);box-shadow:0 4px 16px var(--gold-glow)}
 .trivia-results{text-align:center;padding:40px 24px}
 .trivia-sticker{width:160px;height:160px;border-radius:16px;object-fit:cover;margin:0 auto 12px;display:block;box-shadow:0 4px 20px rgba(0,0,0,.15);border:2px solid var(--border)}
 .trivia-sticker-quote{font-family:var(--font-h);font-size:.85rem;color:var(--text-sec);font-style:italic;margin-bottom:4px;line-height:1.5}
@@ -717,7 +722,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .sticky-toc{position:sticky;top:0;z-index:50;background:var(--bg-primary);border-bottom:1px solid var(--border);padding:10px 48px 10px;display:flex;justify-content:center;gap:8px;font-size:.75rem;font-family:var(--font-h);margin:0 -48px 12px}
 .sticky-toc a{color:var(--text-sec);cursor:pointer;transition:all .2s;text-decoration:none;white-space:nowrap;padding:5px 14px;border-radius:16px;border:1px solid var(--border);background:var(--bg-secondary)}
 .sticky-toc a:hover{border-color:var(--gold);color:var(--gold)}
-.sticky-toc a.active{background:var(--gold);color:#fff;border-color:var(--gold)}
+.sticky-toc a.active{background:var(--accent-bg);color:#fff;border-color:var(--accent-bg)}
 .char-switcher-wrap{border-bottom:1px solid var(--border)}
 .char-switcher{display:flex;gap:6px;padding:8px 0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .char-switcher::-webkit-scrollbar{height:4px}
@@ -726,7 +731,7 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .char-switcher::-webkit-scrollbar-thumb:hover{background:var(--gold)}
 .char-switcher a{flex-shrink:0;padding:5px 12px;border-radius:16px;font-size:.75rem;font-family:var(--font-h);color:var(--text-sec);background:var(--bg-secondary);border:1px solid var(--border);cursor:pointer;transition:all .2s;text-decoration:none;white-space:nowrap}
 .char-switcher a:hover{border-color:var(--gold);color:var(--gold)}
-.char-switcher a.active{background:var(--gold);color:#fff;border-color:var(--gold)}
+.char-switcher a.active{background:var(--accent-bg);color:#fff;border-color:var(--accent-bg)}
 .char-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-top:20px}
 .char-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:all .3s var(--ease);text-align:center;box-shadow:var(--shadow-card)}
 .char-card:hover{transform:translateY(-3px);border-color:var(--gold-dim);box-shadow:0 4px 24px rgba(139,92,246,.12)}
@@ -823,47 +828,47 @@ table.stats-table{width:100%;border-collapse:collapse;font-size:.84rem}
   <div class="home-nav">
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('quinlan')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#10070;</span>
-      <h3>Quinlan</h3>
+      <h2>Quinlan</h2>
       <p>Stats, progression, classes, abilities&mdash;everything about the Primordial Villain.</p>
     </a>
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('families')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#9829;</span>
-      <h3>Harem &amp; Family</h3>
+      <h2>Harem &amp; Family</h2>
       <p>Quinlan's inner circle and their known family connections.</p>
     </a>
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('characters')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#9734;</span>
-      <h3>Other Characters</h3>
+      <h2>Other Characters</h2>
       <p>Allies, enemies, royals, and other notable figures of Thalorind.</p>
     </a>
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('world')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#9813;</span>
-      <h3>World &amp; Factions</h3>
+      <h2>World &amp; Factions</h2>
       <p>The Vraven Kingdom, the Primordials, criminal syndicates, and the lore of Thalorind.</p>
     </a>
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('quotes')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#10078;</span>
-      <h3>Quotes</h3>
+      <h2>Quotes</h2>
       <p>Relive the most memorable moments of the story.</p>
     </a>
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('trivia')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#10050;</span>
-      <h3>Trivia Game</h3>
+      <h2>Trivia Game</h2>
       <p>Test your PV knowledge with community-made trivia questions.</p>
     </a>
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('gallery')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#10063;</span>
-      <h3>Gallery</h3>
+      <h2>Gallery</h2>
       <p>Character portraits and artwork.</p>
     </a>
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('votes')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#9745;</span>
-      <h3>Votes</h3>
+      <h2>Votes</h2>
       <p>Vote on character debates and community polls. Discord login required.</p>
     </a>
     <a class="nav-card" tabindex="0" role="link" onclick="navigateTo('submit')" onkeydown="if(event.key==='Enter')this.click()">
       <span class="nav-card-icon">&#9998;</span>
-      <h3>Contribute</h3>
+      <h2>Contribute</h2>
       <p>Know a character's abilities or lore? Write it up and add it to the codex.</p>
     </a>
   </div>

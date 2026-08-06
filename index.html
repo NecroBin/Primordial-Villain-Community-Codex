@@ -44,12 +44,14 @@ function pvForwardHash(){var h=window.location.hash;if(h&&h.length>1&&['#works',
   --font-b:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --ease:cubic-bezier(.4,0,.2,1);
   --gold:#8B5CF6;--gold-dim:#6D3FD4;--gold-glow:rgba(139,92,246,.25);
+  --accent-bg:#7C3AED;--accent-bg-hover:#6D3FD4;
 }
 [data-theme="dark"]{
   --bg-deep:#0e0e12;--bg-primary:#1e1e22;--bg-secondary:#252528;
   --bg-card:#1c1c22;--bg-card-hover:#252530;
   --border:#2a2a35;
-  --text:#dddde6;--text-sec:#9999ad;--text-muted:#5a5a70;
+  --text:#dddde6;--text-sec:#9999ad;--text-muted:#8F8FA4;
+  --link:#A78BFA;--link-hover:#C4B5FD;
   --shadow-card:0 4px 20px rgba(0,0,0,.4);
   --shadow-cover:0 10px 34px rgba(0,0,0,.5);
   --hero-glow:radial-gradient(ellipse 60% 50% at 50% 30%, rgba(139,92,246,.10) 0%, transparent 70%);
@@ -59,7 +61,8 @@ function pvForwardHash(){var h=window.location.hash;if(h&&h.length>1&&['#works',
   --bg-deep:#f7f6fa;--bg-primary:#faf9fc;--bg-secondary:#eeedf3;
   --bg-card:#ffffff;--bg-card-hover:#f6f4fa;
   --border:#e2dfe9;
-  --text:#1a1a2e;--text-sec:#4a4a5a;--text-muted:#8a8a9a;
+  --text:#1a1a2e;--text-sec:#4a4a5a;--text-muted:#686879;
+  --link:#7C3AED;--link-hover:#5B21B6;
   --shadow-card:0 4px 20px rgba(0,0,0,.05);
   --shadow-cover:0 10px 30px rgba(40,30,80,.16);
   --hero-glow:radial-gradient(ellipse 60% 50% at 50% 30%, rgba(139,92,246,.05) 0%, transparent 70%);
@@ -67,8 +70,11 @@ function pvForwardHash(){var h=window.location.hash;if(h&&h.length>1&&['#works',
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--font-b);background:var(--bg-deep);color:var(--text);line-height:1.6;min-height:100vh;transition:background .3s,color .3s;overflow-x:hidden}
-a{color:var(--gold);text-decoration:none;transition:color .2s}
-a:hover{color:#a78bfa}
+a{color:var(--link);text-decoration:none;transition:color .2s}
+a:hover{color:var(--link-hover)}
+.skip-link{position:absolute;top:-100%;left:16px;background:var(--accent-bg);color:#fff;padding:8px 18px;border-radius:0 0 8px 8px;z-index:200;font-size:.88rem;font-weight:600}
+.skip-link:focus{top:0;color:#fff}
+main p a,.work-note a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
 
 /* ── Nav ── */
 .nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:center;gap:30px;padding:15px 26px;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);flex-wrap:wrap}
@@ -77,8 +83,8 @@ a:hover{color:#a78bfa}
 .nav-links{display:flex;align-items:center;gap:26px;font-size:.95rem;font-weight:500}
 .nav-links a{color:var(--text-sec);cursor:pointer}
 .nav-links a:hover{color:var(--gold)}
-.nav-links .nav-codex{color:#fff;background:var(--gold);padding:9px 22px;border-radius:9px;font-weight:600}
-.nav-links .nav-codex:hover{background:var(--gold-dim);color:#fff}
+.nav-links .nav-codex{color:#fff;background:var(--accent-bg);padding:9px 22px;border-radius:9px;font-weight:600}
+.nav-links .nav-codex:hover{background:var(--accent-bg-hover);color:#fff}
 .nav-ext{display:inline-flex;align-items:center;gap:7px}
 .theme-btn{width:38px;height:38px;background:none;border:1px solid var(--border);border-radius:9px;color:var(--gold);font-size:1.05rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s var(--ease)}
 .theme-btn:hover{border-color:var(--gold)}
@@ -98,9 +104,10 @@ a:hover{color:#a78bfa}
 .work:nth-child(2){animation-delay:.1s}
 .work:nth-child(3){animation-delay:.2s}
 .work-cover{display:block;aspect-ratio:3/4;border-radius:10px;overflow:hidden;box-shadow:var(--shadow-cover);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.work-cover picture{display:block;width:100%;height:100%}
 .work-cover img{width:100%;height:100%;object-fit:cover;display:block}
 .work-cover:hover{transform:translateY(-6px);box-shadow:0 18px 44px var(--gold-glow)}
-.work-kicker{font-family:var(--font-h);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:16px 0 4px}
+.work-kicker{font-family:var(--font-h);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--link);margin:16px 0 4px}
 .work-title{font-family:var(--font-h);font-size:1.06rem;font-weight:700;color:var(--text);margin:0 0 10px;line-height:1.3;min-height:2.6em;display:flex;align-items:center;justify-content:center}
 .work-title a{color:var(--text)}
 .work-title a:hover{color:var(--gold)}
@@ -109,8 +116,8 @@ a:hover{color:#a78bfa}
 .work-stats b{color:var(--text-sec);font-weight:600}
 .work-links{display:flex;flex-direction:column;gap:8px;max-width:250px;width:100%;margin:0 auto;font-size:.88rem;font-weight:500}
 .work-links a{display:block;padding:11px 14px;border-radius:9px;text-align:center}
-.work-links .wl-main{background:var(--gold);color:#fff;font-weight:600}
-.work-links .wl-main:hover{background:var(--gold-dim);color:#fff}
+.work-links .wl-main{background:var(--accent-bg);color:#fff;font-weight:600}
+.work-links .wl-main:hover{background:var(--accent-bg-hover);color:#fff}
 .work-links .wl-out{border:1px solid var(--border);color:var(--text-sec)}
 .work-links .wl-out:hover{border-color:var(--gold);color:var(--gold)}
 .work-note{font-size:.74rem;color:var(--text-muted);margin-top:9px;font-style:italic}
@@ -132,8 +139,8 @@ a:hover{color:#a78bfa}
 .newsletter-form{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
 .newsletter-form input[type=email]{flex:1;min-width:200px;max-width:300px;padding:11px 15px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:9px;color:var(--text);font-size:.88rem;font-family:var(--font-b)}
 .newsletter-form input[type=email]:focus{outline:none;border-color:var(--gold)}
-.newsletter-form button{font-family:var(--font-h);font-size:.78rem;font-weight:700;letter-spacing:.05em;padding:0 24px;height:42px;border-radius:9px;background:var(--gold);color:#fff;border:none;cursor:pointer;transition:background .25s}
-.newsletter-form button:hover{background:var(--gold-dim)}
+.newsletter-form button{font-family:var(--font-h);font-size:.78rem;font-weight:700;letter-spacing:.05em;padding:0 24px;height:42px;border-radius:9px;background:var(--accent-bg);color:#fff;border:none;cursor:pointer;transition:background .25s}
+.newsletter-form button:hover{background:var(--accent-bg-hover)}
 .nl-divider{display:flex;align-items:center;gap:12px;margin:16px auto 12px;max-width:300px;color:var(--text-muted);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase}
 .nl-divider::before,.nl-divider::after{content:'';flex:1;height:1px;background:var(--border)}
 .nl-oneclick{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
@@ -211,8 +218,9 @@ footer .f-fine{font-size:.78rem;color:var(--text-muted)}
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to content</a>
 <nav class="nav">
-  <a href="/" class="nav-brand"><svg width="18" height="18" viewBox="0 0 32 32"><path d="M16 2L28 16L16 30L4 16Z" fill="#8B5CF6"/></svg><span class="nav-brand-text">NecroBin</span></a>
+  <a href="/" class="nav-brand" aria-label="NecroBin home"><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2L28 16L16 30L4 16Z" fill="#8B5CF6"/></svg><span class="nav-brand-text">NecroBin</span></a>
   <div class="nav-links">
     <a href="about.html">About Me</a>
     <a href="#newsletter">Newsletter</a>
@@ -223,6 +231,7 @@ footer .f-fine{font-size:.78rem;color:var(--text-muted)}
   </div>
 </nav>
 
+<main id="main-content">
 <header class="hero">
   <h1>NecroBin</h1>
   <p class="tagline">A progression fantasy and LitRPG author. <a href="about.html">Want to know more? &rarr;</a></p>
@@ -232,11 +241,11 @@ footer .f-fine{font-size:.78rem;color:var(--text-muted)}
   <h2 class="section-title">The Necroverse</h2>
   <div class="works">
     <div class="work">
-      <a class="work-cover" href="https://www.webnovel.com/book/primordial-villain-with-a-slave-harem_30056099600577905" target="_blank" rel="noopener"><img src="images-web/cover-pv.jpg" alt="Primordial Villain with a Slave Harem cover"></a>
+      <a class="work-cover" href="https://www.webnovel.com/book/primordial-villain-with-a-slave-harem_30056099600577905" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="images-web/cover-pv-480.webp 480w, images-web/cover-pv-640.webp 640w, images-web/cover-pv-960.webp 960w" sizes="(max-width:760px) 340px, (min-width:1440px) 412px, 342px"><img src="images-web/cover-pv.jpg" alt="Primordial Villain with a Slave Harem cover" width="480" height="640" decoding="async" fetchpriority="high"></picture></a>
       <div class="work-kicker">First Entry &middot; Ongoing</div>
       <h3 class="work-title"><a href="https://www.webnovel.com/book/primordial-villain-with-a-slave-harem_30056099600577905" target="_blank" rel="noopener">Primordial Villain with a Slave Harem</a></h3>
       <p class="work-hook">Quinlan, a dejected office worker, arrives in the deadly fantasy world of Thalorind as a level 1 Commoner. Severe trust issues make joining a team impossible, but he soon notices that a lot of people have collars around their necks in this world.</p>
-      <div class="work-stats"><span><b>9.6M</b> views</span><span><b>4.4&#9733;</b></span><span><b>1,700+</b> chapters</span><span><b>2M+</b> words</span></div>
+      <div class="work-stats"><span><b>10.1M</b> views</span><span><b>4.4&#9733;</b></span><span><b>1,800+</b> chapters</span><span><b>2.2M</b> words</span></div>
       <div class="work-links">
         <a href="https://www.webnovel.com/book/primordial-villain-with-a-slave-harem_30056099600577905" target="_blank" rel="noopener" class="wl-main">Read on Webnovel</a>
         <a href="https://www.amazon.com/dp/B0DTJ2SG1X" target="_blank" rel="noopener" class="wl-out">Amazon &middot; Books 1 &amp; 2</a>
@@ -244,11 +253,11 @@ footer .f-fine{font-size:.78rem;color:var(--text-muted)}
       <div class="work-note">Amazon covers the early arcs only (ch.&nbsp;1&ndash;139) &middot; <a href="https://www.goodreads.com/book/show/223801908-primordial-villain-with-a-slave-harem" target="_blank" rel="noopener">Goodreads</a></div>
     </div>
     <div class="work">
-      <a class="work-cover" href="https://www.webnovel.com/book/demonic-pornstar-system_32444714800937905" target="_blank" rel="noopener"><img src="images-web/cover-dps.jpg" alt="Demonic Pornstar System cover"></a>
+      <a class="work-cover" href="https://www.webnovel.com/book/demonic-pornstar-system_32444714800937905" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="images-web/cover-dps-480.webp 480w, images-web/cover-dps-640.webp 640w, images-web/cover-dps-960.webp 960w" sizes="(max-width:760px) 340px, (min-width:1440px) 412px, 342px"><img src="images-web/cover-dps.jpg" alt="Demonic Pornstar System cover" width="480" height="640" loading="lazy" decoding="async"></picture></a>
       <div class="work-kicker">Second Entry &middot; Ongoing</div>
       <h3 class="work-title"><a href="https://www.webnovel.com/book/demonic-pornstar-system_32444714800937905" target="_blank" rel="noopener">Demonic Pornstar System</a></h3>
       <p class="work-hook">When the mana apocalypse struck, 85% of humanity was left powerless. Kaiden was one of them, until a banana peel sent him tumbling into a very unconventional system. His path to power isn&rsquo;t through combat alone, but through conquering the world of adult content.</p>
-      <div class="work-stats"><span><b>6.2M</b> views</span><span><b>4.5&#9733;</b></span><span><b>800+</b> chapters</span><span><b>1M+</b> words</span></div>
+      <div class="work-stats"><span><b>6.7M</b> views</span><span><b>4.5&#9733;</b></span><span><b>900+</b> chapters</span><span><b>1.12M</b> words</span></div>
       <div class="work-links">
         <a href="https://www.webnovel.com/book/demonic-pornstar-system_32444714800937905" target="_blank" rel="noopener" class="wl-main">Read on Webnovel</a>
         <a href="https://www.amazon.com/dp/B0FKM1PW5W" target="_blank" rel="noopener" class="wl-out">Amazon &middot; Books 1&ndash;3</a>
@@ -308,6 +317,8 @@ footer .f-fine{font-size:.78rem;color:var(--text-muted)}
     </a>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="f-links">

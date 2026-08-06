@@ -30,21 +30,23 @@ pvForwardHash();window.addEventListener('hashchange',pvForwardHash);</script>
   --font-h:'Cinzel',Georgia,'Times New Roman',serif;
   --font-b:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --ease:cubic-bezier(.4,0,.2,1);
-  --gold:#8B5CF6;--gold-dim:#6D3FD4;
+  --gold:#8B5CF6;--gold-dim:#6D3FD4;--accent-bg:#7C3AED;--accent-bg-hover:#6D3FD4;
 }
 [data-theme="dark"]{
   --bg-deep:#0e0e12;--bg-card:#1c1c22;--border:#2a2a35;
-  --text:#dddde6;--text-sec:#9999ad;--text-muted:#5a5a70;
+  --text:#dddde6;--text-sec:#9999ad;--text-muted:#8F8FA4;
+  --link:#A78BFA;--link-hover:#C4B5FD;
   --nav-bg:rgba(14,14,18,.86);
 }
 [data-theme="light"]{
   --bg-deep:#f7f6fa;--bg-card:#ffffff;--border:#e2dfe9;
-  --text:#1a1a2e;--text-sec:#4a4a5a;--text-muted:#8a8a9a;
+  --text:#1a1a2e;--text-sec:#4a4a5a;--text-muted:#686879;
+  --link:#7C3AED;--link-hover:#5B21B6;
   --nav-bg:rgba(247,246,250,.86);
 }
 body{font-family:var(--font-b);background:var(--bg-deep);color:var(--text);line-height:1.7;min-height:100vh;transition:background .3s,color .3s}
-a{color:var(--gold);text-decoration:none;transition:color .2s}
-a:hover{color:#a78bfa}
+a{color:var(--link);text-decoration:none;transition:color .2s}
+a:hover{color:var(--link-hover)}
 .nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:center;gap:30px;flex-wrap:wrap;padding:15px 26px;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
 .nav-brand{display:flex;align-items:center;gap:10px;font-family:var(--font-h);font-weight:700;font-size:1.15rem;letter-spacing:.05em;color:var(--text)}
 .nav-brand:hover{color:var(--gold)}
@@ -52,8 +54,8 @@ a:hover{color:#a78bfa}
 .nav-links a{color:var(--text-sec)}
 .nav-links a:hover{color:var(--gold)}
 .nav-links a.nav-codex{color:#fff}
-.nav-codex{color:#fff;background:var(--gold);padding:9px 22px;border-radius:9px;font-weight:600}
-.nav-codex:hover{background:var(--gold-dim);color:#fff}
+.nav-codex{color:#fff;background:var(--accent-bg);padding:9px 22px;border-radius:9px;font-weight:600}
+.nav-codex:hover{background:var(--accent-bg-hover);color:#fff}
 .theme-btn{width:38px;height:38px;background:none;border:1px solid var(--border);border-radius:9px;color:var(--gold);font-size:1.05rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .theme-btn:hover{border-color:var(--gold)}
 main{max-width:620px;margin:0 auto;padding:48px 24px 60px;animation:fadeUp .7s var(--ease) both}
@@ -61,6 +63,7 @@ h1{font-family:var(--font-h);font-size:1.7rem;text-align:center;margin-bottom:28
 .sub{text-align:center;font-size:.85rem;color:var(--text-muted);margin-bottom:34px}
 p{font-size:.98rem;color:var(--text-sec);margin-bottom:16px}
 .channels{margin-top:30px;padding:20px 22px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;font-size:.9rem;text-align:center}
+.channels a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
 .back{display:block;text-align:center;margin-top:30px;font-size:.85rem}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 .nav-ext{display:inline-flex;align-items:center;gap:7px}
@@ -71,7 +74,7 @@ p{font-size:.98rem;color:var(--text-sec);margin-bottom:16px}
 <body>
 
 <nav class="nav">
-  <a href="/" class="nav-brand"><svg width="18" height="18" viewBox="0 0 32 32"><path d="M16 2L28 16L16 30L4 16Z" fill="#8B5CF6"/></svg><span class="nav-brand-text">NecroBin</span></a>
+  <a href="/" class="nav-brand" aria-label="NecroBin home"><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2L28 16L16 30L4 16Z" fill="#8B5CF6"/></svg><span class="nav-brand-text">NecroBin</span></a>
   <div class="nav-links">
     <a href="/">Home</a>
     <a href="/#newsletter">Newsletter</a>
@@ -84,10 +87,10 @@ p{font-size:.98rem;color:var(--text-sec);margin-bottom:16px}
 
 <main>
   <h1>About the Author</h1>
-  <p>I&rsquo;m from the small country of Hungary (no, I&rsquo;m not hungry) and I suppose I sport an overly vivid imagination.</p>
-  <p>While reading other stories, I kept getting more and more irritated, imagining how I&rsquo;d have done things differently. This, paired with my general boredom, led to the decision of taking matters into my own hands.</p>
-  <p>And, well&hellip; here we are. Now, I&rsquo;m fortunate enough to call myself a full-time author.</p>
-  <p>The Necroverse is what I call the growing collection of my published works. <em>Primordial Villain with a Slave Harem</em> was its first entry and <em>Demonic Pornstar System</em> the second. I plan to add a lot more down the line.</p>
+  <p>I&rsquo;m NecroBin, a Hungarian progression fantasy and LitRPG author.</p>
+  <p>I started writing for the reason many authors probably do: I kept reading stories and imagining how I would have handled them differently. Eventually, complaining to myself stopped being enough, so I opened a blank page and took matters into my own hands.</p>
+  <p>That became <em>Primordial Villain with a Slave Harem</em>. An unreasonable number of chapters later&mdash;and thanks in no small part to my country&rsquo;s terrible wages&mdash;writing is now my full-time occupation. <em>Demonic Pornstar System</em> followed, and more stories are already waiting their turn.</p>
+  <p>The Necroverse is the growing collection of those works: progression fantasy with ambitious protagonists, heavenly jade beauties who actually have personalities of their own, and worlds built to keep expanding.</p>
   <div class="channels">
     Join the <a href="https://discord.gg/XAwgpNKAHr" target="_blank" rel="noopener">Discord</a>, support me on <a href="https://www.patreon.com/NecroBin" target="_blank" rel="noopener">Patreon</a>, or sign up to the <a href="/">newsletter on the homepage</a> to follow what happens next.
   </div>
